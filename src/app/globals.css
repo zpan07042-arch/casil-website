@@ -1,26 +1,204 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: #0A2463;
+  --color-brand-light: #3E92CC;
+  --color-accent: #3E92CC;
+  --color-text-primary: #2D3142;
+  --color-text-secondary: #86868B;
+  --color-bg-secondary: #F8F9FA;
+  --color-divider: #D2D2D7;
+  --color-brand-dark: #061A47;
+
+  /* 👉 新增：统一间距系统（8px 基准）*/
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #2D3142;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 17px;
+  line-height: 1.7; /* 👉 行高从 1.5 → 1.7，文字不挤 */
+}
+
+/* 👉 全局容器：左右留白 + 居中 + 最大宽度 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg); /* 左右 24px 留白 */
+}
+
+/* 👉 大区块上下拉开，不再挤在一起 */
+section {
+  margin: var(--space-xxl) 0; /* 上下 48px */
+}
+
+/* 👉 卡片内边距加大，呼吸感强 */
+.card {
+  padding: var(--space-lg); /* 24px */
+}
+
+/* 👉 标题和正文间距拉开 */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: var(--space-xl); /* 32px */
+}
+
+/* 👉 段落间距 + 行高，文字不堆在一起 */
+p {
+  margin-bottom: var(--space-md); /* 16px */
+}
+
+/* Apple-style glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+}
+
+/* Subtle text rendering */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Stagger animation base */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: staggerIn 0.6s ease-out forwards;
+}
+
+@keyframes staggerIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth appearance for page content */
+.page-content-enter {
+  animation: fadeSlideIn 0.5s ease-out;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Micro-interaction: button hover scale + shadow */
+.btn-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-hover:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(10, 36, 99, 0.15);
+}
+
+/* Micro-interaction: underline expand from left */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, #0A2463, #3E92CC);
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Gradient divider line */
+.gradient-divider {
+  height: 1px;
+  border: none;
+  background: linear-gradient(90deg, transparent, #D2D2D7, transparent);
+}
+
+/* Page fade-in entrance */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-enter {
+  animation: pageEnter 0.6s ease-out;
+}
+
+/* Header scroll shadow enhancement */
+.header-scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: 0 2px 20px rgba(10, 36, 99, 0.08);
 }
