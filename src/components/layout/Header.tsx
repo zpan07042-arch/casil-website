@@ -36,7 +36,6 @@ export default function Header() {
     const p = pathname;
     if (key === "about") return p.startsWith(`${base}/about`);
     if (key === "industry") return p.startsWith(`${base}/business`);
-    if (key === "consult") return p.startsWith(`${base}/news`) || p.startsWith(`${base}/company-news`) || p.startsWith(`${base}/shareholder`);
     return false;
   };
 
@@ -58,13 +57,6 @@ export default function Header() {
     { label: t("nav_global"), href: `${base}/business/global` },
   ];
 
-  const newsItems = [
-    { label: t("nav_announce"), href: `${base}/news/all` },
-    { label: t("nav_anno"), href: `${base}/news/anno` },
-    { label: t("nav_company"), href: `${base}/company-news` },
-    { label: t("nav_comm"), href: `${base}/shareholder` },
-  ];
-
   const contactItems = [
     { label: lang === "zh" ? "全球分支机构" : "Global Branches", href: `${base}/contact/branches` },
     { label: lang === "zh" ? "政企合作入口" : "Government & Enterprise", href: `${base}/contact/government` },
@@ -75,7 +67,6 @@ export default function Header() {
   const dropdowns: Record<string, NavDropdown> = {
     about: { label: t("nav_about"), items: aboutItems, href: `${base}/about` },
     industry: { label: t("nav_industry"), items: businessItems, href: `${base}/business` },
-    consult: { label: t("nav_consult"), items: newsItems, href: `${base}/news` },
     contact: { label: lang === "zh" ? "联系我们" : "Contact Us", items: contactItems, href: `${base}/contact` },
   };
 
