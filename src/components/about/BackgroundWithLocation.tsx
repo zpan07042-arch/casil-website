@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useI18n } from "@/components/data/I18nProvider";
-import ContentSection from "./ContentSection";
+import ContentSection from "@/components/shared/ContentSection";
 
 export default function BackgroundWithLocation({
   lang,

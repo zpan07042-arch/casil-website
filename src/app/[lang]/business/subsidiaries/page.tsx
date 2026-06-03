@@ -1,5 +1,5 @@
 import { getPage, getSubsidiaries } from "@/lib/db";
-import SubsidiarySection from "@/components/shared/SubsidiarySection";
+import SubsidiarySection from "@/components/subsidiaries/SubsidiarySection";
 
 export default async function SubsidiariesPage({
   params,

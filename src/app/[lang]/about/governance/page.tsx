@@ -1,5 +1,5 @@
 import { getPage, getGovernanceDocs } from "@/lib/db";
-import GovernanceSection from "@/components/shared/GovernanceSection";
+import GovernanceSection from "@/components/governance/GovernanceSection";
 
 export default async function GovernancePage({
   params,

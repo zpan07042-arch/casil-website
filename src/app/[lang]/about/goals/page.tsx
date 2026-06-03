@@ -1,5 +1,5 @@
 import { getPage } from "@/lib/db";
-import GoalsSection from "@/components/shared/GoalsSection";
+import GoalsSection from "@/components/goals/GoalsSection";
 
 export default async function GoalsPage({
   params,

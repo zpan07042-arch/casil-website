@@ -1,6 +1,6 @@
 import { getPage, getBoardMembers } from "@/lib/db";
 import ContentSection from "@/components/shared/ContentSection";
-import BoardMembers from "@/components/shared/BoardMembers";
+import BoardMembers from "@/components/board/BoardMembers";
 
 export default async function BoardPage({
   params,

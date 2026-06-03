@@ -1,5 +1,5 @@
 import { getPage } from "@/lib/db";
-import CultureSection from "@/components/shared/CultureSection";
+import CultureSection from "@/components/culture/CultureSection";
 
 export default async function CulturePage({
   params,

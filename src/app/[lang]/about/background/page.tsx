@@ -1,5 +1,5 @@
 import { getPage } from "@/lib/db";
-import CompanyTimeline from "@/components/shared/CompanyTimeline";
+import CompanyTimeline from "@/components/about/CompanyTimeline";
 
 export default async function BackgroundPage({
   params,

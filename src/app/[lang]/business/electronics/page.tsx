@@ -1,5 +1,5 @@
 import { getPage } from "@/lib/db";
-import ElectronicsSection from "@/components/shared/ElectronicsSection";
+import ElectronicsSection from "@/components/electronics/ElectronicsSection";
 
 export default async function ElectronicsPage({
   params,
