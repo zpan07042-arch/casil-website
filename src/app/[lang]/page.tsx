@@ -46,6 +46,50 @@ export default function HomePage() {
     { title: t("nav_electronics"), desc: t("card_electronics_desc"), href: `${base}/business/electronics` },
   ];
 
+  const cardIcons = [
+    <svg key="topology" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="14" y="2" width="16" height="12" rx="2" stroke="#0F3478" strokeWidth="1.5" />
+      <line x1="22" y1="14" x2="22" y2="21" stroke="#0F3478" strokeWidth="1.5" />
+      <line x1="8" y1="21" x2="36" y2="21" stroke="#0F3478" strokeWidth="1.5" />
+      <line x1="8" y1="21" x2="8" y2="28" stroke="#0F3478" strokeWidth="1.5" />
+      <line x1="36" y1="21" x2="36" y2="28" stroke="#0F3478" strokeWidth="1.5" />
+      <circle cx="8" cy="33" r="4.5" stroke="#0F3478" strokeWidth="1.5" />
+      <circle cx="8" cy="33" r="2" fill="#3E92CC" />
+      <circle cx="36" cy="33" r="4.5" stroke="#0F3478" strokeWidth="1.5" />
+      <circle cx="36" cy="33" r="2" fill="#0F3478" />
+      <line x1="12.5" y1="33" x2="31.5" y2="33" stroke="#0F3478" strokeWidth="0.75" strokeDasharray="2 2" opacity="0.4" />
+    </svg>,
+    <svg key="component" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22 2.5L38.5 12V31L22 40.5L5.5 31V12L22 2.5Z" stroke="#0F3478" strokeWidth="1.5" strokeLinejoin="round" />
+      <circle cx="22" cy="21.5" r="8.5" stroke="#3E92CC" strokeWidth="1.25" />
+      <circle cx="22" cy="21.5" r="3" fill="#0F3478" />
+      <line x1="13.5" y1="21.5" x2="19" y2="21.5" stroke="#3E92CC" strokeWidth="1.25" />
+      <line x1="25" y1="21.5" x2="30.5" y2="21.5" stroke="#3E92CC" strokeWidth="1.25" />
+      <line x1="22" y1="13" x2="22" y2="18.5" stroke="#3E92CC" strokeWidth="1.25" />
+      <line x1="22" y1="24.5" x2="22" y2="30" stroke="#3E92CC" strokeWidth="1.25" />
+    </svg>,
+    <svg key="pcb" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="12" y="10" width="20" height="24" rx="2" stroke="#0F3478" strokeWidth="1.5" />
+      <line x1="6" y1="16" x2="12" y2="16" stroke="#0F3478" strokeWidth="1.5" />
+      <line x1="32" y1="16" x2="38" y2="16" stroke="#0F3478" strokeWidth="1.25" />
+      <line x1="6" y1="22" x2="12" y2="22" stroke="#0F3478" strokeWidth="1.5" />
+      <line x1="32" y1="22" x2="38" y2="22" stroke="#0F3478" strokeWidth="1.25" />
+      <line x1="6" y1="28" x2="12" y2="28" stroke="#0F3478" strokeWidth="1.5" />
+      <line x1="32" y1="28" x2="38" y2="28" stroke="#0F3478" strokeWidth="1.25" />
+      <circle cx="6" cy="16" r="2" fill="#0F3478" />
+      <circle cx="38" cy="16" r="2" fill="#3E92CC" />
+      <circle cx="6" cy="22" r="2" fill="#3E92CC" />
+      <circle cx="38" cy="22" r="2" fill="#0F3478" />
+      <circle cx="6" cy="28" r="2" fill="#0F3478" />
+      <circle cx="38" cy="28" r="2" fill="#3E92CC" />
+      <rect x="17" y="13" width="10" height="18" rx="1" stroke="#3E92CC" strokeWidth="1" strokeDasharray="2 1.5" opacity="0.5" />
+      <line x1="22" y1="31" x2="22" y2="32" stroke="#0F3478" strokeWidth="1.5" />
+      <line x1="18" y1="32" x2="26" y2="32" stroke="#0F3478" strokeWidth="1.5" />
+      <circle cx="18" cy="33.5" r="1.5" fill="#0F3478" />
+      <circle cx="26" cy="33.5" r="1.5" fill="#0F3478" />
+    </svg>,
+  ];
+
   const announceCategories = [
     { title: t("cat_perf"), desc: t("cat_perf_sub"), href: `${base}/news/category/results` },
     { title: t("cat_coop"), desc: t("cat_coop_sub"), href: `${base}/news/category/cooperation` },
@@ -119,17 +163,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/*  业务  */}
-      <section id="two" className="h-screen flex flex-col justify-center bg-white px-6 md:px-16 lg:px-24">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+      {/* 产业与业务 */}
+      <section id="two" className="min-h-screen flex flex-col justify-center bg-white px-6 md:px-16 lg:px-24 py-24 md:py-32">
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-semibold mb-12 text-text-primary"
+          className="text-xs md:text-sm text-gray-400 tracking-[0.2em] mb-5"
         >
-          {t("business_title")}
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {t("business_slogan")}
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="mb-24 md:mb-32"
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1a1a2e] tracking-tight mb-5">
+            {t("business_title")}
+          </h2>
+          <div className="w-20 h-1 bg-[#0F3478] rounded-full" />
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {businessCards.map((card, i) => (
             <motion.div
               key={card.href}
@@ -141,16 +199,23 @@ export default function HomePage() {
             >
               <Link
                 href={card.href}
-                className="block bg-white rounded-md p-7 border border-gray-100 hover:-translate-y-[4px] transition-all duration-300 group h-full"
+                className="group block bg-white/40 backdrop-blur-[12px] border border-gray-100 rounded-2xl p-8 md:p-10 h-full
+                  hover:-translate-y-1.5 hover:shadow-[0_16px_48px_-12px_rgba(15,52,120,0.18)] hover:border-[#0F3478]/20
+                  transition-all duration-500 ease-out"
               >
-                <h3 className="text-xl font-semibold text-text-primary mb-3">
+                <div className="mb-8 w-11 h-11 flex items-center justify-center">
+                  {cardIcons[i]}
+                </div>
+                <h3 className="text-xl font-semibold text-[#1a1a2e] mb-3 tracking-tight">
                   {card.title}
                 </h3>
-                <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                <p className="text-sm text-gray-500 leading-relaxed mb-8">
                   {card.desc}
                 </p>
-                <span className="text-brand text-sm font-medium inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-                  {t("home_learn_more")} →
+                <span className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full border border-[#0F3478]/20 text-[#0F3478] text-sm font-medium
+                  group-hover:bg-[#0F3478] group-hover:text-white group-hover:border-[#0F3478]
+                  transition-all duration-300">
+                  {t("home_learn_more")}
                 </span>
               </Link>
             </motion.div>

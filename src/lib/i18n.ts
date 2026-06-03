@@ -26,6 +26,8 @@ export const ui: I18nDict = {
     nav_electronics: "高精密电子组件业务",
     nav_lab: "重点实验室科研成果",
     nav_global: "全球产业布局",
+    // Section slogans
+    business_slogan: "深耕航天全产业链 · 构筑精密制造生态",
     // Card descs
     card_subsidiary_desc: "了解航天控股旗下全资、控股及参股子公司",
     card_products_desc: "涵盖航天、电子、新材料等核心产品与技术",
@@ -108,6 +110,7 @@ export const ui: I18nDict = {
     nav_electronics: "Precision Electronic Components",
     nav_lab: "Key Lab Research Achievements",
     nav_global: "Global Industry Layout",
+    business_slogan: "Deepening the Full Aerospace Industry Chain · Building a Precision Manufacturing Ecosystem",
     card_subsidiary_desc: "Explore CASIL's wholly-owned, controlled and invested subsidiaries",
     card_products_desc: "Covering aerospace, electronics, new materials and core technologies",
     card_electronics_desc: "High-end PCBs, electronic components and assemblies manufacturing",

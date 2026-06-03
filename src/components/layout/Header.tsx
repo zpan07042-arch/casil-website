@@ -94,85 +94,92 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-10">
-            {Object.entries(dropdowns).map(([key, dd]) => (
-              <div
-                key={key}
-                className="relative"
-                onMouseEnter={() => handleMouseEnter(key)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Link
-                  href={dd.href}
-                  className={`text-sm cursor-pointer transition-all duration-200 inline-flex items-center gap-1 pb-1 border-b-[3px] ${
-                    sectionActive(key)
-                      ? "border-black text-text-primary"
-                      : activeDropdown === key
-                        ? "border-black/30 text-brand"
-                        : "border-transparent text-text-secondary hover:text-text-primary"
-                  }`}
+            {Object.entries(dropdowns).map(([key, dd]) => {
+              const isActive = sectionActive(key);
+              const isOpen = activeDropdown === key;
+              return (
+                <div
+                  key={key}
+                  className="relative h-full flex items-center group"
+                  onMouseEnter={() => handleMouseEnter(key)}
+                  onMouseLeave={handleMouseLeave}
                 >
-                  {dd.label}
-                  <svg
-                    width="10" height="10" viewBox="0 0 10 10" fill="none"
-                    className={`transition-transform duration-200 flex-shrink-0 ${
-                      activeDropdown === key ? "rotate-180" : ""
-                    }`}
+                  <Link
+                    href={dd.href}
+                    className={`
+                      text-sm cursor-pointer transition-all duration-200 inline-flex items-center gap-1
+                      relative h-full py-1
+                      ${isActive ? "text-text-primary" : isOpen ? "text-brand" : "text-text-secondary hover:text-text-primary"}
+                    `}
                   >
-                    <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </Link>
-
-                <AnimatePresence>
-                  {activeDropdown === key && (
-                    <motion.div
-                      className="absolute top-full left-1/2 -translate-x-1/2 pt-3"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
+                    {dd.label}
+                    <svg
+                      width="10" height="10" viewBox="0 0 10 10" fill="none"
+                      className={`transition-transform duration-200 flex-shrink-0 ${isOpen ? "rotate-180" : ""}`}
                     >
+                      <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    {/* 底部通栏下划线：绝对定位到父容器最底端 */}
+                    <span
+                      className={`
+                        absolute left-0 right-0 bottom-0 h-[3px] rounded-[2px] transition-all duration-200
+                        ${isActive ? "bg-black scale-x-100" : isOpen ? "bg-black/30 scale-x-100" : "bg-black scale-x-0 group-hover:scale-x-100 group-hover:bg-black/30"}
+                      `}
+                    />
+                  </Link>
+
+                  <AnimatePresence>
+                    {activeDropdown === key && (
                       <motion.div
-                        className="bg-white/95 backdrop-blur-xl rounded-none shadow-lg shadow-black/5 border border-black/5 py-4 px-3 min-w-[280px] overflow-hidden"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-3"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
                       >
-                        {dd.items.map((item, i) => (
-                          <motion.div
-                            key={item.href}
-                            initial={{ y: -12, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: -8, opacity: 0 }}
-                            transition={{
-                              delay: 0.15 + i * 0.06,
-                              duration: 0.3,
-                              ease: "easeOut",
-                            }}
-                          >
+                        <motion.div
+                          className="bg-white/95 backdrop-blur-xl rounded-none shadow-lg shadow-black/5 border border-black/5 py-4 px-3 min-w-[280px] overflow-hidden"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
+                        >
+                          {dd.items.map((item, i) => (
                             <motion.div
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
+                              key={item.href}
+                              initial={{ y: -12, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              exit={{ y: -8, opacity: 0 }}
                               transition={{
-                                delay: 0.25 + i * 0.06,
-                                duration: 0.25,
+                                delay: 0.15 + i * 0.06,
+                                duration: 0.3,
+                                ease: "easeOut",
                               }}
                             >
-                              <Link
-                                href={item.href}
-                                className="block px-5 py-3 text-base text-text-primary hover:text-brand hover:bg-black/[0.04] rounded-none transition-colors whitespace-nowrap"
+                              <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{
+                                  delay: 0.25 + i * 0.06,
+                                  duration: 0.25,
+                                }}
                               >
-                                {item.label}
-                              </Link>
+                                <Link
+                                  href={item.href}
+                                  className="block px-5 py-3 text-base text-text-primary hover:text-brand hover:bg-black/[0.04] rounded-none transition-colors whitespace-nowrap"
+                                >
+                                  {item.label}
+                                </Link>
+                              </motion.div>
                             </motion.div>
-                          </motion.div>
-                        ))}
+                          ))}
+                        </motion.div>
                       </motion.div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
 
             <Link
               href="http://www.casil-group.com:8080/investor/"
@@ -181,16 +188,25 @@ export default function Header() {
             >
               {t("nav_investor")}
             </Link>
-            <Link
-              href={`${base}/links`}
-              className={`text-sm transition-all duration-200 pb-1 border-b-[3px] ${
-                isLinksActive
-                  ? "border-black text-text-primary"
-                  : "border-transparent hover:border-black/30 text-text-secondary hover:text-text-primary"
-              }`}
-            >
-              {t("nav_link")}
-            </Link>
+
+            {/* links 单独下划线改造，和上面统一 */}
+            <div className="relative h-full flex items-center group">
+              <Link
+                href={`${base}/links`}
+                className={`
+                  text-sm transition-all duration-200 relative h-full py-1
+                  ${isLinksActive ? "text-text-primary" : "text-text-secondary hover:text-text-primary"}
+                `}
+              >
+                {t("nav_link")}
+                <span
+                  className={`
+                    absolute left-0 right-0 bottom-0 h-[3px] rounded-[2px] transition-all duration-200
+                    ${isLinksActive ? "bg-black scale-x-100" : "bg-black scale-x-0 group-hover:scale-x-100 group-hover:bg-black/30"}
+                  `}
+                />
+              </Link>
+            </div>
           </nav>
 
           {/* Right side */}
