@@ -1,5 +1,4 @@
 import { getPage, getBoardMembers } from "@/lib/db";
-import BackButton from "@/components/shared/BackButton";
 import ContentSection from "@/components/shared/ContentSection";
 import BoardMembers from "@/components/shared/BoardMembers";
 
@@ -18,7 +17,6 @@ export default async function BoardPage({
 
   return (
     <>
-      <BackButton href={`/${lang}/about`} />
       <ContentSection title={title} content={content || ""} />
       <BoardMembers members={members} lang={lang} />
     </>

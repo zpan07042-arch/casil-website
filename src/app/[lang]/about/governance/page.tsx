@@ -1,5 +1,4 @@
 import { getPage, getGovernanceDocs } from "@/lib/db";
-import BackButton from "@/components/shared/BackButton";
 import GovernanceSection from "@/components/shared/GovernanceSection";
 
 export default async function GovernancePage({
@@ -17,7 +16,6 @@ export default async function GovernancePage({
 
   return (
     <>
-      <BackButton href={`/${lang}/about`} />
       <GovernanceSection title={title} content={content || ""} docs={docs} lang={lang} />
     </>
   );

@@ -1,5 +1,4 @@
 import { getPage } from "@/lib/db";
-import BackButton from "@/components/shared/BackButton";
 import CultureSection from "@/components/shared/CultureSection";
 
 export default async function CulturePage({
@@ -15,7 +14,6 @@ export default async function CulturePage({
 
   return (
     <>
-      <BackButton href={`/${lang}/about`} />
       <CultureSection title={title} lang={lang} />
     </>
   );

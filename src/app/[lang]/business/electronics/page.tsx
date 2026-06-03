@@ -1,5 +1,4 @@
 import { getPage } from "@/lib/db";
-import BackButton from "@/components/shared/BackButton";
 import ElectronicsSection from "@/components/shared/ElectronicsSection";
 
 export default async function ElectronicsPage({
@@ -15,7 +14,6 @@ export default async function ElectronicsPage({
 
   return (
     <>
-      <BackButton href={`/${lang}/business`} />
       <ElectronicsSection title={title} lang={lang} />
     </>
   );

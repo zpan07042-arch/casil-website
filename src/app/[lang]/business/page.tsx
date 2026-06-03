@@ -1,5 +1,4 @@
 import { getPage, getPagesBySection } from "@/lib/db";
-import BackButton from "@/components/shared/BackButton";
 import ContentSection from "@/components/shared/ContentSection";
 import Link from "next/link";
 
@@ -28,7 +27,6 @@ export default async function BusinessPage({
 
   return (
     <>
-      <BackButton href={base} />
       <ContentSection title={title} content={content || ""} />
       <section className="pb-16 md:pb-24">
         <div className="max-w-5xl mx-auto px-5 md:px-8">

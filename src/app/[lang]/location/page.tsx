@@ -1,5 +1,4 @@
 import { getPage } from "@/lib/db";
-import BackButton from "@/components/shared/BackButton";
 import ContentSection from "@/components/shared/ContentSection";
 
 export default async function LocationPage({
@@ -16,7 +15,6 @@ export default async function LocationPage({
 
   return (
     <>
-      <BackButton href={`/${lang}`} />
       <ContentSection title={title} content={content || ""} />
     </>
   );

@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useI18n } from "@/components/data/I18nProvider";
-import BackButton from "./BackButton";
 import ContentSection from "./ContentSection";
 
 export default function BackgroundWithLocation({
@@ -87,7 +86,6 @@ export default function BackgroundWithLocation({
         className="transition-transform duration-[0.8s] ease-in-out"
         style={{ transform: showLocation ? "translateY(-100vh)" : "translateY(0)" }}
       >
-        <BackButton href={backHref} />
         <ContentSection title={title} content={content} />
       </div>
 

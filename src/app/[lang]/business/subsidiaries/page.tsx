@@ -1,5 +1,4 @@
 import { getPage, getSubsidiaries } from "@/lib/db";
-import BackButton from "@/components/shared/BackButton";
 import SubsidiarySection from "@/components/shared/SubsidiarySection";
 
 export default async function SubsidiariesPage({
@@ -17,7 +16,6 @@ export default async function SubsidiariesPage({
 
   return (
     <>
-      <BackButton href={`/${lang}/business`} />
       <SubsidiarySection title={title} content={content || ""} subsidiaries={subsidiaries} lang={lang} />
     </>
   );

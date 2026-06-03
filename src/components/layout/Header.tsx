@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState, useRef } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useI18n } from "@/components/data/I18nProvider";
 import SearchBar from "./SearchBar";
@@ -18,8 +18,12 @@ interface NavDropdown {
 export default function Header() {
   const { lang, t } = useI18n();
   const pathname = usePathname();
+  const router = useRouter();
+  const [mounted, setMounted] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => setMounted(true), []);
 
   const handleMouseEnter = (key: string) => {
     if (hideTimeout.current) clearTimeout(hideTimeout.current);
@@ -199,6 +203,23 @@ export default function Header() {
               </Link>
             </div>
           </nav>
+
+          {/* Back button — between nav links and search */}
+          {mounted && pathname !== base && (
+            <button
+              onClick={() => router.back()}
+              className="flex items-center gap-1 h-9 px-2.5 rounded-lg bg-white border border-[#D8DEE6] text-[#0A2463] hover:bg-[#1A409815] hover:border-brand hover:text-brand-dark hover:scale-105 transition-all duration-200"
+              title={t("back_btn")}
+            >
+              <svg
+                width="14" height="14" viewBox="0 0 14 14" fill="none"
+                className="flex-shrink-0"
+              >
+                <path d="M9 3L5 7l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span className="text-sm">{t("back_btn")}</span>
+            </button>
+          )}
 
           {/* Right side */}
           <div className="flex items-center gap-4">

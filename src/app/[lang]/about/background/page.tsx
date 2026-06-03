@@ -1,5 +1,4 @@
 import { getPage } from "@/lib/db";
-import BackButton from "@/components/shared/BackButton";
 import CompanyTimeline from "@/components/shared/CompanyTimeline";
 
 export default async function BackgroundPage({
@@ -16,7 +15,6 @@ export default async function BackgroundPage({
 
   return (
     <>
-      <BackButton href={`/${lang}/about`} />
       <CompanyTimeline title={title} content={content || ""} />
     </>
   );

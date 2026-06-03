@@ -57,7 +57,7 @@ export const ui: I18nDict = {
     search_ph: "搜索...",
     search_empty: "未找到相关结果",
     // Back
-    back_btn: "← 返回",
+    back_btn: "返回",
     // Announce categories
     cat_perf: "业绩公告",
     cat_perf_sub: "中期/全年业绩、盈利预告、股息",
@@ -134,7 +134,7 @@ export const ui: I18nDict = {
     location_title: "Location",
     search_ph: "Search...",
     search_empty: "No results found",
-    back_btn: "← Back",
+    back_btn: "Back",
     cat_perf: "Results Announcements",
     cat_perf_sub: "Interim/Annual Results, Profit Alerts, Dividends",
     cat_coop: "Cooperation Updates",

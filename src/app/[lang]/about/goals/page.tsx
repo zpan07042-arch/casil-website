@@ -1,5 +1,4 @@
 import { getPage } from "@/lib/db";
-import BackButton from "@/components/shared/BackButton";
 import GoalsSection from "@/components/shared/GoalsSection";
 
 export default async function GoalsPage({
@@ -15,7 +14,6 @@ export default async function GoalsPage({
 
   return (
     <>
-      <BackButton href={`/${lang}/about`} />
       <GoalsSection title={title} lang={lang} />
     </>
   );
