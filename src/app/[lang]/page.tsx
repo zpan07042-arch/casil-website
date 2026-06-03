@@ -58,7 +58,7 @@ export default function HomePage() {
       {/*  轮播  */}
       <section
         id="one"
-        className="relative h-screen flex items-center overflow-hidden"
+        className="relative h-screen flex items-center overflow-hidden !my-0 !mx-[-1.25rem] md:!mx-[-2rem]"
         onMouseEnter={() => setIsPause(true)}
         onMouseLeave={() => setIsPause(false)}
       >
