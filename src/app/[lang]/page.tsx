@@ -161,22 +161,7 @@ export default function HomePage() {
             <p className="mt-5 text-lg text-white/90">
               {t("home_stock")}
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="http://www.casil-group.com:8080/investor/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-brand text-white px-9 py-4 rounded-md font-medium hover:bg-brand-light transition-all"
-              >
-                {t("home_cta_investor")}
-              </a>
-              <Link
-                href={`${base}/news`}
-                className="border border-white text-white px-9 py-4 rounded-md font-medium hover:bg-white/10 transition-all"
-              >
-                {t("home_cta_announce")}
-              </Link>
-            </div>
+            {/* 已删除两个按钮 */}
           </motion.div>
         </div>
 
@@ -395,7 +380,7 @@ export default function HomePage() {
       </section>
 
       {/*  联系地址  */}
-      <section id="five" className="min-h-screen flex items-center bg-white px-6 md:px-16 lg:px-24 py-24 md:py-32">
+      <section id="five" className=" h-halfscreen flex items-center bg-white px-3 md:px-8 lg:px-12 py-12 md:py-16">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
           <div>
             <motion.h2
