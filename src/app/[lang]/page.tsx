@@ -97,6 +97,35 @@ export default function HomePage() {
     { title: t("cat_major"), desc: t("cat_major_sub"), href: `${base}/news/category/major` },
   ];
 
+  // 5个投资者分类、去掉desc
+  const investorCards = [
+    {
+      title: lang === "zh" ? "公告和通函" : "Announcements & Circulars",
+      href: "http://www.casil-group.com:8080/investor/announcements/",
+      isOuter: true
+    },
+    {
+      title: lang === "zh" ? "財務報告和環境、社會及管治報告" : "Financial & ESG Reports",
+      href: "http://www.casil-group.com:8080/investor/reports/",
+      isOuter: true
+    },
+    {
+      title: lang === "zh" ? "動態資訊" : "IR News",
+      href: "http://www.casil-group.com:8080/investor/news/",
+      isOuter: true
+    },
+    {
+      title: lang === "zh" ? "社會責任" : "Social Responsibility",
+      href: "http://www.casil-group.com:8080/investor/social-responsibility/",
+      isOuter: true
+    },
+    {
+      title: lang === "zh" ? "投資者查詢" : "Investor Inquiry",
+      href: "http://www.casil-group.com:8080/investor/inquiry/",
+      isOuter: true
+    },
+  ];
+
   return (
     <div className="w-full">
       {/*  轮播  */}
@@ -224,16 +253,21 @@ export default function HomePage() {
       </section>
 
       {/* 公告 */}
-      <section id="three" className="h-screen flex flex-col justify-center bg-[#F7F8FA] px-6 md:px-16 lg:px-24">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+      <section id="three" className="min-h-screen flex flex-col justify-center bg-[#F7F8FA] px-6 md:px-16 lg:px-24 py-24 md:py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-semibold mb-12 text-text-primary"
+          transition={{ delay: 0.1 }}
+          className="mb-16 md:mb-24"
         >
-          {t("nav_announce")}
-        </motion.h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1a1a2e] tracking-tight mb-5">
+            {t("nav_announce")}
+          </h2>
+          <div className="w-20 h-1 bg-[#0F3478] rounded-full" />
+        </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {announceCategories.map((card, i) => (
             <motion.div
               key={card.href}
@@ -245,22 +279,30 @@ export default function HomePage() {
             >
               <Link
                 href={card.href}
-                className="block bg-white rounded-md p-6 hover:-translate-y-[4px] transition-all duration-300 group h-full"
+                className="group block bg-white/40 backdrop-blur-[12px] border border-gray-100 rounded-2xl p-8 md:p-10 h-full
+                  hover:-translate-y-1.5 hover:shadow-[0_16px_48px_-12px_rgba(15,52,120,0.18)] hover:border-[#0F3478]/20
+                  transition-all duration-500 ease-out"
               >
-                <h3 className="text-lg font-semibold text-text-primary mb-2">
+                <h3 className="text-xl font-semibold text-[#1a1a2e] mb-3 tracking-tight">
                   {card.title}
                 </h3>
-                <p className="text-text-secondary text-xs leading-relaxed">
+                <p className="text-sm text-gray-500 leading-relaxed mb-8">
                   {card.desc}
                 </p>
+                <span className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full border border-[#0F3478]/20 text-[#0F3478] text-sm font-medium
+                  group-hover:bg-[#0F3478] group-hover:text-white group-hover:border-[#0F3478]
+                  transition-all duration-300">
+                  {t("home_learn_more")}
+                </span>
               </Link>
             </motion.div>
           ))}
         </div>
-        <div className="mt-10">
+
+        <div className="mt-12">
           <Link
             href={`${base}/news/all`}
-            className="text-brand text-base font-medium inline-flex items-center gap-1.5 hover:gap-2.5 transition-all"
+            className="inline-flex items-center gap-1.5 px-6 py-3 rounded-full border border-[#0F3478]/20 text-[#0F3478] font-medium hover:bg-[#0F3478] hover:text-white hover:border-[#0F3478] transition-all duration-300"
           >
             {t("home_cta_announce")} →
           </Link>
@@ -268,41 +310,90 @@ export default function HomePage() {
       </section>
 
       {/*  投资者  */}
-      <section id="four" className="h-screen flex flex-col justify-center bg-brand text-white px-6 md:px-16 lg:px-24">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-semibold mb-6"
-        >
-          {t("nav_investor")}
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-white/85 text-lg mb-8 max-w-2xl"
-        >
-          {t("home_stock")}
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <a
-            href="http://www.casil-group.com:8080/investor/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center bg-white text-brand px-7 py-3 rounded-md font-medium hover:bg-white/95 transition-all"
-          >
-            {t("home_cta_investor")} →
-          </a>
-        </motion.div>
+      <section id="four" className="min-h-screen flex flex-col justify-center bg-brand text-white px-6 md:px-16 lg:px-24 py-24 md:py-32 relative overflow-hidden">
+        {/* subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-white/[0.06] pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col lg:flex-row items-start gap-16 lg:gap-20">
+          {/* left column */}
+          <div className="flex-1 max-w-xl">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-16 md:mb-24"
+            >
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5">
+                {t("nav_investor")}
+              </h2>
+              <div className="w-20 h-1 bg-white rounded-full" />
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-white/85 text-lg mb-4"
+            >
+              {t("home_stock")}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <a
+                href="http://www.casil-group.com:8080/investor/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 rounded-full bg-white text-brand font-medium hover:bg-white/95 transition-all"
+              >
+                {t("home_cta_investor")}
+              </a>
+            </motion.div>
+          </div>
+
+          {/* right column — 5 investor cards 删掉描述行 */}
+          <div className="flex-1 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+              {investorCards.map((card, i) => (
+                <motion.div
+                  key={card.href}
+                  custom={i}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
+                  <a
+                    href={card.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block rounded-2xl bg-white/10 backdrop-blur-[12px] border border-white/20 p-8 md:p-10 h-full
+                      hover:-translate-y-1.5 hover:shadow-[0_16px_48px_-12px_rgba(255,255,255,0.15)] hover:border-white/40
+                      transition-all duration-500 ease-out"
+                  >
+                    <h3 className="text-xl font-semibold text-white mb-8 tracking-tight">
+                      {card.title}
+                    </h3>
+                    <span className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full border border-white/30 text-white text-sm font-medium
+                      group-hover:bg-white group-hover:text-[#0F3478]
+                      transition-all duration-300">
+                      {t("home_learn_more")}
+                    </span>
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/*  联系地址  */}
-      <section id="five" className="h-screen flex items-center bg-white px-6 md:px-16 lg:px-24">
+      <section id="five" className="min-h-screen flex items-center bg-white px-6 md:px-16 lg:px-24 py-24 md:py-32">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
           <div>
             <motion.h2
