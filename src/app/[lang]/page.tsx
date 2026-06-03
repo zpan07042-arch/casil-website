@@ -216,7 +216,7 @@ export default function HomePage() {
           <div className="w-20 h-1 bg-[#0F3478] rounded-full" />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {businessCards.map((card, i) => (
             <motion.div
               key={card.href}
@@ -309,19 +309,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/*  投资者  */}
-      <section id="four" className="min-h-screen flex flex-col justify-center bg-brand text-white px-6 md:px-16 lg:px-24 py-24 md:py-32 relative overflow-hidden">
+      {/*  投资者【卡片固定min-h统一高度，一屏全容纳】  */}
+      <section id="four" className="h-screen flex flex-col justify-center bg-brand text-white px-6 md:px-16 lg:px-24 py-4 md:py-6 relative overflow-hidden">
         {/* subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-white/[0.06] pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col lg:flex-row items-start gap-16 lg:gap-20">
+        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-5 lg:gap-8">
           {/* left column */}
           <div className="flex-1 max-w-xl">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-16 md:mb-24"
+              className="mb-8"
             >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5">
                 {t("nav_investor")}
@@ -334,7 +333,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-white/85 text-lg mb-4"
+              className="text-white/85 text-lg mb-6"
             >
               {t("home_stock")}
             </motion.p>
@@ -356,37 +355,40 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          {/* right column — 5 investor cards 删掉描述行 */}
           <div className="flex-1 w-full">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-              {investorCards.map((card, i) => (
-                <motion.div
-                  key={card.href}
-                  custom={i}
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                >
-                  <a
-                    href={card.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block rounded-2xl bg-white/10 backdrop-blur-[12px] border border-white/20 p-8 md:p-10 h-full
-                      hover:-translate-y-1.5 hover:shadow-[0_16px_48px_-12px_rgba(255,255,255,0.15)] hover:border-white/40
-                      transition-all duration-500 ease-out"
+            {/*外层浅色面板*/}
+            <div className="bg-white/12 rounded-3xl p-3 md:p-4 border-[0.5px] border-white/12 backdrop-blur-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
+                {investorCards.map((card, i) => (
+                  <motion.div
+                    key={card.href}
+                    custom={i}
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className={i >=3 ? "lg:col-span-1" : ""}
                   >
-                    <h3 className="text-xl font-semibold text-white mb-8 tracking-tight">
-                      {card.title}
-                    </h3>
-                    <span className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full border border-white/30 text-white text-sm font-medium
-                      group-hover:bg-white group-hover:text-[#0F3478]
-                      transition-all duration-300">
-                      {t("home_learn_more")}
-                    </span>
-                  </a>
-                </motion.div>
-              ))}
+                    <a
+                      href={card.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block rounded-2xl bg-white/10 backdrop-blur-[12px] border-[0.5px] border-white/14 p-4 md:p-5 h-full min-h-[150px] flex flex-col justify-between
+                        hover:-translate-y-1.5 hover:shadow-[0_16px_48px_-12px_rgba(255,255,255,0.15)] hover:border-white/40
+                        transition-all duration-500 ease-out"
+                    >
+                      <h3 className="text-xl font-semibold text-white mb-4 tracking-tight">
+                        {card.title}
+                      </h3>
+                      <span className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full border-[0.5px] border-white/30 text-white text-sm font-medium
+                        group-hover:bg-white group-hover:text-[#0F3478]
+                        transition-all duration-300">
+                        {t("home_learn_more")}
+                      </span>
+                    </a>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
