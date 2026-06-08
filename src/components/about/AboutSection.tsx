@@ -151,7 +151,7 @@ export default function AboutSection({
         id: s.id,
         title: isZh ? s.title_zh : s.title_en,
         tagline: isZh ? cfg.tagline.zh : cfg.tagline.en,
-        desc: (isZh ? s.content_zh : s.content_en || s.content_zh || "").substring(0, 80) + "…",
+        desc: (isZh ? s.content_zh ?? "" : s.content_en ?? s.content_zh ?? "").substring(0, 80) + "…",
         href: subRoutes[s.id] || `${base}/about/${s.id}`,
         icon: cfg.icon,
       };
