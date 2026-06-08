@@ -3,7 +3,7 @@
 import { useI18n } from "@/components/data/I18nProvider";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -380,7 +380,7 @@ export default function HomePage() {
       </section>
 
       {/*  联系地址  */}
-      <section id="five" className=" h-halfscreen flex items-center bg-white px-3 md:px-8 lg:px-12 py-12 md:py-16">
+      <section id="five" className="min-h-screen flex items-center bg-white px-3 md:px-8 lg:px-12 py-12 md:py-16">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
           <div>
             <motion.h2
