@@ -9,8 +9,8 @@ export default async function AboutPage({
 }) {
   const { lang } = await params;
   const base = `/${lang}`;
-  const page = getPage("about");
-  const subpages = getPagesBySection("about");
+  const page = await getPage("about");
+  const subpages = await getPagesBySection("about");
 
   if (!page) return <p className="p-20 text-center text-text-secondary">Content not found.</p>;
 

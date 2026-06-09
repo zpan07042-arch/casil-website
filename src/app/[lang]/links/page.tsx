@@ -7,8 +7,8 @@ export default async function LinksPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const page = getPage("links");
-  const links = getLinks();
+  const page = await getPage("links");
+  const links = await getLinks();
 
   if (!page) return <p className="p-20 text-center text-text-secondary">Content not found.</p>;
 

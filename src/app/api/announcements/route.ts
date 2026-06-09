@@ -5,7 +5,7 @@ export async function GET(request: Request) {
   const limit = parseInt(searchParams.get("limit") || "10");
   const lang = searchParams.get("lang") || "zh";
 
-  const announcements = getLatestAnnouncements(limit);
+  const announcements = await getLatestAnnouncements(limit);
 
   return Response.json(
     announcements.map((a) => ({

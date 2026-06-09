@@ -7,7 +7,7 @@ export default async function ElectronicsPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const page = getPage("electronics");
+  const page = await getPage("electronics");
   if (!page) return <p className="p-20 text-center text-text-secondary">Content not found.</p>;
 
   const title = lang === "zh" ? page.title_zh : page.title_en;

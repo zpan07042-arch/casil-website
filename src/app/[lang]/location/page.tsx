@@ -7,7 +7,7 @@ export default async function LocationPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const page = getPage("location");
+  const page = await getPage("location");
   if (!page) return <p className="p-20 text-center text-text-secondary">Content not found.</p>;
 
   const content = lang === "zh" ? page.content_zh : page.content_en;

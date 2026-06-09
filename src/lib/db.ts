@@ -10,98 +10,98 @@ import type {
 } from "./types";
 
 // Pages
-export function getPage(id: string): PageContent | undefined {
-  return getDb().prepare("SELECT * FROM pages WHERE id = ?").get(id) as
+export async function getPage(id: string): Promise<PageContent | undefined> {
+  return (await getDb()).prepare("SELECT * FROM pages WHERE id = ?").get(id) as
     | PageContent
     | undefined;
 }
 
-export function getPagesBySection(section: string): PageContent[] {
-  return getDb()
+export async function getPagesBySection(section: string): Promise<PageContent[]> {
+  return (await getDb())
     .prepare("SELECT * FROM pages WHERE section = ? ORDER BY sort_order")
     .all(section) as PageContent[];
 }
 
 // Announcements
-export function getAnnouncementsByYear(year: number): Announcement[] {
-  return getDb()
+export async function getAnnouncementsByYear(year: number): Promise<Announcement[]> {
+  return (await getDb())
     .prepare(
       "SELECT * FROM announcements WHERE year = ? ORDER BY sort_order, date DESC"
     )
     .all(year) as Announcement[];
 }
 
-export function getAnnouncementsByCategory(category: string): Announcement[] {
-  return getDb()
+export async function getAnnouncementsByCategory(category: string): Promise<Announcement[]> {
+  return (await getDb())
     .prepare(
       "SELECT * FROM announcements WHERE category = ? ORDER BY year DESC, sort_order"
     )
     .all(category) as Announcement[];
 }
 
-export function getLatestAnnouncements(limit = 10): Announcement[] {
-  return getDb()
+export async function getLatestAnnouncements(limit = 10): Promise<Announcement[]> {
+  return (await getDb())
     .prepare("SELECT * FROM announcements ORDER BY year DESC, sort_order LIMIT ?")
     .all(limit) as Announcement[];
 }
 
-export function getAllAnnouncements(): Announcement[] {
-  return getDb()
+export async function getAllAnnouncements(): Promise<Announcement[]> {
+  return (await getDb())
     .prepare("SELECT * FROM announcements ORDER BY year DESC, sort_order")
     .all() as Announcement[];
 }
 
-export function getAllYears(): number[] {
-  const rows = getDb()
+export async function getAllYears(): Promise<number[]> {
+  const rows = (await getDb())
     .prepare("SELECT DISTINCT year FROM announcements ORDER BY year DESC")
     .all() as { year: number }[];
   return rows.map((r) => r.year);
 }
 
 // Board Members
-export function getBoardMembers(): BoardMember[] {
-  return getDb()
+export async function getBoardMembers(): Promise<BoardMember[]> {
+  return (await getDb())
     .prepare("SELECT * FROM board_members ORDER BY sort_order")
     .all() as BoardMember[];
 }
 
 // Governance Docs
-export function getGovernanceDocs(): GovernanceDoc[] {
-  return getDb()
+export async function getGovernanceDocs(): Promise<GovernanceDoc[]> {
+  return (await getDb())
     .prepare("SELECT * FROM governance_docs ORDER BY sort_order")
     .all() as GovernanceDoc[];
 }
 
 // Company News
-export function getCompanyNews(): CompanyNews[] {
-  return getDb()
+export async function getCompanyNews(): Promise<CompanyNews[]> {
+  return (await getDb())
     .prepare("SELECT * FROM company_news ORDER BY date DESC")
     .all() as CompanyNews[];
 }
 
 // Subsidiaries
-export function getSubsidiaries(): Subsidiary[] {
-  return getDb()
+export async function getSubsidiaries(): Promise<Subsidiary[]> {
+  return (await getDb())
     .prepare("SELECT * FROM subsidiaries ORDER BY CASE sub_type WHEN 'wholly_owned' THEN 1 WHEN 'controlled' THEN 2 WHEN 'invested' THEN 3 END, sort_order")
     .all() as Subsidiary[];
 }
 
 // Links
-export function getLinks(): LinkItem[] {
-  return getDb()
+export async function getLinks(): Promise<LinkItem[]> {
+  return (await getDb())
     .prepare("SELECT * FROM links ORDER BY sort_order")
     .all() as LinkItem[];
 }
 
 // Search
-export function searchAll(query: string): {
+export async function searchAll(query: string): Promise<{
   type: string;
   title_zh: string;
   title_en: string;
   snippet_zh: string;
   snippet_en: string;
   route: string;
-}[] {
+}[]> {
   const q = `%${query}%`;
   const results: {
     type: string;
@@ -112,7 +112,7 @@ export function searchAll(query: string): {
     route: string;
   }[] = [];
 
-  const pages = getDb()
+  const pages = (await getDb())
     .prepare(
       `SELECT * FROM pages WHERE title_zh LIKE ? OR title_en LIKE ? OR content_zh LIKE ? OR content_en LIKE ? LIMIT 10`
     )
@@ -129,7 +129,7 @@ export function searchAll(query: string): {
     });
   }
 
-  const anns = getDb()
+  const anns = (await getDb())
     .prepare(
       `SELECT * FROM announcements WHERE title_zh LIKE ? OR title_en LIKE ? OR CAST(year AS TEXT) LIKE ? ORDER BY CASE WHEN CAST(year AS TEXT) = ? THEN 0 ELSE 1 END, year DESC LIMIT 10`
     )

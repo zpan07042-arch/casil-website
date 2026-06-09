@@ -7,7 +7,7 @@ export default async function CulturePage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const page = getPage("culture");
+  const page = await getPage("culture");
   if (!page) return <p className="p-20 text-center text-text-secondary">Content not found.</p>;
 
   const title = lang === "zh" ? page.title_zh : page.title_en;

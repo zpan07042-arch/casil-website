@@ -7,7 +7,7 @@ export async function GET(request: Request) {
 
   if (!q.trim()) return Response.json([]);
 
-  const results = searchAll(q.trim());
+  const results = await searchAll(q.trim());
 
   return Response.json(
     results.map((r) => ({

@@ -9,8 +9,8 @@ export default async function BusinessPage({
 }) {
   const { lang } = await params;
   const base = `/${lang}`;
-  const page = getPage("business");
-  const subpages = getPagesBySection("business");
+  const page = await getPage("business");
+  const subpages = await getPagesBySection("business");
 
   if (!page) return <p className="p-20 text-center text-text-secondary">Content not found.</p>;
 

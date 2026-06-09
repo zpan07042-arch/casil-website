@@ -1,71 +1,7 @@
-import Database from "better-sqlite3";
-import path from "path";
+import { getDb } from "./database";
 
-const db = new Database(path.join(process.cwd(), "data", "casil.db"));
-db.pragma("journal_mode = WAL");
-
-// Create tables
-db.exec(`
-  CREATE TABLE IF NOT EXISTS pages (
-    id TEXT PRIMARY KEY,
-    section TEXT NOT NULL,
-    title_zh TEXT NOT NULL,
-    title_en TEXT NOT NULL,
-    content_zh TEXT,
-    content_en TEXT,
-    sort_order INTEGER DEFAULT 0
-  );
-  CREATE TABLE IF NOT EXISTS announcements (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    year INTEGER NOT NULL,
-    date TEXT,
-    title_zh TEXT NOT NULL,
-    title_en TEXT,
-    category TEXT,
-    pdf_url TEXT,
-    sort_order INTEGER DEFAULT 0
-  );
-  CREATE TABLE IF NOT EXISTS board_members (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name_zh TEXT NOT NULL,
-    name_en TEXT,
-    title_zh TEXT NOT NULL,
-    title_en TEXT,
-    bio_zh TEXT,
-    bio_en TEXT,
-    member_type TEXT,
-    sort_order INTEGER DEFAULT 0
-  );
-  CREATE TABLE IF NOT EXISTS governance_docs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title_zh TEXT NOT NULL,
-    title_en TEXT,
-    pdf_url TEXT NOT NULL,
-    sort_order INTEGER DEFAULT 0
-  );
-  CREATE TABLE IF NOT EXISTS company_news (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    date TEXT,
-    title_zh TEXT NOT NULL,
-    title_en TEXT,
-    pdf_url TEXT
-  );
-  CREATE TABLE IF NOT EXISTS subsidiaries (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name_zh TEXT NOT NULL,
-    name_en TEXT,
-    description_zh TEXT,
-    description_en TEXT,
-    sub_type TEXT
-  );
-  CREATE TABLE IF NOT EXISTS links (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name_zh TEXT NOT NULL,
-    name_en TEXT,
-    url TEXT,
-    sort_order INTEGER DEFAULT 0
-  );
-`);
+async function main() {
+  const db = await getDb();
 
 // Clear existing data
 db.exec(`
@@ -84,6 +20,15 @@ const insertPage = db.prepare(
 );
 
 const pages: [string, string, string, string, string, string, number][] = [
+  [
+    "about",
+    "about",
+    "关于我们",
+    "About Us",
+    "中国航天国际控股有限公司（航天控股）是中国航天科技集团公司（中国航天）在香港的上市公司（股份代号：31）。作为中国航天的海外窗口和国际化平台，航天控股承载着连接中国航天与全球市场的桥梁使命。\n\n本栏目汇集了公司背景、企业文化、发展目标、董事局成员及企业管治等核心信息，帮助您全面了解航天控股的发展历程与治理架构。",
+    "China Aerospace International Holdings Limited (CASIL) is a Hong Kong-listed company (Stock Code: 31) of China Aerospace Science and Technology Corporation (CASC). As the overseas window and international platform of CASC, CASIL serves as a bridge connecting China's aerospace industry with the global market.\n\nThis section brings together core information including Company Background, Corporate Culture, Development Goals, Board of Directors, and Corporate Governance, helping you gain a comprehensive understanding of CASIL's development journey and governance structure.",
+    0,
+  ],
   [
     "background",
     "about",
@@ -340,4 +285,7 @@ for (const l of links) {
 }
 
 console.log("Seed data inserted successfully!");
-db.close();
+  db.close();
+}
+
+main().catch(console.error);

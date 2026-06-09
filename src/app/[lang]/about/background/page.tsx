@@ -7,7 +7,7 @@ export default async function BackgroundPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const page = getPage("background");
+  const page = await getPage("background");
   if (!page) return <p className="p-20 text-center text-text-secondary">Content not found.</p>;
 
   const content = lang === "zh" ? page.content_zh : page.content_en;

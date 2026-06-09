@@ -9,7 +9,7 @@ export default async function ContactPage({
 }) {
   const { lang } = await params;
   const base = `/${lang}`;
-  const page = getPage("contact");
+  const page = await getPage("contact");
 
   const title = lang === "zh"
     ? (page?.title_zh || "联系我们")

@@ -8,12 +8,12 @@ export default async function BoardPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const page = getPage("board");
+  const page = await getPage("board");
   if (!page) return <p className="p-20 text-center text-text-secondary">Content not found.</p>;
 
   const content = lang === "zh" ? page.content_zh : page.content_en;
   const title = lang === "zh" ? page.title_zh : page.title_en;
-  const members = getBoardMembers();
+  const members = await getBoardMembers();
 
   return (
     <>
