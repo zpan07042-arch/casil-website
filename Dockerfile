@@ -1,9 +1,6 @@
 # 构建阶段（必须在最前面）
 FROM node:20-alpine AS builder
 
-# 安装编译工具（如果需要 better-sqlite3 等原生模块）
-RUN apk add --no-cache python3 make g++
-
 WORKDIR /app
 
 # 复制依赖文件
