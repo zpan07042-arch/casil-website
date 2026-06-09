@@ -7,8 +7,8 @@ WORKDIR /app
 COPY package*.json ./
 COPY next.config.ts ./
 
-# 安装依赖
-RUN npm install
+# 设置为阿里源并安装依赖
+RUN npm config set registry https://registry.npmmirror.com && npm install
 
 # 复制源码并构建
 COPY . .
