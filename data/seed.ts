@@ -146,6 +146,15 @@ const pages: [string, string, string, string, string, string, number][] = [
     "China Aerospace International Holdings Limited is headquartered in Hong Kong, with production bases and offices in multiple cities across mainland China (Shenzhen, Dongguan, Huizhou, Nantong, Hangzhou, etc.).",
     0,
   ],
+  [
+    "contact",
+    "other",
+    "联系我们",
+    "Contact Us",
+    "如有任何查询，欢迎通过以下渠道与我们联系。航天控股致力于为全球客户、合作伙伴及投资者提供高效、专业的服务。",
+    "For any inquiries, please contact us through the following channels. CASIL is committed to providing efficient and professional services to global customers, partners and investors.",
+    0,
+  ],
 ];
 
 for (const p of pages) {

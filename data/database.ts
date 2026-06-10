@@ -10,6 +10,7 @@ const WASM_PATH = path.join(process.cwd(), "node_modules", "sql.js", "dist", "sq
 
 let SQL: SqlJsStatic | null = null;
 let db: CompatDatabase | null = null;
+let dbInitPromise: Promise<CompatDatabase> | null = null;
 
 async function getSqlJs(): Promise<SqlJsStatic> {
   if (!SQL) {
@@ -126,8 +127,9 @@ function runMigrations(database: CompatDatabase): void {
 
   // 3) 扫描迁移文件
   if (!fs.existsSync(MIGRATIONS_DIR)) {
-    console.log("[migrate] No migrations directory, skipping.");
-    return;
+    throw new Error(
+      `[migrate] Migrations directory not found: ${MIGRATIONS_DIR}. Cannot initialize database.`
+    );
   }
 
   const files = fs
@@ -175,31 +177,36 @@ function runMigrations(database: CompatDatabase): void {
 // ── Singleton ────────────────────────────────────────────────────
 
 export async function getDb(): Promise<CompatDatabase> {
-  if (!db) {
-    const SQL = await getSqlJs();
+  if (db) return db;
+  if (!dbInitPromise) {
+    dbInitPromise = (async () => {
+      const SQL = await getSqlJs();
 
-    // 确保 DB 目录存在
-    const dbDir = path.dirname(DB_PATH);
-    if (!fs.existsSync(dbDir)) {
-      fs.mkdirSync(dbDir, { recursive: true });
-    }
+      // 确保 DB 目录存在
+      const dbDir = path.dirname(DB_PATH);
+      if (!fs.existsSync(dbDir)) {
+        fs.mkdirSync(dbDir, { recursive: true });
+      }
 
-    let buffer: Uint8Array | undefined;
-    if (fs.existsSync(DB_PATH)) {
-      buffer = new Uint8Array(fs.readFileSync(DB_PATH));
-    }
+      let buffer: Uint8Array | undefined;
+      if (fs.existsSync(DB_PATH)) {
+        buffer = new Uint8Array(fs.readFileSync(DB_PATH));
+      }
 
-    const sqlJsDb = new SQL.Database(buffer);
-    db = new CompatDatabase(sqlJsDb, DB_PATH);
-    db.pragma("journal_mode = WAL");
+      const sqlJsDb = new SQL.Database(buffer);
+      db = new CompatDatabase(sqlJsDb, DB_PATH);
+      db.pragma("journal_mode = WAL");
 
-    // 启动时自动运行迁移
-    runMigrations(db);
+      // 启动时自动运行迁移
+      runMigrations(db);
 
-    // 注册进程退出时自动保存
-    registerShutdownHandlers(db);
+      // 注册进程退出时自动保存
+      registerShutdownHandlers(db);
+
+      return db;
+    })();
   }
-  return db;
+  return dbInitPromise;
 }
 
 // ── 优雅退出：保存数据库 ────────────────────────────────────────

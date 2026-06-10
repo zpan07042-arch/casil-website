@@ -53,9 +53,9 @@ async function main() {
 
   // ── 3. 扫描并应用未执行的迁移 ──
   if (!fs.existsSync(MIGRATIONS_DIR)) {
-    console.log("[migrate] No migrations directory, skipping.");
+    console.error(`[migrate] Migrations directory not found: ${MIGRATIONS_DIR}`);
     database.close();
-    return;
+    process.exit(1);
   }
 
   const files = fs
