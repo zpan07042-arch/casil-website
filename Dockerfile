@@ -48,6 +48,6 @@ CMD sh -c "\
     && echo '[step 2/4] Running database migrations...' \
     && node data/migrate.js \
     && echo '[step 3/4] Verifying database integrity...' \
-    && node -e \"\n        const initSqlJs = require('sql.js');\n        const fs = require('fs');\n        const path = require('path');\n        const wasm = fs.readFileSync(path.join('node_modules','sql.js','dist','sql-wasm.wasm'));\n        initSqlJs({wasmBinary:wasm}).then(SQL => {\n            const db = new SQL.Database(fs.readFileSync('data/db/casil.db'));\n            const r = db.exec('SELECT COUNT(*) as cnt FROM pages');\n            const cnt = r.length > 0 ? r[0].values[0][0] : 0;\n            console.log('[verify] pages table has', cnt, 'rows');\n            if (cnt === 0) { console.error('[verify] ERROR: pages table is empty!'); process.exit(1); }\n            db.close();\n        });\n    \" \
+    && node data/verify.js \
     && echo '[step 4/4] Starting Next.js...' \
     && exec npm start"
