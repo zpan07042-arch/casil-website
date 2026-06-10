@@ -41,20 +41,14 @@ function highlightText(text: string, terms: string[], brandClass = "text-brand f
 
 export default function GoalsSection({
   title,
+  content,
   lang,
 }: {
   title: string;
+  content: string;
   lang: string;
 }) {
   const isZh = lang === "zh";
-
-  const devGoal = isZh
-    ? "航天控股将在大股东中国航天的鼎力支持下，充分利用香港各方面的优势，逐步实现建设成为一个具有<span class=\"text-brand font-semibold\">科学化的管理体系</span>、<span class=\"text-brand font-semibold\">强势的整体市场竞争能力</span>、<span class=\"text-brand font-semibold\">优质的战略合作伙伴</span>，为股东创造良好的投资价值。"
-    : "CASIL will, with the full support of its major shareholder CASC, fully leverage the various advantages of Hong Kong, and gradually build itself into an enterprise with a <span class=\"text-brand font-semibold\">scientific management system</span>, <span class=\"text-brand font-semibold\">strong overall market competitiveness</span>, and <span class=\"text-brand font-semibold\">high-quality strategic partners</span>, creating excellent investment value for shareholders.";
-
-  const bizGoal = isZh
-    ? "本公司及各附属公司的主要业务为<span class=\"text-brand font-semibold\">科技工业</span>及<span class=\"text-brand font-semibold\">航天服务</span>业务，聚焦先进制造与现代服务，持续推动产业升级与技术创新。"
-    : "The principal businesses of the Company and its subsidiaries are <span class=\"text-brand font-semibold\">technology industry</span> and <span class=\"text-brand font-semibold\">aerospace services</span>, focusing on advanced manufacturing and modern services to continuously drive industrial upgrading and technological innovation.";
 
   return (
     <section className="pb-20 md:pb-28">
@@ -74,12 +68,19 @@ export default function GoalsSection({
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-            className="w-16 h-[3px] mb-8 rounded-full"
+            className="w-16 h-[3px] mb-6 rounded-full"
             style={{
               background: "linear-gradient(90deg, #0A2463, #3E92CC)",
               transformOrigin: "left",
             }}
           />
+          {content && (
+            <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl whitespace-pre-line"
+              style={{ lineHeight: 1.7 }}
+            >
+              {content}
+            </p>
+          )}
         </motion.div>
 
         {/* ========== MODULE 1: DEVELOPMENT GOALS ========== */}
@@ -102,8 +103,9 @@ export default function GoalsSection({
               <p
                 className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
                 style={{ lineHeight: 1.75 }}
-                dangerouslySetInnerHTML={{ __html: devGoal }}
-              />
+              >
+                {content?.split("\n\n")[0] || ""}
+              </p>
 
               {/* Key indicators row */}
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -175,8 +177,9 @@ export default function GoalsSection({
               <p
                 className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
                 style={{ lineHeight: 1.75 }}
-                dangerouslySetInnerHTML={{ __html: bizGoal }}
-              />
+              >
+                {content?.split("\n\n")[1] || ""}
+              </p>
 
               {/* Business focus badges */}
               <div className="mt-8 flex flex-wrap gap-3">

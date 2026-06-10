@@ -126,9 +126,11 @@ function AppIcon({ type }: { type: string }) {
 /* ========== Main component ========== */
 export default function ElectronicsSection({
   title,
+  content,
   lang,
 }: {
   title: string;
+  content: string;
   lang: string;
 }) {
   const isZh = lang === "zh";
@@ -231,12 +233,10 @@ export default function ElectronicsSection({
             className="w-16 h-[3px] mb-6 rounded-full"
             style={{ background: "linear-gradient(90deg, #0A2463, #3E92CC)", transformOrigin: "left" }}
           />
-          <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
+          <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl whitespace-pre-line"
             style={{ lineHeight: 1.7 }}
           >
-            {isZh
-              ? "高精密电子组件业务涵盖 IC 封装载板、高密度互连板（HDI）、柔性电路板（FPC）及刚挠结合板等高端 PCB 产品的研发、制造与销售，致力于为全球客户提供高品质、高可靠性的电子互连解决方案。"
-              : "The precision electronic components business covers the R&D, manufacturing and sales of high-end PCB products including IC packaging substrates, HDI boards, FPC and rigid-flex boards, delivering high-quality, high-reliability electronic interconnection solutions to global customers."}
+            {content}
           </p>
         </motion.div>
 

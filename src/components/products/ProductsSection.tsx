@@ -69,9 +69,11 @@ function IconPCB() {
 /* ========== Main component ========== */
 export default function ProductsSection({
   title,
+  content,
   lang,
 }: {
   title: string;
+  content: string;
   lang: string;
 }) {
   const isZh = lang === "zh";
@@ -213,12 +215,10 @@ export default function ProductsSection({
             className="w-16 h-[3px] mb-6 rounded-full"
             style={{ background: "linear-gradient(90deg, #0A2463, #3E92CC)", transformOrigin: "left" }}
           />
-          <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
+          <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl whitespace-pre-line"
             style={{ lineHeight: 1.7 }}
           >
-            {isZh
-              ? "中国航天国际控股背靠航天科技集团，拥有扎实的核心科技竞争实力，掌握多项关键制造技术，形成技术研发、生产制造、市场供货一体化优势，在国产替代进程中持续强化自身行业竞争力。"
-              : "CASIL, backed by CASC, possesses solid core technological competitiveness, mastering multiple key manufacturing technologies with an integrated advantage spanning R&D, manufacturing, and market supply."}
+            {content}
           </p>
         </motion.div>
 

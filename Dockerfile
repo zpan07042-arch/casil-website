@@ -37,11 +37,17 @@ COPY --from=builder /app/data ./data
 EXPOSE 3000
 
 # ── 启动流程 ───────────────────────────────────────────
-# 第1步: 运行 data/migrate.js
-#   → 扫描 data/migrations/*.sql → 对比 _migrations 表
-#   → 只执行新增的 .sql → 记录到 _migrations → 保存 casil.db 到磁盘
-# 第2步: 启动 Next.js（此时数据库已是最新状态）
-CMD sh -c "echo '[step 1/2] Running database migrations...' \
+# 第1步: 清理构建阶段可能产生的脏 DB 文件
+#        (next build 期间 getDb() 可能会创建一个空/不完整的 casil.db)
+# 第2步: 运行 data/migrate.js 从 .sql 文件全新构建数据库
+# 第3步: 验证数据完整性，确认 pages 表有数据
+# 第4步: 启动 Next.js
+CMD sh -c "\
+    echo '[step 1/4] Cleaning stale build-time database...' \
+    && rm -f data/db/casil.db data/db/casil.db-shm data/db/casil.db-wal \
+    && echo '[step 2/4] Running database migrations...' \
     && node data/migrate.js \
-    && echo '[step 2/2] Starting Next.js...' \
+    && echo '[step 3/4] Verifying database integrity...' \
+    && node -e \"\n        const initSqlJs = require('sql.js');\n        const fs = require('fs');\n        const path = require('path');\n        const wasm = fs.readFileSync(path.join('node_modules','sql.js','dist','sql-wasm.wasm'));\n        initSqlJs({wasmBinary:wasm}).then(SQL => {\n            const db = new SQL.Database(fs.readFileSync('data/db/casil.db'));\n            const r = db.exec('SELECT COUNT(*) as cnt FROM pages');\n            const cnt = r.length > 0 ? r[0].values[0][0] : 0;\n            console.log('[verify] pages table has', cnt, 'rows');\n            if (cnt === 0) { console.error('[verify] ERROR: pages table is empty!'); process.exit(1); }\n            db.close();\n        });\n    \" \
+    && echo '[step 4/4] Starting Next.js...' \
     && exec npm start"

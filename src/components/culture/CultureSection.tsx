@@ -141,9 +141,11 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 /* ========== Main component ========== */
 export default function CultureSection({
   title,
+  content,
   lang,
 }: {
   title: string;
+  content: string;
   lang: string;
 }) {
   const isZh = lang === "zh";
@@ -172,12 +174,10 @@ export default function CultureSection({
               transformOrigin: "left",
             }}
           />
-          <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
+          <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl whitespace-pre-line"
             style={{ lineHeight: 1.7 }}
           >
-            {isZh
-              ? "「爱国、创新、诚信、和谐、尽责」为本公司企业文化的核心，是企业使命和业务发展原则，也是全体员工日常业务运作的指导方向。"
-              : '"Patriotism, Innovation, Integrity, Harmony, Responsibility" are the core values of our corporate culture, guiding our mission, business principles, and daily operations.'}
+            {content}
           </p>
         </motion.div>
 
