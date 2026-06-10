@@ -10,7 +10,7 @@
   --color-divider: #D2D2D7;
   --color-brand-dark: #061A47;
 
-  /* 👉 新增：统一间距系统（8px 基准）*/
+  /* 👉 新增：統一間距系統（8px 基準）*/
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -34,36 +34,36 @@ html {
 body {
   background: #ffffff;
   color: #2D3142;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+  font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 17px;
-  line-height: 1.7; /* 👉 行高从 1.5 → 1.7，文字不挤 */
+  line-height: 1.7; /* 👉 行高從 1.5 → 1.7，文字不擠 */
 }
 
-/* 👉 全局容器：左右留白 + 居中 + 最大宽度 */
+/* 👉 全局容器：左右留白 + 居中 + 最大寬度 */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-lg); /* 左右 24px 留白 */
 }
 
-/* 👉 大区块上下拉开，不再挤在一起 */
+/* 👉 大區塊上下拉開，不再擠在一起 */
 section {
   margin: var(--space-xxl) 0; /* 上下 48px */
 }
 
-/* 👉 卡片内边距加大，呼吸感强 */
+/* 👉 卡片內邊距加大，呼吸感強 */
 .card {
   padding: var(--space-lg); /* 24px */
 }
 
-/* 👉 标题和正文间距拉开 */
+/* 👉 標題和正文間距拉開 */
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--space-xl); /* 32px */
 }
 
-/* 👉 段落间距 + 行高，文字不堆在一起 */
+/* 👉 段落間距 + 行高，文字不堆在一起 */
 p {
   margin-bottom: var(--space-md); /* 16px */
 }

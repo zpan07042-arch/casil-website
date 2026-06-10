@@ -22,7 +22,7 @@ export default function HomePage() {
   const [bgIndex, setBgIndex] = useState(0);
   const [isPause, setIsPause] = useState(false);
 
-  // 轮播 3s切换
+  // 輪播 3s切換
   useEffect(() => {
     if (isPause) return;
     const interval = setInterval(() => {
@@ -31,7 +31,7 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, [isPause]);
 
-  // 锚点路由定位 #four
+  // 錨點路由定位 #four
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
@@ -97,7 +97,7 @@ export default function HomePage() {
     { title: t("cat_major"), desc: t("cat_major_sub"), href: `${base}/news/category/major` },
   ];
 
-  // 5个投资者分类、去掉desc
+  // 5個投資者分類、去掉desc
   const investorCards = [
     {
       title: lang === "zh" ? "公告和通函" : "Announcements & Circulars",
@@ -128,7 +128,7 @@ export default function HomePage() {
 
   return (
     <div className="w-full">
-      {/*  轮播  */}
+      {/*  輪播  */}
       <section
         id="one"
         className="relative h-screen flex items-center overflow-hidden !my-0 !mx-[-1.25rem] md:!mx-[-2rem]"
@@ -145,7 +145,7 @@ export default function HomePage() {
             }}
           />
         ))}
-        {/* 淡渐变蒙版 */}
+        {/* 淡漸變蒙版 */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/10 z-[1]" />
 
         <div className="relative z-10 w-full px-6 md:px-16 lg:px-24">
@@ -161,7 +161,7 @@ export default function HomePage() {
             <p className="mt-5 text-lg text-white/90">
               {t("home_stock")}
             </p>
-            {/* 已删除两个按钮 */}
+            {/* 已刪除兩個按鈕 */}
           </motion.div>
         </div>
 
@@ -177,7 +177,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 产业与业务 */}
+      {/* 產業與業務 */}
       <section id="two" className="min-h-screen flex flex-col justify-center bg-white px-6 md:px-16 lg:px-24 py-24 md:py-32">
         <motion.p
           initial={{ opacity: 0, y: 8 }}
@@ -294,7 +294,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/*  投资者【卡片固定min-h统一高度，一屏全容纳】  */}
+      {/*  投資者【卡片固定min-h統一高度，一屏全容納】  */}
       <section id="four" className="h-screen flex flex-col justify-center bg-brand text-white px-6 md:px-16 lg:px-24 py-4 md:py-6 relative overflow-hidden">
         {/* subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-white/[0.06] pointer-events-none" />
@@ -341,7 +341,7 @@ export default function HomePage() {
           </div>
 
           <div className="flex-1 w-full">
-            {/*外层浅色面板*/}
+            {/*外層淺色面板*/}
             <div className="bg-white/12 rounded-3xl p-3 md:p-4 border-[0.5px] border-white/12 backdrop-blur-sm">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
                 {investorCards.map((card, i) => (
@@ -379,7 +379,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/*  联系地址  */}
+      {/*  聯繫地址  */}
       <section id="five" className="min-h-screen flex items-center bg-white px-3 md:px-8 lg:px-12 py-12 md:py-16">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
           <div>
@@ -399,7 +399,7 @@ export default function HomePage() {
               className="text-lg text-text-secondary leading-relaxed max-w-xl"
             >
               {lang === "zh"
-                ? "地址：香港九龙红磡德丰街十八号海滨广场一座11字楼1103-1107A室"
+                ? "地址：香港九龍紅磡德豐街十八號海濱廣場一座11字樓1103-1107A室"
                 : "Address: Room 1103-1107A, 11/F, Tower 1, Harbourfront Plaza, 18 Tak Fung Street, Hung Hom, Kowloon, Hong Kong"}
             </motion.p>
             <motion.p
@@ -410,7 +410,7 @@ export default function HomePage() {
               className="text-lg text-text-secondary leading-relaxed mt-4"
             >
               {lang === "zh"
-                ? "电话：( 852 ) 2193 8888  传真：( 852 ) 2193 8899"
+                ? "電話：( 852 ) 2193 8888  傳真：( 852 ) 2193 8899"
                 : "Tel: (852) 2193 8888  Fax: (852) 2193 8899"}
             </motion.p>
             <motion.p
@@ -421,7 +421,7 @@ export default function HomePage() {
               className="text-lg text-text-secondary leading-relaxed mt-4"
             >
               {lang === "zh"
-                ? "电邮：public@casil-group.com"
+                ? "電郵：public@casil-group.com"
                 : "Email: public@casil-group.com"}
             </motion.p>
           </div>
@@ -435,7 +435,7 @@ export default function HomePage() {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://www.google.com/maps/place/中国航天国际控股有限公司/@22.302271,114.191669,16z/data=!4m6!3m5!1s0x3404011e29a1b33d:0xcb9a3120a373ba70!8m2!3d22.302271!4d114.191669!16s%2Fg%2F12hv22z0m?hl=zh-CN&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
+              href="https://www.google.com/maps/place/中國航天國際控股有限公司/@22.302271,114.191669,16z/data=!4m6!3m5!1s0x3404011e29a1b33d:0xcb9a3120a373ba70!8m2!3d22.302271!4d114.191669!16s%2Fg%2F12hv22z0m?hl=zh-CN&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
             >
               <img
                 src="/images/location.png"

@@ -97,7 +97,7 @@ export default function GoalsSection({
 
             <div className="relative">
               <SectionTitle>
-                {isZh ? "企业发展目标" : "Enterprise Development Goals"}
+                {isZh ? "企業發展目標" : "Enterprise Development Goals"}
               </SectionTitle>
 
               <p
@@ -111,21 +111,21 @@ export default function GoalsSection({
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[
                   {
-                    zh: "科学化管理体系",
+                    zh: "科學化管理體系",
                     en: "Scientific Management System",
-                    descZh: "建立现代化、高效的科学管理框架",
+                    descZh: "建立現代化、高效的科學管理框架",
                     descEn: "Establish a modern and efficient management framework",
                   },
                   {
-                    zh: "强势市场竞争力",
+                    zh: "強勢市場競爭力",
                     en: "Strong Market Competitiveness",
-                    descZh: "构建整体竞争优势，巩固行业地位",
+                    descZh: "構建整體競爭優勢，鞏固行業地位",
                     descEn: "Build overall competitive advantages and strengthen industry position",
                   },
                   {
-                    zh: "为股东创造价值",
+                    zh: "爲股東創造價值",
                     en: "Shareholder Value Creation",
-                    descZh: "持续创造优质投资回报与长期价值",
+                    descZh: "持續創造優質投資回報與長期價值",
                     descEn: "Continuously create excellent investment returns and long-term value",
                   },
                 ].map((item, i) => (
@@ -171,7 +171,7 @@ export default function GoalsSection({
 
             <div className="relative">
               <SectionTitle>
-                {isZh ? "核心业务方向" : "Core Business Direction"}
+                {isZh ? "核心業務方向" : "Core Business Direction"}
               </SectionTitle>
 
               <p
@@ -184,12 +184,12 @@ export default function GoalsSection({
               {/* Business focus badges */}
               <div className="mt-8 flex flex-wrap gap-3">
                 {[
-                  { zh: "科技工业", en: "Technology Industry" },
-                  { zh: "航天服务", en: "Aerospace Services" },
-                  { zh: "先进制造", en: "Advanced Manufacturing" },
-                  { zh: "现代服务", en: "Modern Services" },
-                  { zh: "产业升级", en: "Industrial Upgrading" },
-                  { zh: "技术创新", en: "Technological Innovation" },
+                  { zh: "科技工業", en: "Technology Industry" },
+                  { zh: "航天服務", en: "Aerospace Services" },
+                  { zh: "先進製造", en: "Advanced Manufacturing" },
+                  { zh: "現代服務", en: "Modern Services" },
+                  { zh: "產業升級", en: "Industrial Upgrading" },
+                  { zh: "技術創新", en: "Technological Innovation" },
                 ].map((badge, i) => (
                   <motion.span
                     key={i}

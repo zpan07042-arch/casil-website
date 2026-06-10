@@ -34,7 +34,7 @@ export default async function LinksPage({
                     {lang === "zh" ? link.name_zh : (link.name_en || link.name_zh)}
                   </h3>
                   <span className="text-brand text-sm font-medium inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-                    {lang === "zh" ? "访问网站" : "Visit"} →
+                    {lang === "zh" ? "訪問網站" : "Visit"} →
                   </span>
                 </a>
               ))}

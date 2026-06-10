@@ -109,35 +109,35 @@ export default function AboutSection({
     background: {
       icon: <IconBackground />,
       tagline: {
-        zh: "从康力时代到航天控股，跨越半世纪的传承与蜕变",
+        zh: "從康力時代到航天控股，跨越半世紀的傳承與蛻變",
         en: "From Conic era to CASIL — half a century of legacy and transformation",
       },
     },
     culture: {
       icon: <IconCulture />,
       tagline: {
-        zh: "爱国、创新、诚信、和谐、尽责",
+        zh: "愛國、創新、誠信、和諧、盡責",
         en: "Patriotism, Innovation, Integrity, Harmony, Responsibility",
       },
     },
     goals: {
       icon: <IconGoals />,
       tagline: {
-        zh: "建设科学化管理体系，为股东创造持久价值",
+        zh: "建設科學化管理體系，爲股東創造持久價值",
         en: "Building a scientific management system to create lasting shareholder value",
       },
     },
     board: {
       icon: <IconBoard />,
       tagline: {
-        zh: "专业多元的董事团队，引领企业战略方向",
+        zh: "專業多元的董事團隊，引領企業戰略方向",
         en: "A professional and diverse board leading strategic direction",
       },
     },
     governance: {
       icon: <IconGovernance />,
       tagline: {
-        zh: "恪守高水平企业管治标准，保障股东权益",
+        zh: "恪守高水平企業管治標準，保障股東權益",
         en: "Upholding high corporate governance standards to protect shareholder rights",
       },
     },
@@ -239,7 +239,7 @@ export default function AboutSection({
                     {/* Arrow */}
                     <div className="mt-4 flex items-center gap-1 text-brand/40 group-hover:text-brand group-hover:gap-2 transition-all duration-300">
                       <span className="text-[12px] font-medium">
-                        {isZh ? "了解更多" : "Learn More"}
+                        {isZh ? "瞭解更多" : "Learn More"}
                       </span>
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                         <path d="M4 2.5L7.5 6 4 9.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />

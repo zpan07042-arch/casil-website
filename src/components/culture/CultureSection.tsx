@@ -68,41 +68,41 @@ interface ValueItem {
 const values: ValueItem[] = [
   {
     key: "patriotism",
-    titleZh: "爱国",
+    titleZh: "愛國",
     titleEn: "Patriotism",
-    descZh: "爱国、爱港、爱航天、爱企业",
+    descZh: "愛國、愛港、愛航天、愛企業",
     descEn: "Love the country, love Hong Kong, love aerospace, love the enterprise",
     Icon: IconPatriotism,
   },
   {
     key: "innovation",
-    titleZh: "创新",
+    titleZh: "創新",
     titleEn: "Innovation",
-    descZh: "坚持新发展理念，以创新驱动发展",
+    descZh: "堅持新發展理念，以創新驅動發展",
     descEn: "Adhere to new development concepts and drive development through innovation",
     Icon: IconInnovation,
   },
   {
     key: "integrity",
-    titleZh: "诚信",
+    titleZh: "誠信",
     titleEn: "Integrity",
-    descZh: "恪守诚信，以廉洁及公平为原则，依法守法，坚持合作共赢，善待各持份者",
+    descZh: "恪守誠信，以廉潔及公平爲原則，依法守法，堅持合作共贏，善待各持份者",
     descEn: "Uphold integrity, adhere to honesty and fairness, comply with the law, and treat all stakeholders well",
     Icon: IconIntegrity,
   },
   {
     key: "harmony",
-    titleZh: "和谐",
+    titleZh: "和諧",
     titleEn: "Harmony",
-    descZh: "以德治企，坚持团结共事，和谐共享",
+    descZh: "以德治企，堅持團結共事，和諧共享",
     descEn: "Govern the enterprise with virtue, adhere to unity and collaboration, and share harmony",
     Icon: IconHarmony,
   },
   {
     key: "responsibility",
-    titleZh: "尽责",
+    titleZh: "盡責",
     titleEn: "Responsibility",
-    descZh: "敢担当、负责任",
+    descZh: "敢擔當、負責任",
     descEn: "Dare to take on responsibility and be accountable",
     Icon: IconResponsibility,
   },
@@ -184,7 +184,7 @@ export default function CultureSection({
         {/* ========== 1. CORE VALUES ========== */}
         <FadeSection className="mb-16 md:mb-24">
           <SectionTitle>
-            {isZh ? "核心价值观" : "Core Values"}
+            {isZh ? "核心價值觀" : "Core Values"}
           </SectionTitle>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5">
@@ -235,13 +235,13 @@ export default function CultureSection({
             />
 
             <SectionTitle>
-              {isZh ? "企业使命" : "Our Mission"}
+              {isZh ? "企業使命" : "Our Mission"}
             </SectionTitle>
             <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
               style={{ lineHeight: 1.7 }}
             >
               {isZh
-                ? "为客户、股东、员工及社会缔造持久的价值和效益。"
+                ? "爲客戶、股東、員工及社會締造持久的價值和效益。"
                 : "To create lasting value and benefits for customers, shareholders, employees and society."}
             </p>
           </div>
@@ -251,13 +251,13 @@ export default function CultureSection({
         <FadeSection className="mb-16 md:mb-20">
           <div className="relative bg-white rounded-2xl p-8 md:p-10 border border-divider shadow-sm">
             <SectionTitle>
-              {isZh ? "企业愿景" : "Our Vision"}
+              {isZh ? "企業願景" : "Our Vision"}
             </SectionTitle>
             <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
               style={{ lineHeight: 1.7 }}
             >
               {isZh
-                ? "本公司致力推动技术创新和专业化制造，专注以高品质和高效率为供应链及产业链服务，聚焦先进制造业及现代服务业作为核心能力，冀成为面向未来、具有显著创新能力和持续为客户创造价值的国际化企业，为客户提供专业、高效、安全和环保的产品和服务。"
+                ? "本公司致力推動技術創新和專業化製造，專注以高品質和高效率爲供應鏈及產業鏈服務，聚焦先進製造業及現代服務業作爲核心能力，冀成爲面向未來、具有顯著創新能力和持續爲客戶創造價值的國際化企業，爲客戶提供專業、高效、安全和環保的產品和服務。"
                 : "The Company is committed to promoting technological innovation and specialized manufacturing, focusing on serving the supply chain and industrial chain with high quality and efficiency, aspiring to become a future-oriented international enterprise with significant innovation capabilities that continuously creates value for customers."}
             </p>
           </div>
@@ -269,33 +269,33 @@ export default function CultureSection({
             style={{ background: "linear-gradient(135deg, rgba(10,36,99,0.02), rgba(62,146,204,0.02))" }}
           >
             <SectionTitle>
-              {isZh ? "合规守则" : "Compliance & Ethics"}
+              {isZh ? "合規守則" : "Compliance & Ethics"}
             </SectionTitle>
             <p className="text-sm md:text-base text-text-secondary leading-relaxed max-w-3xl mb-5"
               style={{ lineHeight: 1.7 }}
             >
               {isZh
-                ? "本公司以审慎的态度经营及管理业务，以确保业务能在将来持续发展，为社会经济作出贡献。我们制定了清晰的合规政策，将企业价值观融入日常业务运作和作业方式中。"
+                ? "本公司以審慎的態度經營及管理業務，以確保業務能在將來持續發展，爲社會經濟作出貢獻。我們制定了清晰的合規政策，將企業價值觀融入日常業務運作和作業方式中。"
                 : "The Company operates with a prudent approach to ensure sustainable development and contribute to social and economic progress. Clear compliance policies are established to integrate corporate values into daily operations."}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
                 {
-                  zh: "《员工合规经营行为守则》",
+                  zh: "《員工合規經營行爲守則》",
                   en: "Employee Compliance Conduct Code",
-                  descZh: "清晰向员工传达所需的合规经营意识，确保公司以高道德水平及专业操守营运",
+                  descZh: "清晰向員工傳達所需的合規經營意識，確保公司以高道德水平及專業操守營運",
                   descEn: "Clearly communicates compliance awareness to employees, ensuring high ethical and professional standards",
                 },
                 {
-                  zh: "《反贪污政策》",
+                  zh: "《反貪污政策》",
                   en: "Anti-Corruption Policy",
-                  descZh: "缔造廉洁守正的经营团队，防范贪污及不当行为",
+                  descZh: "締造廉潔守正的經營團隊，防範貪污及不當行爲",
                   descEn: "Foster a clean and honest management team, prevent corruption and misconduct",
                 },
                 {
-                  zh: "《举报政策》",
+                  zh: "《舉報政策》",
                   en: "Whistleblowing Policy",
-                  descZh: "建立透明、负责任的举报机制，保障举报人权益",
+                  descZh: "建立透明、負責任的舉報機制，保障舉報人權益",
                   descEn: "Establish a transparent and responsible reporting mechanism to protect whistleblowers",
                 },
               ].map((policy, i) => (
@@ -334,13 +334,13 @@ export default function CultureSection({
             {/* Org structure */}
             <div className="mb-6">
               <h4 className="text-sm font-semibold text-text-primary mb-3">
-                {isZh ? "组织保障" : "Organizational Support"}
+                {isZh ? "組織保障" : "Organizational Support"}
               </h4>
               <p className="text-sm md:text-base text-text-secondary leading-relaxed"
                 style={{ lineHeight: 1.7 }}
               >
                 {isZh
-                  ? "本公司设有企业文化部，负责定期举办内部对企业使命与理念贯彻的活动和讲座，凝聚员工对公司的归属感，搭建分享想法的平台，以缔造爱国、创新，以及具诚信、和谐、负责任的团队。"
+                  ? "本公司設有企業文化部，負責定期舉辦內部對企業使命與理念貫徹的活動和講座，凝聚員工對公司的歸屬感，搭建分享想法的平臺，以締造愛國、創新，以及具誠信、和諧、負責任的團隊。"
                   : "The Company has established a Corporate Culture Department responsible for organizing internal activities and seminars on corporate mission and values, fostering employee belonging and building a team of patriotism, innovation, integrity, harmony and responsibility."}
               </p>
             </div>
@@ -348,13 +348,13 @@ export default function CultureSection({
             {/* Monitoring */}
             <div className="mb-6">
               <h4 className="text-sm font-semibold text-text-primary mb-3">
-                {isZh ? "监督评估" : "Monitoring & Evaluation"}
+                {isZh ? "監督評估" : "Monitoring & Evaluation"}
               </h4>
               <p className="text-sm md:text-base text-text-secondary leading-relaxed"
                 style={{ lineHeight: 1.7 }}
               >
                 {isZh
-                  ? "本公司采取多种沟通渠道，并以骨干员工流失率、举报数据等评估和监测企业文化的贯彻性。同时，要求领导层及管理人员在日常工作中积极实践企业价值及贯彻良好操守，为属下员工树立榜样。"
+                  ? "本公司採取多種溝通渠道，並以骨幹員工流失率、舉報數據等評估和監測企業文化的貫徹性。同時，要求領導層及管理人員在日常工作中積極實踐企業價值及貫徹良好操守，爲屬下員工樹立榜樣。"
                   : "The Company adopts various communication channels and monitors the implementation of corporate culture through key employee turnover rates and whistleblowing data. Leadership and management are required to actively practice corporate values in daily work and set an example for their teams."}
               </p>
             </div>
@@ -362,13 +362,13 @@ export default function CultureSection({
             {/* Strategy */}
             <div>
               <h4 className="text-sm font-semibold text-text-primary mb-3">
-                {isZh ? "长远策略" : "Long-term Strategy"}
+                {isZh ? "長遠策略" : "Long-term Strategy"}
               </h4>
               <p className="text-sm md:text-base text-text-secondary leading-relaxed"
                 style={{ lineHeight: 1.7 }}
               >
                 {isZh
-                  ? "本公司制定了长远的规划纲要，并持续评估面对的潜在机遇与挑战。通过企业文化核心价值的贯彻，持续提升员工的道德操守、完善公司管治制度、防范合规经营风险，为员工及公司建立竞争优势，让各项业务稳定发展。"
+                  ? "本公司制定了長遠的規劃綱要，並持續評估面對的潛在機遇與挑戰。通過企業文化核心價值的貫徹，持續提升員工的道德操守、完善公司管治制度、防範合規經營風險，爲員工及公司建立競爭優勢，讓各項業務穩定發展。"
                   : "The Company has formulated a long-term planning outline and continuously evaluates potential opportunities and challenges. Through the implementation of core cultural values, we enhance employee ethics, improve governance, prevent compliance risks, and establish competitive advantages for sustainable business development."}
               </p>
             </div>

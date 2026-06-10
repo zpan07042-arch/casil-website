@@ -49,7 +49,7 @@ export default function Footer() {
             </div>
             <p className="text-sm text-white/50 leading-relaxed mb-4">
               {lang === "zh"
-                ? "中国航天国际控股有限公司，致力于航天科技产业的创新与发展"
+                ? "中國航天國際控股有限公司，致力於航天科技產業的創新與發展"
                 : "China Aerospace International Holdings Limited"}
             </p>
           </div>

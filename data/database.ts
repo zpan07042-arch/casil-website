@@ -2,8 +2,8 @@ import initSqlJs, { Database as SqlJsDb, SqlJsStatic, SqlValue } from "sql.js";
 import path from "path";
 import fs from "fs";
 
-// DB 文件放在 data/db/ 子目录，方便 Docker volume 只挂载这个目录
-// 迁移文件放在 data/migrations/，随镜像发布，不会被 volume 覆盖
+// DB 文件放在 data/db/ 子目錄，方便 Docker volume 只掛載這個目錄
+// 遷移文件放在 data/migrations/，隨鏡像發佈，不會被 volume 覆蓋
 const DB_PATH = path.join(process.cwd(), "data", "db", "casil.db");
 const MIGRATIONS_DIR = path.join(process.cwd(), "data", "migrations");
 const WASM_PATH = path.join(process.cwd(), "node_modules", "sql.js", "dist", "sql-wasm.wasm");
@@ -78,7 +78,7 @@ export class CompatDatabase {
     return this;
   }
 
-  /** 执行多条 SQL（使用 sql.js 原生 exec，正确处理字符串内的分号） */
+  /** 執行多條 SQL（使用 sql.js 原生 exec，正確處理字符串內的分號） */
   exec(sql: string): this {
     this.db.exec(sql);
     return this;
@@ -88,7 +88,7 @@ export class CompatDatabase {
     return new CompatStatement(this.db, sql);
   }
 
-  /** 将内存中的数据库写入磁盘 */
+  /** 將內存中的數據庫寫入磁盤 */
   saveToDisk(): void {
     const dir = path.dirname(this.dbPath);
     if (!fs.existsSync(dir)) {
@@ -104,14 +104,14 @@ export class CompatDatabase {
   }
 }
 
-// ── 迁移系统 ────────────────────────────────────────────────────
+// ── 遷移系統 ────────────────────────────────────────────────────
 
 /**
- * 自动读取 data/migrations/ 下的 .sql 文件，
- * 按文件名排序后，执行尚未应用的迁移。
+ * 自動讀取 data/migrations/ 下的 .sql 文件，
+ * 按文件名排序後，執行尚未應用的遷移。
  */
 function runMigrations(database: CompatDatabase): void {
-  // 1) 先建 _migrations 追踪表（不依赖其他表）
+  // 1) 先建 _migrations 追蹤表（不依賴其他表）
   database.exec(`
     CREATE TABLE IF NOT EXISTS _migrations (
       name TEXT PRIMARY KEY,
@@ -119,13 +119,13 @@ function runMigrations(database: CompatDatabase): void {
     );
   `);
 
-  // 2) 查询已应用的迁移
+  // 2) 查詢已應用的遷移
   const applied = database
     .prepare("SELECT name FROM _migrations ORDER BY name")
     .all() as { name: string }[];
   const appliedNames = new Set(applied.map((r) => r.name));
 
-  // 3) 扫描迁移文件
+  // 3) 掃描遷移文件
   if (!fs.existsSync(MIGRATIONS_DIR)) {
     throw new Error(
       `[migrate] Migrations directory not found: ${MIGRATIONS_DIR}. Cannot initialize database.`
@@ -142,7 +142,7 @@ function runMigrations(database: CompatDatabase): void {
     return;
   }
 
-  // 4) 按序执行未应用的迁移
+  // 4) 按序執行未應用的遷移
   let appliedCount = 0;
   for (const file of files) {
     if (appliedNames.has(file)) {
@@ -166,7 +166,7 @@ function runMigrations(database: CompatDatabase): void {
   }
 
   if (appliedCount > 0) {
-    // 迁移执行后立即持久化到磁盘
+    // 遷移執行後立即持久化到磁盤
     database.saveToDisk();
     console.log(`[migrate] ${appliedCount} migration(s) applied and saved to disk.`);
   } else {
@@ -182,7 +182,7 @@ export async function getDb(): Promise<CompatDatabase> {
     dbInitPromise = (async () => {
       const SQL = await getSqlJs();
 
-      // 确保 DB 目录存在
+      // 確保 DB 目錄存在
       const dbDir = path.dirname(DB_PATH);
       if (!fs.existsSync(dbDir)) {
         fs.mkdirSync(dbDir, { recursive: true });
@@ -197,10 +197,10 @@ export async function getDb(): Promise<CompatDatabase> {
       db = new CompatDatabase(sqlJsDb, DB_PATH);
       db.pragma("journal_mode = WAL");
 
-      // 启动时自动运行迁移
+      // 啓動時自動運行遷移
       runMigrations(db);
 
-      // 注册进程退出时自动保存
+      // 註冊進程退出時自動保存
       registerShutdownHandlers(db);
 
       return db;
@@ -209,7 +209,7 @@ export async function getDb(): Promise<CompatDatabase> {
   return dbInitPromise;
 }
 
-// ── 优雅退出：保存数据库 ────────────────────────────────────────
+// ── 優雅退出：保存數據庫 ────────────────────────────────────────
 
 let shutdownRegistered = false;
 
@@ -226,7 +226,7 @@ function registerShutdownHandlers(database: CompatDatabase): void {
     }
   };
 
-  // Next.js 在生产环境收到 SIGTERM / SIGINT 时触发
+  // Next.js 在生產環境收到 SIGTERM / SIGINT 時觸發
   process.on("SIGTERM", () => {
     console.log("[db] SIGTERM received, saving...");
     save();
@@ -239,7 +239,7 @@ function registerShutdownHandlers(database: CompatDatabase): void {
     process.exit(0);
   });
 
-  // 未捕获异常时也尝试保存
+  // 未捕獲異常時也嘗試保存
   process.on("uncaughtException", (err) => {
     console.error("[db] uncaughtException, saving before exit...", err);
     save();

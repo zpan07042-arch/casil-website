@@ -6,7 +6,7 @@ import type { Subsidiary } from "@/lib/types";
 
 /* ========== Business icon SVGs by keyword ========== */
 function getBizIcon(desc: string) {
-  if (/PCB|pcb|封装|載板|载板|substrate/i.test(desc)) {
+  if (/PCB|pcb|封裝|載板|載板|substrate/i.test(desc)) {
     return (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <rect x="1" y="1" width="16" height="16" rx="3" stroke="currentColor" strokeWidth="1.2" />
@@ -15,7 +15,7 @@ function getBizIcon(desc: string) {
       </svg>
     );
   }
-  if (/半导体|半導體|semiconductor/i.test(desc)) {
+  if (/半導體|半導體|semiconductor/i.test(desc)) {
     return (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <rect x="3" y="5" width="12" height="8" rx="1" stroke="currentColor" strokeWidth="1.2" />
@@ -23,7 +23,7 @@ function getBizIcon(desc: string) {
       </svg>
     );
   }
-  if (/显示|模组|display|sensor|传感器/i.test(desc)) {
+  if (/顯示|模組|display|sensor|傳感器/i.test(desc)) {
     return (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <rect x="2" y="3" width="14" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.2" />
@@ -31,7 +31,7 @@ function getBizIcon(desc: string) {
       </svg>
     );
   }
-  if (/储能|电池|energy|battery/i.test(desc)) {
+  if (/儲能|電池|energy|battery/i.test(desc)) {
     return (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <rect x="4" y="1" width="6" height="3" rx="0.5" stroke="currentColor" strokeWidth="1.2" />
@@ -40,7 +40,7 @@ function getBizIcon(desc: string) {
       </svg>
     );
   }
-  if (/塑胶|結構|结构件|precision/i.test(desc)) {
+  if (/塑膠|結構|結構件|precision/i.test(desc)) {
     return (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <path d="M2 5h14v10a1 1 0 01-1 1H3a1 1 0 01-1-1V5z" stroke="currentColor" strokeWidth="1.2" />
@@ -48,7 +48,7 @@ function getBizIcon(desc: string) {
       </svg>
     );
   }
-  if (/工业互联网|智能|industrial|smart/i.test(desc)) {
+  if (/工業互聯網|智能|industrial|smart/i.test(desc)) {
     return (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.2" />
@@ -57,7 +57,7 @@ function getBizIcon(desc: string) {
       </svg>
     );
   }
-  if (/物业|产业投|property/i.test(desc)) {
+  if (/物業|產業投|property/i.test(desc)) {
     return (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <path d="M9 2L2 7v8h5v-4h4v4h5V7L9 2z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />

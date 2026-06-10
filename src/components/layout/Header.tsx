@@ -62,16 +62,16 @@ export default function Header() {
   ];
 
   const contactItems = [
-    { label: lang === "zh" ? "全球分支机构" : "Global Branches", href: `${base}/contact/branches` },
+    { label: lang === "zh" ? "全球分支機構" : "Global Branches", href: `${base}/contact/branches` },
     { label: lang === "zh" ? "政企合作入口" : "Government & Enterprise", href: `${base}/contact/government` },
-    { label: lang === "zh" ? "投资者咨询通道" : "Investor Inquiries", href: `${base}/contact/investor` },
-    { label: lang === "zh" ? "人才招聘模块" : "Careers", href: `${base}/contact/careers` },
+    { label: lang === "zh" ? "投資者諮詢通道" : "Investor Inquiries", href: `${base}/contact/investor` },
+    { label: lang === "zh" ? "人才招聘模塊" : "Careers", href: `${base}/contact/careers` },
   ];
 
   const dropdowns: Record<string, NavDropdown> = {
     about: { label: t("nav_about"), items: aboutItems, href: `${base}/about` },
     industry: { label: t("nav_industry"), items: businessItems, href: `${base}/business` },
-    contact: { label: lang === "zh" ? "联系我们" : "Contact Us", items: contactItems, href: `${base}/contact` },
+    contact: { label: lang === "zh" ? "聯繫我們" : "Contact Us", items: contactItems, href: `${base}/contact` },
   };
 
   return (
@@ -114,7 +114,7 @@ export default function Header() {
                     >
                       <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    {/* 底部通栏下划线：绝对定位到父容器最底端 */}
+                    {/* 底部通欄下劃線：絕對定位到父容器最底端 */}
                     <span
                       className={`
                         absolute left-0 right-0 bottom-0 h-[3px] rounded-[2px] transition-all duration-200
@@ -184,7 +184,7 @@ export default function Header() {
               {t("nav_investor")}
             </Link>
 
-            {/* links 单独下划线改造，和上面统一 */}
+            {/* links 單獨下劃線改造，和上面統一 */}
             <div className="relative h-full flex items-center group">
               <Link
                 href={`${base}/links`}

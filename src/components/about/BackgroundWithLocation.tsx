@@ -185,7 +185,7 @@ export default function BackgroundWithLocation({
                   }}
                 >
                   {lang === "zh"
-                    ? "地址：香港九龙红磡德丰街十八号海滨广场一座11字楼1103-1107A室"
+                    ? "地址：香港九龍紅磡德豐街十八號海濱廣場一座11字樓1103-1107A室"
                     : "Address: Room 1103-1107A, 11/F, Tower 1, Harbourfront Plaza, 18 Tak Fung Street, Hung Hom, Kowloon, Hong Kong"}
                 </p>
                 <p
@@ -197,7 +197,7 @@ export default function BackgroundWithLocation({
                   }}
                 >
                   {lang === "zh"
-                    ? "电话：( 852 ) 2193 8888  传真：( 852 ) 2193 8899"
+                    ? "電話：( 852 ) 2193 8888  傳真：( 852 ) 2193 8899"
                     : "Tel: (852) 2193 8888  Fax: (852) 2193 8899"}
                 </p>
                 <p
@@ -209,7 +209,7 @@ export default function BackgroundWithLocation({
                   }}
                 >
                   {lang === "zh"
-                    ? "电邮：public@casil-group.com"
+                    ? "電郵：public@casil-group.com"
                     : "Email: public@casil-group.com"}
                 </p>
               </div>
@@ -226,7 +226,7 @@ export default function BackgroundWithLocation({
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://www.google.com/maps/place/中国航天国际控股有限公司/@22.302271,114.191669,16z/data=!4m6!3m5!1s0x3404011e29a1b33d:0xcb9a3120a373ba70!8m2!3d22.302271!4d114.191669!16s%2Fg%2F12hv22z0m?hl=zh-CN&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
+                  href="https://www.google.com/maps/place/中國航天國際控股有限公司/@22.302271,114.191669,16z/data=!4m6!3m5!1s0x3404011e29a1b33d:0xcb9a3120a373ba70!8m2!3d22.302271!4d114.191669!16s%2Fg%2F12hv22z0m?hl=zh-CN&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
                 >
                   <img
                     src="/images/location.png"

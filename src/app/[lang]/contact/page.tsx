@@ -12,7 +12,7 @@ export default async function ContactPage({
   const page = await getPage("contact");
 
   const title = lang === "zh"
-    ? (page?.title_zh || "联系我们")
+    ? (page?.title_zh || "聯繫我們")
     : (page?.title_en || "Contact Us");
   const content = lang === "zh"
     ? (page?.content_zh || "")
@@ -20,23 +20,23 @@ export default async function ContactPage({
 
   const cards = [
     {
-      title: lang === "zh" ? "全球分支机构" : "Global Branches",
-      desc: lang === "zh" ? "查看航天控股全球分支机构分布与联系方式" : "View our global branch locations and contact information",
+      title: lang === "zh" ? "全球分支機構" : "Global Branches",
+      desc: lang === "zh" ? "查看航天控股全球分支機構分佈與聯繫方式" : "View our global branch locations and contact information",
       href: `${base}/contact/branches`,
     },
     {
       title: lang === "zh" ? "政企合作入口" : "Government & Enterprise",
-      desc: lang === "zh" ? "政府与企业合作对接渠道与服务窗口" : "Government and enterprise cooperation channels and services",
+      desc: lang === "zh" ? "政府與企業合作對接渠道與服務窗口" : "Government and enterprise cooperation channels and services",
       href: `${base}/contact/government`,
     },
     {
-      title: lang === "zh" ? "投资者咨询通道" : "Investor Inquiries",
-      desc: lang === "zh" ? "投资者关系咨询与信息查询服务" : "Investor relations inquiries and information services",
+      title: lang === "zh" ? "投資者諮詢通道" : "Investor Inquiries",
+      desc: lang === "zh" ? "投資者關係諮詢與信息查詢服務" : "Investor relations inquiries and information services",
       href: `${base}/contact/investor`,
     },
     {
-      title: lang === "zh" ? "人才招聘模块" : "Careers",
-      desc: lang === "zh" ? "加入航天控股，查看最新招聘信息与职位机会" : "Join CASIL and explore career opportunities",
+      title: lang === "zh" ? "人才招聘模塊" : "Careers",
+      desc: lang === "zh" ? "加入航天控股，查看最新招聘信息與職位機會" : "Join CASIL and explore career opportunities",
       href: `${base}/contact/careers`,
     },
   ];

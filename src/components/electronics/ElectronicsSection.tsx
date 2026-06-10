@@ -138,38 +138,38 @@ export default function ElectronicsSection({
   const products = [
     {
       type: "ic",
-      nameZh: "IC 封装载板",
+      nameZh: "IC 封裝載板",
       nameEn: "IC Packaging Substrate",
-      attrsZh: ["高密度互连", "精细线路", "先进封装"],
+      attrsZh: ["高密度互連", "精細線路", "先進封裝"],
       attrsEn: ["High-density Interconnect", "Fine Line", "Advanced Packaging"],
-      descZh: "为芯片提供电气连接与机械支撑的核心基板，广泛应用于通讯、消费电子及汽车芯片封装领域。",
+      descZh: "爲芯片提供電氣連接與機械支撐的核心基板，廣泛應用於通訊、消費電子及汽車芯片封裝領域。",
       descEn: "Core substrate providing electrical connection and mechanical support for chips, widely used in communication, consumer electronics and automotive chip packaging.",
     },
     {
       type: "hdi",
-      nameZh: "高密度互连板（HDI）",
+      nameZh: "高密度互連板（HDI）",
       nameEn: "High-Density Interconnect (HDI)",
-      attrsZh: ["微盲孔技术", "高布线密度", "轻量化"],
+      attrsZh: ["微盲孔技術", "高佈線密度", "輕量化"],
       attrsEn: ["Micro-via Technology", "High Routing Density", "Lightweight"],
-      descZh: "采用微盲孔及积层工艺实现更高布线密度与小型化设计，满足智能终端、服务器等高端应用需求。",
+      descZh: "採用微盲孔及積層工藝實現更高佈線密度與小型化設計，滿足智能終端、服務器等高端應用需求。",
       descEn: "Achieving higher routing density and miniaturization through micro-via and build-up processes, meeting high-end application needs for smart terminals and servers.",
     },
     {
       type: "fpc",
-      nameZh: "柔性电路板（FPC）",
+      nameZh: "柔性電路板（FPC）",
       nameEn: "Flexible Printed Circuit (FPC)",
-      attrsZh: ["可弯折", "轻薄", "三维布线"],
+      attrsZh: ["可彎折", "輕薄", "三維佈線"],
       attrsEn: ["Bendable", "Ultra-thin", "3D Routing"],
-      descZh: "以柔性基材制成，可自由弯曲折叠，满足狭小空间与动态弯折场景下的互连需求。",
+      descZh: "以柔性基材製成，可自由彎曲摺疊，滿足狹小空間與動態彎折場景下的互連需求。",
       descEn: "Made with flexible substrates, freely bendable and foldable, meeting interconnection needs in tight spaces and dynamic bending scenarios.",
     },
     {
       type: "rigid-flex",
-      nameZh: "刚挠结合板",
+      nameZh: "剛撓結合板",
       nameEn: "Rigid-Flex Board",
-      attrsZh: ["刚柔一体", "高可靠性", "三维组装"],
+      attrsZh: ["剛柔一體", "高可靠性", "三維組裝"],
       attrsEn: ["Rigid-Flex Integrated", "High Reliability", "3D Assembly"],
-      descZh: "结合刚性板与柔性板优势，实现三维空间内一体化互连，广泛应用于航空航天及医疗设备。",
+      descZh: "結合剛性板與柔性板優勢，實現三維空間內一體化互連，廣泛應用於航空航天及醫療設備。",
       descEn: "Combining advantages of rigid and flexible boards for integrated 3D interconnection, widely used in aerospace and medical equipment.",
     },
   ];
@@ -179,35 +179,35 @@ export default function ElectronicsSection({
       type: "5g",
       zh: "5G 通信",
       en: "5G Communication",
-      descZh: "基站设备、天线系统、高速背板",
+      descZh: "基站設備、天線系統、高速背板",
       descEn: "Base station equipment, antenna systems, high-speed backplanes",
     },
     {
       type: "ai",
-      zh: "AI 服务器",
+      zh: "AI 服務器",
       en: "AI Servers",
-      descZh: "GPU 载板、交换机、加速卡",
+      descZh: "GPU 載板、交換機、加速卡",
       descEn: "GPU substrates, switches, accelerator cards",
     },
     {
       type: "auto",
-      zh: "自动驾驶",
+      zh: "自動駕駛",
       en: "Autonomous Driving",
-      descZh: "车载雷达、域控制器、传感器模块",
+      descZh: "車載雷達、域控制器、傳感器模塊",
       descEn: "Automotive radar, domain controllers, sensor modules",
     },
     {
       type: "medical",
-      zh: "医疗电子",
+      zh: "醫療電子",
       en: "Medical Electronics",
-      descZh: "影像设备、监护仪器、植入器械",
+      descZh: "影像設備、監護儀器、植入器械",
       descEn: "Imaging equipment, monitoring instruments, implantable devices",
     },
     {
       type: "aero",
       zh: "航空航天",
       en: "Aerospace",
-      descZh: "卫星通讯、航电系统、地面终端",
+      descZh: "衛星通訊、航電系統、地面終端",
       descEn: "Satellite communication, avionics, ground terminals",
     },
   ];
@@ -248,7 +248,7 @@ export default function ElectronicsSection({
             />
             <div className="relative">
               <SectionTitle>
-                {isZh ? "业务范围" : "Business Scope"}
+                {isZh ? "業務範圍" : "Business Scope"}
               </SectionTitle>
 
               <div className="space-y-4">
@@ -309,7 +309,7 @@ export default function ElectronicsSection({
             />
             <div className="relative">
               <SectionTitle>
-                {isZh ? "应用领域" : "Application Fields"}
+                {isZh ? "應用領域" : "Application Fields"}
               </SectionTitle>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">

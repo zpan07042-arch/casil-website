@@ -1,12 +1,12 @@
 /**
- * Docker 数据库迁移脚本（纯 JS，无 TS 依赖）
+ * Docker 數據庫遷移腳本（純 JS，無 TS 依賴）
  *
- * 在容器启动时，先于 Next.js 运行：
- *   1. 扫描 data/migrations/ 中的 .sql 文件
- *   2. 对比 _migrations 表，只执行新增的
- *   3. 将 casil.db 保存到磁盘
+ * 在容器啓動時，先於 Next.js 運行：
+ *   1. 掃描 data/migrations/ 中的 .sql 文件
+ *   2. 對比 _migrations 表，只執行新增的
+ *   3. 將 casil.db 保存到磁盤
  *
- * 每次部署时，如果 data/migrations/ 有新文件，这里会自动执行。
+ * 每次部署時，如果 data/migrations/ 有新文件，這裏會自動執行。
  */
 const initSqlJs = require("sql.js");
 const fs = require("fs");
@@ -17,24 +17,24 @@ const WASM_PATH = path.join(__dirname, "..", "node_modules", "sql.js", "dist", "
 const MIGRATIONS_DIR = path.join(__dirname, "migrations");
 
 async function main() {
-  // 加载 sql.js
+  // 加載 sql.js
   const wasmBinary = fs.readFileSync(WASM_PATH);
   const SQL = await initSqlJs({ wasmBinary });
 
-  // 确保 DB 目录存在
+  // 確保 DB 目錄存在
   const dbDir = path.dirname(DB_PATH);
   if (!fs.existsSync(dbDir)) {
     fs.mkdirSync(dbDir, { recursive: true });
   }
 
-  // 打开或创建数据库
+  // 打開或創建數據庫
   let buffer;
   if (fs.existsSync(DB_PATH)) {
     buffer = fs.readFileSync(DB_PATH);
   }
   const database = new SQL.Database(buffer);
 
-  // ── 1. 创建迁移追踪表 ──
+  // ── 1. 創建遷移追蹤表 ──
   database.run(`
     CREATE TABLE IF NOT EXISTS _migrations (
       name TEXT PRIMARY KEY,
@@ -42,7 +42,7 @@ async function main() {
     );
   `);
 
-  // ── 2. 查询已应用的迁移 ──
+  // ── 2. 查詢已應用的遷移 ──
   const applied = [];
   const stmt = database.prepare("SELECT name FROM _migrations ORDER BY name");
   while (stmt.step()) {
@@ -51,7 +51,7 @@ async function main() {
   stmt.free();
   const appliedSet = new Set(applied);
 
-  // ── 3. 扫描并应用未执行的迁移 ──
+  // ── 3. 掃描並應用未執行的遷移 ──
   if (!fs.existsSync(MIGRATIONS_DIR)) {
     console.error(`[migrate] Migrations directory not found: ${MIGRATIONS_DIR}`);
     database.close();
@@ -91,7 +91,7 @@ async function main() {
     }
   }
 
-  // ── 4. 保存到磁盘 ──
+  // ── 4. 保存到磁盤 ──
   if (appliedCount > 0) {
     const data = database.export();
     fs.writeFileSync(DB_PATH, Buffer.from(data));

@@ -83,35 +83,35 @@ export default function ProductsSection({
   const products = [
     {
       icon: <IconIC />,
-      nameZh: "IC 封装载板",
+      nameZh: "IC 封裝載板",
       nameEn: "IC Packaging Substrate",
-      descZh: "高端封装基板，南通康源项目总投资 50 亿元，一期设计年产能 24 万平方米，工艺水准跻身国内前列，瞄准国内载板前三。",
+      descZh: "高端封裝基板，南通康源項目總投資 50 億元，一期設計年產能 24 萬平方米，工藝水準躋身國內前列，瞄準國內載板前三。",
       descEn: "High-end packaging substrates. Nantong Kangyuan project with total investment of RMB 5 billion. Phase I designed annual capacity of 240,000 m², ranking among the top in China.",
-      detailsZh: "IC 封装载板是芯片封装的核心基础材料，广泛应用于通讯、消费电子、汽车电子等领域的芯片封装。南通康源项目采用国际先进工艺，产品覆盖 WB-CSP、FC-CSP 等主流封装形式，有效填补本土高端载板产业缺口。",
+      detailsZh: "IC 封裝載板是芯片封裝的核心基礎材料，廣泛應用於通訊、消費電子、汽車電子等領域的芯片封裝。南通康源項目採用國際先進工藝，產品覆蓋 WB-CSP、FC-CSP 等主流封裝形式，有效填補本土高端載板產業缺口。",
       detailsEn: "IC packaging substrates are core foundational materials for chip packaging. The Nantong Kangyuan project adopts internationally advanced processes, covering mainstream packaging formats including WB-CSP and FC-CSP, effectively filling the domestic high-end substrate industry gap.",
-      tagsZh: ["FC-CSP", "WB-CSP", "高端封装"],
+      tagsZh: ["FC-CSP", "WB-CSP", "高端封裝"],
       tagsEn: ["FC-CSP", "WB-CSP", "Advanced Packaging"],
     },
     {
       icon: <IconPower />,
-      nameZh: "车规级功率模块",
+      nameZh: "車規級功率模塊",
       nameEn: "Automotive-grade Power Module",
-      descZh: "智能功率模组（IPM），车规级高可靠性设计，适配新能源汽车电驱系统及工业控制场景。",
+      descZh: "智能功率模組（IPM），車規級高可靠性設計，適配新能源汽車電驅系統及工業控制場景。",
       descEn: "Intelligent Power Modules (IPM) with automotive-grade high-reliability design, suitable for new energy vehicle drive systems and industrial control.",
-      detailsZh: "车规级功率模块通过严苛的 AEC-Q 可靠性认证，具备高功率密度、低热阻、强抗干扰能力等特性。产品广泛应用于新能源汽车主驱逆变器、车载充电机（OBC）及工业变频器，是国内自主可控功率半导体的重要力量。",
+      detailsZh: "車規級功率模塊通過嚴苛的 AEC-Q 可靠性認證，具備高功率密度、低熱阻、強抗干擾能力等特性。產品廣泛應用於新能源汽車主驅逆變器、車載充電機（OBC）及工業變頻器，是國內自主可控功率半導體的重要力量。",
       detailsEn: "Automotive-grade power modules pass rigorous AEC-Q reliability certification, featuring high power density, low thermal resistance and strong anti-interference. Widely used in EV traction inverters, OBC and industrial inverters.",
-      tagsZh: ["车规级", "IPM", "高可靠性"],
+      tagsZh: ["車規級", "IPM", "高可靠性"],
       tagsEn: ["Automotive", "IPM", "High-Reliability"],
     },
     {
       icon: <IconPCB />,
-      nameZh: "精密 PCB 电路板",
+      nameZh: "精密 PCB 電路板",
       nameEn: "Precision PCB Circuit Boards",
-      descZh: "多层精密线路板，依托成熟制造工艺与规模化产能，广泛服务于消费电子、通讯设备及工业控制领域。",
+      descZh: "多層精密線路板，依託成熟製造工藝與規模化產能，廣泛服務於消費電子、通訊設備及工業控制領域。",
       descEn: "Multi-layer precision circuit boards, leveraging mature manufacturing processes and scale production capacity, serving consumer electronics, communication equipment and industrial control.",
-      detailsZh: "精密 PCB 产品覆盖多层板、HDI 板及特种基板，拥有完整的工艺链和品控体系。产品广泛应用于通讯基站、服务器、消费终端等，以稳定的品质和交付能力获得头部客户认可。",
+      detailsZh: "精密 PCB 產品覆蓋多層板、HDI 板及特種基板，擁有完整的工藝鏈和品控體系。產品廣泛應用於通訊基站、服務器、消費終端等，以穩定的品質和交付能力獲得頭部客戶認可。",
       detailsEn: "Precision PCB products cover multi-layer boards, HDI boards and specialty substrates with complete process chain and quality control. Widely used in communication base stations, servers and consumer terminals.",
-      tagsZh: ["多层板", "HDI", "规模化"],
+      tagsZh: ["多層板", "HDI", "規模化"],
       tagsEn: ["Multi-layer", "HDI", "Scale Production"],
     },
   ];
@@ -119,7 +119,7 @@ export default function ProductsSection({
   /* ---- Application scenarios ---- */
   const scenarios = [
     {
-      zh: "AI 算力设备",
+      zh: "AI 算力設備",
       en: "AI Computing",
       icon: (
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -130,7 +130,7 @@ export default function ProductsSection({
       ),
     },
     {
-      zh: "新能源汽车",
+      zh: "新能源汽車",
       en: "NEV",
       icon: (
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -142,7 +142,7 @@ export default function ProductsSection({
       ),
     },
     {
-      zh: "低空无人机",
+      zh: "低空無人機",
       en: "Low-altitude Drones",
       icon: (
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -153,7 +153,7 @@ export default function ProductsSection({
       ),
     },
     {
-      zh: "智能机器人",
+      zh: "智能機器人",
       en: "Smart Robotics",
       icon: (
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -169,27 +169,27 @@ export default function ProductsSection({
   /* ---- Advantages ---- */
   const advantages = [
     {
-      zh: "技术研发",
+      zh: "技術研發",
       en: "R&D Innovation",
-      descZh: "手握多项技术专利，积淀深厚技术壁垒",
+      descZh: "手握多項技術專利，積澱深厚技術壁壘",
       descEn: "Multiple technology patents with deep technical barriers",
     },
     {
-      zh: "生产制造",
+      zh: "生產製造",
       en: "Manufacturing",
-      descZh: "成熟精密加工体系，工艺水准国内前列",
+      descZh: "成熟精密加工體系，工藝水準國內前列",
       descEn: "Mature precision manufacturing, top-tier processes in China",
     },
     {
-      zh: "市场供货",
+      zh: "市場供貨",
       en: "Market Supply",
-      descZh: "优质头部客户资源，一体化供应体系",
+      descZh: "優質頭部客戶資源，一體化供應體系",
       descEn: "Premium key client base, integrated supply system",
     },
     {
-      zh: "国产替代",
+      zh: "國產替代",
       en: "Domestic Substitution",
-      descZh: "填补本土产业缺口，强化行业竞争力",
+      descZh: "填補本土產業缺口，強化行業競爭力",
       descEn: "Filling domestic industry gaps, strengthening competitiveness",
     },
   ];
@@ -225,7 +225,7 @@ export default function ProductsSection({
         {/* ========== MODULE 1: CORE PRODUCTS ========== */}
         <FadeSection className="mb-16 md:mb-24">
           <SectionTitle>
-            {isZh ? "核心产品分类" : "Core Products"}
+            {isZh ? "核心產品分類" : "Core Products"}
           </SectionTitle>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -279,7 +279,7 @@ export default function ProductsSection({
 
                       {/* Expand toggle */}
                       <div className="flex items-center gap-1 text-[12px] font-medium text-brand/60">
-                        <span>{isOpen ? (isZh ? "收起详情" : "Collapse") : (isZh ? "展开详情" : "Expand Details")}</span>
+                        <span>{isOpen ? (isZh ? "收起詳情" : "Collapse") : (isZh ? "展開詳情" : "Expand Details")}</span>
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
                           className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                         >
@@ -329,26 +329,26 @@ export default function ProductsSection({
             />
             <div className="relative">
               <SectionTitle>
-                {isZh ? "关键技术" : "Key Technologies"}
+                {isZh ? "關鍵技術" : "Key Technologies"}
               </SectionTitle>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[
                   {
-                    zh: "高端 IC 封装载板制造技术",
+                    zh: "高端 IC 封裝載板製造技術",
                     en: "Advanced IC Packaging Substrate Manufacturing",
-                    descZh: "掌握 FC-CSP、WB-CSP 等先进封装基板工艺，南通康源项目采用国际领先设备与制程，填补国内高端载板产能缺口。",
+                    descZh: "掌握 FC-CSP、WB-CSP 等先進封裝基板工藝，南通康源項目採用國際領先設備與製程，填補國內高端載板產能缺口。",
                     descEn: "Mastering advanced packaging substrate processes including FC-CSP and WB-CSP. The Nantong Kangyuan project adopts internationally leading equipment and processes.",
                   },
                   {
-                    zh: "车规级功率模块封装技术",
+                    zh: "車規級功率模塊封裝技術",
                     en: "Automotive-grade Power Module Packaging",
-                    descZh: "通过 AEC-Q 车规可靠性认证，具备高功率密度、低热阻设计能力，适配严苛的车载与工业应用环境。",
+                    descZh: "通過 AEC-Q 車規可靠性認證，具備高功率密度、低熱阻設計能力，適配嚴苛的車載與工業應用環境。",
                     descEn: "AEC-Q automotive-grade certified with high power density and low thermal resistance design, suitable for demanding automotive and industrial environments.",
                   },
                   {
-                    zh: "精密多层 PCB 工艺",
+                    zh: "精密多層 PCB 工藝",
                     en: "Precision Multi-layer PCB Process",
-                    descZh: "覆盖多层板、HDI 板及特种基板，拥有完整工艺链与品控体系，支撑规模化、高一致性生产。",
+                    descZh: "覆蓋多層板、HDI 板及特種基板，擁有完整工藝鏈與品控體系，支撐規模化、高一致性生產。",
                     descEn: "Covering multi-layer, HDI and specialty substrates with complete process chain and quality control for scale production.",
                   },
                 ].map((tech, i) => (
@@ -379,7 +379,7 @@ export default function ProductsSection({
         <FadeSection className="mb-16 md:mb-20">
           <div className="relative bg-white rounded-2xl p-8 md:p-10 border border-divider shadow-sm">
             <SectionTitle>
-              {isZh ? "应用场景" : "Application Scenarios"}
+              {isZh ? "應用場景" : "Application Scenarios"}
             </SectionTitle>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {scenarios.map((s, i) => (
@@ -408,7 +408,7 @@ export default function ProductsSection({
               style={{ lineHeight: 1.6 }}
             >
               {isZh
-                ? "产品广泛适配 AI 算力、新能源汽车、低空经济、智能机器人等高景气领域，为客户提供专业、高效、可靠的产品与服务。"
+                ? "產品廣泛適配 AI 算力、新能源汽車、低空經濟、智能機器人等高景氣領域，爲客戶提供專業、高效、可靠的產品與服務。"
                 : "Products are widely applied in high-growth sectors including AI computing, NEV, low-altitude economy and smart robotics."}
             </p>
           </div>
@@ -425,7 +425,7 @@ export default function ProductsSection({
             />
             <div className="relative">
               <SectionTitle>
-                {isZh ? "企业优势" : "Enterprise Advantages"}
+                {isZh ? "企業優勢" : "Enterprise Advantages"}
               </SectionTitle>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {advantages.map((adv, i) => (

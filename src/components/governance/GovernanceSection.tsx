@@ -64,7 +64,7 @@ export default function GovernanceSection({
   const isZh = lang === "zh";
 
   const committees = isZh
-    ? ["审核委员会", "薪酬委员会", "提名委员会", "环境、社会及管治委员会"]
+    ? ["審覈委員會", "薪酬委員會", "提名委員會", "環境、社會及管治委員會"]
     : ["Audit Committee", "Remuneration Committee", "Nomination Committee", "ESG Committee"];
 
   return (
@@ -107,7 +107,7 @@ export default function GovernanceSection({
 
             <div className="relative">
               <SectionTitle>
-                {isZh ? "企业管治介绍" : "Corporate Governance Overview"}
+                {isZh ? "企業管治介紹" : "Corporate Governance Overview"}
               </SectionTitle>
 
               {/* Intro text */}
@@ -120,7 +120,7 @@ export default function GovernanceSection({
 
               {/* Committee structure cards */}
               <h4 className="text-sm font-semibold text-text-primary mb-4">
-                {isZh ? "管治架构" : "Governance Structure"}
+                {isZh ? "管治架構" : "Governance Structure"}
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
                 {committees.map((name, i) => (
@@ -155,13 +155,13 @@ export default function GovernanceSection({
                 </div>
                 <div>
                   <p className="text-[13px] font-semibold text-brand mb-0.5">
-                    {isZh ? "合规依据" : "Compliance Framework"}
+                    {isZh ? "合規依據" : "Compliance Framework"}
                   </p>
                   <p className="text-[13px] text-text-secondary leading-relaxed"
                     style={{ lineHeight: 1.6 }}
                   >
                     {isZh
-                      ? "本公司定期检讨企业管治守则，确保符合香港联合交易所有限公司证券上市规则附录C1《企业管治守则》的要求。"
+                      ? "本公司定期檢討企業管治守則，確保符合香港聯合交易所有限公司證券上市規則附錄C1《企業管治守則》的要求。"
                       : "The Company regularly reviews its corporate governance practices to ensure compliance with the Corporate Governance Code set out in Appendix C1 of the Rules Governing the Listing of Securities on The Stock Exchange of Hong Kong Limited."}
                   </p>
                 </div>
@@ -185,7 +185,7 @@ export default function GovernanceSection({
 
             <div className="relative">
               <SectionTitle>
-                {isZh ? "管治文件下载" : "Governance Document Downloads"}
+                {isZh ? "管治文件下載" : "Governance Document Downloads"}
               </SectionTitle>
 
               <div className="space-y-3">
@@ -226,7 +226,7 @@ export default function GovernanceSection({
                       >
                         <DownloadIcon />
                         <span className="hidden sm:inline">
-                          {isZh ? "下载 PDF" : "Download PDF"}
+                          {isZh ? "下載 PDF" : "Download PDF"}
                         </span>
                       </span>
                     </a>
