@@ -1,1 +1,1 @@
-export const DB_PATH = "data/casil.db";
+export const DB_PATH = "data/db/casil.db";

@@ -29,6 +29,19 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.ts ./
 
+# 复制迁移文件（首次启动时自动执行）
+# data/migrations/ → 随镜像发布，包含所有迁移 SQL
+# data/db/        → 通过 docker-compose volume 挂载，持久化 casil.db
+COPY --from=builder /app/data ./data
+
 EXPOSE 3000
 
-CMD ["npm", "start"]
+# ── 启动流程 ───────────────────────────────────────────
+# 第1步: 运行 data/migrate.js
+#   → 扫描 data/migrations/*.sql → 对比 _migrations 表
+#   → 只执行新增的 .sql → 记录到 _migrations → 保存 casil.db 到磁盘
+# 第2步: 启动 Next.js（此时数据库已是最新状态）
+CMD sh -c "echo '[step 1/2] Running database migrations...' \
+    && node data/migrate.js \
+    && echo '[step 2/2] Starting Next.js...' \
+    && exec npm start"

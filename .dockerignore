@@ -1,0 +1,25 @@
+node_modules
+.git
+.gitignore
+.next
+*.md
+README.md
+CLAUDE.md
+AGENTS.md
+.env
+.env.*
+.DS_Store
+
+# 本地开发数据库文件（不打包进镜像）
+data/db/
+data/casil.db
+data/casil.db-shm
+data/casil.db-wal
+
+# Docker 相关
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# 归档文件
+*.tar
