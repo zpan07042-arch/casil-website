@@ -80,42 +80,6 @@ export default function HomePage() {
     </svg>,
   ];
 
-  const announceCategories = [
-    { title: t("cat_perf"), desc: t("cat_perf_sub"), href: `${base}/news/category/results` },
-    { title: t("cat_coop"), desc: t("cat_coop_sub"), href: `${base}/news/category/cooperation` },
-    { title: t("cat_rnd"), desc: t("cat_rnd_sub"), href: `${base}/news/category/rd` },
-    { title: t("cat_major"), desc: t("cat_major_sub"), href: `${base}/news/category/major` },
-  ];
-
-  // 5個投資者分類、去掉desc
-  const investorCards = [
-    {
-      title: lang === "zh" ? "公告和通函" : "Announcements & Circulars",
-      href: "http://www.casil-group.com:8080/investor/announcements/",
-      isOuter: true
-    },
-    {
-      title: lang === "zh" ? "財務報告和環境、社會及管治報告" : "Financial & ESG Reports",
-      href: "http://www.casil-group.com:8080/investor/reports/",
-      isOuter: true
-    },
-    {
-      title: lang === "zh" ? "動態資訊" : "IR News",
-      href: "http://www.casil-group.com:8080/investor/news/",
-      isOuter: true
-    },
-    {
-      title: lang === "zh" ? "社會責任" : "Social Responsibility",
-      href: "http://www.casil-group.com:8080/investor/social-responsibility/",
-      isOuter: true
-    },
-    {
-      title: lang === "zh" ? "投資者查詢" : "Investor Inquiry",
-      href: "http://www.casil-group.com:8080/investor/inquiry/",
-      isOuter: true
-    },
-  ];
-
   return (
     <div className="w-full">
       {/*  輪播  */}
@@ -168,12 +132,22 @@ export default function HomePage() {
       </section>
 
       {/* 背景 */}
-      <section id="two" className="h-[80vh] flex flex-col justify-center bg-white px-6 md:px-16 lg:px-24 py-24 md:py-32 text-center">
+      <section id="two" className="relative h-[90vh] flex flex-col justify-center bg-white px-6 md:px-16 lg:px-24 pt-16 md:pt-20 pb-24 md:pb-32 text-center overflow-hidden">
+        <div
+          className="absolute left-0 right-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/images/baback.jpg')",
+            opacity: 0.5,
+            top: "14%",
+            bottom: "8%",
+          }}
+        />
+
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-xs md:text-sm text-gray-400 tracking-[0.2em] mb-5"
+          className="relative z-10 text-xs md:text-sm text-gray-400 tracking-[0.2em] mb-5"
         >
           {t("business_slogan")}
         </motion.p>
@@ -183,15 +157,15 @@ export default function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mb-6 md:mb-8"
+          className="relative z-10 mb-6 md:mb-8"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1a1a2e] tracking-tight mb-5">
-            {t("bg_title")}
+            {t("cbg_title")}
           </h2>
           <div className="mx-auto w-16 h-[3px] bg-[#0F3478] rounded-full" />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 max-w-4xl mx-auto w-full">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 max-w-4xl mx-auto w-full">
           {businessCards.map((card, i) => (
             <motion.div
               key={card.href}
@@ -227,155 +201,127 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/*  投資者【卡片固定min-h統一高度，一屏全容納】  */}
-      <section id="four" className="h-screen flex flex-col justify-center bg-brand text-white px-6 md:px-16 lg:px-24 py-4 md:py-6 relative overflow-hidden">
-        {/* subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-white/[0.06] pointer-events-none" />
-        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-5 lg:gap-8">
-          {/* left column */}
-          <div className="flex-1 max-w-xl">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-8"
-            >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5">
-                {t("nav_investor")}
-              </h2>
-              <div className="w-20 h-1 bg-white rounded-full" />
-            </motion.div>
+      {/*  公司目標  */}
+      <section id="four" className="h-[80vh] flex flex-col justify-center relative overflow-hidden px-6 md:px-16 lg:px-24">
+        {/* 雲層背景圖 */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/images/oback.png')" }}
+        />
+        {/* 半透明深色遮罩 */}
+        <div className="absolute inset-0 bg-[#0A2463]/55 backdrop-brightness-70" />
 
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-white/85 text-lg mb-6"
-            >
-              {t("home_stock")}
-            </motion.p>
+        <div className="relative z-10 flex flex-col items-center max-w-3xl mx-auto w-full gap-8 md:gap-10">
+          {/* 標題 */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-5">
+              {t("company_goal_title")}
+            </h2>
+            <div className="mx-auto w-20 h-1 bg-white/60 rounded-full" />
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <a
-                href="http://www.casil-group.com:8080/investor/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 rounded-full bg-white text-brand font-medium hover:bg-white/95 transition-all"
-              >
-                {t("home_cta_investor")}
-              </a>
-            </motion.div>
-          </div>
+          {/* 第一個文本框：目標描述 */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="w-full bg-white/10 backdrop-blur-[16px] border border-white/20 rounded-2xl p-6 md:p-8 text-center"
+          >
+            <p className="text-white/90 text-base md:text-lg leading-relaxed">
+              {t("company_goal_desc")}
+            </p>
+          </motion.div>
 
-          <div className="flex-1 w-full">
-            {/*外層淺色面板*/}
-            <div className="bg-white/12 rounded-3xl p-3 md:p-4 border-[0.5px] border-white/12 backdrop-blur-sm">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
-                {investorCards.map((card, i) => (
-                  <motion.div
-                    key={card.href}
-                    custom={i}
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className={i >=3 ? "lg:col-span-1" : ""}
-                  >
-                    <a
-                      href={card.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block rounded-2xl bg-white/10 backdrop-blur-[12px] border-[0.5px] border-white/14 p-4 md:p-5 h-full min-h-[150px] flex flex-col justify-between
-                        hover:-translate-y-1.5 hover:shadow-[0_16px_48px_-12px_rgba(255,255,255,0.15)] hover:border-white/40
-                        transition-all duration-500 ease-out"
-                    >
-                      <h3 className="text-xl font-semibold text-white mb-4 tracking-tight">
-                        {card.title}
-                      </h3>
-                      <span className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full border-[0.5px] border-white/30 text-white text-sm font-medium
-                        group-hover:bg-white group-hover:text-[#0F3478]
-                        transition-all duration-300">
-                        {t("home_learn_more")}
-                      </span>
-                    </a>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
+          {/* 第二個文本框：業務範圍 + 按鈕 */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="w-full bg-white/10 backdrop-blur-[16px] border border-white/20 rounded-2xl p-6 md:p-8 text-center"
+          >
+            <p className="text-white/90 text-base md:text-lg leading-relaxed mb-6">
+              {t("company_goal_scope")}
+            </p>
+            <Link
+              href={`${base}/about/goals`}
+              className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full border border-white/40 text-white text-sm font-medium
+                hover:bg-white hover:text-[#0A2463] hover:border-white
+                transition-all duration-300"
+            >
+              {t("home_learn_more")}
+            </Link>
+          </motion.div>
         </div>
       </section>
 
-      {/*  聯繫地址  */}
-      <section id="five" className="h-[60vh] flex items-center bg-white px-3 md:px-8 lg:px-12 py-12 md:py-16">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
-          <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-semibold mb-8 text-text-primary"
-            >
-              {lang === "zh" ? "地理位置" : "Location"}
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-lg text-text-secondary leading-relaxed max-w-xl"
-            >
-              {lang === "zh"
-                ? "地址：香港九龍紅磡德豐街十八號海濱廣場一座11字樓1103-1107A室"
-                : "Address: Room 1103-1107A, 11/F, Tower 1, Harbourfront Plaza, 18 Tak Fung Street, Hung Hom, Kowloon, Hong Kong"}
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.35 }}
-              className="text-lg text-text-secondary leading-relaxed mt-4"
-            >
-              {lang === "zh"
-                ? "電話：( 852 ) 2193 8888  傳真：( 852 ) 2193 8899"
-                : "Tel: (852) 2193 8888  Fax: (852) 2193 8899"}
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="text-lg text-text-secondary leading-relaxed mt-4"
-            >
-              {lang === "zh"
-                ? "電郵：public@casil-group.com"
-                : "Email: public@casil-group.com"}
-            </motion.p>
-          </div>
+      {/*  地理位置  */}
+      <section id="five" className="bg-white px-6 md:px-16 lg:px-24 py-20 md:py-28">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 max-w-6xl mx-auto">
+          {/* 左欄：信息卡片 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.65 }}
-            className="w-[280px] md:w-[600px] h-[280px] md:h-[600px]"
+            className="flex-1 flex flex-col"
           >
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.google.com/maps/place/中國航天國際控股有限公司/@22.302271,114.191669,16z/data=!4m6!3m5!1s0x3404011e29a1b33d:0xcb9a3120a373ba70!8m2!3d22.302271!4d114.191669!16s%2Fg%2F12hv22z0m?hl=zh-CN&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
-            >
-              <img
-                src="/images/location.png"
-                alt="Map"
-                className="w-full h-full object-contain rounded-md hover:scale-105 transition-transform duration-300"
-              />
-            </a>
+            <div className="border border-gray-200 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center">
+              <h2 className="text-2xl md:text-3xl font-semibold text-[#1a1a2e] mb-8 text-left">
+                {t("loc_title")}
+              </h2>
+              <div className="space-y-5 text-left">
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-[#0A2463] mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                  </svg>
+                  <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                    {t("loc_addr")}
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-[#0A2463] mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                  </svg>
+                  <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                    {t("loc_tel")}
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-[#0A2463] mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                  </svg>
+                  <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                    {t("loc_email")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 右欄：地圖 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            className="flex-1 min-h-[400px] lg:min-h-0"
+          >
+            <iframe
+              title="公司位置"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.4768248333967!2d114.189094!3d22.302271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404011e29a1b33d%3A0xcb9a3120a373ba70!2z5Lit5ZyL6Iiq5aSp5ZyL6Zqb5o6n6IKh5pyJ6ZmQ5YWs5Y-4!5e0!3m2!1szh-CN!2shk!4v1718000000000"
+              className="w-full h-full rounded-2xl border border-gray-200"
+              style={{ minHeight: "400px" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </motion.div>
         </div>
       </section>

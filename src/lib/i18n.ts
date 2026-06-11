@@ -43,6 +43,10 @@ export const ui: I18nDict = {
     home_cta_announce: "查看最新公告",
     home_cta_contact: "聯繫我們",
     home_learn_more: "瞭解更多 →",
+    // Company goals
+    company_goal_title: "公司目標",
+    company_goal_desc: "航天控股將在大股東中國航天的鼎力支持下，充分利用香港各方面的優勢，逐步實現建設成為一個具有科學化的管理體系、強勢的整體市場競爭能力、優質的戰略合作夥伴，為股東創造良好的投資價值。",
+    company_goal_scope: "本公司及各附屬公司的主要業務為科技工業及航天服務業務。",
     // Location
     loc_title: "地理位置",
     loc_addr: "地址：香港九龍紅磡德豐街十八號海濱廣場一座11字樓1103-1107A室",
@@ -73,6 +77,7 @@ export const ui: I18nDict = {
     year_announcements: "年公告",
     // Page titles
     bg_title: "背景",
+    cbg_title:"公司背景",
     culture_title: "企業文化",
     goal_title: "目標",
     board_title: "航天控股董事局",
@@ -126,6 +131,9 @@ export const ui: I18nDict = {
     home_cta_announce: "View Announcements",
     home_cta_contact: "Contact Us",
     home_learn_more: "Learn More →",
+    company_goal_title: "Company Goals",
+    company_goal_desc: "CASIL will, with the full support of its major shareholder CASC, fully leverage the various advantages of Hong Kong, and gradually build itself into an enterprise with a scientific management system, strong overall market competitiveness, and high-quality strategic partners, creating excellent investment value for shareholders.",
+    company_goal_scope: "The principal businesses of the Company and its subsidiaries are technology industry and aerospace services.",
     loc_title: "Location",
     loc_addr: "Address: Room 1103-1107A, 11/F, Tower 1, Harbourfront Plaza, 18 Tak Fung Street, Hung Hom, Kowloon, Hong Kong",
     loc_tel: "Tel: (852) 2193 8888  Fax: (852) 2193 8899",
@@ -149,6 +157,7 @@ export const ui: I18nDict = {
     cat_major_sub: "Director Changes, Litigation, Trading Halts",
     year_announcements: " Announcements",
     bg_title: "Background",
+    cbg_title: "Company Background",
     culture_title: "Corporate Culture",
     goal_title: "Goals",
     board_title: "CASIL Board of Directors",
