@@ -306,8 +306,7 @@ export default function CompanyTimeline({
                       <span className="text-[11px] font-medium text-brand whitespace-nowrap mt-0.5 w-[100px] flex-shrink-0 text-right leading-relaxed">
                         {event.date}
                       </span>
-                      <p className="text-sm text-text-secondary leading-relaxed flex-1"
-                        style={{ lineHeight: 1.7 }}
+                      <p className="text-sm text-text-secondary leading-[1.7] flex-1"
                       >
                         {event.text}
                       </p>
@@ -401,8 +400,7 @@ export default function CompanyTimeline({
                                   <span className="text-[11px] font-medium text-brand whitespace-nowrap mt-0.5 w-[75px] flex-shrink-0 text-right leading-relaxed">
                                     {event.date}
                                   </span>
-                                  <p className="text-[13px] text-text-secondary leading-relaxed"
-                                    style={{ lineHeight: 1.7 }}
+                                  <p className="text-[13px] text-text-secondary leading-[1.7]"
                                   >
                                     {event.text}
                                   </p>

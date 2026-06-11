@@ -233,8 +233,7 @@ export default function ElectronicsSection({
             className="w-16 h-[3px] mb-6 rounded-full"
             style={{ background: "linear-gradient(90deg, #0A2463, #3E92CC)", transformOrigin: "left" }}
           />
-          <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl whitespace-pre-line"
-            style={{ lineHeight: 1.7 }}
+          <p className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl whitespace-pre-line"
           >
             {content}
           </p>
@@ -285,8 +284,7 @@ export default function ElectronicsSection({
                           ))}
                         </div>
                       </div>
-                      <p className="text-[13px] text-text-secondary leading-relaxed"
-                        style={{ lineHeight: 1.6 }}
+                      <p className="text-[13px] text-text-secondary leading-[1.6]"
                       >
                         {isZh ? p.descZh : p.descEn}
                       </p>
@@ -332,8 +330,7 @@ export default function ElectronicsSection({
                     <span className="text-sm font-bold text-text-primary group-hover:text-brand transition-colors duration-300">
                       {isZh ? app.zh : app.en}
                     </span>
-                    <span className="text-[11px] text-text-secondary leading-relaxed"
-                      style={{ lineHeight: 1.5 }}
+                    <span className="text-[11px] text-text-secondary leading-[1.5]"
                     >
                       {isZh ? app.descZh : app.descEn}
                     </span>

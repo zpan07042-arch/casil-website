@@ -179,8 +179,7 @@ export default function AboutSection({
             style={{ background: "linear-gradient(90deg, #0A2463, #3E92CC)", transformOrigin: "left" }}
           />
           {content && (
-            <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
-              style={{ lineHeight: 1.7 }}
+            <p className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl"
             >
               {content}
             </p>
@@ -223,15 +222,13 @@ export default function AboutSection({
                     </h3>
 
                     {/* Tagline */}
-                    <p className="text-sm font-medium text-brand/70 leading-snug mb-3"
-                      style={{ lineHeight: 1.55 }}
+                    <p className="text-sm font-medium text-brand/70 leading-[1.55] mb-3"
                     >
                       {card.tagline}
                     </p>
 
                     {/* Description */}
-                    <p className="text-[13px] text-text-secondary/70 leading-relaxed flex-1"
-                      style={{ lineHeight: 1.6 }}
+                    <p className="text-[13px] text-text-secondary/70 leading-[1.6] flex-1"
                     >
                       {card.desc}
                     </p>

@@ -112,8 +112,7 @@ export default function GovernanceSection({
 
               {/* Intro text */}
               <p
-                className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl mb-8"
-                style={{ lineHeight: 1.7 }}
+                className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl mb-8"
               >
                 {content}
               </p>
@@ -157,8 +156,7 @@ export default function GovernanceSection({
                   <p className="text-[13px] font-semibold text-brand mb-0.5">
                     {isZh ? "合規依據" : "Compliance Framework"}
                   </p>
-                  <p className="text-[13px] text-text-secondary leading-relaxed"
-                    style={{ lineHeight: 1.6 }}
+                  <p className="text-[13px] text-text-secondary leading-[1.6]"
                   >
                     {isZh
                       ? "本公司定期檢討企業管治守則，確保符合香港聯合交易所有限公司證券上市規則附錄C1《企業管治守則》的要求。"
@@ -210,9 +208,7 @@ export default function GovernanceSection({
                         <div className="text-brand/40 group-hover:text-brand transition-colors duration-300 flex-shrink-0">
                           <FileIcon />
                         </div>
-                        <span className="text-sm text-text-primary group-hover:text-brand transition-colors duration-300 truncate"
-                          style={{ lineHeight: 1.5 }}
-                        >
+                        <span className="text-sm text-text-primary group-hover:text-brand transition-colors duration-300 truncate leading-normal">
                           {isZh ? doc.title_zh : (doc.title_en || doc.title_zh)}
                         </span>
                       </div>

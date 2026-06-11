@@ -157,8 +157,7 @@ export default function SubsidiarySection({
             }}
           />
           {content && (
-            <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
-              style={{ lineHeight: 1.7 }}
+            <p className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl"
             >
               {content}
             </p>
@@ -278,8 +277,7 @@ export default function SubsidiarySection({
                                   {desc && (
                                     <motion.p
                                       initial={{ height: "auto", opacity: 1 }}
-                                      className="text-[12px] text-text-secondary leading-relaxed"
-                                      style={{ lineHeight: 1.6 }}
+                                      className="text-[12px] text-text-secondary leading-[1.6]"
                                     >
                                       {desc}
                                     </motion.p>
@@ -344,8 +342,7 @@ export default function SubsidiarySection({
                           </h3>
                         </div>
                         {desc && (
-                          <p className="text-[13px] text-text-secondary leading-relaxed pl-7"
-                            style={{ lineHeight: 1.6 }}
+                          <p className="text-[13px] text-text-secondary leading-[1.6] pl-7"
                           >
                             {desc}
                           </p>

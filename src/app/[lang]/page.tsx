@@ -41,9 +41,8 @@ export default function HomePage() {
   }, []);
 
   const businessCards = [
-    { title: t("nav_subsidiary"), desc: t("card_subsidiary_desc"), href: `${base}/business/subsidiaries` },
-    { title: t("nav_products"), desc: t("card_products_desc"), href: `${base}/business/products` },
-    { title: t("nav_electronics"), desc: t("card_electronics_desc"), href: `${base}/business/electronics` },
+    { title: t("nav_overview"), desc: t("card_subsidiary_desc"), href: `${base}/about/background` },
+    { title: t("nav_dierction"), desc: t("card_products_desc"), href: `${base}/about/goals` },
   ];
 
   const cardIcons = [
@@ -58,15 +57,6 @@ export default function HomePage() {
       <circle cx="36" cy="33" r="4.5" stroke="#0F3478" strokeWidth="1.5" />
       <circle cx="36" cy="33" r="2" fill="#0F3478" />
       <line x1="12.5" y1="33" x2="31.5" y2="33" stroke="#0F3478" strokeWidth="0.75" strokeDasharray="2 2" opacity="0.4" />
-    </svg>,
-    <svg key="component" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M22 2.5L38.5 12V31L22 40.5L5.5 31V12L22 2.5Z" stroke="#0F3478" strokeWidth="1.5" strokeLinejoin="round" />
-      <circle cx="22" cy="21.5" r="8.5" stroke="#3E92CC" strokeWidth="1.25" />
-      <circle cx="22" cy="21.5" r="3" fill="#0F3478" />
-      <line x1="13.5" y1="21.5" x2="19" y2="21.5" stroke="#3E92CC" strokeWidth="1.25" />
-      <line x1="25" y1="21.5" x2="30.5" y2="21.5" stroke="#3E92CC" strokeWidth="1.25" />
-      <line x1="22" y1="13" x2="22" y2="18.5" stroke="#3E92CC" strokeWidth="1.25" />
-      <line x1="22" y1="24.5" x2="22" y2="30" stroke="#3E92CC" strokeWidth="1.25" />
     </svg>,
     <svg key="pcb" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="12" y="10" width="20" height="24" rx="2" stroke="#0F3478" strokeWidth="1.5" />
@@ -131,7 +121,7 @@ export default function HomePage() {
       {/*  輪播  */}
       <section
         id="one"
-        className="relative h-screen flex items-center overflow-hidden !my-0 !mx-[-1.25rem] md:!mx-[-2rem]"
+        className="relative h-[80vh] flex items-center overflow-hidden !my-0 !mx-[-1.25rem] md:!mx-[-2rem]"
         onMouseEnter={() => setIsPause(true)}
         onMouseLeave={() => setIsPause(false)}
       >
@@ -177,8 +167,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 產業與業務 */}
-      <section id="two" className="min-h-screen flex flex-col justify-center bg-white px-6 md:px-16 lg:px-24 py-24 md:py-32">
+      {/* 背景 */}
+      <section id="two" className="h-[80vh] flex flex-col justify-center bg-white px-6 md:px-16 lg:px-24 py-24 md:py-32 text-center">
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -193,15 +183,15 @@ export default function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mb-24 md:mb-32"
+          className="mb-6 md:mb-8"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1a1a2e] tracking-tight mb-5">
-            {t("business_title")}
+            {t("bg_title")}
           </h2>
-          <div className="w-20 h-1 bg-[#0F3478] rounded-full" />
+          <div className="mx-auto w-16 h-[3px] bg-[#0F3478] rounded-full" />
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 max-w-4xl mx-auto w-full">
           {businessCards.map((card, i) => (
             <motion.div
               key={card.href}
@@ -234,63 +224,6 @@ export default function HomePage() {
               </Link>
             </motion.div>
           ))}
-        </div>
-      </section>
-
-      {/* 公告 */}
-      <section id="three" className="min-h-screen flex flex-col justify-center bg-[#F7F8FA] px-6 md:px-16 lg:px-24 py-24 md:py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="mb-16 md:mb-24"
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1a1a2e] tracking-tight mb-5">
-            {t("nav_announce")}
-          </h2>
-          <div className="w-20 h-1 bg-[#0F3478] rounded-full" />
-        </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {announceCategories.map((card, i) => (
-            <motion.div
-              key={card.href}
-              custom={i}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <Link
-                href={card.href}
-                className="group block bg-white/40 backdrop-blur-[12px] border border-gray-100 rounded-2xl p-8 md:p-10 h-full
-                  hover:-translate-y-1.5 hover:shadow-[0_16px_48px_-12px_rgba(15,52,120,0.18)] hover:border-[#0F3478]/20
-                  transition-all duration-500 ease-out"
-              >
-                <h3 className="text-xl font-semibold text-[#1a1a2e] mb-3 tracking-tight">
-                  {card.title}
-                </h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-8">
-                  {card.desc}
-                </p>
-                <span className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full border border-[#0F3478]/20 text-[#0F3478] text-sm font-medium
-                  group-hover:bg-[#0F3478] group-hover:text-white group-hover:border-[#0F3478]
-                  transition-all duration-300">
-                  {t("home_learn_more")}
-                </span>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-12">
-          <Link
-            href={`${base}/news/all`}
-            className="inline-flex items-center gap-1.5 px-6 py-3 rounded-full border border-[#0F3478]/20 text-[#0F3478] font-medium hover:bg-[#0F3478] hover:text-white hover:border-[#0F3478] transition-all duration-300"
-          >
-            {t("home_cta_announce")} →
-          </Link>
         </div>
       </section>
 
@@ -380,7 +313,7 @@ export default function HomePage() {
       </section>
 
       {/*  聯繫地址  */}
-      <section id="five" className="min-h-screen flex items-center bg-white px-3 md:px-8 lg:px-12 py-12 md:py-16">
+      <section id="five" className="h-[60vh] flex items-center bg-white px-3 md:px-8 lg:px-12 py-12 md:py-16">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
           <div>
             <motion.h2
@@ -430,7 +363,7 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.65 }}
-            className="w-[280px] md:w-[400px] h-[280px] md:h-[400px]"
+            className="w-[280px] md:w-[600px] h-[280px] md:h-[600px]"
           >
             <a
               target="_blank"

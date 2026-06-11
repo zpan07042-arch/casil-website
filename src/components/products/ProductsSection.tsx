@@ -215,9 +215,7 @@ export default function ProductsSection({
             className="w-16 h-[3px] mb-6 rounded-full"
             style={{ background: "linear-gradient(90deg, #0A2463, #3E92CC)", transformOrigin: "left" }}
           />
-          <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl whitespace-pre-line"
-            style={{ lineHeight: 1.7 }}
-          >
+          <p className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl whitespace-pre-line">
             {content}
           </p>
         </motion.div>
@@ -262,9 +260,7 @@ export default function ProductsSection({
                       </div>
 
                       {/* Short description */}
-                      <p className="text-sm text-text-secondary leading-relaxed mb-3"
-                        style={{ lineHeight: 1.65 }}
-                      >
+                      <p className="text-sm text-text-secondary leading-[1.65] mb-3">
                         {isZh ? p.descZh : p.descEn}
                       </p>
 
@@ -302,9 +298,7 @@ export default function ProductsSection({
                             className="px-6 md:px-7 pb-6 pt-2 border-t border-divider/50"
                             style={{ background: "linear-gradient(180deg, rgba(10,36,99,0.02), transparent)" }}
                           >
-                            <p className="text-[13px] text-text-secondary leading-relaxed"
-                              style={{ lineHeight: 1.7 }}
-                            >
+                            <p className="text-[13px] text-text-secondary leading-[1.7]">
                               {isZh ? p.detailsZh : p.detailsEn}
                             </p>
                           </div>
@@ -363,9 +357,7 @@ export default function ProductsSection({
                     <h4 className="text-sm font-semibold text-brand mb-2">
                       {isZh ? tech.zh : tech.en}
                     </h4>
-                    <p className="text-[13px] text-text-secondary leading-relaxed"
-                      style={{ lineHeight: 1.65 }}
-                    >
+                    <p className="text-[13px] text-text-secondary leading-[1.65]">
                       {isZh ? tech.descZh : tech.descEn}
                     </p>
                   </motion.div>
@@ -404,9 +396,7 @@ export default function ProductsSection({
                 </motion.div>
               ))}
             </div>
-            <p className="text-[13px] text-text-secondary mt-5 text-center leading-relaxed"
-              style={{ lineHeight: 1.6 }}
-            >
+            <p className="text-[13px] text-text-secondary mt-5 text-center leading-[1.6]">
               {isZh
                 ? "產品廣泛適配 AI 算力、新能源汽車、低空經濟、智能機器人等高景氣領域，爲客戶提供專業、高效、可靠的產品與服務。"
                 : "Products are widely applied in high-growth sectors including AI computing, NEV, low-altitude economy and smart robotics."}
@@ -447,9 +437,7 @@ export default function ProductsSection({
                     <h4 className="text-sm font-bold text-text-primary mb-1.5">
                       {isZh ? adv.zh : adv.en}
                     </h4>
-                    <p className="text-[12px] text-text-secondary leading-relaxed"
-                      style={{ lineHeight: 1.6 }}
-                    >
+                    <p className="text-[12px] text-text-secondary leading-[1.6]">
                       {isZh ? adv.descZh : adv.descEn}
                     </p>
                   </motion.div>

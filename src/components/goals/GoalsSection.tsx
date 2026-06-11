@@ -75,9 +75,7 @@ export default function GoalsSection({
             }}
           />
           {content && (
-            <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl whitespace-pre-line"
-              style={{ lineHeight: 1.7 }}
-            >
+            <p className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl whitespace-pre-line">
               {content}
             </p>
           )}
@@ -101,8 +99,7 @@ export default function GoalsSection({
               </SectionTitle>
 
               <p
-                className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
-                style={{ lineHeight: 1.75 }}
+                className="text-base md:text-lg text-text-secondary leading-[1.75] max-w-3xl"
               >
                 {content?.split("\n\n")[0] || ""}
               </p>
@@ -143,8 +140,7 @@ export default function GoalsSection({
                       <h4 className="text-sm font-semibold text-brand mb-1">
                         {isZh ? item.zh : item.en}
                       </h4>
-                      <p className="text-xs text-text-secondary leading-relaxed"
-                        style={{ lineHeight: 1.6 }}
+                      <p className="text-xs text-text-secondary leading-[1.6]"
                       >
                         {isZh ? item.descZh : item.descEn}
                       </p>
@@ -175,8 +171,7 @@ export default function GoalsSection({
               </SectionTitle>
 
               <p
-                className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
-                style={{ lineHeight: 1.75 }}
+                className="text-base md:text-lg text-text-secondary leading-[1.75] max-w-3xl"
               >
                 {content?.split("\n\n")[1] || ""}
               </p>

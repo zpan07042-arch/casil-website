@@ -174,8 +174,7 @@ export default function CultureSection({
               transformOrigin: "left",
             }}
           />
-          <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl whitespace-pre-line"
-            style={{ lineHeight: 1.7 }}
+          <p className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl whitespace-pre-line"
           >
             {content}
           </p>
@@ -213,8 +212,7 @@ export default function CultureSection({
                   <h3 className="text-lg font-bold text-text-primary mb-2 group-hover:text-brand transition-colors duration-300">
                     {isZh ? v.titleZh : v.titleEn}
                   </h3>
-                  <p className="text-sm text-text-secondary leading-relaxed"
-                    style={{ lineHeight: 1.65 }}
+                  <p className="text-sm text-text-secondary leading-[1.65]"
                   >
                     {isZh ? v.descZh : v.descEn}
                   </p>
@@ -237,8 +235,7 @@ export default function CultureSection({
             <SectionTitle>
               {isZh ? "企業使命" : "Our Mission"}
             </SectionTitle>
-            <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
-              style={{ lineHeight: 1.7 }}
+            <p className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl"
             >
               {isZh
                 ? "爲客戶、股東、員工及社會締造持久的價值和效益。"
@@ -253,8 +250,7 @@ export default function CultureSection({
             <SectionTitle>
               {isZh ? "企業願景" : "Our Vision"}
             </SectionTitle>
-            <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl"
-              style={{ lineHeight: 1.7 }}
+            <p className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl"
             >
               {isZh
                 ? "本公司致力推動技術創新和專業化製造，專注以高品質和高效率爲供應鏈及產業鏈服務，聚焦先進製造業及現代服務業作爲核心能力，冀成爲面向未來、具有顯著創新能力和持續爲客戶創造價值的國際化企業，爲客戶提供專業、高效、安全和環保的產品和服務。"
@@ -271,8 +267,7 @@ export default function CultureSection({
             <SectionTitle>
               {isZh ? "合規守則" : "Compliance & Ethics"}
             </SectionTitle>
-            <p className="text-sm md:text-base text-text-secondary leading-relaxed max-w-3xl mb-5"
-              style={{ lineHeight: 1.7 }}
+            <p className="text-sm md:text-base text-text-secondary leading-[1.7] max-w-3xl mb-5"
             >
               {isZh
                 ? "本公司以審慎的態度經營及管理業務，以確保業務能在將來持續發展，爲社會經濟作出貢獻。我們制定了清晰的合規政策，將企業價值觀融入日常業務運作和作業方式中。"
@@ -313,8 +308,7 @@ export default function CultureSection({
                       {isZh ? policy.zh : policy.en}
                     </h4>
                   </div>
-                  <p className="text-xs text-text-secondary leading-relaxed"
-                    style={{ lineHeight: 1.6 }}
+                  <p className="text-xs text-text-secondary leading-[1.6]"
                   >
                     {isZh ? policy.descZh : policy.descEn}
                   </p>
@@ -336,8 +330,7 @@ export default function CultureSection({
               <h4 className="text-sm font-semibold text-text-primary mb-3">
                 {isZh ? "組織保障" : "Organizational Support"}
               </h4>
-              <p className="text-sm md:text-base text-text-secondary leading-relaxed"
-                style={{ lineHeight: 1.7 }}
+              <p className="text-sm md:text-base text-text-secondary leading-[1.7]"
               >
                 {isZh
                   ? "本公司設有企業文化部，負責定期舉辦內部對企業使命與理念貫徹的活動和講座，凝聚員工對公司的歸屬感，搭建分享想法的平臺，以締造愛國、創新，以及具誠信、和諧、負責任的團隊。"
@@ -350,8 +343,7 @@ export default function CultureSection({
               <h4 className="text-sm font-semibold text-text-primary mb-3">
                 {isZh ? "監督評估" : "Monitoring & Evaluation"}
               </h4>
-              <p className="text-sm md:text-base text-text-secondary leading-relaxed"
-                style={{ lineHeight: 1.7 }}
+              <p className="text-sm md:text-base text-text-secondary leading-[1.7]"
               >
                 {isZh
                   ? "本公司採取多種溝通渠道，並以骨幹員工流失率、舉報數據等評估和監測企業文化的貫徹性。同時，要求領導層及管理人員在日常工作中積極實踐企業價值及貫徹良好操守，爲屬下員工樹立榜樣。"
@@ -364,8 +356,7 @@ export default function CultureSection({
               <h4 className="text-sm font-semibold text-text-primary mb-3">
                 {isZh ? "長遠策略" : "Long-term Strategy"}
               </h4>
-              <p className="text-sm md:text-base text-text-secondary leading-relaxed"
-                style={{ lineHeight: 1.7 }}
+              <p className="text-sm md:text-base text-text-secondary leading-[1.7]"
               >
                 {isZh
                   ? "本公司制定了長遠的規劃綱要，並持續評估面對的潛在機遇與挑戰。通過企業文化核心價值的貫徹，持續提升員工的道德操守、完善公司管治制度、防範合規經營風險，爲員工及公司建立競爭優勢，讓各項業務穩定發展。"

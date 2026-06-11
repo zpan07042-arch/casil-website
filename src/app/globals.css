@@ -50,7 +50,7 @@ body {
 
 /* 👉 大區塊上下拉開，不再擠在一起 */
 section {
-  margin: var(--space-xxl) 0; /* 上下 48px */
+  margin: var(--space-xl) 0; /* 上下 32px */
 }
 
 /* 👉 卡片內邊距加大，呼吸感強 */
