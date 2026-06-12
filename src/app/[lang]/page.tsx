@@ -22,7 +22,6 @@ export default function HomePage() {
   const [bgIndex, setBgIndex] = useState(0);
   const [isPause, setIsPause] = useState(false);
 
-  // 輪播 3s切換
   useEffect(() => {
     if (isPause) return;
     const interval = setInterval(() => {
@@ -31,7 +30,6 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, [isPause]);
 
-  // 錨點路由定位 #four
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
@@ -81,11 +79,10 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="w-full">
-      {/*  輪播  */}
+    <div className="w-full flex flex-col gap-4 [&_section]:!m-0">
       <section
         id="one"
-        className="relative h-[80vh] flex items-center overflow-hidden !my-0 !mx-[-1.25rem] md:!mx-[-2rem]"
+        className="relative h-[80vh] flex items-center overflow-hidden"
         onMouseEnter={() => setIsPause(true)}
         onMouseLeave={() => setIsPause(false)}
       >
@@ -99,58 +96,69 @@ export default function HomePage() {
             }}
           />
         ))}
-        {/* 淡漸變蒙版 */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/10 z-[1]" />
 
-        <div className="relative z-10 w-full px-6 md:px-16 lg:px-24">
+        <div className="relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-xl text-white"
+            className="w-full text-white flex flex-col items-center justify-center"
           >
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
+            <h1 className="text-center text-4xl md:text-6xl font-semibold tracking-tighter">
               {t("home_name")}
             </h1>
-            <p className="mt-5 text-lg text-white/90">
+            <p className="text-center mt-1 text-xl md:text-2xl text-white/90">
               {t("home_stock")}
             </p>
-            {/* 已刪除兩個按鈕 */}
           </motion.div>
         </div>
 
-        {/* 指示器 */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        <button
+          onClick={() => setBgIndex((prev) => (prev - 1 + bgImages.length) % bgImages.length)}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-20 px-3 py-4 text-white/50 hover:text-white transition-all duration-300"
+          aria-label="上一張"
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <button
+          onClick={() => setBgIndex((prev) => (prev + 1) % bgImages.length)}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-20 px-3 py-4 text-white/50 hover:text-white transition-all duration-300"
+          aria-label="下一張"
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">
           {bgImages.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setBgIndex(idx)}
-              className={`w-2.5 h-2.5 rounded-full transition-colors ${bgIndex === idx ? "bg-white" : "bg-white/40"}`}
+              className={`rounded-full transition-all duration-500 ease-out ${
+                bgIndex === idx
+                  ? "w-6 h-2 bg-white"
+                  : "w-2 h-2 bg-white/30 hover:bg-white/50"
+              }`}
+              aria-label={`切换到第 ${idx + 1} 张`}
             />
           ))}
         </div>
       </section>
 
-      {/* 背景 */}
       <section id="two" className="relative h-[90vh] flex flex-col justify-center bg-white px-6 md:px-16 lg:px-24 pt-16 md:pt-20 pb-24 md:pb-32 text-center overflow-hidden">
         <div
           className="absolute left-0 right-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: "url('/images/baback.jpg')",
             opacity: 0.5,
-            top: "14%",
-            bottom: "8%",
+            top: "4%",
+            bottom: "4%",
           }}
         />
-
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative z-10 text-xs md:text-sm text-gray-400 tracking-[0.2em] mb-5"
-        >
-          {t("business_slogan")}
-        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -162,7 +170,7 @@ export default function HomePage() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1a1a2e] tracking-tight mb-5">
             {t("cbg_title")}
           </h2>
-          <div className="mx-auto w-16 h-[3px] bg-[#0F3478] rounded-full" />
+          <div className="mx-auto w-16 h-[4px] bg-[#0F3478] rounded-full" />
         </motion.div>
 
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 max-w-4xl mx-auto w-full">
@@ -201,7 +209,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/*  公司目標  */}
       <section id="four" className="h-[80vh] flex flex-col justify-center relative overflow-hidden px-6 md:px-16 lg:px-24">
         {/* 雲層背景圖 */}
         <div
@@ -261,10 +268,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/*  地理位置  */}
-      <section id="five" className="bg-white px-6 md:px-16 lg:px-24 py-20 md:py-28">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 max-w-6xl mx-auto">
-          {/* 左欄：信息卡片 */}
+      <section id="five" className="bg-white px-6 md:px-16 lg:px-24 py-4 md:py-8">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -305,7 +310,6 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* 右欄：地圖 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

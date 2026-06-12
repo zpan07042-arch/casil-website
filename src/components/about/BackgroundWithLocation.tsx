@@ -111,7 +111,7 @@ export default function BackgroundWithLocation({
               {/* Logo */}
               <button onClick={goBack} className="flex-shrink-0 cursor-pointer">
                 <img
-                  src="/images/casil.jpg"
+                  src="/images/casil-logo.png"
                   alt="CASIL"
                   className="h-20 w-auto"
                 />

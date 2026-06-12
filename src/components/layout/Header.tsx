@@ -81,9 +81,9 @@ export default function Header() {
           {/* Logo */}
           <Link href={base} className="flex-shrink-0">
             <img
-              src="/images/casil.jpg"
+              src="/images/casil-logo.png"
               alt="CASIL"
-              className="h-20 w-auto"
+              className="h-10 w-auto"
             />
           </Link>
 
@@ -133,7 +133,7 @@ export default function Header() {
                         transition={{ duration: 0.2 }}
                       >
                         <motion.div
-                          className="bg-white/95 backdrop-blur-xl rounded-none shadow-lg shadow-black/5 border border-black/5 py-4 px-3 min-w-[280px] overflow-hidden"
+                          className="bg-white/95 backdrop-blur-xl rounded-xl shadow-lg shadow-black/5 border border-black/5 py-4 px-3 min-w-[280px] overflow-hidden"
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
@@ -224,7 +224,14 @@ export default function Header() {
           {/* Right side */}
           <div className="flex items-center gap-4">
             <SearchBar />
-            <LangSwitch />
+            <LangSwitch
+              locale={lang}
+              onLanguageChange={(newLang: string) => {
+                const segments = pathname.split("/");
+                segments[1] = newLang;
+                router.push(segments.join("/"));
+              }}
+            />
             <MobileMenu dropdowns={dropdowns} investorHref="http://www.casil-group.com:8080/investor/" linksHref={`${base}/links`} />
           </div>
         </div>

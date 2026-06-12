@@ -45,7 +45,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img src="/images/casil.jpg" alt="CASIL" className="h-10 w-auto brightness-0 invert" />
+              <img src="/images/casil-logo.png" alt="CASIL" className="h-10 w-auto brightness-0 invert" />
             </div>
             <p className="text-sm text-white/50 leading-relaxed mb-4">
               {lang === "zh"

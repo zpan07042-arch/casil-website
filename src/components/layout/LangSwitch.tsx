@@ -1,37 +1,24 @@
-"use client";
+'use client';
 
-import { useRouter, usePathname } from "next/navigation";
-import { useI18n } from "@/components/data/I18nProvider";
-
-export default function LangSwitch() {
-  const { lang } = useI18n();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const switchTo = (newLang: string) => {
-    const parts = pathname.split("/");
-    parts[1] = newLang;
-    router.push(parts.join("/"));
-  };
-
+export default function LanguageSwitcher({ locale, onLanguageChange }: { locale: string; onLanguageChange: (lang: string) => void }) {
   return (
-    <div className="hidden md:flex border border-divider rounded-full overflow-hidden text-xs">
+    <div className="flex items-center">
       <button
-        onClick={() => switchTo("zh")}
-        className={`px-2.5 py-1 transition-colors ${
-          lang === "zh"
-            ? "bg-brand text-white"
-            : "text-text-secondary hover:text-text-primary"
+        onClick={() => onLanguageChange('zh')}
+        className={`px-2 py-1 text-sm font-medium transition-all duration-200 rounded-l-full ${
+          locale === 'zh'
+            ? 'bg-slate-900 text-white'
+            : 'text-slate-600 hover:text-slate-900'
         }`}
       >
-        中
+        繁體
       </button>
       <button
-        onClick={() => switchTo("en")}
-        className={`px-2.5 py-1 transition-colors ${
-          lang === "en"
-            ? "bg-brand text-white"
-            : "text-text-secondary hover:text-text-primary"
+        onClick={() => onLanguageChange('en')}
+        className={`px-2 py-1 text-sm font-medium transition-all duration-200 rounded-r-full ${
+          locale === 'en'
+            ? 'bg-slate-900 text-white'
+            : 'text-slate-600 hover:text-slate-900'
         }`}
       >
         EN
