@@ -105,7 +105,7 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="w-full text-white flex flex-col items-center justify-center"
           >
-            <h1 className="text-center text-4xl md:text-6xl font-semibold tracking-tighter">
+            <h1 className="text-center text-4xl md:text-6xl font-bold tracking-tight">
               {t("home_name")}
             </h1>
             <p className="text-center mt-1 text-xl md:text-2xl text-white/90">

@@ -40,6 +40,7 @@ export default function Header() {
     const p = pathname;
     if (key === "about") return p.startsWith(`${base}/about`);
     if (key === "industry") return p.startsWith(`${base}/business`);
+    if (key === "contact") return p.startsWith(`${base}/contact`);
     return false;
   };
 
@@ -99,6 +100,7 @@ export default function Header() {
                   onMouseEnter={() => handleMouseEnter(key)}
                   onMouseLeave={handleMouseLeave}
                 >
+                  {/* 保留原有 Link + 跳转功能、原有文字样式、原有下划线动画 */}
                   <Link
                     href={dd.href}
                     className={`
@@ -108,13 +110,21 @@ export default function Header() {
                     `}
                   >
                     {dd.label}
+                    {/* 替换为新样式箭头，保留旋转动画 */}
                     <svg
-                      width="10" height="10" viewBox="0 0 10 10" fill="none"
-                      className={`transition-transform duration-200 flex-shrink-0 ${isOpen ? "rotate-180" : ""}`}
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={`transition-transform duration-200 flex-shrink-0 h-4 w-4 ${isOpen ? "rotate-180 text-slate-700" : "text-slate-400"}`}
                     >
-                      <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M19 9l-7 7-7-7" />
                     </svg>
-                    {/* 底部通欄下劃線：絕對定位到父容器最底端 */}
+                    {/* 保留原有底部下划线动画 */}
                     <span
                       className={`
                         absolute left-0 right-0 bottom-0 h-[3px] rounded-[2px] transition-all duration-200
@@ -123,6 +133,7 @@ export default function Header() {
                     />
                   </Link>
 
+                  {/* 仅替换下拉面板样式，**完整保留原有 Framer Motion 所有动画** */}
                   <AnimatePresence>
                     {activeDropdown === key && (
                       <motion.div
@@ -133,7 +144,7 @@ export default function Header() {
                         transition={{ duration: 0.2 }}
                       >
                         <motion.div
-                          className="bg-white/95 backdrop-blur-xl rounded-xl shadow-lg shadow-black/5 border border-black/5 py-4 px-3 min-w-[280px] overflow-hidden"
+                          className="bg-white rounded-lg shadow-xl ring-1 ring-black/5 overflow-hidden py-1 min-w-[280px]"
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
@@ -159,9 +170,15 @@ export default function Header() {
                                   duration: 0.25,
                                 }}
                               >
+                                {/* 子项样式 + 当前路由高亮，保留原有跳转 */}
                                 <Link
                                   href={item.href}
-                                  className="block px-5 py-3 text-base text-text-primary hover:text-brand hover:bg-black/[0.04] rounded-none transition-colors whitespace-nowrap"
+                                  className={`block px-4 py-2.5 text-sm transition-colors duration-150
+                                    ${pathname?.startsWith(item.href)
+                                      ? "bg-slate-50 text-blue-600 font-medium"
+                                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                                    }
+                                  `}
                                 >
                                   {item.label}
                                 </Link>
@@ -184,7 +201,7 @@ export default function Header() {
               {t("nav_investor")}
             </Link>
 
-            {/* links 單獨下劃線改造，和上面統一 */}
+            {/* links 单独导航，完全保留原有样式与动画 */}
             <div className="relative h-full flex items-center group">
               <Link
                 href={`${base}/links`}
