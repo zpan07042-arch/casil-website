@@ -17,6 +17,10 @@
   --space-lg: 24px;
   --space-xl: 32px;
   --space-xxl: 48px;
+
+  /* 👉 字體變量 */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 @layer base {
@@ -34,7 +38,7 @@ html {
 body {
   background: #ffffff;
   color: #2D3142;
-  font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-sans), "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 17px;

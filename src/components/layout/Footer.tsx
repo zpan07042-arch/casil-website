@@ -29,11 +29,12 @@ export default function Footer() {
       ],
     },
     {
-      title: t("nav_consult"),
+      title: t("nav_contact"),
       links: [
-        { label: t("nav_announce"), href: `${base}/news` },
-        { label: t("nav_company"), href: `${base}/company-news` },
-        { label: t("nav_comm"), href: `${base}/shareholder` },
+        { label: t("nav_branches"), href: `${base}/contact/branches` },
+        { label: t("nav_government"), href: `${base}/contact/government` },
+        { label: t("nav_investor_channel"), href: `${base}/contact/investor` },
+        { label: t("nav_careers"), href: `${base}/contact/careers` },
       ],
     },
   ];

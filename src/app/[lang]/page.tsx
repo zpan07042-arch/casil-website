@@ -82,7 +82,7 @@ export default function HomePage() {
     <div className="w-full flex flex-col gap-4 [&_section]:!m-0">
       <section
         id="one"
-        className="relative h-[80vh] flex items-center overflow-hidden"
+        className="relative h-[78vh] flex items-center overflow-hidden"
         onMouseEnter={() => setIsPause(true)}
         onMouseLeave={() => setIsPause(false)}
       >
