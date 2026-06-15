@@ -38,7 +38,7 @@ html {
 body {
   background: #ffffff;
   color: #2D3142;
-  font-family: var(--font-sans), "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 17px;
