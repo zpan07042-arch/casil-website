@@ -212,7 +212,7 @@ export default function CompanyTimeline({
             {isZh && (
               <>
                 {" "}
-                <span className="text-[24px] md:text-[32px]">(股份代號：31)</span>
+                <span className="text-[24px] md:text-[32px]">(股份代號：00031)</span>
               </>
             )}
           </h1>
