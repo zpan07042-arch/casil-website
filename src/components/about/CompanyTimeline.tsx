@@ -34,20 +34,64 @@ const enEvents1975 = [
   { date: "1987", text: "Xinqiong attempted to privatize and delist the company, but the effort failed." },
 ];
 
+const zhEvents1993 = [
+  { date: "1993", text: "中國航天工業總公司（後重組為中國航天科技集團公司 CASC）通過子公司收購康力投資控股權，實現借殼上市。" },
+  { date: "1995", text: "公司更名為「中國航天國際控股有限公司」，簡稱「航天控股」，正式納入航天系版圖。" },
+  { date: "1997", text: "剝離部分非核心電子製造業務，聚焦航天相關產業方向。" },
+  { date: "2000", text: "確立以航天服務、科技工業為核心的戰略定位。" },
+  { date: "2005", text: "開始佈局衛星應用、航天技術轉化等新興業務領域。" },
+  { date: "2008", text: "中國航天科技集團公司重組，航天控股作為集團海外資本平台地位進一步鞏固。" },
+];
+
+const enEvents1993 = [
+  { date: "1993", text: "China Aerospace Industry Corporation (later restructured into CASC) acquired control of Conic Investment through a subsidiary, achieving a backdoor listing." },
+  { date: "1995", text: "Renamed 'China Aerospace International Holdings Limited' (CASIL), officially incorporated into the aerospace group." },
+  { date: "1997", text: "Divested some non-core electronics manufacturing operations, focusing on aerospace-related business directions." },
+  { date: "2000", text: "Established strategic positioning with aerospace services and technological industries as the core." },
+  { date: "2005", text: "Began laying out emerging business areas such as satellite applications and aerospace technology transfer." },
+  { date: "2008", text: "CASC restructured; CASIL's position as the group's overseas capital platform was further consolidated." },
+];
+
+const zhEvents2010 = [
+  { date: "2010", text: "加速發展航天服務業，涵蓋航天技術應用、信息服務等領域。" },
+  { date: "2012", text: "深化高端製造佈局，切入精密零部件、新材料等細分賽道。" },
+  { date: "2015", text: "響應「中國製造2025」戰略，加大智能製造投入，推動產業升級。" },
+  { date: "2018", text: "優化業務結構，形成航天服務 + 科技工業雙輪驅動格局。" },
+];
+
+const enEvents2010 = [
+  { date: "2010", text: "Accelerated development of aerospace service businesses, covering aerospace technology applications and information services." },
+  { date: "2012", text: "Deepened high-end manufacturing layout, entering precision components and new materials sub-sectors." },
+  { date: "2015", text: "Responded to the 'Made in China 2025' strategy, increased investment in smart manufacturing to drive industrial upgrading." },
+  { date: "2018", text: "Optimized business structure, forming a dual-engine model of aerospace services + technological industries." },
+];
+
+const zhEvents2020 = [
+  { date: "2020", text: "戰略性切入半導體封裝載板領域，啟動重大產業項目投資。" },
+  { date: "2022", text: "半導體載板產線建設穩步推進，逐步形成產能規模。" },
+  { date: "2024", text: "載板業務實現關鍵技術突破，產品良率達行業領先水平，市場認可度提升。" },
+  { date: "2026", text: "持續強化半導體材料賽道佈局，推動產業價值重估，助力國家芯片產業自主可控。" },
+];
+
+const enEvents2020 = [
+  { date: "2020", text: "Strategically entered the semiconductor packaging substrate sector, initiating major industrial project investments." },
+  { date: "2022", text: "Semiconductor substrate production line construction progressed steadily, gradually building production capacity." },
+  { date: "2024", text: "Achieved key technology breakthroughs in substrate business; product yield rates reached industry-leading levels with growing market recognition." },
+  { date: "2026", text: "Continued strengthening semiconductor materials sector presence, driving industry value reassessment and supporting national chip industry self-reliance." },
+];
+
 const stagesData: Record<"zh" | "en", Stage[]> = {
   zh: [
     { year: "1975-1993", title: "康力時代（1975—1993）：香港電子業巨頭", events: zhEvents1975 },
-    { year: "1975-1993", title: "康力時代（1975—1993）：香港電子業巨頭", events: zhEvents1975 },
-    { year: "1993-2009", title: "航天入主（1993—2009）：央企借殼，更名轉型", events: [] },
-    { year: "2010-2019", title: "轉型突破（2010—2019）：佈局航天服務，深耕高端製造", events: [] },
-    { year: "2020-2026", title: "戰略升級（2020—2026）：半導體載板發力，產業價值重估", events: [] },
+    { year: "1993-2009", title: "航天入主（1993—2009）：央企借殼，更名轉型", events: zhEvents1993 },
+    { year: "2010-2019", title: "轉型突破（2010—2019）：佈局航天服務，深耕高端製造", events: zhEvents2010 },
+    { year: "2020-2026", title: "戰略升級（2020—2026）：半導體載板發力，產業價值重估", events: zhEvents2020 },
   ],
   en: [
     { year: "1975-1993", title: "Conic Era (1975–1993): Hong Kong Electronics Giant", events: enEvents1975 },
-    { year: "1975-1993", title: "Conic Era (1975–1993): Hong Kong Electronics Giant", events: enEvents1975 },
-    { year: "1993-2009", title: "Aerospace Takeover (1993–2009): Central Enterprise Backdoor Listing & Transformation", events: [] },
-    { year: "2010-2019", title: "Transformation Breakthrough (2010–2019): Expanding Aerospace Services & Advancing High-End Manufacturing", events: [] },
-    { year: "2020-2026", title: "Strategic Upgrade (2020–2026): Semiconductor Substrate Push & Industry Value Reassessment", events: [] },
+    { year: "1993-2009", title: "Aerospace Takeover (1993–2009): Central Enterprise Backdoor Listing & Transformation", events: enEvents1993 },
+    { year: "2010-2019", title: "Transformation Breakthrough (2010–2019): Expanding Aerospace Services & Advancing High-End Manufacturing", events: enEvents2010 },
+    { year: "2020-2026", title: "Strategic Upgrade (2020–2026): Semiconductor Substrate Push & Industry Value Reassessment", events: enEvents2020 },
   ],
 };
 
