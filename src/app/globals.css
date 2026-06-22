@@ -208,3 +208,35 @@ p {
   -webkit-backdrop-filter: blur(24px) saturate(160%);
   box-shadow: 0 2px 20px rgba(10, 36, 99, 0.08);
 }
+
+/* Orchid-style cyan/blue glow point */
+.orchid-glow {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(62, 146, 204, 0.35) 0%, rgba(62, 146, 204, 0.08) 40%, transparent 70%);
+  pointer-events: none;
+  filter: blur(2px);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+/* Parallax helper — subtle vertical shift on scroll */
+.parallax-slow {
+  will-change: transform;
+}
+
+/* News card hover shimmer */
+.news-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px -12px rgba(10, 36, 99, 0.18);
+  border-color: rgba(62, 146, 204, 0.3);
+}
