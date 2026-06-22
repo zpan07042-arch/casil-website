@@ -31,6 +31,15 @@
   }
 }
 
+/* 👉 消除 html/body 默认 margin，防止左右留白 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
 html {
   scroll-behavior: smooth;
 }
