@@ -4,6 +4,7 @@ import { useI18n } from "@/components/data/I18nProvider";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import BusinessDomains from "@/components/home/BusinessDomains";
 
 // ============================================================
 // Animation variants
@@ -150,7 +151,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* Section 2 — News Center (image-driven featured story)        */}
       {/* ============================================================ */}
-      <section id="news" className="relative bg-white pt-16 pb-24 md:pb-32 overflow-hidden">
+      <section id="news" className="relative bg-white pt-16 pb-0 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16 lg:px-32">
           {/* Section header */}
           <motion.div
@@ -200,15 +201,15 @@ export default function HomePage() {
               viewport={{ once: true }}
               variants={fadeUp}
               custom={0.3}
-              className="absolute bottom-0 left-0 z-10 p-8 md:p-12 lg:p-16 max-w-3xl"
+              className="absolute bottom-4 left-4 md:bottom-6 md:left-6 z-10 max-w-sm md:max-w-md lg:max-w-lg"
             >
-              <span className="inline-block text-xs md:text-sm font-medium text-[#3E92CC] tracking-widest uppercase mb-4">
+              <span className="inline-block text-[10px] md:text-[11px] font-medium text-[#3E92CC] tracking-widest uppercase mb-2">
                 {t("news_featured_date")}
               </span>
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight mb-4">
+              <h3 className="text-xs md:text-sm lg:text-base font-bold text-white leading-tight mb-2">
                 {t("news_featured_title")}
               </h3>
-              <p className="text-sm md:text-base text-white/70 leading-relaxed line-clamp-3">
+              <p className="text-[10px] md:text-[11px] text-white/70 leading-relaxed line-clamp-3">
                 {t("news_featured_desc")}
               </p>
             </motion.div>
@@ -264,10 +265,15 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
+      {/* Section 3 — Business Domains (業務領域)                       */}
+      {/* ============================================================ */}
+      <BusinessDomains />
+
+      {/* ============================================================ */}
       {/* Section 4 — Location & Map (preserved from original)         */}
       {/* ============================================================ */}
       <section id="location" className="bg-white py-4 md:py-8">
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 max-w-6xl mx-auto px-6 md:px-16 lg:px-24">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 max-w-[1400px] mx-auto px-6 md:px-16 lg:px-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
