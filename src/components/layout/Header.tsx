@@ -55,6 +55,7 @@ export default function Header() {
     if (key === "investor") return false; // 外部链接不高亮
     if (key === "news") return p.startsWith(`${base}/news`);
     if (key === "party") return p.startsWith(`${base}/party`);
+    if (key === "contact") return p.startsWith(`${base}/contact`);
     return false;
   };
 
@@ -112,6 +113,8 @@ export default function Header() {
     { type: "link", key: "news", label: t("nav_consult"), href: "", showArrow: true },
     // [修改] 党的建设 — 从 link 改为 dropdown，hover 展示4个子菜单
     { type: "dropdown", key: "party", data: dropdowns.party },
+    // 联系我们
+    { type: "link", key: "contact", label: t("nav_contact"), href: `${base}/contact` },
   ];
 
   // ============================================================

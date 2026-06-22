@@ -23,7 +23,7 @@ export default async function LangLayout({
       <StarryBackground />
       <div className="flex flex-col min-h-screen relative" style={{ zIndex: 1 }}>
         <Header />
-        <main className="flex-1 px-5 md:px-8" style={{ paddingTop: '56px' }}>{children}</main>
+        <main className="flex-1" style={{ paddingTop: '56px' }}>{children}</main>
         <Footer />
       </div>
     </I18nProvider>
