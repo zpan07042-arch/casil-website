@@ -59,6 +59,7 @@ export const ui: I18nDict = {
     company_goal_desc: "航天控股將在大股東中國航天的鼎力支持下，充分利用香港各方面的優勢，逐步實現建設成為一個具有科學化的管理體系、強勢的整體市場競爭能力、優質的戰略合作夥伴，為股東創造良好的投資價值。",
     company_goal_scope: "本公司及各附屬公司的主要業務為科技工業及航天服務業務。",
     // Location
+    loc_subtitle: "Geographic Presence",
     loc_title: "地理位置",
     loc_addr: "地址：香港九龍紅磡德豐街十八號海濱廣場一座11字樓1103-1107A室",
     loc_tel: "電話：( 852 ) 2193 8888  傳真：( 852 ) 2193 8899",
@@ -115,7 +116,7 @@ export const ui: I18nDict = {
     news_featured_title: "集團與多家國際企業簽署戰略合作協議，深化全球航天產業佈局",
     news_featured_desc:
       "本集團於2025年6月18日在香港舉行重要戰略合作簽約儀式，與來自美、歐、日等多個國家的頂尖航天及電子製造企業達成深度合作協議，進一步鞏固本集團在全球航天產業鏈中的領導地位，為未來持續增長奠定堅實基礎。",
-    news_col1_title: "集團要文",
+    news_col1_title: "最新新聞",
     news_col2_title: "黨建專欄",
     news_col3_title: "媒體聚焦",
     // Column 1 — 集團要文
@@ -149,6 +150,12 @@ export const ui: I18nDict = {
     business_domains_subtitle: "BUSINESS DOMAINS",
     business_domains_title: "業務領域",
     business_learn_more: "瞭解更多",
+    // Get In Touch
+    get_in_touch_label: "Get In Touch",
+    get_in_touch_title: "攜手共創航天未來",
+    get_in_touch_subtitle: "無論您是潛在投資者、業務合作夥伴，抑或對集團業務充滿興趣，我們誠邀您與我們聯絡，共探無限可能。",
+    get_in_touch_contact_btn: "立即聯絡我們",
+    get_in_touch_investor_btn: "查看投資者資料",
   },
   en: {
     nav_about: "About Us",
@@ -199,6 +206,7 @@ export const ui: I18nDict = {
     company_goal_title: "Company Goals",
     company_goal_desc: "CASIL will, with the full support of its major shareholder CASC, fully leverage the various advantages of Hong Kong, and gradually build itself into an enterprise with a scientific management system, strong overall market competitiveness, and high-quality strategic partners, creating excellent investment value for shareholders.",
     company_goal_scope: "The principal businesses of the Company and its subsidiaries are technology industry and aerospace services.",
+    loc_subtitle: "Geographic Presence",
     loc_title: "Location",
     loc_addr: "Address: Room 1103-1107A, 11/F, Tower 1, Harbourfront Plaza, 18 Tak Fung Street, Hung Hom, Kowloon, Hong Kong",
     loc_tel: "Tel: (852) 2193 8888  Fax: (852) 2193 8899",
@@ -284,6 +292,12 @@ export const ui: I18nDict = {
     business_domains_subtitle: "BUSINESS DOMAINS",
     business_domains_title: "Business Areas",
     business_learn_more: "Learn More",
+    // Get In Touch
+    get_in_touch_label: "Get In Touch",
+    get_in_touch_title: "Shaping the Future of Aerospace Together",
+    get_in_touch_subtitle: "Whether you are a potential investor, business partner, or simply interested in our group's operations, we warmly invite you to connect with us and explore the infinite possibilities together.",
+    get_in_touch_contact_btn: "Contact Us",
+    get_in_touch_investor_btn: "View Investor Materials",
   },
 };
 

@@ -42,6 +42,16 @@ export default function Header() {
     hideTimeout.current = setTimeout(() => setActiveDropdown(null), 200);
   };
 
+  // mega menu (industry) mouse handlers — keep panel open when hovering over it
+  const handleMegaMenuEnter = () => {
+    if (hideTimeout.current) clearTimeout(hideTimeout.current);
+    setActiveDropdown("industry");
+  };
+
+  const handleMegaMenuLeave = () => {
+    hideTimeout.current = setTimeout(() => setActiveDropdown(null), 200);
+  };
+
   const base = `/${lang}`;
 
   // ============================================================
@@ -124,14 +134,20 @@ export default function Header() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 glass shadow-[0_2px_20px_rgba(10,36,99,0.08)]">
         <div className="max-w-6xl mx-auto flex items-center justify-between h-12 px-5 ">
-          {/* Logo */}
-          <Link href={base} className="flex-shrink-0">
-            <img
-              src="/images/casil-logo.png"
-              alt="CASIL"
-              className="h-10 w-auto"
-            />
-          </Link>
+          {/* Logo + company name */}
+          <div className="flex items-center gap-0 -ml-20">
+            <div className="hidden md:block text-[10px] leading-4 text-text-secondary whitespace-nowrap">
+              <div>{t("home_name")}</div>
+              <div>{t("home_stock")}</div>
+            </div>
+            <Link href={base} className="flex-shrink-0">
+              <img
+                src="/images/casil-logo.png"
+                alt="CASIL"
+                className="h-10 w-auto "
+              />
+            </Link>
+          </div>
 
           {/* ============================================================ */}
           {/* Desktop Nav — 遍历 navItems，按 type 区分渲染下拉/链接 */}
@@ -186,7 +202,7 @@ export default function Header() {
 
                     {/* 下拉面板 — 完整保留原有 Framer Motion 所有动画 */}
                     <AnimatePresence>
-                      {activeDropdown === key && (
+                      {activeDropdown === key && key !== "industry" && (
                         <motion.div
                           className="absolute top-full left-1/2 -translate-x-1/2 pt-3"
                           initial={{ opacity: 0 }}
@@ -325,6 +341,120 @@ export default function Header() {
             <MobileMenu navItems={navItems} />
           </div>
         </div>
+
+        {/* ============================================================ */}
+        {/* Industry Mega Menu — 全宽通栏下拉大白板                          */}
+        {/* ============================================================ */}
+        <AnimatePresence>
+          {activeDropdown === "industry" && (
+            <motion.div
+              className="absolute left-0 right-0 top-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onMouseEnter={handleMegaMenuEnter}
+              onMouseLeave={handleMegaMenuLeave}
+            >
+              <motion.div
+                className="bg-white shadow-xl border-t border-gray-100 overflow-hidden"
+                initial={{ height: 0 }}
+                animate={{ height: "auto" }}
+                exit={{ height: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <div className="max-w-6xl mx-auto">
+                  <div className="grid grid-cols-6 gap-4">
+                  {/* ---- 左侧简介栏（bg 铺满，零留白） ---- */}
+                  <div className="relative overflow-hidden bg-cover bg-center flex flex-col justify-center" style={{ backgroundImage: "url('/images/baback.jpg')" }}>
+                    {/* 暗色半透明蒙版 */}
+                    <div className="absolute inset-0 bg-black/55" />
+                    {/* 内容叠加在图上，padding 内移到此处 */}
+                    <div className="relative z-10 p-3">
+                      <p className="text-[0.8rem] text-white leading-relaxed mb-2">
+                        中國航天國際控股有限公司專注於電子製造及精密工業領域，旗下五大業務板塊覆蓋 PCB、顯示器件、智能功率模組、電源及注塑成型，為全球客戶提供一站式高科技製造解決方案。
+                      </p>
+                      <Link
+                        href={`${base}/business`}
+                        className="inline-flex items-center gap-1 text-white/85 text-[0.8rem] font-medium hover:text-white transition-colors duration-200"
+                      >
+                        查看全部
+                        <svg
+                          width="12"
+                          height="10"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M9 18l6-6-6-6" />
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* ---- 第1列：印製電路板（PCB） ---- */}
+                  <div className="flex flex-col gap-1.5 p-3">
+                    <h4 className="text-[0.9rem] font-bold text-gray-950">印製電路板（PCB）</h4>
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
+                      東莞康源
+                    </span>
+                    <p className="text-[0.7rem] text-gray-400 leading-snug">
+                      單層至多層 HDI 板、軟硬結合板，年產能逾 500 萬平方米。
+                    </p>
+                  </div>
+
+                  {/* ---- 第2列：顯示器件研發與生產 ---- */}
+                  <div className="flex flex-col gap-1.5 p-3">
+                    <h4 className="text-[0.9rem] font-bold text-gray-950">顯示器件研發與生產</h4>
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
+                      航科半導體
+                    </span>
+                    <p className="text-[0.7rem] text-gray-400 leading-snug">
+                      TFT-LCD、OLED 及車載顯示模組，服務高端工業及航天應用。
+                    </p>
+                  </div>
+
+                  {/* ---- 第3列：IPM 智能功率模組封裝（标题强制单行） ---- */}
+                  <div className="flex flex-col gap-1.5 p-3">
+                    <h4 className="text-[0.9rem] font-bold text-gray-950 whitespace-nowrap">IPM 智能功率模組封裝</h4>
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
+                      志豪微電子
+                    </span>
+                    <p className="text-[0.7rem] text-gray-400 leading-snug">
+                      自主封裝 IPM 模組，應用於新能源汽車及工業變頻領域。
+                    </p>
+                  </div>
+
+                  {/* ---- 第4列：電源領域 ---- */}
+                  <div className="flex flex-col gap-1.5 p-3">
+                    <h4 className="text-[0.9rem] font-bold text-gray-950">電源領域</h4>
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
+                      香港志順
+                    </span>
+                    <p className="text-[0.7rem] text-gray-400 leading-snug">
+                      AC-DC、DC-DC 轉換器及 UPS 系統，覆蓋數據中心與工業場景。
+                    </p>
+                  </div>
+
+                  {/* ---- 第5列：注塑領域 ---- */}
+                  <div className="flex flex-col gap-1.5 p-3">
+                    <h4 className="text-[0.9rem] font-bold text-gray-950">注塑領域</h4>
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
+                      香港志源
+                    </span>
+                    <p className="text-[0.7rem] text-gray-400 leading-snug">
+                      高精密工程塑料注塑成型，配套 PCB 及顯示模組整機製造。
+                    </p>
+                  </div>
+                </div>
+              </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
     </>
   );

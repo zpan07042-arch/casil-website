@@ -40,7 +40,6 @@ export default function HomePage() {
   // ============================================================
   const newsColumns = [
     {
-      titleKey: "news_col1_title",
       href: `${base}/news`,
       items: [
         { dateKey: "news_c1_item1_date", titleKey: "news_c1_item1_title" },
@@ -71,20 +70,47 @@ export default function HomePage() {
 
         {/* Content */}
         <div className="relative z-10 w-full px-6 md:px-16 lg:px-24 flex flex-col items-center text-center">
+          {/* Orbit decoration */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="flex justify-center mb-10"
+          >
+            <div className="relative w-20 h-20">
+              <div className="absolute inset-0 rounded-full border border-white/15" />
+              <div className="absolute inset-3 rounded-full border border-white/25" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-4 h-4 rounded-full bg-white/70 shadow-lg shadow-white/20" />
+              </div>
+              <div
+                className="absolute top-1 right-2 w-2.5 h-2.5 rounded-full bg-blue-300/80"
+                style={{ boxShadow: "0 0 8px rgba(147,197,253,0.6)" }}
+              />
+            </div>
+          </motion.div>
+
           <motion.h1
             initial={{ opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-4xl md:text-6xl font-bold tracking-tight text-white"
+            className="text-4xl md:text-7xl font-bold tracking-tight text-white"
           >
             {t("home_name")}
           </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ delay: 0.1, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="mx-auto w-24 h-[1px] bg-white/30 my-6 md:my-8 transform origin-left"
+          />
 
           <motion.p
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="mt-1 text-xl md:text-2xl text-white/90"
+            className="text-xl md:text-2xl text-white/90"
           >
             {t("home_stock")}
           </motion.p>
@@ -99,8 +125,8 @@ export default function HomePage() {
             <Link
               href={`${base}/business`}
               className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-full
-                bg-white/10 backdrop-blur-md border border-white/25 text-white text-base md:text-lg font-medium
-                hover:bg-white hover:text-[#0A0E17] hover:border-white
+                bg-[#0A2463]/30 backdrop-blur-md border border-[#0A2463]/50 text-white text-base md:text-lg font-medium
+                hover:bg-[#0A2463] hover:text-white hover:border-[#0A2463]
                 transition-all duration-500 ease-out"
             >
               <span>{t("home_explore_business")}</span>
@@ -153,7 +179,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       <section id="news" className="relative bg-white pt-16 pb-0 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16 lg:px-32">
-          {/* Section header */}
+          {/* Section header — English title + Chinese subtitle, divider below */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -161,12 +187,13 @@ export default function HomePage() {
             variants={fadeUp}
             className="mb-12 md:mb-16 text-center"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A0E17] tracking-tight">
-              {t("news_center_title")}
-            </h2>
             <p className="mt-3 text-base md:text-lg text-[#86868B] font-light tracking-wide">
               {t("news_center_subtitle")}
             </p>
+            <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A0E17] tracking-tight">
+              {t("news_center_title")}
+            </p>
+            <div className="mx-auto mt-8 w-20 h-[2px] bg-[#3E92CC] rounded-full" />
           </motion.div>
 
           {/* Featured image area */}
@@ -219,10 +246,6 @@ export default function HomePage() {
           {/* 集團要文 — horizontal list layout                           */}
           {/* ============================================================ */}
           <div style={{ marginTop: "64px" }}>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0A0E17] tracking-tight mb-8 md:mb-10 text-center">
-              {t("news_col1_title")}
-            </h2>
-
             <div className="flex flex-col">
               {newsColumns[0].items.map((item, itemIdx) => (
                 <motion.div
@@ -270,9 +293,20 @@ export default function HomePage() {
       <BusinessDomains />
 
       {/* ============================================================ */}
-      {/* Section 4 — Location & Map (preserved from original)         */}
+      {/* Section 4 — Geographic Presence (地理位置)                    */}
       {/* ============================================================ */}
-      <section id="location" className="bg-white py-4 md:py-8">
+      <section id="location" className="bg-white pt-16 pb-24 md:pb-36">
+        {/* Section header — subtitle + title + divider */}
+        <div className="mb-16 md:mb-24 text-center px-6">
+          <p className="text-[#5BA4D6] text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4">
+            {t("loc_subtitle")}
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A0E17] tracking-wide mb-5">
+            {t("loc_title")}
+          </h2>
+          <div className="mx-auto w-20 h-[2px] bg-[#3E92CC] rounded-full" />
+        </div>
+
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 max-w-[1400px] mx-auto px-6 md:px-16 lg:px-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -281,9 +315,6 @@ export default function HomePage() {
             className="flex-1 flex flex-col"
           >
             <div className="border border-gray-200 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center">
-              <h2 className="text-2xl md:text-3xl font-semibold text-[#1a1a2e] mb-8 text-left">
-                {t("loc_title")}
-              </h2>
               <div className="space-y-5 text-left">
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-[#0A2463] mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
@@ -330,6 +361,136 @@ export default function HomePage() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* Section 5 — Get In Touch (CTA)                                */}
+      {/* ============================================================ */}
+      <section
+        id="get-in-touch"
+        className="relative pt-24 pb-28 md:pt-32 md:pb-40 overflow-hidden"
+        style={{ background: "#001433" }}
+      >
+        {/* ---- 外层大光晕 ---- */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(0,58,140,0.5) 0%, transparent 70%)",
+            width: "700px",
+            height: "700px",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+
+        {/* ---- 内层小光晕 ---- */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(21,101,192,0.35) 0%, transparent 70%)",
+            width: "350px",
+            height: "350px",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+
+        {/* ---- 网格纹理叠层 ---- */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+            opacity: 0.04,
+          }}
+        />
+
+        {/* ---- 内容 ---- */}
+        <div className="relative z-10 max-w-[900px] mx-auto px-6 md:px-16 text-center">
+          {/* 小标签 — 蓝色 */}
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="text-[#3E92CC] text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-5"
+          >
+            {t("get_in_touch_label")}
+          </motion.p>
+
+          {/* 大标题 — 白色 */}
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            custom={0.1}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wide mb-6"
+          >
+            {t("get_in_touch_title")}
+          </motion.h2>
+
+          {/* 副标题 — 浅蓝色 */}
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            custom={0.2}
+            className="text-base md:text-lg text-[#8DB8E8] font-light leading-relaxed max-w-2xl mx-auto mb-10"
+          >
+            {t("get_in_touch_subtitle")}
+          </motion.p>
+
+          {/* CTA 按钮组 — 与 Hero 区按钮风格一致 */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            custom={0.3}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            {/* 立即联络我们 — 主按钮 */}
+            <Link
+              href={`${base}/contact`}
+              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-full
+                bg-[#0A2463]/30 backdrop-blur-md border border-[#0A2463]/50 text-white text-base md:text-lg font-medium
+                hover:bg-[#0A2463] hover:text-white hover:border-[#0A2463]
+                transition-all duration-500 ease-out"
+            >
+              <span>{t("get_in_touch_contact_btn")}</span>
+              <svg
+                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+
+            {/* 查看投资者资料 — 次按钮 */}
+            <Link
+              href="http://www.casil-group.com:8080/investor/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-full
+                bg-white/10 backdrop-blur-md border border-white/25 text-white text-base md:text-lg font-medium
+                hover:bg-white hover:text-[#0A0E17] hover:border-white
+                transition-all duration-500 ease-out"
+            >
+              <span>{t("get_in_touch_investor_btn")}</span>
+              <svg
+                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </motion.div>
         </div>
       </section>
