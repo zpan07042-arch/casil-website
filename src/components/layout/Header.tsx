@@ -67,6 +67,7 @@ export default function Header() {
     { label: t("nav_goal"), href: `${base}/about/goals` },
     { label: t("nav_board"), href: `${base}/about/board` },
     { label: t("nav_gov"), href: `${base}/about/governance` },
+    { label: t("nav_arc"), href: `${base}/about/structure` },
   ];
 
   const businessItems = [
@@ -161,7 +162,6 @@ export default function Header() {
                       />
                     </Link>
 
-                    {/* 普通下拉面板 - 已移除高度拉伸、子项逐行动画 */}
                     <AnimatePresence>
                       {activeDropdown === key && key !== "industry" && (
                         <motion.div
