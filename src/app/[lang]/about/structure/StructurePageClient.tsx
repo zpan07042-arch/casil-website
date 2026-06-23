@@ -49,7 +49,17 @@ export default function StructurePageClient({ lang }: { lang: Lang }) {
             className="text-xs tracking-wide mb-3"
             style={{ color: MutedW }}
           >
-            {t.breadcrumb}
+            {(() => {
+              const parts = t.breadcrumb.split(" > ");
+              return parts.map((part, i) => (
+                <span key={i}>
+                  {i > 0 && <span style={{ color: MutedW }}> &gt; </span>}
+                  <span style={{ color: i === parts.length - 1 ? White : MutedW }}>
+                    {part}
+                  </span>
+                </span>
+              ));
+            })()}
           </p>
 
           {/* 英文小标 */}

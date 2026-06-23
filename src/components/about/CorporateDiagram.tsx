@@ -21,36 +21,50 @@ function ChildCard({ node }: { node: OrgNode }) {
     <div
       style={{
         backgroundColor: White, border: `1px solid ${Border}`, borderRadius: 6,
-        padding: "3px 10px", textAlign: "center", minWidth: 70, boxShadow: Shadow,
+        padding: "5px 14px", textAlign: "center", minWidth: 80, boxShadow: Shadow,
       }}
     >
-      <span style={{ color: TextDark, fontSize: 11, lineHeight: 1.4 }}>{node.name}</span>
+      <span style={{ color: TextDark, fontSize: 12, lineHeight: 1.4 }}>{node.name}</span>
     </div>
   );
 }
 
 /* ──────────── 子公司节点卡片 ──────────── */
 function CompanyCard({ node }: { node: OrgNode }) {
+  const hasChildren = node.children && node.children.length > 0;
+
   return (
     <div className="flex flex-col items-center">
       <div style={{ width: 1, height: 8, backgroundColor: Line }} />
       <div
         style={{
           backgroundColor: White, border: `1px solid ${Border}`, borderRadius: 8,
-          padding: "6px 12px", textAlign: "center", minWidth: 100, boxShadow: Shadow,
+          padding: hasChildren ? "6px 12px" : "8px 16px",
+          textAlign: "center",
+          minWidth: hasChildren ? 100 : 110,
+          boxShadow: Shadow,
         }}
       >
-        <span style={{ color: TextDark, fontSize: 12, fontWeight: 600, lineHeight: 1.4, display: "block" }}>
+        <span style={{
+          color: TextDark,
+          fontSize: hasChildren ? 12 : 14,
+          fontWeight: 600, lineHeight: 1.4, display: "block",
+        }}>
           {node.name}
         </span>
         {node.subtitle && (
-          <span style={{ color: TextMuted, fontSize: 10, lineHeight: 1.3, display: "block", marginTop: 2 }}>
+          <span style={{
+            color: TextMuted,
+            fontSize: hasChildren ? 10 : 11,
+            lineHeight: 1.3, display: "block", marginTop: 2,
+          }}>
             ({node.subtitle})
           </span>
         )}
         {node.tag && (
           <span style={{
-            backgroundColor: TagBg, color: TagText, fontSize: 10,
+            backgroundColor: TagBg, color: TagText,
+            fontSize: hasChildren ? 10 : 11,
             padding: "1px 6px", borderRadius: 3, display: "inline-block", marginTop: 4,
           }}>
             {node.tag}
@@ -58,13 +72,13 @@ function CompanyCard({ node }: { node: OrgNode }) {
         )}
       </div>
 
-      {node.children && node.children.length > 0 && (
+      {hasChildren && (
         <>
-          <div style={{ width: 1, height: 6, backgroundColor: Line }} />
-          <div className="flex flex-wrap gap-1 justify-center">
-            {node.children.map((child, i) => (
+          <div style={{ width: 1, height: 2, backgroundColor: Line }} />
+          <div className="flex flex-col items-center gap-1">
+            {node.children!.map((child, i) => (
               <div key={i} className="flex flex-col items-center">
-                <div style={{ width: 1, height: 5, backgroundColor: Line }} />
+                <div style={{ width: 1, height: 2, backgroundColor: Line }} />
                 <ChildCard node={child} />
               </div>
             ))}
@@ -87,24 +101,24 @@ function DeptCard({ name, subtitle, vertical }: { name: string; subtitle?: strin
         style={{
           backgroundColor: NavyMid,
           borderRadius: 8,
-          padding: useVertical ? "7px 12px" : "7px 14px",
+          padding: useVertical ? "9px 16px" : "9px 18px",
           textAlign: "center",
-          minWidth: useVertical ? 56 : 88,
+          minWidth: useVertical ? 64 : 96,
         }}
       >
         {useVertical ? (
           <div className="flex flex-col items-center" style={{ gap: 2 }}>
-            <span style={{ color: White, fontSize: 12, fontWeight: 600, lineHeight: 1.3, whiteSpace: "nowrap" }}>
+            <span style={{ color: White, fontSize: 13, fontWeight: 600, lineHeight: 1.3, whiteSpace: "nowrap" }}>
               {name}
             </span>
             {hasSub && (
-              <span style={{ color: "rgba(255,255,255,0.65)", fontSize: 10, lineHeight: 1.2, whiteSpace: "nowrap" }}>
+              <span style={{ color: "rgba(255,255,255,0.65)", fontSize: 11, lineHeight: 1.2, whiteSpace: "nowrap" }}>
                 ({subtitle})
               </span>
             )}
           </div>
         ) : (
-          <span style={{ color: White, fontSize: 12, fontWeight: 600, lineHeight: 1.35, whiteSpace: "nowrap" }}>
+          <span style={{ color: White, fontSize: 13, fontWeight: 600, lineHeight: 1.35, whiteSpace: "nowrap" }}>
             {name}
           </span>
         )}
@@ -128,16 +142,16 @@ function BusinessColumn({
       <div style={{ width: 1, height: 14, backgroundColor: Line }} />
       <div
         style={{
-          backgroundColor: Navy, borderRadius: 10, padding: "8px 16px",
+          backgroundColor: Navy, borderRadius: 10, padding: "10px 20px",
           textAlign: "center", boxShadow: "0 2px 8px rgba(10,36,99,0.10)",
         }}
       >
-        <span style={{ color: White, fontSize: 14, fontWeight: 700, lineHeight: 1.3, display: "block" }}>
+        <span style={{ color: White, fontSize: 16, fontWeight: 700, lineHeight: 1.3, display: "block" }}>
           {title}
         </span>
         {indicator && (
           <span style={{
-            color: "rgba(255,255,255,0.70)", fontSize: 10, lineHeight: 1.3,
+            color: "rgba(255,255,255,0.70)", fontSize: 11, lineHeight: 1.3,
             display: "block", marginTop: 2,
           }}>
             {indicator}
@@ -177,15 +191,15 @@ export default function CorporateDiagram() {
           <div
             style={{
               backgroundColor: Navy, borderRadius: 14,
-              padding: "14px 48px",
+              padding: "16px 56px",
               boxShadow: "0 3px 12px rgba(10,36,99,0.12)",
             }}
           >
-            <span style={{ color: White, fontSize: 20, fontWeight: 700, letterSpacing: "0.10em" }}>
+            <span style={{ color: White, fontSize: 22, fontWeight: 700, letterSpacing: "0.10em" }}>
               {rootName}
             </span>
           </div>
-          <div style={{ width: 1, height: 20, backgroundColor: Line }} />
+          <div style={{ width: 1, height: 36, backgroundColor: Line }} />
         </div>
 
         {/* ═══ 2. T 型分叉 ═══ */}
@@ -216,11 +230,11 @@ export default function CorporateDiagram() {
         </div>
 
         {/* ═══ 4. 主干下行 → 水平分叉 ═══ */}
-        <div className="relative" style={{ height: 24 }}>
+        <div className="relative" style={{ height: 40 }}>
           <div
             className="absolute left-1/2"
             style={{
-              top: 0, width: 1, height: 24,
+              top: 0, width: 1, height: 40,
               backgroundColor: Line, transform: "translateX(-0.5px)",
             }}
           />
