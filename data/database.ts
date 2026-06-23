@@ -211,11 +211,23 @@ export async function getDb(): Promise<CompatDatabase> {
 
 // ── 優雅退出：保存數據庫 ────────────────────────────────────────
 
-let shutdownRegistered = false;
+// 使用 Symbol.for 在 process 上持久化 handler 引用，避免 Next.js 熱重載導致監聽器累積
+const DB_HANDLERS = Symbol.for("__db_shutdown_handlers__");
+
+interface ShutdownHandlers {
+  sigterm: () => void;
+  sigint: () => void;
+  uncaughtException: (err: Error) => void;
+}
 
 function registerShutdownHandlers(database: CompatDatabase): void {
-  if (shutdownRegistered) return;
-  shutdownRegistered = true;
+  // 先移除上一次註冊的監聽器（熱重載場景）
+  const prev = (process as Record<symbol, ShutdownHandlers | undefined>)[DB_HANDLERS];
+  if (prev) {
+    process.off("SIGTERM", prev.sigterm);
+    process.off("SIGINT", prev.sigint);
+    process.off("uncaughtException", prev.uncaughtException);
+  }
 
   const save = () => {
     try {
@@ -226,23 +238,32 @@ function registerShutdownHandlers(database: CompatDatabase): void {
     }
   };
 
-  // Next.js 在生產環境收到 SIGTERM / SIGINT 時觸發
-  process.on("SIGTERM", () => {
+  const onSigterm = () => {
     console.log("[db] SIGTERM received, saving...");
     save();
     process.exit(0);
-  });
+  };
 
-  process.on("SIGINT", () => {
+  const onSigint = () => {
     console.log("[db] SIGINT received, saving...");
     save();
     process.exit(0);
-  });
+  };
 
-  // 未捕獲異常時也嘗試保存
-  process.on("uncaughtException", (err) => {
+  const onUncaughtException = (err: Error) => {
     console.error("[db] uncaughtException, saving before exit...", err);
     save();
     process.exit(1);
-  });
+  };
+
+  // 持久化 handler 引用，供下次熱重載時清理
+  (process as Record<symbol, ShutdownHandlers>)[DB_HANDLERS] = {
+    sigterm: onSigterm,
+    sigint: onSigint,
+    uncaughtException: onUncaughtException,
+  };
+
+  process.on("SIGTERM", onSigterm);
+  process.on("SIGINT", onSigint);
+  process.on("uncaughtException", onUncaughtException);
 }

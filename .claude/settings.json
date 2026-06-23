@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls /Users/wuming/package-lock.json /Users/wuming/workplace/casil-website/package-lock.json 2>&1)",
+      "Read(//Users/wuming/**)"
+    ]
+  }
+}

@@ -145,6 +145,10 @@ export const ui: I18nDict = {
     news_c3_item3_title: "《信報》深度報道：股票00031背後的航天製造王國",
     news_c3_item4_date: "2025.06.03",
     news_c3_item4_title: "路透社：China Aerospace International expands Asian footprint",
+    // Business domains
+    business_domains_subtitle: "BUSINESS DOMAINS",
+    business_domains_title: "業務領域",
+    business_learn_more: "瞭解更多",
   },
   en: {
     nav_about: "About Us",
@@ -276,6 +280,10 @@ export const ui: I18nDict = {
     news_c3_item3_title: "Hong Kong Economic Journal: The Aerospace Manufacturing Empire Behind Stock 00031",
     news_c3_item4_date: "2025.06.03",
     news_c3_item4_title: "Reuters: China Aerospace International Expands Asian Footprint",
+    // Business domains
+    business_domains_subtitle: "BUSINESS DOMAINS",
+    business_domains_title: "Business Areas",
+    business_learn_more: "Learn More",
   },
 };
 
