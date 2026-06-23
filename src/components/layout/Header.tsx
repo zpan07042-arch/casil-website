@@ -363,13 +363,13 @@ export default function Header() {
                 exit={{ height: 0 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                <div className="max-w-6xl mx-auto">
-                  <div className="grid grid-cols-6 gap-4">
+                {/* 六区块等分：全宽 grid-cols-6，零留白 */}
+                <div className="grid grid-cols-6 gap-4 p-3">
                   {/* ---- 左侧简介栏（bg 铺满，零留白） ---- */}
-                  <div className="relative overflow-hidden bg-cover bg-center flex flex-col justify-center" style={{ backgroundImage: "url('/images/baback.jpg')" }}>
+                  <div className="relative overflow-hidden bg-cover bg-center flex flex-col justify-center rounded-lg" style={{ backgroundImage: "url('/images/baback.jpg')" }}>
                     {/* 暗色半透明蒙版 */}
-                    <div className="absolute inset-0 bg-black/55" />
-                    {/* 内容叠加在图上，padding 内移到此处 */}
+                    <div className="absolute inset-0 bg-black/55 rounded-lg" />
+                    {/* 内容叠加在图上 */}
                     <div className="relative z-10 p-3">
                       <p className="text-[0.8rem] text-white leading-relaxed mb-2">
                         中國航天國際控股有限公司專注於電子製造及精密工業領域，旗下五大業務板塊覆蓋 PCB、顯示器件、智能功率模組、電源及注塑成型，為全球客戶提供一站式高科技製造解決方案。
@@ -396,7 +396,7 @@ export default function Header() {
                   </div>
 
                   {/* ---- 第1列：印製電路板（PCB） ---- */}
-                  <div className="flex flex-col gap-1.5 p-3">
+                  <div className="flex flex-col gap-1.5">
                     <h4 className="text-[0.9rem] font-bold text-gray-950">印製電路板（PCB）</h4>
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
                       東莞康源
@@ -407,7 +407,7 @@ export default function Header() {
                   </div>
 
                   {/* ---- 第2列：顯示器件研發與生產 ---- */}
-                  <div className="flex flex-col gap-1.5 p-3">
+                  <div className="flex flex-col gap-1.5">
                     <h4 className="text-[0.9rem] font-bold text-gray-950">顯示器件研發與生產</h4>
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
                       航科半導體
@@ -418,7 +418,7 @@ export default function Header() {
                   </div>
 
                   {/* ---- 第3列：IPM 智能功率模組封裝（标题强制单行） ---- */}
-                  <div className="flex flex-col gap-1.5 p-3">
+                  <div className="flex flex-col gap-1.5">
                     <h4 className="text-[0.9rem] font-bold text-gray-950 whitespace-nowrap">IPM 智能功率模組封裝</h4>
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
                       志豪微電子
@@ -429,7 +429,7 @@ export default function Header() {
                   </div>
 
                   {/* ---- 第4列：電源領域 ---- */}
-                  <div className="flex flex-col gap-1.5 p-3">
+                  <div className="flex flex-col gap-1.5">
                     <h4 className="text-[0.9rem] font-bold text-gray-950">電源領域</h4>
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
                       香港志順
@@ -440,7 +440,7 @@ export default function Header() {
                   </div>
 
                   {/* ---- 第5列：注塑領域 ---- */}
-                  <div className="flex flex-col gap-1.5 p-3">
+                  <div className="flex flex-col gap-1.5">
                     <h4 className="text-[0.9rem] font-bold text-gray-950">注塑領域</h4>
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
                       香港志源
@@ -450,7 +450,6 @@ export default function Header() {
                     </p>
                   </div>
                 </div>
-              </div>
               </motion.div>
             </motion.div>
           )}

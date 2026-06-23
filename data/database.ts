@@ -222,7 +222,7 @@ interface ShutdownHandlers {
 
 function registerShutdownHandlers(database: CompatDatabase): void {
   // 先移除上一次註冊的監聽器（熱重載場景）
-  const prev = (process as Record<symbol, ShutdownHandlers | undefined>)[DB_HANDLERS];
+  const prev = (process as unknown as Record<symbol, ShutdownHandlers | undefined>)[DB_HANDLERS];
   if (prev) {
     process.off("SIGTERM", prev.sigterm);
     process.off("SIGINT", prev.sigint);
@@ -257,7 +257,7 @@ function registerShutdownHandlers(database: CompatDatabase): void {
   };
 
   // 持久化 handler 引用，供下次熱重載時清理
-  (process as Record<symbol, ShutdownHandlers>)[DB_HANDLERS] = {
+  (process as unknown as Record<symbol, ShutdownHandlers>)[DB_HANDLERS] = {
     sigterm: onSigterm,
     sigint: onSigint,
     uncaughtException: onUncaughtException,
