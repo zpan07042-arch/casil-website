@@ -95,83 +95,6 @@ const BUSINESS_DOMAINS: Record<"zh" | "en", BusinessDomain[]> = {
 };
 
 // ============================================================
-// 星空纹理背景 — 深蓝色底 + 均匀白色细星点（~65颗）
-// ============================================================
-const STARRY_BG_STYLE: Record<string, string> = {
-  backgroundColor: "#0A1A3A",
-  backgroundImage: `
-    radial-gradient(1px 1px at 5% 3%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 12% 8%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 20% 5%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 28% 12%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 35% 4%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 42% 10%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 50% 6%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 58% 14%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 65% 7%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 72% 11%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 80% 5%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 88% 13%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 95% 7%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 8% 22%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 18% 28%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 32% 18%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 45% 25%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 55% 20%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 68% 28%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 78% 18%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 85% 25%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 93% 22%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 3% 38%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 15% 35%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 25% 42%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 38% 32%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 48% 40%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 60% 35%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 70% 42%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 82% 32%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 90% 38%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 10% 50%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 22% 48%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 35% 55%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 48% 50%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 58% 52%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 68% 46%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 78% 55%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 88% 50%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 5% 62%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 18% 68%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 30% 62%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 42% 68%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 65% 66%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 75% 62%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 85% 68%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 95% 60%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 8% 78%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 20% 82%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 33% 75%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 45% 80%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 58% 75%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 70% 82%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 82% 78%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 92% 82%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 12% 90%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 28% 92%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1px 1px at 42% 88%, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 55% 92%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1px 1px at 68% 88%, rgba(255,255,255,0.40), transparent),
-    radial-gradient(1px 1px at 80% 92%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 90% 88%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1.5px 1.5px at 15% 15%, rgba(255,255,255,0.55), transparent),
-    radial-gradient(1.5px 1.5px at 52% 8%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1.5px 1.5px at 75% 45%, rgba(255,255,255,0.55), transparent),
-    radial-gradient(1.5px 1.5px at 38% 70%, rgba(255,255,255,0.50), transparent),
-    radial-gradient(1.5px 1.5px at 62% 85%, rgba(255,255,255,0.55), transparent)
-  `,
-};
-
-// ============================================================
 // BusinessDomains — 業務領域板块
 // ============================================================
 export default function BusinessDomains() {
@@ -181,13 +104,49 @@ export default function BusinessDomains() {
   return (
     <section
       id="business-domains"
-      className="relative w-full pt-16 pb-24 md:pb-36"
-      style={STARRY_BG_STYLE}
+      className="relative w-full pt-16 pb-24 md:pb-36 overflow-hidden"
+      style={{ background: "#001433" }}
     >
+      {/* ---- 外层大光晕 ---- */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(0,58,140,0.5) 0%, transparent 70%)",
+          width: "700px",
+          height: "700px",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      />
+
+      {/* ---- 内层小光晕 ---- */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(21,101,192,0.35) 0%, transparent 70%)",
+          width: "350px",
+          height: "350px",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      />
+
+      {/* ---- 规则点阵纹理叠层 ---- */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.5) 1.5px, transparent 1.5px)",
+          backgroundSize: "32px 32px",
+          opacity: 0.12,
+        }}
+      />
+
       {/* ============================================================ */}
       {/* 标题区 — 居中排版，加大上下留白                              */}
       {/* ============================================================ */}
-      <div className="mb-16 md:mb-24 text-center px-6">
+      <div className="relative z-10 mb-16 md:mb-24 text-center px-6">
         {/* 浅蓝英文小字 — 柔和浅蓝细字，非白色 */}
         <p className="text-[#5BA4D6] text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4">
           {t("business_domains_subtitle")}
@@ -205,7 +164,7 @@ export default function BusinessDomains() {
       {/* ============================================================ */}
       {/* 卡片区域 — items-start 保证每张卡片高度独立                   */}
       {/* ============================================================ */}
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 items-start">
           {domains.map((domain) => (
             <BusinessCard key={domain.title} domain={domain} lang={lang} />
@@ -235,7 +194,7 @@ function BusinessCard({
       {/* 卡片容器 — rounded-3xl + overflow-hidden 硬性约束边界       */}
       {/* 所有内容（图、文字、下拉面板）全程不超出此容器              */}
       {/* ========================================================== */}
-      <div className="rounded-3xl overflow-hidden bg-white/[0.07] backdrop-blur-sm ring-1 ring-white/10">
+      <div className="rounded-3xl overflow-hidden bg-white/[0.1] backdrop-blur-sm ring-1 ring-white/10 group-hover/card:bg-[#5BA4D6]/[0.22] group-hover/card:ring-[#5BA4D6]/80 transition-all duration-500">
         {/* ======================================================== */}
         {/* 图片区域 — 仅占卡片上 2/3 区域，object-contain + 内边距  */}
         {/* ======================================================== */}
@@ -301,13 +260,7 @@ function BusinessCard({
             group-hover/card:max-h-[500px]
             transition-[max-height] duration-500 ease-out"
         >
-          <div
-            className="px-5 pt-2 pb-5"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(10,20,48,0.88) 0%, rgba(8,18,44,0.94) 100%)",
-            }}
-          >
+          <div className="px-5 pt-2 pb-5">
             {/* 长篇介绍文字 — 白色、宽松行高 */}
             <p className="text-white/80 text-xs md:text-sm leading-relaxed md:leading-loose mb-5">
               {domain.detail}

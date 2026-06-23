@@ -104,19 +104,19 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 glass shadow-[0_2px_20px_rgba(10,36,99,0.08)]">
-        <div className="max-w-6xl mx-auto flex items-center justify-between h-12 px-5 ">
+        <div className="max-w-6xl mx-auto flex items-center justify-between h-12  ">
           <div className="flex items-center gap-0 -ml-20">
-            <div className="hidden md:block text-[10px] leading-4 text-text-secondary whitespace-nowrap">
-              <div>{t("home_name")}</div>
-              <div>{t("home_stock")}</div>
-            </div>
-            <Link href={base} className="flex-shrink-0">
+              <Link href={base} className="flex-shrink-0">
               <img
                 src="/images/casil-logo.png"
                 alt="CASIL"
-                className="h-10 w-auto "
+                className="h-7.5 w-auto "
               />
             </Link>
+            <div className="hidden md:block text-[11px] leading-4 text-text-secondary whitespace-nowrap ml-4">
+              <div>{t("home_name")}</div>
+              <div>{t("home_stock")}</div>
+            </div>
           </div>
 
           <nav className="hidden md:flex items-center gap-10">
@@ -280,8 +280,8 @@ export default function Header() {
             >
               <div className="bg-white shadow-xl border-t border-gray-100 overflow-hidden">
                 <div className="grid grid-cols-6 gap-4 p-3">
-                  <div className="relative overflow-hidden bg-cover bg-center flex flex-col justify-center rounded-lg" style={{ backgroundImage: "url('/images/baback.jpg')" }}>
-                    <div className="absolute inset-0 bg-black/55 rounded-lg" />
+                  <div className="relative bg-cover bg-center -m-3" style={{ backgroundImage: "url('/images/baback.jpg')" }}>
+                    <div className="absolute inset-0 bg-black/55" />
                     <div className="relative z-10 p-3">
                       <p className="text-[0.8rem] text-white leading-relaxed mb-2">
                         中國航天國際控股有限公司專注於電子製造及精密工業領域，旗下五大業務板塊覆蓋 PCB、顯示器件、智能功率模組、電源及注塑成型，為全球客戶提供一站式高科技製造解決方案。

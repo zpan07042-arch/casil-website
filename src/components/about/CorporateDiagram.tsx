@@ -35,7 +35,7 @@ function CompanyCard({ node }: { node: OrgNode }) {
 
   return (
     <div className="flex flex-col items-center">
-      <div style={{ width: 1, height: 8, backgroundColor: Line }} />
+      <div style={{ width: 2, height: 8, backgroundColor: Line }} />
       <div
         style={{
           backgroundColor: White, border: `1px solid ${Border}`, borderRadius: 8,
@@ -74,11 +74,11 @@ function CompanyCard({ node }: { node: OrgNode }) {
 
       {hasChildren && (
         <>
-          <div style={{ width: 1, height: 2, backgroundColor: Line }} />
+          <div style={{ width: 2, height: 2, backgroundColor: Line }} />
           <div className="flex flex-col items-center gap-1">
             {node.children!.map((child, i) => (
               <div key={i} className="flex flex-col items-center">
-                <div style={{ width: 1, height: 2, backgroundColor: Line }} />
+                <div style={{ width: 2, height: 2, backgroundColor: Line }} />
                 <ChildCard node={child} />
               </div>
             ))}
@@ -96,7 +96,7 @@ function DeptCard({ name, subtitle, vertical }: { name: string; subtitle?: strin
 
   return (
     <div className="flex flex-col items-center" style={{ flexShrink: 0, marginLeft: -6, marginRight: -6 }}>
-      <div style={{ width: 1, height: 8, backgroundColor: Line }} />
+      <div style={{ width: 2, height: 8, backgroundColor: Line }} />
       <div
         style={{
           backgroundColor: NavyMid,
@@ -139,7 +139,7 @@ function BusinessColumn({
 }) {
   return (
     <div className="flex flex-col items-center" style={{ flex: "1 1 0", minWidth: 0 }}>
-      <div style={{ width: 1, height: 14, backgroundColor: Line }} />
+      <div style={{ width: 2, height: 14, backgroundColor: Line }} />
       <div
         style={{
           backgroundColor: Navy, borderRadius: 10, padding: "10px 20px",
@@ -158,7 +158,7 @@ function BusinessColumn({
           </span>
         )}
       </div>
-      <div style={{ width: 1, height: 12, backgroundColor: Line }} />
+      <div style={{ width: 2, height: 12, backgroundColor: Line }} />
       <div
         className="w-full"
         style={{
@@ -199,20 +199,20 @@ export default function CorporateDiagram() {
               {rootName}
             </span>
           </div>
-          <div style={{ width: 1, height: 36, backgroundColor: Line }} />
+          <div style={{ width: 2, height: 36, backgroundColor: Line }} />
         </div>
 
         {/* ═══ 2. T 型分叉 ═══ */}
         <div className="relative" style={{ height: 18 }}>
           <div
             className="absolute left-0 right-0"
-            style={{ top: 9, height: 1, backgroundColor: Line }}
+            style={{ top: 8, height: 2, backgroundColor: Line }}
           />
           <div
             className="absolute left-1/2"
             style={{
-              top: 9, width: 1, height: 9,
-              backgroundColor: Line, transform: "translateX(-0.5px)",
+              top: 8, width: 2, height: 9,
+              backgroundColor: Line, transform: "translateX(-1px)",
             }}
           />
         </div>
@@ -234,13 +234,13 @@ export default function CorporateDiagram() {
           <div
             className="absolute left-1/2"
             style={{
-              top: 0, width: 1, height: 40,
-              backgroundColor: Line, transform: "translateX(-0.5px)",
+              top: 0, width: 2, height: 40,
+              backgroundColor: Line, transform: "translateX(-1px)",
             }}
           />
           <div
             className="absolute left-0 right-0"
-            style={{ bottom: 0, height: 1, backgroundColor: Line }}
+            style={{ bottom: -0.5, height: 2, backgroundColor: Line }}
           />
         </div>
 

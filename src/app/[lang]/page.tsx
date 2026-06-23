@@ -70,26 +70,6 @@ export default function HomePage() {
 
         {/* Content */}
         <div className="relative z-10 w-full px-6 md:px-16 lg:px-24 flex flex-col items-center text-center">
-          {/* Orbit decoration */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="flex justify-center mb-10"
-          >
-            <div className="relative w-20 h-20">
-              <div className="absolute inset-0 rounded-full border border-white/15" />
-              <div className="absolute inset-3 rounded-full border border-white/25" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-4 h-4 rounded-full bg-white/70 shadow-lg shadow-white/20" />
-              </div>
-              <div
-                className="absolute top-1 right-2 w-2.5 h-2.5 rounded-full bg-blue-300/80"
-                style={{ boxShadow: "0 0 8px rgba(147,197,253,0.6)" }}
-              />
-            </div>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}
@@ -124,9 +104,9 @@ export default function HomePage() {
           >
             <Link
               href={`${base}/business`}
-              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-full
-                bg-[#0A2463]/30 backdrop-blur-md border border-[#0A2463]/50 text-white text-base md:text-lg font-medium
-                hover:bg-[#0A2463] hover:text-white hover:border-[#0A2463]
+              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl
+                bg-[#0A2463] text-white text-base md:text-lg font-medium
+                hover:bg-[#0A2463]/30 backdrop-blur-md border border-[#0A2463]/50 hover:text-white hover:border-[#0A2463]/50
                 transition-all duration-500 ease-out"
             >
               <span>{t("home_explore_business")}</span>
@@ -142,7 +122,7 @@ export default function HomePage() {
               href="http://www.casil-group.com:8080/investor/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-full
+              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl
                 bg-white/10 backdrop-blur-md border border-white/25 text-white text-base md:text-lg font-medium
                 hover:bg-white hover:text-[#0A0E17] hover:border-white
                 transition-all duration-500 ease-out"
@@ -193,7 +173,7 @@ export default function HomePage() {
             <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A0E17] tracking-tight">
               {t("news_center_title")}
             </p>
-            <div className="mx-auto mt-8 w-20 h-[2px] bg-[#3E92CC] rounded-full" />
+            <div className="mx-auto mt-8 w-20 h-[2px] bg-[#3E92CC] rounded-xl" />
           </motion.div>
 
           {/* Featured image area */}
@@ -216,10 +196,6 @@ export default function HomePage() {
             />
             {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10 z-[1]" />
-            {/* Glow points */}
-            <div className="orchid-glow" style={{ top: "20%", left: "15%" }} />
-            <div className="orchid-glow" style={{ top: "50%", right: "20%", animationDelay: "1.5s" }} />
-            <div className="orchid-glow" style={{ bottom: "25%", left: "55%", animationDelay: "0.8s", width: "80px", height: "80px" }} />
 
             {/* Featured news overlay — bottom-left */}
             <motion.div
@@ -295,7 +271,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* Section 4 — Geographic Presence (地理位置)                    */}
       {/* ============================================================ */}
-      <section id="location" className="bg-white pt-16 pb-24 md:pb-36">
+      <section id="location" className="bg-white pt-12 pb-16">
         {/* Section header — subtitle + title + divider */}
         <div className="mb-16 md:mb-24 text-center px-6">
           <p className="text-[#5BA4D6] text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4">
@@ -304,7 +280,7 @@ export default function HomePage() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A0E17] tracking-wide mb-5">
             {t("loc_title")}
           </h2>
-          <div className="mx-auto w-20 h-[2px] bg-[#3E92CC] rounded-full" />
+          <div className="mx-auto w-20 h-[2px] bg-[#3E92CC] rounded-xl" />
         </div>
 
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 max-w-[1400px] mx-auto px-6 md:px-16 lg:px-24">
@@ -370,7 +346,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       <section
         id="get-in-touch"
-        className="relative pt-24 pb-28 md:pt-32 md:pb-40 overflow-hidden"
+        className="relative pt-16 pb-28 md:pt-32 md:pb-40 overflow-hidden !mb-0"
         style={{ background: "#001433" }}
       >
         {/* ---- 外层大光晕 ---- */}
@@ -459,7 +435,7 @@ export default function HomePage() {
             {/* 立即联络我们 — 主按钮 */}
             <Link
               href={`${base}/contact`}
-              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-full
+              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl
                 bg-[#0A2463]/30 backdrop-blur-md border border-[#0A2463]/50 text-white text-base md:text-lg font-medium
                 hover:bg-[#0A2463] hover:text-white hover:border-[#0A2463]
                 transition-all duration-500 ease-out"
@@ -478,7 +454,7 @@ export default function HomePage() {
               href="http://www.casil-group.com:8080/investor/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-full
+              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl
                 bg-white/10 backdrop-blur-md border border-white/25 text-white text-base md:text-lg font-medium
                 hover:bg-white hover:text-[#0A0E17] hover:border-white
                 transition-all duration-500 ease-out"
