@@ -31,9 +31,6 @@ export default function Footer() {
     {
       title: lang === "zh" ? "新聞中心" : "News",
       links: [
-        { label: lang === "zh" ? "集團要聞" : "Group News", href: `${base}/party/dynamic` },
-        { label: lang === "zh" ? "黨建專欄" : "Party Building", href: `${base}/party/pioneer` },
-        { label: lang === "zh" ? "媒體聚焦" : "Media Focus", href: `${base}/party/staff` },
         { label: lang === "zh" ? "公告通函" : "Announcements", href: `${base}/links` },
         { label: lang === "zh" ? "年度報告" : "Annual Reports", href: `${base}/links` },
       ],

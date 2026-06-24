@@ -56,7 +56,6 @@ export default function Header() {
     if (key === "industry") return p.startsWith(`${base}/business`);
     if (key === "investor") return false;
     if (key === "news") return p.startsWith(`${base}/news`);
-    if (key === "party") return p.startsWith(`${base}/party`);
     if (key === "contact") return p.startsWith(`${base}/contact`);
     return false;
   };
@@ -78,17 +77,10 @@ export default function Header() {
     { label: t("nav_global"), href: `${base}/business/global` },
   ];
 
-  const partyItems = [
-    { label: t("nav_party_dynamic"), href: `${base}/party/dynamic` },
-    { label: t("nav_party_pioneer"), href: `${base}/party/pioneer` },
-    { label: t("nav_party_staff"), href: `${base}/party/staff` },
-    { label: t("nav_party_youth"), href: `${base}/party/youth` },
-  ];
 
   const dropdowns: Record<string, NavDropdown> = {
     about: { label: t("nav_about"), items: aboutItems, href: `${base}/about` },
     industry: { label: t("nav_industry"), items: businessItems, href: `${base}/business` },
-    party: { label: t("nav_party"), items: partyItems, href: `${base}/party` },
   };
 
   const navItems: NavItem[] = [
@@ -97,14 +89,13 @@ export default function Header() {
     { type: "dropdown", key: "industry", data: dropdowns.industry },
     { type: "link", key: "investor", label: t("nav_investor"), href: "http://www.casil-group.com:8080/investor/", external: true },
     { type: "link", key: "news", label: t("nav_consult"), href: "", showArrow: true },
-    { type: "dropdown", key: "party", data: dropdowns.party },
     { type: "link", key: "contact", label: t("nav_contact"), href: `${base}/contact` },
   ];
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 glass shadow-[0_2px_20px_rgba(10,36,99,0.08)]">
-        <div className="max-w-6xl mx-auto flex items-center justify-between h-12  ">
+        <div className="max-w-5xl mx-auto flex items-center justify-between h-12  ">
           <div className="flex items-center gap-0 -ml-20">
               <Link href={base} className="flex-shrink-0">
               <img
@@ -114,8 +105,8 @@ export default function Header() {
               />
             </Link>
             <div className="hidden md:block leading-4 text-brand whitespace-nowrap ml-4">
-              <div className="text-[11px]">{t("home_na")}</div>
-              <div className="text-[8px]">{t("home_stock")}</div>
+              <div className="text-[12px]">{t("home_na")}</div>
+              <div className="text-[10px]">{t("home_stock")}</div>
             </div>
           </div>
 
@@ -309,57 +300,57 @@ export default function Header() {
 
                   {/* PCB */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950 mt-8">{t("mega_pcb_title")}</h4>
+                    <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_pcb_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       {t("mega_pcb_subsidiary")}
                     </span>
-                    <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
+                    <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
                       {t("mega_pcb_desc")}
                     </p>
                   </div>
 
                   {/* Display */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950 mt-8">{t("mega_display_title")}</h4>
+                    <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_display_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       {t("mega_display_subsidiary")}
                     </span>
-                    <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
+                    <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
                       {t("mega_display_desc")}
                     </p>
                   </div>
 
                   {/* IPM */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950 mt-8 whitespace-nowrap">{t("mega_ipm_title")}</h4>
+                    <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8 whitespace-nowrap">{t("mega_ipm_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       {t("mega_ipm_subsidiary")}
                     </span>
-                    <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
+                    <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
                       {t("mega_ipm_desc")}
                     </p>
                   </div>
 
                   {/* Power */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950 mt-8">{t("mega_power_title")}</h4>
+                    <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_power_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       {t("mega_power_subsidiary")}
                     </span>
-                    <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
+                    <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
                       {t("mega_power_desc")}
                     </p>
                   </div>
 
                   {/* Injection */}
                   <div className="flex flex-col gap-1.5 px-3">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950 mt-8">{t("mega_injection_title")}</h4>
+                    <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_injection_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       {t("mega_injection_subsidiary")}
                     </span>
                     <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
