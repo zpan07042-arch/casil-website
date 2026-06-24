@@ -1,6 +1,7 @@
 "use client";
 
-import { orgData, type OrgNode } from "@/data/org-structure";
+import { getOrgData, type OrgNode } from "@/data/org-structure";
+import type { Lang } from "@/lib/types";
 
 /* ──────────── 配色 ──────────── */
 const Navy     = "#0A2463";
@@ -15,39 +16,46 @@ const TagBg    = "#e8eff5";
 const TagText  = "#8B7355";
 const Shadow   = "0 1px 3px rgba(0,0,0,0.04)";
 
-/* ──────────── 子节点卡片 ──────────── */
+/* ──────────── 子节点卡片（缩小） ──────────── */
 function ChildCard({ node }: { node: OrgNode }) {
   return (
     <div
       style={{
-        backgroundColor: White, border: `1px solid ${Border}`, borderRadius: 6,
-        padding: "5px 14px", textAlign: "center", minWidth: 80, boxShadow: Shadow,
+        backgroundColor: White, border: `1px solid ${Border}`, borderRadius: 5,
+        padding: "3px 8px", textAlign: "center", minWidth: 52, boxShadow: Shadow,
       }}
     >
-      <span style={{ color: TextDark, fontSize: 12, lineHeight: 1.4 }}>{node.name}</span>
+      <span style={{ color: TextDark, fontSize: 10, lineHeight: 1.4 }}>{node.name}</span>
     </div>
   );
 }
 
 /* ──────────── 子公司节点卡片 ──────────── */
 function CompanyCard({ node }: { node: OrgNode }) {
+  const enlarged = node.enlarged ?? false;
+  const dimmed = node.dimmed ?? false;
   const hasChildren = node.children && node.children.length > 0;
 
   return (
-    <div className="flex flex-col items-center">
-      <div style={{ width: 2, height: 8, backgroundColor: Line }} />
+    <div className="flex flex-col items-center" style={{ opacity: dimmed ? 0.45 : 1 }}>
+      {/* 放大的卡片不显示顶部连线 */}
+      {!enlarged && <div style={{ width: 2, height: 8, backgroundColor: Line }} />}
       <div
         style={{
           backgroundColor: White, border: `1px solid ${Border}`, borderRadius: 8,
-          padding: hasChildren ? "6px 12px" : "8px 16px",
+          padding: enlarged
+            ? "10px 24px"
+            : hasChildren
+              ? "4px 8px"
+              : "5px 10px",
           textAlign: "center",
-          minWidth: hasChildren ? 100 : 110,
+          minWidth: enlarged ? 140 : hasChildren ? 65 : 75,
           boxShadow: Shadow,
         }}
       >
         <span style={{
           color: TextDark,
-          fontSize: hasChildren ? 12 : 14,
+          fontSize: enlarged ? 16 : hasChildren ? 11 : 12,
           fontWeight: 600, lineHeight: 1.4, display: "block",
         }}>
           {node.name}
@@ -55,7 +63,7 @@ function CompanyCard({ node }: { node: OrgNode }) {
         {node.subtitle && (
           <span style={{
             color: TextMuted,
-            fontSize: hasChildren ? 10 : 11,
+            fontSize: enlarged ? 13 : hasChildren ? 9 : 10,
             lineHeight: 1.3, display: "block", marginTop: 2,
           }}>
             ({node.subtitle})
@@ -64,7 +72,7 @@ function CompanyCard({ node }: { node: OrgNode }) {
         {node.tag && (
           <span style={{
             backgroundColor: TagBg, color: TagText,
-            fontSize: hasChildren ? 10 : 11,
+            fontSize: enlarged ? 12 : hasChildren ? 9 : 10,
             padding: "1px 6px", borderRadius: 3, display: "inline-block", marginTop: 4,
           }}>
             {node.tag}
@@ -162,7 +170,7 @@ function BusinessColumn({
       <div
         className="w-1/2xl"
         style={{
-          backgroundColor: White, border: `1px solid ${Blue}`,
+          backgroundColor: "rgba(62,146,204,0.08)", border: `1px solid ${Blue}`,
           borderRadius: 12, overflow: "hidden",
         }}
       >
@@ -179,8 +187,8 @@ function BusinessColumn({
 /* ═══════════════════════════════════════════════════
    主组件
    ═══════════════════════════════════════════════════ */
-export default function CorporateDiagram() {
-  const { rootName, departments, columns } = orgData;
+export default function CorporateDiagram({ lang }: { lang: Lang }) {
+  const { rootName, departments, columns } = getOrgData(lang);
 
   return (
     <div style={{ backgroundColor: "#F7F7FA", padding: "44px 0 64px" }}>

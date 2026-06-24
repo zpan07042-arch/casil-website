@@ -70,6 +70,25 @@ export default function HomePage() {
 
         {/* Content */}
         <div className="relative z-10 w-full px-6 md:px-16 lg:px-24 flex flex-col items-center text-center">
+                    {/* Orbit decoration */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="flex justify-center mb-10"
+          >
+            <div className="relative w-20 h-20">
+              <div className="absolute inset-0 rounded-full border border-white/15" />
+              <div className="absolute inset-3 rounded-full border border-white/25" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-4 h-4 rounded-full bg-white/70 shadow-lg shadow-white/20" />
+              </div>
+              <div
+                className="absolute top-1 right-2 w-2.5 h-2.5 rounded-full bg-blue-300/80"
+                style={{ boxShadow: "0 0 8px rgba(147,197,253,0.6)" }}
+              />
+            </div>
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}

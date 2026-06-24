@@ -102,7 +102,7 @@ export default function StructurePageClient({ lang }: { lang: Lang }) {
       {/* ═══════════════════════════════════════════════════
           组织架构树形图
           ═══════════════════════════════════════════════════ */}
-      <CorporateDiagram />
+      <CorporateDiagram lang={lang} />
 
     </div>
   );

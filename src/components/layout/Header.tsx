@@ -284,13 +284,13 @@ export default function Header() {
                     <div className="absolute inset-0 bg-black/55" />
                     <div className="relative z-10 p-3">
                       <p className="text-[0.8rem] text-white leading-relaxed mb-2">
-                        中國航天國際控股有限公司專注於電子製造及精密工業領域，旗下五大業務板塊覆蓋 PCB、顯示器件、智能功率模組、電源及注塑成型，為全球客戶提供一站式高科技製造解決方案。
+                        {t("mega_industry_desc")}
                       </p>
                       <Link
                         href={`${base}/business`}
                         className="inline-flex items-center gap-1 text-white/85 text-[0.8rem] font-medium hover:text-white transition-colors duration-200"
                       >
-                        查看全部
+                        {t("mega_view_all")}
                         <svg
                           width="12"
                           height="10"
@@ -307,63 +307,63 @@ export default function Header() {
                     </div>
                   </div>
 
-                  {/* 印製電路板（PCB） */}
+                  {/* PCB */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950">印製電路板（PCB）</h4>
+                    <h4 className="text-[0.9rem] font-bold text-gray-950">{t("mega_pcb_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
-                      東莞康源
+                      {t("mega_pcb_subsidiary")}
                     </span>
                     <p className="text-[0.7rem] text-gray-400 leading-snug">
-                      單層至多層 HDI 板、軟硬結合板，年產能逾 500 萬平方米。
+                      {t("mega_pcb_desc")}
                     </p>
                   </div>
 
-                  {/* 顯示器件研發與生產 */}
+                  {/* Display */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950">顯示器件研發與生產</h4>
+                    <h4 className="text-[0.9rem] font-bold text-gray-950">{t("mega_display_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
-                      航科半導體
+                      {t("mega_display_subsidiary")}
                     </span>
                     <p className="text-[0.7rem] text-gray-400 leading-snug">
-                      TFT-LCD、OLED 及車載顯示模組，服務高端工業及航天應用。
+                      {t("mega_display_desc")}
                     </p>
                   </div>
 
-                  {/* IPM 智能功率模組封裝 */}
+                  {/* IPM */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950 whitespace-nowrap">IPM 智能功率模組封裝</h4>
+                    <h4 className="text-[0.9rem] font-bold text-gray-950 whitespace-nowrap">{t("mega_ipm_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
-                      志豪微電子
+                      {t("mega_ipm_subsidiary")}
                     </span>
                     <p className="text-[0.7rem] text-gray-400 leading-snug">
-                      自主封裝 IPM 模組，應用於新能源汽車及工業變頻領域。
+                      {t("mega_ipm_desc")}
                     </p>
                   </div>
 
-                  {/* 電源領域 */}
+                  {/* Power */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950">電源領域</h4>
+                    <h4 className="text-[0.9rem] font-bold text-gray-950">{t("mega_power_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
-                      香港志順
+                      {t("mega_power_subsidiary")}
                     </span>
                     <p className="text-[0.7rem] text-gray-400 leading-snug">
-                      AC-DC、DC-DC 轉換器及 UPS 系統，覆蓋數據中心與工業場景。
+                      {t("mega_power_desc")}
                     </p>
                   </div>
 
-                  {/* 注塑領域 */}
+                  {/* Injection */}
                   <div className="flex flex-col gap-1.5 px-3">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950">注塑領域</h4>
+                    <h4 className="text-[0.9rem] font-bold text-gray-950">{t("mega_injection_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
-                      香港志源
+                      {t("mega_injection_subsidiary")}
                     </span>
                     <p className="text-[0.7rem] text-gray-400 leading-snug">
-                      高精密工程塑料注塑成型，配套 PCB 及顯示模組整機製造。
+                      {t("mega_injection_desc")}
                     </p>
                   </div>
                 </div>
