@@ -196,19 +196,19 @@ function BusinessCard({
       {/* ========================================================== */}
       <div className="rounded-3xl overflow-hidden bg-white/[0.1] backdrop-blur-sm ring-1 ring-white/10 group-hover/card:bg-[#5BA4D6]/[0.22] group-hover/card:ring-[#5BA4D6]/80 transition-all duration-500">
         {/* ======================================================== */}
-        {/* 图片区域 — 仅占卡片上 2/3 区域，object-contain + 内边距  */}
+        {/* 图片区域 — 图片完全铺满，无留白无白边                        */}
         {/* ======================================================== */}
         <div
-          className="relative w-full bg-[#141e33]/50"
+          className="relative w-full"
           style={{ aspectRatio: "4 / 3" }}
         >
-          {/* 产品图片 — object-contain 保留全图，不裁切、不贴边 */}
+          {/* 产品图片 — object-cover 填满整个图片框，边缘贴合卡片内框边界 */}
           <Image
             src={imgPath}
             alt={domain.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 20vw"
-            className="object-contain p-3 md:p-4 transition-transform duration-500 ease-out group-hover/card:scale-105"
+            className="object-cover transition-transform duration-500 ease-out group-hover/card:scale-105"
             loading="lazy"
             quality={90}
           />

@@ -51,7 +51,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col [&>:not(:first-child)]:mt-8">
       {/* ============================================================ */}
       {/* Section 1 — Hero (full screen, centered)                      */}
       {/* ============================================================ */}
@@ -176,7 +176,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* Section 2 — News Center (image-driven featured story)        */}
       {/* ============================================================ */}
-      <section id="news" className="relative bg-white pt-16 pb-0 overflow-hidden">
+      <section id="news" className="relative bg-white pt-8 pb-0 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16 lg:px-32">
           {/* Section header — English title + Chinese subtitle, divider below */}
           <motion.div
@@ -365,7 +365,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       <section
         id="get-in-touch"
-        className="relative pt-16 pb-28 md:pt-32 md:pb-40 overflow-hidden !mb-0"
+        className="relative pt-16 pb-28 md:pt-24 md:pb-28 overflow-hidden !mb-0"
         style={{ background: "#001433" }}
       >
         {/* ---- 外层大光晕 ---- */}

@@ -48,6 +48,7 @@ export const ui: I18nDict = {
     card_electronics_desc: "高端印製電路板、電子元器件及組件製造",
     // Home
     home_name: "中國航天國際控股有限公司",
+    home_na: "中國航天國際控股",
     home_stock: "股份號碼: 00031",
     home_footer_en: "China Aerospace International Holdings Ltd. All rights reserved.",
     home_footer_zh: "中國航天國際控股有限公司 版權所有 粵ICP備17156298號",
@@ -216,6 +217,7 @@ export const ui: I18nDict = {
     card_products_desc: " To align with the Group's new development strategy and direction, the Company has changed its Chinese name to 'China Aerospace International Holdings Limited' (stock short name: 'CASIL'). The new name also reflects the close relationship between the Company and its major shareholder CASC, and the deeper significance of future business interaction and development.",
     card_electronics_desc: "High-end PCBs, electronic components and assemblies manufacturing",
     home_name: "China Aerospace International Holdings Limited",
+    home_na: "China Aerospace International Holdings",
     home_stock: "Stock Code: 00031",
     home_footer_en: "China Aerospace International Holdings Ltd. All rights reserved.",
     home_footer_zh: "China Aerospace International Holdings Limited All Rights Reserved Yue ICP B17156298",

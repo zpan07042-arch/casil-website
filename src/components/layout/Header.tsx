@@ -114,7 +114,7 @@ export default function Header() {
               />
             </Link>
             <div className="hidden md:block text-[11px] leading-4 text-text-secondary whitespace-nowrap ml-4">
-              <div>{t("home_name")}</div>
+              <div>{t("home_na")}</div>
               <div>{t("home_stock")}</div>
             </div>
           </div>
