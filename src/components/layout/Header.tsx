@@ -279,16 +279,16 @@ export default function Header() {
               onMouseLeave={handleMegaMenuLeave}
             >
               <div className="bg-white shadow-xl border-t border-gray-100 overflow-hidden">
-                <div className="grid grid-cols-6 gap-0 p-3">
-                  <div className="relative bg-cover bg-center -m-3 mr-3" style={{ backgroundImage: "url('/images/baback.jpg')" }}>
+                <div className="grid grid-cols-7 gap-0 p-3">
+                  <div className="col-span-2 relative bg-cover bg-center -m-3 mr-0" style={{ backgroundImage: "url('/images/baback.jpg')" }}>
                     <div className="absolute inset-0 bg-black/55" />
-                    <div className="relative z-10 p-3">
-                      <p className="text-[0.8rem] text-white leading-relaxed mb-2 mt-4">
+                    <div className="relative z-10 p-5">
+                      <p className="text-[0.95rem] text-white leading-relaxed mb-3 mt-5">
                         {t("mega_industry_desc")}
                       </p>
                       <Link
                         href={`${base}/business`}
-                        className="inline-flex items-center gap-1 text-white/85 text-[0.8rem] font-medium hover:text-white transition-colors duration-200"
+                        className="inline-flex items-center gap-1 text-white/85 text-[0.85rem] font-medium hover:text-white transition-colors duration-200"
                       >
                         {t("mega_view_all")}
                         <svg
