@@ -113,9 +113,9 @@ export default function Header() {
                 className="h-7.5 w-auto "
               />
             </Link>
-            <div className="hidden md:block text-[11px] leading-4 text-text-secondary whitespace-nowrap ml-4">
-              <div>{t("home_na")}</div>
-              <div>{t("home_stock")}</div>
+            <div className="hidden md:block leading-4 text-brand whitespace-nowrap ml-4">
+              <div className="text-[11px]">{t("home_na")}</div>
+              <div className="text-[8px]">{t("home_stock")}</div>
             </div>
           </div>
 
@@ -283,7 +283,7 @@ export default function Header() {
                   <div className="relative bg-cover bg-center -m-3 mr-3" style={{ backgroundImage: "url('/images/baback.jpg')" }}>
                     <div className="absolute inset-0 bg-black/55" />
                     <div className="relative z-10 p-3">
-                      <p className="text-[0.8rem] text-white leading-relaxed mb-2">
+                      <p className="text-[0.8rem] text-white leading-relaxed mb-2 mt-4">
                         {t("mega_industry_desc")}
                       </p>
                       <Link
@@ -309,60 +309,60 @@ export default function Header() {
 
                   {/* PCB */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950">{t("mega_pcb_title")}</h4>
-                    <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
+                    <h4 className="text-[0.9rem] font-bold text-gray-950 mt-8">{t("mega_pcb_title")}</h4>
+                    <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       {t("mega_pcb_subsidiary")}
                     </span>
-                    <p className="text-[0.7rem] text-gray-400 leading-snug">
+                    <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
                       {t("mega_pcb_desc")}
                     </p>
                   </div>
 
                   {/* Display */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950">{t("mega_display_title")}</h4>
-                    <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
+                    <h4 className="text-[0.9rem] font-bold text-gray-950 mt-8">{t("mega_display_title")}</h4>
+                    <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       {t("mega_display_subsidiary")}
                     </span>
-                    <p className="text-[0.7rem] text-gray-400 leading-snug">
+                    <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
                       {t("mega_display_desc")}
                     </p>
                   </div>
 
                   {/* IPM */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950 whitespace-nowrap">{t("mega_ipm_title")}</h4>
-                    <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
+                    <h4 className="text-[0.9rem] font-bold text-gray-950 mt-8 whitespace-nowrap">{t("mega_ipm_title")}</h4>
+                    <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       {t("mega_ipm_subsidiary")}
                     </span>
-                    <p className="text-[0.7rem] text-gray-400 leading-snug">
+                    <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
                       {t("mega_ipm_desc")}
                     </p>
                   </div>
 
                   {/* Power */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950">{t("mega_power_title")}</h4>
-                    <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
+                    <h4 className="text-[0.9rem] font-bold text-gray-950 mt-8">{t("mega_power_title")}</h4>
+                    <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       {t("mega_power_subsidiary")}
                     </span>
-                    <p className="text-[0.7rem] text-gray-400 leading-snug">
+                    <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
                       {t("mega_power_desc")}
                     </p>
                   </div>
 
                   {/* Injection */}
                   <div className="flex flex-col gap-1.5 px-3">
-                    <h4 className="text-[0.9rem] font-bold text-gray-950">{t("mega_injection_title")}</h4>
-                    <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
+                    <h4 className="text-[0.9rem] font-bold text-gray-950 mt-8">{t("mega_injection_title")}</h4>
+                    <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       {t("mega_injection_subsidiary")}
                     </span>
-                    <p className="text-[0.7rem] text-gray-400 leading-snug">
+                    <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
                       {t("mega_injection_desc")}
                     </p>
                   </div>

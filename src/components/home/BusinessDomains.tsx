@@ -199,7 +199,7 @@ function BusinessCard({
         {/* 图片区域 — 图片完全铺满，无留白无白边                        */}
         {/* ======================================================== */}
         <div
-          className="relative w-full"
+          className="relative w-full overflow-hidden"
           style={{ aspectRatio: "4 / 3" }}
         >
           {/* 产品图片 — object-cover 填满整个图片框，边缘贴合卡片内框边界 */}
