@@ -279,8 +279,8 @@ export default function Header() {
               onMouseLeave={handleMegaMenuLeave}
             >
               <div className="bg-white shadow-xl border-t border-gray-100 overflow-hidden">
-                <div className="grid grid-cols-6 gap-4 p-3">
-                  <div className="relative bg-cover bg-center -m-3" style={{ backgroundImage: "url('/images/baback.jpg')" }}>
+                <div className="grid grid-cols-6 gap-0 p-3">
+                  <div className="relative bg-cover bg-center -m-3 mr-3" style={{ backgroundImage: "url('/images/baback.jpg')" }}>
                     <div className="absolute inset-0 bg-black/55" />
                     <div className="relative z-10 p-3">
                       <p className="text-[0.8rem] text-white leading-relaxed mb-2">
@@ -307,9 +307,11 @@ export default function Header() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-1.5">
+                  {/* 印製電路板（PCB） */}
+                  <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
                     <h4 className="text-[0.9rem] font-bold text-gray-950">印製電路板（PCB）</h4>
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
+                    <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       東莞康源
                     </span>
                     <p className="text-[0.7rem] text-gray-400 leading-snug">
@@ -317,9 +319,11 @@ export default function Header() {
                     </p>
                   </div>
 
-                  <div className="flex flex-col gap-1.5">
+                  {/* 顯示器件研發與生產 */}
+                  <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
                     <h4 className="text-[0.9rem] font-bold text-gray-950">顯示器件研發與生產</h4>
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
+                    <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       航科半導體
                     </span>
                     <p className="text-[0.7rem] text-gray-400 leading-snug">
@@ -327,9 +331,11 @@ export default function Header() {
                     </p>
                   </div>
 
-                  <div className="flex flex-col gap-1.5">
+                  {/* IPM 智能功率模組封裝 */}
+                  <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
                     <h4 className="text-[0.9rem] font-bold text-gray-950 whitespace-nowrap">IPM 智能功率模組封裝</h4>
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
+                    <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       志豪微電子
                     </span>
                     <p className="text-[0.7rem] text-gray-400 leading-snug">
@@ -337,9 +343,11 @@ export default function Header() {
                     </p>
                   </div>
 
-                  <div className="flex flex-col gap-1.5">
+                  {/* 電源領域 */}
+                  <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
                     <h4 className="text-[0.9rem] font-bold text-gray-950">電源領域</h4>
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
+                    <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       香港志順
                     </span>
                     <p className="text-[0.7rem] text-gray-400 leading-snug">
@@ -347,9 +355,11 @@ export default function Header() {
                     </p>
                   </div>
 
-                  <div className="flex flex-col gap-1.5">
+                  {/* 注塑領域 */}
+                  <div className="flex flex-col gap-1.5 px-3">
                     <h4 className="text-[0.9rem] font-bold text-gray-950">注塑領域</h4>
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium">
+                    <div className="w-1/2 h-px bg-[#3E92CC] my-0.5" />
+                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.65rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
                       香港志源
                     </span>
                     <p className="text-[0.7rem] text-gray-400 leading-snug">

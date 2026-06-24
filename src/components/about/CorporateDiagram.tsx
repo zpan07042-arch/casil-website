@@ -11,7 +11,7 @@ const Blue     = "#3E92CC";
 const White    = "#FFFFFF";
 const TextDark = "#1A1A2E";
 const TextMuted = "#86868B";
-const TagBg    = "#F5F0E8";
+const TagBg    = "#e8eff5";
 const TagText  = "#8B7355";
 const Shadow   = "0 1px 3px rgba(0,0,0,0.04)";
 
@@ -160,7 +160,7 @@ function BusinessColumn({
       </div>
       <div style={{ width: 2, height: 12, backgroundColor: Line }} />
       <div
-        className="w-full"
+        className="w-1/2xl"
         style={{
           backgroundColor: White, border: `1px solid ${Blue}`,
           borderRadius: 12, overflow: "hidden",

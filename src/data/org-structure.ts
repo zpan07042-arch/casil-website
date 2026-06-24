@@ -32,7 +32,6 @@ export const orgData: OrgData = {
     { name: "企業文化部" },
     { name: "監督與審計法務部" },
     { name: "數智化辦公室" },
-    { name: "企業管治與策略研究所" },
   ],
 
   columns: [
