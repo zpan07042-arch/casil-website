@@ -99,8 +99,10 @@ const orgDataZh: OrgData = {
           enlarged: true,
           children: [
             { name: "高科物業" },
-            { name: "工業園公司" },
           ],
+        },
+        { name: "工業園公司",
+            enlarged: true,
         },
         {
           name: "航科進出口",
