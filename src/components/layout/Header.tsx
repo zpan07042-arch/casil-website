@@ -95,7 +95,7 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 glass shadow-[0_2px_20px_rgba(10,36,99,0.08)]">
-        <div className="max-w-5xl mx-auto flex items-center justify-between h-12  ">
+        <div className="max-w-6xl mx-auto flex items-center justify-between h-12  ">
           <div className="flex items-center gap-0 -ml-20">
               <Link href={base} className="flex-shrink-0">
               <img
