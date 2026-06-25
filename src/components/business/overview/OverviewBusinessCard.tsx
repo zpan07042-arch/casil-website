@@ -38,7 +38,39 @@ export default function OverviewBusinessCard({
   const isGrid = imageLayout === "grid";
 
   return (
-    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px 24px" }}>
+    <>
+      {/* ═══ 交互式 hover 樣式 ═══ */}
+      <style>{`
+        /* ── 圖片單元格 hover：輕微放大 + 浮起陰影 ── */
+        .biz-card-img-cell {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          cursor: pointer;
+        }
+        .biz-card-img-cell:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 24px rgba(15, 36, 82, 0.18);
+        }
+
+        /* ── 了解更多按鈕 hover：品牌藍填充 + 白色文字 + 箭頭右移 ── */
+        .biz-card-link {
+          transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+          cursor: pointer;
+        }
+        .biz-card-link:hover {
+          background-color: #0F2452;
+          color: #FFFFFF;
+          box-shadow: 0 4px 12px rgba(15, 36, 82, 0.2);
+        }
+        .biz-card-link:hover .biz-card-arrow {
+          stroke: #FFFFFF;
+          transform: translateX(2px);
+        }
+        .biz-card-arrow {
+          transition: stroke 0.25s ease, transform 0.25s ease;
+        }
+      `}</style>
+
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px 24px" }}>
       <div
         style={{
           backgroundColor: "#FFFFFF",
@@ -89,6 +121,7 @@ export default function OverviewBusinessCard({
           {/* 右：了解更多按鈕 */}
           <a
             href={cardData.learnMoreHref}
+            className="biz-card-link"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -111,11 +144,12 @@ export default function OverviewBusinessCard({
               height="12"
               viewBox="0 0 12 12"
               fill="none"
+              className="biz-card-arrow"
               style={{ flexShrink: 0 }}
             >
               <path
                 d="M1 11L11 1M11 1H3.5M11 1V8.5"
-                stroke={BRAND_BLUE}
+                stroke="currentColor"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -229,22 +263,116 @@ export default function OverviewBusinessCard({
                 {productPlaceholders.map((ph, i) => (
                   <div
                     key={i}
+                    className={ph.imagePath ? "biz-card-img-cell" : undefined}
                     style={{
-                      border: `2px dashed ${ACCENT_BLUE}`,
                       borderRadius: 8,
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
                       justifyContent: "center",
-                      gap: 4,
-                      padding: 16,
                       aspectRatio: "1 / 1",
+                      overflow: "hidden",
+                      ...(ph.imagePath
+                        ? {}
+                        : {
+                            border: `2px dashed ${ACCENT_BLUE}`,
+                            padding: 16,
+                            gap: 4,
+                          }),
                     }}
                   >
+                    {ph.imagePath ? (
+                      <img
+                        src={ph.imagePath}
+                        alt={isZh ? ph.labelZh : ph.labelEn}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    ) : (
+                      <>
+                        {/* 灰色圖片圖標 */}
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <rect
+                            x="3"
+                            y="3"
+                            width="18"
+                            height="18"
+                            rx="2"
+                            stroke="#C4C9D4"
+                            strokeWidth="1.5"
+                          />
+                          <circle cx="8.5" cy="8.5" r="1.5" fill="#C4C9D4" />
+                          <path
+                            d="M3 16L8 11L12 15L16 9L21 15V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V16Z"
+                            fill="#C4C9D4"
+                          />
+                        </svg>
+                        <span
+                          style={{
+                            fontSize: 10,
+                            color: HELPER_COLOR,
+                          }}
+                        >
+                          {isZh ? ph.labelZh : ph.labelEn}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              /* 單格豎長框 */
+              <div
+                className={
+                  productPlaceholders[0]?.imagePath
+                    ? "biz-card-img-cell"
+                    : undefined
+                }
+                style={{
+                  borderRadius: 8,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minHeight: 240,
+                  overflow: "hidden",
+                  ...(productPlaceholders[0]?.imagePath
+                    ? {}
+                    : {
+                        border: `2px dashed ${ACCENT_BLUE}`,
+                        padding: 28,
+                        gap: 6,
+                      }),
+                }}
+              >
+                {productPlaceholders[0]?.imagePath ? (
+                  <img
+                    src={productPlaceholders[0].imagePath}
+                    alt={
+                      isZh
+                        ? productPlaceholders[0]?.labelZh
+                        : productPlaceholders[0]?.labelEn
+                    }
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                ) : (
+                  <>
                     {/* 灰色圖片圖標 */}
                     <svg
-                      width="24"
-                      height="24"
+                      width="28"
+                      height="28"
                       viewBox="0 0 24 24"
                       fill="none"
                     >
@@ -265,67 +393,22 @@ export default function OverviewBusinessCard({
                     </svg>
                     <span
                       style={{
-                        fontSize: 10,
+                        fontSize: 11,
                         color: HELPER_COLOR,
                       }}
                     >
-                      {isZh ? ph.labelZh : ph.labelEn}
+                      {isZh
+                        ? productPlaceholders[0]?.labelZh
+                        : productPlaceholders[0]?.labelEn}
                     </span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              /* 單格豎長框 */
-              <div
-                style={{
-                  border: `2px dashed ${ACCENT_BLUE}`,
-                  borderRadius: 8,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 6,
-                  padding: 28,
-                  minHeight: 240,
-                }}
-              >
-                {/* 灰色圖片圖標 */}
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <rect
-                    x="3"
-                    y="3"
-                    width="18"
-                    height="18"
-                    rx="2"
-                    stroke="#C4C9D4"
-                    strokeWidth="1.5"
-                  />
-                  <circle cx="8.5" cy="8.5" r="1.5" fill="#C4C9D4" />
-                  <path
-                    d="M3 16L8 11L12 15L16 9L21 15V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V16Z"
-                    fill="#C4C9D4"
-                  />
-                </svg>
-                <span
-                  style={{
-                    fontSize: 11,
-                    color: HELPER_COLOR,
-                  }}
-                >
-                  {isZh
-                    ? productPlaceholders[0]?.labelZh
-                    : productPlaceholders[0]?.labelEn}
-                </span>
+                  </>
+                )}
               </div>
             )}
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 }

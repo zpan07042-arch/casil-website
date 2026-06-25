@@ -20,6 +20,7 @@ export interface StatItem {
 export interface ProductPlaceholder {
   labelZh: string;
   labelEn: string;
+  imagePath?: string; // 真實圖片路徑，如 "/images/kangyuan1.png"
 }
 
 export interface OverviewCardData {
@@ -146,10 +147,10 @@ export const OVERVIEW_DATA: OverviewPageData = {
       learnMoreHref: "/zh/business/subsidiaries",
       imageLayout: "grid",
       productPlaceholders: [
-        { labelZh: "產品圖 1", labelEn: "Product Image 1" },
-        { labelZh: "產品圖 2", labelEn: "Product Image 2" },
-        { labelZh: "產品圖 3", labelEn: "Product Image 3" },
-        { labelZh: "產品圖 4", labelEn: "Product Image 4" },
+        { labelZh: "產品圖 1", labelEn: "Product Image 1", imagePath: "/images/kangyuan1.png" },
+        { labelZh: "產品圖 2", labelEn: "Product Image 2", imagePath: "/images/kangyuan2.png" },
+        { labelZh: "產品圖 3", labelEn: "Product Image 3", imagePath: "/images/kangyuan3.png" },
+        { labelZh: "產品圖 4", labelEn: "Product Image 4", imagePath: "/images/kangyuan4.png" },
       ],
     },
     {
@@ -162,10 +163,10 @@ export const OVERVIEW_DATA: OverviewPageData = {
       learnMoreHref: "/zh/business/subsidiaries",
       imageLayout: "grid",
       productPlaceholders: [
-        { labelZh: "產品圖 1", labelEn: "Product Image 1" },
-        { labelZh: "產品圖 2", labelEn: "Product Image 2" },
-        { labelZh: "產品圖 3", labelEn: "Product Image 3" },
-        { labelZh: "產品圖 4", labelEn: "Product Image 4" },
+        { labelZh: "產品圖 1", labelEn: "Product Image 1", imagePath: "/images/hangke1.png" },
+        { labelZh: "產品圖 2", labelEn: "Product Image 2", imagePath: "/images/hangke2.png" },
+        { labelZh: "產品圖 3", labelEn: "Product Image 3", imagePath: "/images/hangke3.png" },
+        { labelZh: "產品圖 4", labelEn: "Product Image 4", imagePath: "/images/hangke4.png" },
       ],
     },
     {
@@ -226,7 +227,7 @@ export const OVERVIEW_DATA: OverviewPageData = {
       learnMoreHref: "/zh/business/subsidiaries",
       imageLayout: "single",
       productPlaceholders: [
-        { labelZh: "物業圖 1", labelEn: "Property Image 1" },
+        { labelZh: "物業圖 1", labelEn: "Property Image 1", imagePath: "/images/gaoke.jpg" },
       ],
     },
   ],
