@@ -1,4 +1,6 @@
 import { getPage } from "@/lib/db";
+import { getPageMeta } from "@/lib/pageMeta";
+import PageBanner from "@/components/shared/PageBanner";
 import ElectronicsSection from "@/components/electronics/ElectronicsSection";
 
 export default async function ElectronicsPage({
@@ -12,9 +14,16 @@ export default async function ElectronicsPage({
 
   const title = lang === "zh" ? page.title_zh : page.title_en;
   const content = lang === "zh" ? page.content_zh : page.content_en;
+  const meta = getPageMeta("electronics", lang);
 
   return (
     <>
+      <PageBanner
+        title={title}
+        breadcrumb={meta.breadcrumb}
+        enLabel={meta.enLabel}
+        description={meta.description}
+      />
       <ElectronicsSection title={title} content={content || ""} lang={lang} />
     </>
   );

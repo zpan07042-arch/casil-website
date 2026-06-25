@@ -1,4 +1,6 @@
 import { getPage } from "@/lib/db";
+import { getPageMeta } from "@/lib/pageMeta";
+import PageBanner from "@/components/shared/PageBanner";
 import CompanyTimeline from "@/components/about/CompanyTimeline";
 
 export default async function BackgroundPage({
@@ -12,9 +14,16 @@ export default async function BackgroundPage({
 
   const content = lang === "zh" ? page.content_zh : page.content_en;
   const title = lang === "zh" ? page.title_zh : page.title_en;
+  const meta = getPageMeta("background", lang);
 
   return (
     <>
+      <PageBanner
+        title={title}
+        breadcrumb={meta.breadcrumb}
+        enLabel={meta.enLabel}
+        description={meta.description}
+      />
       <CompanyTimeline title={title} content={content || ""} />
     </>
   );

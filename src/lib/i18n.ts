@@ -7,7 +7,7 @@ export const ui: I18nDict = {
   zh: {
     // Nav
     nav_about: "關於我們",
-    nav_industry: "產業與業務",
+    nav_industry: "產品與業務",
     nav_home: "首頁",
     nav_consult: "新聞中心",
     nav_contact: "聯繫我們",
@@ -64,7 +64,7 @@ export const ui: I18nDict = {
     loc_open_map: "在地圖中打開",
     // Section titles
     about_title: "關於我們",
-    business_title: "產業與業務",
+    business_title: "產品與業務",
     news_title: "諮詢中心",
     links_title: "航天聯結",
     location_title: "地理位置",

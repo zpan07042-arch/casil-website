@@ -1,4 +1,5 @@
 import { getPage } from "@/lib/db";
+import { getPageMeta } from "@/lib/pageMeta";
 import ContentSection from "@/components/shared/ContentSection";
 
 export default async function LabPage({
@@ -12,10 +13,17 @@ export default async function LabPage({
 
   const content = lang === "zh" ? page.content_zh : page.content_en;
   const title = lang === "zh" ? page.title_zh : page.title_en;
+  const meta = getPageMeta("lab", lang);
 
   return (
     <>
-      <ContentSection title={title} content={content || ""} />
+      <ContentSection
+        title={title}
+        content={content || ""}
+        breadcrumb={meta.breadcrumb}
+        enLabel={meta.enLabel}
+        description={meta.description}
+      />
     </>
   );
 }

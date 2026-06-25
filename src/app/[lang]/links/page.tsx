@@ -1,4 +1,5 @@
 import { getPage, getLinks } from "@/lib/db";
+import { getPageMeta } from "@/lib/pageMeta";
 import ContentSection from "@/components/shared/ContentSection";
 
 export default async function LinksPage({
@@ -14,10 +15,17 @@ export default async function LinksPage({
 
   const content = lang === "zh" ? page.content_zh : page.content_en;
   const title = lang === "zh" ? page.title_zh : page.title_en;
+  const meta = getPageMeta("links", lang);
 
   return (
     <>
-      <ContentSection title={title} content={content || ""} />
+      <ContentSection
+        title={title}
+        content={content || ""}
+        breadcrumb={meta.breadcrumb}
+        enLabel={meta.enLabel}
+        description={meta.description}
+      />
       {links.length > 0 && (
         <section className="py-16 bg-bg-secondary">
           <div className="max-w-4xl mx-auto px-5 md:px-8">

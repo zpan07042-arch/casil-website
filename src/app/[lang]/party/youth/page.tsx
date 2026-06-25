@@ -1,4 +1,5 @@
 import { getPage } from "@/lib/db";
+import { getPageMeta } from "@/lib/pageMeta";
 import ContentSection from "@/components/shared/ContentSection";
 
 // ============================================================
@@ -16,6 +17,15 @@ export default async function PartyYouthPage({
 
   const title = lang === "zh" ? page.title_zh : page.title_en;
   const content = lang === "zh" ? page.content_zh : page.content_en;
+  const meta = getPageMeta("party_youth", lang);
 
-  return <ContentSection title={title} content={content || ""} />;
+  return (
+    <ContentSection
+      title={title}
+      content={content || ""}
+      breadcrumb={meta.breadcrumb}
+      enLabel={meta.enLabel}
+      description={meta.description}
+    />
+  );
 }

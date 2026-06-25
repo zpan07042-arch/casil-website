@@ -1,4 +1,5 @@
 import { getPage, getPagesBySection } from "@/lib/db";
+import { getPageMeta } from "@/lib/pageMeta";
 import ContentSection from "@/components/shared/ContentSection";
 import Link from "next/link";
 
@@ -16,6 +17,7 @@ export default async function BusinessPage({
 
   const title = lang === "zh" ? page.title_zh : page.title_en;
   const content = lang === "zh" ? page.content_zh : page.content_en;
+  const meta = getPageMeta("business", lang);
 
   const subRoutes: Record<string, string> = {
     subsidiaries: `${base}/business/subsidiaries`,
@@ -27,7 +29,13 @@ export default async function BusinessPage({
 
   return (
     <>
-      <ContentSection title={title} content={content || ""} />
+      <ContentSection
+        title={title}
+        content={content || ""}
+        breadcrumb={meta.breadcrumb}
+        enLabel={meta.enLabel}
+        description={meta.description}
+      />
       <section className="pb-16 md:pb-24">
         <div className="max-w-5xl mx-auto px-5 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

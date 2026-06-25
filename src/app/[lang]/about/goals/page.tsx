@@ -1,4 +1,6 @@
 import { getPage } from "@/lib/db";
+import { getPageMeta } from "@/lib/pageMeta";
+import PageBanner from "@/components/shared/PageBanner";
 import GoalsSection from "@/components/goals/GoalsSection";
 
 export default async function GoalsPage({
@@ -12,9 +14,16 @@ export default async function GoalsPage({
 
   const title = lang === "zh" ? page.title_zh : page.title_en;
   const content = lang === "zh" ? page.content_zh : page.content_en;
+  const meta = getPageMeta("goals", lang);
 
   return (
     <>
+      <PageBanner
+        title={title}
+        breadcrumb={meta.breadcrumb}
+        enLabel={meta.enLabel}
+        description={meta.description}
+      />
       <GoalsSection title={title} content={content || ""} lang={lang} />
     </>
   );

@@ -1,4 +1,5 @@
 import { getPage, getPagesBySection } from "@/lib/db";
+import { getPageMeta } from "@/lib/pageMeta";
 import ContentSection from "@/components/shared/ContentSection";
 import Link from "next/link";
 
@@ -19,6 +20,7 @@ export default async function PartyPage({
 
   const title = lang === "zh" ? page.title_zh : page.title_en;
   const content = lang === "zh" ? page.content_zh : page.content_en;
+  const meta = getPageMeta("party", lang);
 
   // [新增] 党建子页面路由映射 — 预留跳转链接
   const subRoutes: Record<string, string> = {
@@ -31,7 +33,13 @@ export default async function PartyPage({
   return (
     <>
       {/* [复用] ContentSection — 与关于我们页面相同的标题+渐变下划线+简介结构 */}
-      <ContentSection title={title} content={content || ""} />
+      <ContentSection
+        title={title}
+        content={content || ""}
+        breadcrumb={meta.breadcrumb}
+        enLabel={meta.enLabel}
+        description={meta.description}
+      />
 
       {/* [复用] 卡片网格 — 与关于我们页面相同的 grid 布局、卡片样式、hover 动效 */}
       <section className="pb-16 md:pb-24">

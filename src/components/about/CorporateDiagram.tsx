@@ -38,7 +38,6 @@ function CompanyCard({ node }: { node: OrgNode }) {
 
   return (
     <div className="flex flex-col items-center" style={{ opacity: dimmed ? 0.45 : 1 }}>
-      {/* 放大的卡片不显示顶部连线 */}
       {!enlarged && <div style={{ width: 2, height: 8, backgroundColor: Line }} />}
       <div
         style={{

@@ -1,4 +1,5 @@
 import { getPage } from "@/lib/db";
+import { getPageMeta } from "@/lib/pageMeta";
 import ContentSection from "@/components/shared/ContentSection";
 import Link from "next/link";
 
@@ -10,6 +11,7 @@ export default async function ContactPage({
   const { lang } = await params;
   const base = `/${lang}`;
   const page = await getPage("contact");
+  const meta = getPageMeta("contact", lang);
 
   const title = lang === "zh"
     ? (page?.title_zh || "聯繫我們")
@@ -43,7 +45,13 @@ export default async function ContactPage({
 
   return (
     <>
-      <ContentSection title={title} content={content} />
+      <ContentSection
+        title={title}
+        content={content}
+        breadcrumb={meta.breadcrumb}
+        enLabel={meta.enLabel}
+        description={meta.description}
+      />
       <section className="pb-16 md:pb-24">
         <div className="max-w-5xl mx-auto px-5 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
