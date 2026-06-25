@@ -82,10 +82,10 @@ const PAGE_META: Record<
   /* ======================== 產品與業務 ======================== */
   business: {
     breadcrumb: { zh: "首頁 > 產品與業務", en: "Home > Business" },
-    enLabel: "BUSINESS",
+    enLabel: "BUSINESS OVERVIEW",
     desc: {
-      zh: "航天服務與科技工業雙輪驅動，構建多元化產業格局",
-      en: "Dual-engine driven by aerospace services and technological industries",
+      zh: "兩大核心業務板塊，涵蓋先進製造業與航天產業服務業",
+      en: "Two core business segments spanning advanced manufacturing and aerospace industry services",
     },
   },
   electronics: {
