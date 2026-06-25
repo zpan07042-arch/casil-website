@@ -57,8 +57,19 @@ class CompatStatement {
     const stmt = this.db.prepare(this.sql);
     stmt.bind(params);
     stmt.step();
+    const changes = this.db.getRowsModified();
+    // sql.js 中 lastInsertRowid 需要通過額外查詢獲取
+    let lastInsertRowid = 0;
+    try {
+      const result = this.db.exec("SELECT last_insert_rowid()");
+      if (result.length > 0 && result[0].values.length > 0) {
+        lastInsertRowid = result[0].values[0][0] as number;
+      }
+    } catch {
+      // 非 INSERT 語句可能報錯，忽略
+    }
     stmt.free();
-    return { changes: 1, lastInsertRowid: 0 };
+    return { changes, lastInsertRowid };
   }
 }
 
@@ -86,6 +97,63 @@ export class CompatDatabase {
 
   prepare(sql: string): CompatStatement {
     return new CompatStatement(this.db, sql);
+  }
+
+  // ── CRUD 便捷方法 ──────────────────────────────────────────
+
+  /** 查詢所有行 */
+  listAll(table: string, orderBy?: string): unknown[] {
+    const sql = orderBy
+      ? `SELECT * FROM ${table} ORDER BY ${orderBy}`
+      : `SELECT * FROM ${table}`;
+    return this.prepare(sql).all();
+  }
+
+  /** 按 ID 查詢單行 */
+  getById(table: string, id: unknown, idColumn = "id"): unknown {
+    return this.prepare(`SELECT * FROM ${table} WHERE ${idColumn} = ? LIMIT 1`).get(id as SqlValue);
+  }
+
+  /** 插入一行，返回完整行數據 */
+  insert(table: string, data: Record<string, unknown>): unknown {
+    const keys = Object.keys(data);
+    const placeholders = keys.map(() => "?").join(", ");
+    const values = keys.map((k) => data[k]);
+    const sql = `INSERT INTO ${table} (${keys.join(", ")}) VALUES (${placeholders})`;
+    const result = this.prepare(sql).run(...(values as SqlValue[]));
+    this.saveToDisk();
+
+    // 對於 INTEGER AUTOINCREMENT 主鍵，獲取插入的 id
+    const idColumn = "id";
+    if (result.lastInsertRowid > 0) {
+      return this.prepare(`SELECT * FROM ${table} WHERE rowid = ?`).get(result.lastInsertRowid);
+    }
+    // 對於 TEXT 主鍵（如 pages），用提供的 id 查詢
+    if (data[idColumn] !== undefined) {
+      return this.prepare(`SELECT * FROM ${table} WHERE ${idColumn} = ?`).get(data[idColumn] as SqlValue);
+    }
+    return data;
+  }
+
+  /** 更新一行，返回更新後的行數據 */
+  update(table: string, id: unknown, data: Record<string, unknown>, idColumn = "id"): unknown | undefined {
+    const keys = Object.keys(data);
+    if (keys.length === 0) return this.getById(table, id, idColumn);
+    const setClauses = keys.map((k) => `${k} = ?`).join(", ");
+    const values: SqlValue[] = keys.map((k) => data[k] as SqlValue);
+    const sql = `UPDATE ${table} SET ${setClauses} WHERE ${idColumn} = ?`;
+    values.push(id as SqlValue);
+    this.prepare(sql).run(...values);
+    this.saveToDisk();
+    return this.prepare(`SELECT * FROM ${table} WHERE ${idColumn} = ?`).get(id as SqlValue);
+  }
+
+  /** 刪除一行 */
+  delete(table: string, id: unknown, idColumn = "id"): { deleted: boolean } {
+    const sql = `DELETE FROM ${table} WHERE ${idColumn} = ?`;
+    const result = this.prepare(sql).run(id as SqlValue);
+    this.saveToDisk();
+    return { deleted: result.changes > 0 };
   }
 
   /** 將內存中的數據庫寫入磁盤 */
@@ -172,6 +240,14 @@ function runMigrations(database: CompatDatabase): void {
   } else {
     console.log("[migrate] All migrations up to date.");
   }
+}
+
+// ── Types ───────────────────────────────────────────────────────
+
+export interface AdminSession {
+  token: string;
+  created_at: string;
+  expires_at: string;
 }
 
 // ── Singleton ────────────────────────────────────────────────────
