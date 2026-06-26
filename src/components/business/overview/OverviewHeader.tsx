@@ -67,7 +67,7 @@ export default function OverviewHeader({
         {/* 大標題 */}
         <h1
           style={{
-            fontSize: 36,
+            fontSize: 50,
             fontWeight: 700,
             color: "#0A1429",
             margin: "0 0 16px",
@@ -90,7 +90,7 @@ export default function OverviewHeader({
         {/* 說明文字 */}
         <p
           style={{
-            fontSize: 14,
+            fontSize: 16,
             color: "#444A58",
             margin: "0 0 36px",
             lineHeight: 1.6,

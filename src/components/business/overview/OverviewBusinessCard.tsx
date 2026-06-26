@@ -123,7 +123,7 @@ export default function OverviewBusinessCard({
           <div>
             <h2
               style={{
-                fontSize: 18,
+                fontSize: 30,
                 fontWeight: 700,
                 color: TITLE_COLOR,
                 margin: 0,
@@ -134,11 +134,11 @@ export default function OverviewBusinessCard({
             </h2>
             <span
               style={{
-                fontSize: 12,
+                fontSize: 15,
                 color: BRAND_BLUE,
                 backgroundColor: ACCENT_BLUE,
                 padding: "2px 12px",
-                borderRadius: 20,
+                borderRadius: 15,
                 marginLeft: 8,
                 whiteSpace: "nowrap",
               }}
@@ -223,7 +223,7 @@ export default function OverviewBusinessCard({
           <div style={{ flex: "6 1 360px", minWidth: 0 }}>
             <p
               style={{
-                fontSize: 13,
+                fontSize: 18,
                 color: BODY_COLOR,
                 lineHeight: 1.6,
                 margin: "0 0 20px",

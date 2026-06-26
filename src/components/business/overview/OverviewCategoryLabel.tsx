@@ -66,7 +66,7 @@ export default function OverviewCategoryLabel({
 
             <span
               style={{
-                fontSize: 20,
+                fontSize: 30,
                 fontWeight: 600,
                 color: TITLE_COLOR,
               }}

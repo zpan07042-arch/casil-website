@@ -77,7 +77,7 @@ export default function OverviewBanner({
           style={{
             position: "relative",
             zIndex: 1,
-            fontSize: 14,
+            fontSize: 20,
             color: "rgba(255, 255, 255, 0.85)",
             lineHeight: 2.0,
             margin: "0 0 28px",
