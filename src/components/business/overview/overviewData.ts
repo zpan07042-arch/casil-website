@@ -179,10 +179,10 @@ export const OVERVIEW_DATA: OverviewPageData = {
       learnMoreHref: "/zh/business/subsidiaries",
       imageLayout: "grid",
       productPlaceholders: [
-        { labelZh: "產品圖 1", labelEn: "Product Image 1" },
-        { labelZh: "產品圖 2", labelEn: "Product Image 2" },
-        { labelZh: "產品圖 3", labelEn: "Product Image 3" },
-        { labelZh: "產品圖 4", labelEn: "Product Image 4" },
+        { labelZh: "產品圖 1", labelEn: "Product Image 1", imagePath: "/images/zhihao1.png" },
+        { labelZh: "產品圖 2", labelEn: "Product Image 2", imagePath: "/images/zhihao2.png" },
+        { labelZh: "產品圖 3", labelEn: "Product Image 3", imagePath: "/images/zhihao3.png" },
+        { labelZh: "產品圖 4", labelEn: "Product Image 4", imagePath: "/images/zhihao4.png" },
       ],
     },
     {
@@ -195,10 +195,10 @@ export const OVERVIEW_DATA: OverviewPageData = {
       learnMoreHref: "/zh/business/subsidiaries",
       imageLayout: "grid",
       productPlaceholders: [
-        { labelZh: "產品圖 1", labelEn: "Product Image 1" },
-        { labelZh: "產品圖 2", labelEn: "Product Image 2" },
-        { labelZh: "產品圖 3", labelEn: "Product Image 3" },
-        { labelZh: "產品圖 4", labelEn: "Product Image 4" },
+        { labelZh: "產品圖 1", labelEn: "Product Image 1", imagePath: "/images/zhishun1.png" },
+        { labelZh: "產品圖 2", labelEn: "Product Image 2", imagePath: "/images/zhishun2.png" },
+        { labelZh: "產品圖 3", labelEn: "Product Image 3", imagePath: "/images/zhishun3.png" },
+        { labelZh: "產品圖 4", labelEn: "Product Image 4", imagePath: "/images/zhishun4.png" },
       ],
     },
     {
@@ -211,10 +211,10 @@ export const OVERVIEW_DATA: OverviewPageData = {
       learnMoreHref: "/zh/business/subsidiaries",
       imageLayout: "grid",
       productPlaceholders: [
-        { labelZh: "產品圖 1", labelEn: "Product Image 1" },
-        { labelZh: "產品圖 2", labelEn: "Product Image 2" },
-        { labelZh: "產品圖 3", labelEn: "Product Image 3" },
-        { labelZh: "產品圖 4", labelEn: "Product Image 4" },
+        { labelZh: "產品圖 1", labelEn: "Product Image 1", imagePath: "/images/zhiyuan1.png" },
+        { labelZh: "產品圖 2", labelEn: "Product Image 2", imagePath: "/images/zhiyuan2.png" },
+        { labelZh: "產品圖 3", labelEn: "Product Image 3", imagePath: "/images/zhiyuan3.png" },
+        { labelZh: "產品圖 4", labelEn: "Product Image 4", imagePath: "/images/zhiyuan4.png" },
       ],
     },
     {
