@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { label: "企業管治文件", href: "/admin/governance-docs", icon: "📋" },
   { label: "公司資訊", href: "/admin/company-news", icon: "📰" },
   { label: "子公司", href: "/admin/subsidiaries", icon: "🏢" },
+  { label: "業務卡片", href: "/admin/business-cards", icon: "💼" },
   { label: "友情鏈接", href: "/admin/links", icon: "🔗" },
 ];
 

@@ -7,6 +7,7 @@ import type {
   CompanyNews,
   Subsidiary,
   LinkItem,
+  BusinessCardRow,
 } from "./types";
 
 // Pages
@@ -91,6 +92,13 @@ export async function getLinks(): Promise<LinkItem[]> {
   return (await getDb())
     .prepare("SELECT * FROM links ORDER BY sort_order")
     .all() as LinkItem[];
+}
+
+// Business Cards
+export async function getBusinessCards(): Promise<BusinessCardRow[]> {
+  return (await getDb())
+    .prepare("SELECT * FROM business_cards ORDER BY sort_order")
+    .all() as BusinessCardRow[];
 }
 
 // Search

@@ -357,6 +357,105 @@ export const LINKS_COLUMNS: Column<Record<string, unknown>>[] = [
   { key: "sort_order", label: "排序" },
 ];
 
+// ────────────────────────────────────────────────────────────
+
+export const BUSINESS_CARDS_FIELDS: FieldConfig[] = [
+  {
+    name: "id",
+    label: "卡片ID",
+    type: "text",
+    required: true,
+    placeholder: "例如: dongguan-kangyuan",
+  },
+  {
+    name: "category",
+    label: "分類",
+    type: "select",
+    required: true,
+    options: [
+      { value: "advanced_manufacturing", label: "先進製造業 (A)" },
+      { value: "aerospace_services", label: "航天產業服務業 (B)" },
+    ],
+  },
+  {
+    name: "main_title",
+    label: "中文主標題",
+    type: "text",
+    required: true,
+    lang: "zh",
+  },
+  {
+    name: "sub_title",
+    label: "中文副標題",
+    type: "text",
+    required: true,
+    lang: "zh",
+  },
+  {
+    name: "en_name",
+    label: "英文名稱",
+    type: "text",
+    required: true,
+    lang: "en",
+  },
+  {
+    name: "body_zh",
+    label: "中文正文",
+    type: "textarea",
+    required: true,
+    lang: "zh",
+  },
+  {
+    name: "body_en",
+    label: "英文正文",
+    type: "textarea",
+    required: true,
+    lang: "en",
+  },
+  {
+    name: "clients",
+    label: "客戶標籤 (JSON)",
+    type: "textarea",
+    placeholder: '["Sensata","Accelink","OFILM","Hisense"]',
+  },
+  {
+    name: "learn_more_href",
+    label: "了解更多鏈接",
+    type: "url",
+    placeholder: "/zh/business/subsidiaries",
+  },
+  {
+    name: "image_layout",
+    label: "圖片佈局",
+    type: "select",
+    required: true,
+    options: [
+      { value: "grid", label: "2×2 網格" },
+      { value: "single", label: "單格豎長" },
+    ],
+  },
+  {
+    name: "product_images",
+    label: "產品圖片 (JSON)",
+    type: "textarea",
+    placeholder: '[{"lblZh":"產品圖 1","lblEn":"Product Image 1","img":"/images/example.png"}]',
+  },
+  {
+    name: "sort_order",
+    label: "排序",
+    type: "number",
+  },
+];
+
+export const BUSINESS_CARDS_COLUMNS: Column<Record<string, unknown>>[] = [
+  { key: "id", label: "ID" },
+  { key: "category", label: "分類" },
+  { key: "main_title", label: "中文主標題" },
+  { key: "en_name", label: "英文名稱" },
+  { key: "image_layout", label: "佈局" },
+  { key: "sort_order", label: "排序" },
+];
+
 // ════════════════════════════════════════════════════════════
 // 表名與配置映射
 // ════════════════════════════════════════════════════════════
@@ -413,5 +512,12 @@ export const TABLE_META: Record<
     fields: LINKS_FIELDS,
     columns: LINKS_COLUMNS,
     apiPath: "links",
+  },
+  business_cards: {
+    label: "業務卡片",
+    fields: BUSINESS_CARDS_FIELDS,
+    columns: BUSINESS_CARDS_COLUMNS,
+    apiPath: "business_cards",
+    isTextPk: true,
   },
 };

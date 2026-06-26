@@ -57,6 +57,12 @@ export const TABLE_CONFIG: Record<string, TableConfig> = {
     orderBy: "sort_order",
     requiredFields: ["name_zh"],
   },
+  business_cards: {
+    idColumn: "id",
+    idType: "text",
+    orderBy: "sort_order",
+    requiredFields: ["id", "category", "main_title", "sub_title", "en_name", "body_zh", "body_en"],
+  },
 };
 
 export const ALLOWED_TABLES = new Set(Object.keys(TABLE_CONFIG));

@@ -65,4 +65,25 @@ export interface LinkItem {
   sort_order: number;
 }
 
+export interface BusinessCardRow {
+  id: string;
+  category: string;
+  main_title: string;
+  sub_title: string;
+  en_name: string;
+  body_zh: string;
+  body_en: string;
+  clients: string;        // JSON text: string[]
+  learn_more_href: string;
+  image_layout: string;   // "grid" | "single"
+  product_images: string; // JSON text: {lblZh, lblEn, img}[]
+  sort_order: number;
+}
+
+export interface ProductImageParsed {
+  lblZh: string;
+  lblEn: string;
+  img: string;
+}
+
 export type Lang = "zh" | "en";
