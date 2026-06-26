@@ -58,7 +58,8 @@ class CompatStatement {
     stmt.bind(params);
     stmt.step();
     const changes = this.db.getRowsModified();
-    // sql.js 中 lastInsertRowid 需要通過額外查詢獲取
+    // 必須先釋放 statement 才能執行新的 SQL（sql.js 不允許兩個活躍 statement 共存）
+    stmt.free();
     let lastInsertRowid = 0;
     try {
       const result = this.db.exec("SELECT last_insert_rowid()");
@@ -68,7 +69,6 @@ class CompatStatement {
     } catch {
       // 非 INSERT 語句可能報錯，忽略
     }
-    stmt.free();
     return { changes, lastInsertRowid };
   }
 }

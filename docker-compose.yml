@@ -7,6 +7,7 @@ services:
     environment:
       NODE_ENV: production
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      FORCE_SECURE: ${FORCE_SECURE:-false}
     volumes:
       # 只挂载 db 子目录，持久化 casil.db
       # migrations 目录来自镜像，不会被 volume 覆盖

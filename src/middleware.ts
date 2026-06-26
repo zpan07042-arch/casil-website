@@ -8,7 +8,7 @@ import type { NextRequest } from "next/server";
  * 因此 middleware 只做 cookie 存在性檢查（預過濾），完整的 session 驗證在各 API route
  * 和 admin layout 服務端組件中進行。
  */
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 允許登錄頁面和登錄 API 通過
