@@ -1,5 +1,5 @@
 import OverviewPage from "@/components/business/overview/OverviewPage";
-import { getBusinessCards } from "@/lib/db";
+import { getBusinessCards, getLinks } from "@/lib/db";
 import type { OverviewCardData } from "@/components/business/overview/overviewData";
 import type { BusinessCardRow, ProductImageParsed } from "@/lib/types";
 
@@ -16,7 +16,7 @@ export default async function BusinessPage({
 }) {
   const { lang } = await params;
 
-  const dbRows = await getBusinessCards();
+  const [dbRows, links] = await Promise.all([getBusinessCards(), getLinks()]);
 
   // 將 DB 行格式 (snake_case + JSON 字符串) 轉換為 OverviewCardData
   const cards: OverviewCardData[] = dbRows.map((row: BusinessCardRow) => {
@@ -55,5 +55,5 @@ export default async function BusinessPage({
     };
   });
 
-  return <OverviewPage lang={lang} cards={cards} />;
+  return <OverviewPage lang={lang} cards={cards} links={links} />;
 }

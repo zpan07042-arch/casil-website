@@ -49,12 +49,14 @@ export async function POST(request: Request) {
     await createSession(token);
 
     // 設置 httpOnly cookie
-    const isProd = process.env.NODE_ENV === "production";
+    // FORCE_SECURE=false 可在無 HTTPS 的內網環境中禁用 Secure 標誌
+    const forceSecure = process.env.FORCE_SECURE !== "false";
+    const isSecure = forceSecure && process.env.NODE_ENV === "production";
     const response = Response.json({ success: true });
 
     response.headers.set(
       "Set-Cookie",
-      `admin_token=${token}; HttpOnly; ${isProd ? "Secure; " : ""}SameSite=Strict; Path=/; Max-Age=${60 * 60 * 24}`
+      `admin_token=${token}; HttpOnly; ${isSecure ? "Secure; " : ""}SameSite=Strict; Path=/; Max-Age=${60 * 60 * 24}`
     );
 
     // 清理該 IP 的速率限制記錄

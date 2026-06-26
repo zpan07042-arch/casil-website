@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useI18n } from "@/components/data/I18nProvider";
+import type { LinkItem } from "@/lib/types";
 import SearchBar from "./SearchBar";
 import LangSwitch from "./LangSwitch";
 import MobileMenu from "./MobileMenu";
@@ -19,7 +20,21 @@ type NavItem =
   | { type: "dropdown"; key: string; data: NavDropdown }
   | { type: "link"; key: string; label: string; href: string; showArrow?: boolean; external?: boolean };
 
-export default function Header() {
+/**
+ * 根據業務板塊關鍵字匹配對應的友情鏈接 URL。
+ * 在 links 中查找 name_zh 包含任一關鍵字的記錄，返回其 url。
+ */
+function findLinkUrl(links: LinkItem[], keywords: string[]): string | null {
+  for (const kw of keywords) {
+    const found = links.find(
+      (l) => l.name_zh.includes(kw) && l.url
+    );
+    if (found) return found.url;
+  }
+  return null;
+}
+
+export default function Header({ links }: { links: LinkItem[] }) {
   const { lang, t } = useI18n();
   const pathname = usePathname();
   const router = useRouter();
@@ -302,9 +317,20 @@ export default function Header() {
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
                     <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_pcb_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
-                      {t("mega_pcb_subsidiary")}
-                    </span>
+                    {findLinkUrl(links, ["康源"]) ? (
+                      <a
+                        href={findLinkUrl(links, ["康源"])!}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white no-underline"
+                      >
+                        {t("mega_pcb_subsidiary")}
+                      </a>
+                    ) : (
+                      <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                        {t("mega_pcb_subsidiary")}
+                      </span>
+                    )}
                     <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
                       {t("mega_pcb_desc")}
                     </p>
@@ -314,9 +340,20 @@ export default function Header() {
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
                     <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_display_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
-                      {t("mega_display_subsidiary")}
-                    </span>
+                    {findLinkUrl(links, ["半導體", "半导体"]) ? (
+                      <a
+                        href={findLinkUrl(links, ["半導體", "半导体"])!}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white no-underline"
+                      >
+                        {t("mega_display_subsidiary")}
+                      </a>
+                    ) : (
+                      <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                        {t("mega_display_subsidiary")}
+                      </span>
+                    )}
                     <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
                       {t("mega_display_desc")}
                     </p>
@@ -326,9 +363,20 @@ export default function Header() {
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
                     <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8 whitespace-nowrap">{t("mega_ipm_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
-                      {t("mega_ipm_subsidiary")}
-                    </span>
+                    {findLinkUrl(links, ["志豪"]) ? (
+                      <a
+                        href={findLinkUrl(links, ["志豪"])!}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white no-underline"
+                      >
+                        {t("mega_ipm_subsidiary")}
+                      </a>
+                    ) : (
+                      <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                        {t("mega_ipm_subsidiary")}
+                      </span>
+                    )}
                     <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
                       {t("mega_ipm_desc")}
                     </p>
@@ -338,9 +386,20 @@ export default function Header() {
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
                     <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_power_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
-                      {t("mega_power_subsidiary")}
-                    </span>
+                    {findLinkUrl(links, ["志順", "志顺"]) ? (
+                      <a
+                        href={findLinkUrl(links, ["志順", "志顺"])!}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white no-underline"
+                      >
+                        {t("mega_power_subsidiary")}
+                      </a>
+                    ) : (
+                      <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                        {t("mega_power_subsidiary")}
+                      </span>
+                    )}
                     <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
                       {t("mega_power_desc")}
                     </p>
@@ -350,9 +409,20 @@ export default function Header() {
                   <div className="flex flex-col gap-1.5 px-3">
                     <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_injection_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
-                    <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
-                      {t("mega_injection_subsidiary")}
-                    </span>
+                    {findLinkUrl(links, ["志源"]) ? (
+                      <a
+                        href={findLinkUrl(links, ["志源"])!}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white no-underline"
+                      >
+                        {t("mega_injection_subsidiary")}
+                      </a>
+                    ) : (
+                      <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                        {t("mega_injection_subsidiary")}
+                      </span>
+                    )}
                     <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
                       {t("mega_injection_desc")}
                     </p>

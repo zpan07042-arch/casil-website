@@ -1,4 +1,5 @@
 import type { OverviewCardData } from "./overviewData";
+import type { LinkItem } from "@/lib/types";
 
 /**
  * 模塊3-5 & 模塊7：業務卡片
@@ -15,12 +16,36 @@ const BODY_COLOR = "#444A58";
 const TITLE_COLOR = "#0A1429";
 const HELPER_COLOR = "#888E9C";
 
+/**
+ * 根據業務卡片主標題匹配對應的友情鏈接 URL。
+ * 遍歷 links，若 link.name_zh 與 mainTitle 有共同的關鍵字片段則返回其 url。
+ */
+function findLinkUrlForCard(mainTitle: string, links: LinkItem[]): string | null {
+  // 提取 mainTitle 中所有 2-3 字片段，在 link.name_zh 中查找匹配
+  const parts: string[] = [];
+  for (let i = 0; i < mainTitle.length - 1; i++) {
+    parts.push(mainTitle.substring(i, i + 2));
+  }
+  for (let i = 0; i < mainTitle.length - 2; i++) {
+    parts.push(mainTitle.substring(i, i + 3));
+  }
+  // 按片段長度降序，優先匹配較長的關鍵字
+  parts.sort((a, b) => b.length - a.length);
+  for (const part of parts) {
+    const found = links.find((l) => l.name_zh.includes(part) && l.url);
+    if (found) return found.url;
+  }
+  return null;
+}
+
 export default function OverviewBusinessCard({
   lang,
   cardData,
+  links,
 }: {
   lang: string;
   cardData: OverviewCardData;
+  links: LinkItem[];
 }) {
   const {
     mainTitle,
@@ -36,6 +61,10 @@ export default function OverviewBusinessCard({
   const bodyText = isZh ? body.zh : body.en;
   const learnMoreText = isZh ? "了解更多" : "Learn More";
   const isGrid = imageLayout === "grid";
+
+  // 優先使用友情鏈接 URL，若無匹配則使用卡片自身的 learnMoreHref
+  const matchedLinkUrl = findLinkUrlForCard(mainTitle, links);
+  const learnMoreHref = matchedLinkUrl || cardData.learnMoreHref;
 
   return (
     <>
@@ -120,7 +149,9 @@ export default function OverviewBusinessCard({
 
           {/* 右：了解更多按鈕 */}
           <a
-            href={cardData.learnMoreHref}
+            href={learnMoreHref}
+            target={matchedLinkUrl ? "_blank" : undefined}
+            rel={matchedLinkUrl ? "noopener noreferrer" : undefined}
             className="biz-card-link"
             style={{
               display: "inline-flex",

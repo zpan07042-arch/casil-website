@@ -6,6 +6,7 @@ import OverviewBusinessCard from "./OverviewBusinessCard";
 import OverviewBanner from "./OverviewBanner";
 import { OVERVIEW_CONFIG, type OverviewCardData } from "./overviewData";
 import { getPageMeta } from "@/lib/pageMeta";
+import type { LinkItem } from "@/lib/types";
 
 /**
  * 產品與業務 - 業務總覽 長頁面
@@ -17,9 +18,11 @@ import { getPageMeta } from "@/lib/pageMeta";
 export default function OverviewPage({
   lang,
   cards,
+  links,
 }: {
   lang: string;
   cards: OverviewCardData[];
+  links: LinkItem[];
 }) {
   const meta = getPageMeta("business", lang);
   const isZh = lang === "zh";
@@ -74,7 +77,7 @@ export default function OverviewPage({
 
       {/* ═══════ 模塊3-5：先進製造業卡片 ═══════ */}
       {advancedCards.map((card) => (
-        <OverviewBusinessCard key={card.id} lang={lang} cardData={card} />
+        <OverviewBusinessCard key={card.id} lang={lang} cardData={card} links={links} />
       ))}
 
       {/* ═══════ 模塊6：B 航天產業服務業 分類條 ═══════ */}
@@ -86,7 +89,7 @@ export default function OverviewPage({
 
       {/* ═══════ 模塊7：航天產業服務業卡片 ═══════ */}
       {aeroCards.map((card) => (
-        <OverviewBusinessCard key={card.id} lang={lang} cardData={card} />
+        <OverviewBusinessCard key={card.id} lang={lang} cardData={card} links={links} />
       ))}
 
       {/* ═══════ 模塊8：滿版深藍 Banner ═══════ */}

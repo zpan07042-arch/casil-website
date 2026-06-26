@@ -2,6 +2,7 @@ import type { Lang } from "@/lib/types";
 import { I18nProvider } from "@/components/data/I18nProvider";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { getLinks } from "@/lib/db";
 
 export async function generateStaticParams() {
   return [{ lang: "zh" }, { lang: "en" }];
@@ -16,11 +17,12 @@ export default async function LangLayout({
 }) {
   const { lang } = await params;
   const validLang = (["zh", "en"].includes(lang) ? lang : "zh") as Lang;
+  const links = await getLinks();
 
   return (
     <I18nProvider lang={validLang}>
       <div className="flex flex-col min-h-screen relative" style={{ zIndex: 1 }}>
-        <Header />
+        <Header links={links} />
         <main className="flex-1" style={{ paddingTop: '56px' }}>{children}</main>
         <Footer />
       </div>

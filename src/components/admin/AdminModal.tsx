@@ -98,12 +98,13 @@ export default function AdminModal({
 
     setSaving(true);
     try {
-      // 清理數據：移除空字符串的可選字段
+      // 清理數據：空的可選字段直接省略，讓 DB 使用 DEFAULT 值
       const cleanData: Record<string, unknown> = {};
       for (const [key, val] of Object.entries(formData)) {
         const field = fields.find((f) => f.name === key);
         if (val === "" && !field?.required) {
-          cleanData[key] = null;
+          // 不傳該字段，避免 NULL 違反 DB 的 NOT NULL 約束
+          continue;
         } else if (field?.type === "number" && typeof val === "string") {
           const n = parseInt(val, 10);
           cleanData[key] = isNaN(n) ? 0 : n;
