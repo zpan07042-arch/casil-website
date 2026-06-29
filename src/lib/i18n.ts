@@ -122,10 +122,20 @@ export const ui: I18nDict = {
     news_c1_item3_title: "航天控股與歐洲知名半導體企業簽署技術合作備忘錄",
     news_c1_item4_date: "2025年6月10日",
     news_c1_item4_title: "集團旗下志豪微電子IPM智能功率模組產線正式投產",
-    // Business domains
-    business_domains_subtitle: "BUSINESS DOMAINS",
-    business_domains_title: "業務領域",
+    // Business domains — 业务领域主标题
+    business_domains_main_subtitle: "BUSINESS DOMAINS",
+    business_domains_main_title: "業務領域",
+    // Business domains — 先進製造業
+    business_domains_subtitle: "ADVANCED MANUFACTURING",
+    business_domains_title: "先進製造業",
     business_learn_more: "瞭解更多",
+    // Aerospace Industry Services — 航天產業服務業
+    aerospace_services_subtitle: "AEROSPACE INDUSTRY SERVICES",
+    aerospace_services_title: "航天產業服務業",
+    property_leasing_title: "物業租賃服務",
+    property_leasing_subtitle: "航天高科",
+    property_leasing_desc: "立足香港及大灣區，旗下資產涵蓋深圳航天科技廣場及廣州市5A甲級寫字樓，為企業客戶提供靈活、高品質的辦公空間解決方案。",
+    property_leasing_learn_more: "瞭解更多",
     // Get In Touch
     get_in_touch_label: "Get In Touch",
     get_in_touch_title: "攜手共創航天未來",
@@ -258,10 +268,20 @@ export const ui: I18nDict = {
     news_c1_item3_title: "CASIL Signs Technical Cooperation MOU with Leading European Semiconductor Enterprise",
     news_c1_item4_date: "June 10, 2025",
     news_c1_item4_title: "Group Subsidiary Zhihao Microelectronics IPM Intelligent Power Module Production Line Officially Begins Operation",
-    // Business domains
-    business_domains_subtitle: "BUSINESS DOMAINS",
-    business_domains_title: "Business Areas",
+    // Business domains — Main title
+    business_domains_main_subtitle: "BUSINESS DOMAINS",
+    business_domains_main_title: "Business Domains",
+    // Business domains — Advanced Manufacturing
+    business_domains_subtitle: "ADVANCED MANUFACTURING",
+    business_domains_title: "Advanced Manufacturing",
     business_learn_more: "Learn More",
+    // Aerospace Industry Services
+    aerospace_services_subtitle: "AEROSPACE INDUSTRY SERVICES",
+    aerospace_services_title: "Aerospace Industry Services",
+    property_leasing_title: "Property Leasing Services",
+    property_leasing_subtitle: "Aerospace Hi-Tech",
+    property_leasing_desc: "Rooted in Hong Kong and the Greater Bay Area, our assets include the Shenzhen Aerospace Technology Plaza and Grade 5A office buildings in Guangzhou, providing corporate clients with flexible, high-quality office space solutions.",
+    property_leasing_learn_more: "Learn More",
     // Get In Touch
     get_in_touch_label: "Get In Touch",
     get_in_touch_title: "Shaping the Future of Aerospace Together",

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "@/components/data/I18nProvider";
@@ -15,7 +16,28 @@ export interface BusinessDomain {
 }
 
 // ============================================================
-// 业务数据 — 中英双语
+// AerospaceData — 从后端 business_cards 表获取的航天服务数据
+// ============================================================
+export interface AerospaceData {
+  mainTitle: string;   // 默认态大字标题（如"物業租賃服務"）
+  subTitle: string;    // 分割线下方小字（如"航天高科"）
+  desc: string;        // hover 展开的描述
+  imageSrc: string;    // 左侧图片路径
+  learnMoreHref: string;
+}
+
+/** 从 product_images JSON 中提取第一张图片路径 */
+function parseFirstImage(json: string): string {
+  try {
+    const arr = JSON.parse(json);
+    return arr[0]?.img || "/images/gaoke.jpg";
+  } catch {
+    return "/images/gaoke.jpg";
+  }
+}
+
+// ============================================================
+// 业务数据 — 中英双语（先进製造業 5大板块）
 // ============================================================
 const BUSINESS_DOMAINS: Record<"zh" | "en", BusinessDomain[]> = {
   zh: [
@@ -95,11 +117,37 @@ const BUSINESS_DOMAINS: Record<"zh" | "en", BusinessDomain[]> = {
 };
 
 // ============================================================
-// BusinessDomains — 業務領域板块
+// BusinessDomains — 统一业务领域板块
+// 上半：先進製造業（5张等宽卡片）
+// 下半：航天產業服務業（横向大卡片）
+// 共用深藏蓝背景 + 点阵暗纹，视觉完全统一
 // ============================================================
 export default function BusinessDomains() {
   const { lang, t } = useI18n();
   const domains = BUSINESS_DOMAINS[lang] || BUSINESS_DOMAINS.zh;
+
+  // ---- 从后端获取航天服务数据 ----
+  const [aerospaceData, setAerospaceData] = useState<AerospaceData | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/home/aerospace")
+      .then((r) => r.json())
+      .then((row) => {
+        if (cancelled || !row) return;
+        setAerospaceData({
+          // 中文: sub_title="物業租賃服務"; 英文: 无对应英文字段，留空让组件走 i18n fallback
+          mainTitle: lang === "zh" ? row.sub_title : "",
+          // 中文: main_title="航天高科"; 英文: en_name="Aerospace Hightech"
+          subTitle: lang === "zh" ? row.main_title : row.en_name,
+          desc: lang === "zh" ? row.body_zh : row.body_en,
+          imageSrc: parseFirstImage(row.product_images),
+          learnMoreHref: `/${lang}/business`,
+        });
+      })
+      .catch(() => {}); // 静默降级到 i18n
+    return () => { cancelled = true; };
+  }, [lang]);
 
   return (
     <section
@@ -107,6 +155,10 @@ export default function BusinessDomains() {
       className="relative w-full pt-16 pb-24 md:pb-36 overflow-hidden"
       style={{ background: "#001433" }}
     >
+      {/* ============================================================ */}
+      {/* 共用背景层                                                   */}
+      {/* ============================================================ */}
+
       {/* ---- 外层大光晕 ---- */}
       <div
         className="absolute pointer-events-none"
@@ -144,31 +196,61 @@ export default function BusinessDomains() {
       />
 
       {/* ============================================================ */}
-      {/* 标题区 — 居中排版，加大上下留白                              */}
+      {/* 主标题 — 業務領域                                             */}
       {/* ============================================================ */}
-      <div className="relative z-10 mb-16 md:mb-24 text-center px-6">
-        {/* 浅蓝英文小字 — 柔和浅蓝细字，非白色 */}
+      <div className="relative z-10 mb-8 md:mb-12 text-center px-6">
         <p className="text-[#5BA4D6] text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4">
-          {t("business_domains_subtitle")}
+          {t("business_domains_main_subtitle")}
         </p>
-
-        {/* 白色粗体大标题 */}
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wide mb-5">
-          {t("business_domains_title")}
+          {t("business_domains_main_title")}
         </h2>
-
-        {/* 浅蓝色短水平分割线 — 与标题宽度匹配 */}
         <div className="mx-auto w-20 h-[2px] bg-[#3E92CC] rounded-full" />
       </div>
 
       {/* ============================================================ */}
-      {/* 卡片区域 — items-start 保证每张卡片高度独立                   */}
+      {/* 上半部分 — 先進製造業 ADVANCED MANUFACTURING                  */}
       {/* ============================================================ */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 items-start">
-          {domains.map((domain) => (
-            <BusinessCard key={domain.title} domain={domain} lang={lang} />
-          ))}
+      <div className="relative z-10">
+        {/* ---- 标题区 ---- */}
+        <div className="mb-16 md:mb-24 text-left px-6">
+          <p className="text-[#5BA4D6] text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4">
+            {t("business_domains_subtitle")}
+          </p>
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-wide mb-5">
+            {t("business_domains_title")}
+          </h3>
+          <div className="w-20 h-[2px] bg-[#3E92CC] rounded-full" />
+        </div>
+
+        {/* ---- 5卡片网格 ---- */}
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 items-start">
+            {domains.map((domain) => (
+              <BusinessCard key={domain.title} domain={domain} lang={lang} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* 下半部分 — 航天產業服務業 AEROSPACE INDUSTRY SERVICES         */}
+      {/* ============================================================ */}
+      <div className="relative z-10 mt-20 md:mt-28">
+        {/* ---- 标题区 — 与上半标题规格完全一致 ---- */}
+        <div className="mb-12 md:mb-16 text-left px-6">
+          <p className="text-[#5BA4D6] text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4">
+            {t("aerospace_services_subtitle")}
+          </p>
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-wide mb-5">
+            {t("aerospace_services_title")}
+          </h3>
+          <div className="w-20 h-[2px] bg-[#3E92CC] rounded-full" />
+        </div>
+
+        {/* ---- 横向业务卡片 ---- */}
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
+          <AerospaceCard lang={lang} data={aerospaceData} />
         </div>
       </div>
     </section>
@@ -176,7 +258,7 @@ export default function BusinessDomains() {
 }
 
 // ============================================================
-// BusinessCard — 单张业务卡片（下拉面板完全内嵌于卡片容器）
+// BusinessCard — 单张业务卡片（先进製造業用，保持不变）
 // ============================================================
 function BusinessCard({
   domain,
@@ -190,19 +272,12 @@ function BusinessCard({
 
   return (
     <div className="group/card relative z-10 hover:z-30">
-      {/* ========================================================== */}
-      {/* 卡片容器 — rounded-3xl + overflow-hidden 硬性约束边界       */}
-      {/* 所有内容（图、文字、下拉面板）全程不超出此容器              */}
-      {/* ========================================================== */}
       <div className="rounded-3xl overflow-hidden bg-white/[0.1] backdrop-blur-sm ring-1 ring-white/10 group-hover/card:bg-[#5BA4D6]/[0.22] group-hover/card:ring-[#5BA4D6]/80 transition-all duration-500">
-        {/* ======================================================== */}
-        {/* 图片区域 — 图片完全铺满，无留白无白边                        */}
-        {/* ======================================================== */}
+        {/* 图片区域 */}
         <div
           className="relative w-full overflow-hidden"
           style={{ aspectRatio: "4 / 3" }}
         >
-          {/* 产品图片 — object-cover 填满整个图片框，边缘贴合卡片内框边界 */}
           <Image
             src={imgPath}
             alt={domain.title}
@@ -212,10 +287,7 @@ function BusinessCard({
             loading="lazy"
             quality={90}
           />
-
-          {/* ====================================================== */}
-          {/* 渐变遮罩 — 仅覆盖图片区域底部 1/3，上方完全通透            */}
-          {/* ====================================================== */}
+          {/* 渐变遮罩 — 仅覆盖图片区域底部 1/3 */}
           <div
             className="absolute inset-x-0 bottom-0 z-10 pointer-events-none"
             style={{
@@ -226,9 +298,7 @@ function BusinessCard({
           />
         </div>
 
-        {/* ======================================================== */}
-        {/* 图文分隔线 — 细浅灰色水平线，过渡图片区与文字区            */}
-        {/* ======================================================== */}
+        {/* 图文分隔线 */}
         <div
           className="mx-5"
           style={{
@@ -238,9 +308,7 @@ function BusinessCard({
           }}
         />
 
-        {/* ======================================================== */}
-        {/* 静态文字区域 — 标题加粗 + 副标弱化，底部充足留白          */}
-        {/* ======================================================== */}
+        {/* 静态文字区域 */}
         <div className="px-5 pt-4 pb-3">
           <h3 className="text-white text-sm md:text-base font-bold leading-snug mb-1.5 tracking-wide">
             {domain.title}
@@ -250,10 +318,7 @@ function BusinessCard({
           </p>
         </div>
 
-        {/* ======================================================== */}
-        {/* 下拉详情面板 — 内嵌于卡片容器，max-height 驱动滑入/滑出  */}
-        {/* 所有介绍文字+按钮全程不超出 rounded-3xl 容器边界          */}
-        {/* ======================================================== */}
+        {/* 下拉详情面板 */}
         <div
           className="overflow-hidden
             max-h-0
@@ -261,12 +326,9 @@ function BusinessCard({
             transition-[max-height] duration-500 ease-out"
         >
           <div className="px-5 pt-2 pb-5">
-            {/* 长篇介绍文字 — 白色、宽松行高 */}
             <p className="text-white/80 text-xs md:text-sm leading-relaxed md:leading-loose mb-5">
               {domain.detail}
             </p>
-
-            {/* 「瞭解更多」按钮 — 右下角，hover 浅蓝高亮 */}
             <div className="flex justify-end">
               <Link
                 href={`/${lang}/business`}
@@ -290,6 +352,146 @@ function BusinessCard({
                 </svg>
               </Link>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// AerospaceCard — 航天產業服務業横向业务卡片
+// 左侧：香港维多利亚港写字楼城市夜景（固定）
+// 右侧：默认态显示大字标题+蓝色分割线+小字；hover 展开多层级文字
+// ============================================================
+function AerospaceCard({
+  lang,
+  data,
+}: {
+  lang: string;
+  data: AerospaceData | null;
+}) {
+  const { t } = useI18n();
+
+  // 后端数据优先，fallback 到 i18n（mainTitle 用 || 以便空字符串时回退）
+  const mainTitle = data?.mainTitle || t("property_leasing_title");
+  const subTitle = data?.subTitle ?? t("property_leasing_subtitle");
+  const desc = data?.desc ?? t("property_leasing_desc");
+  const imageSrc = data?.imageSrc ?? "/images/gaoke.jpg";
+  const learnMoreHref = data?.learnMoreHref ?? `/${lang}/business`;
+
+  return (
+    <div className="group/aero relative w-full">
+      {/* ========================================================== */}
+      {/* 卡片容器 — 横向布局，细浅蓝圆角边框                         */}
+      {/* ========================================================== */}
+      <div
+        className="relative flex flex-col md:flex-row w-full rounded-2xl overflow-hidden
+          ring-1 ring-[#3E92CC]/30 bg-[#0A1A3A]/60 backdrop-blur-sm
+          group-hover/aero:ring-[#3E92CC]/60
+          transition-all duration-500 ease-out"
+      >
+        {/* ======================================================== */}
+        {/* 左侧：固定图片 — 香港维多利亚港写字楼城市夜景              */}
+        {/* ======================================================== */}
+        <div className="relative w-full md:w-[45%] lg:w-[42%] shrink-0 overflow-hidden">
+          <div
+            className="relative w-full"
+            style={{ aspectRatio: "16 / 9", minHeight: "280px" }}
+          >
+            <Image
+              src={imageSrc}
+              alt={mainTitle}
+              fill
+              sizes="(max-width: 768px) 100vw, 45vw"
+              className="object-cover"
+              quality={90}
+            />
+            {/* 图片右侧渐变过渡 — 平滑融入右侧遮罩 */}
+            <div
+              className="absolute inset-y-0 right-0 w-16 md:w-24 z-10 pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(to left, rgba(10,26,58,1) 0%, rgba(10,26,58,0.6) 40%, transparent 100%)",
+              }}
+            />
+          </div>
+        </div>
+
+        {/* ======================================================== */}
+        {/* 右侧：信息面板 — 半透明深藏蓝遮罩                          */}
+        {/* ======================================================== */}
+        <div
+          className="relative flex-1 flex flex-col justify-center px-6 md:px-10 lg:px-14 py-8 md:py-0 min-h-[280px]"
+          style={{ background: "rgba(10,26,58,0.75)" }}
+        >
+          {/* ---- 默认状态：大字纯白标题 + 蓝色分割线 + 小字 ---- */}
+          <div
+            className="group-hover/aero:opacity-0 group-hover/aero:translate-y-[-8px]
+              transition-all duration-500 ease-out"
+          >
+            <h3 className="text-white text-2xl md:text-3xl font-bold tracking-wide mb-3">
+              {mainTitle}
+            </h3>
+            {/* 蓝色分割线 */}
+            <div
+              className="w-10 h-[2px] bg-[#3E92CC] rounded-full mb-3"
+            />
+            {/* 小字副标题 */}
+            <p className="text-white/50 text-sm md:text-base font-light tracking-wide">
+              {subTitle}
+            </p>
+          </div>
+
+          {/* ---- Hover 展开：多层级文字 ---- */}
+          <div
+            className="absolute inset-0 flex flex-col justify-center px-6 md:px-10 lg:px-14
+              opacity-0 translate-y-4
+              group-hover/aero:opacity-100 group-hover/aero:translate-y-0
+              transition-all duration-500 ease-out"
+          >
+            {/* ① 白色粗体大标题 */}
+            <h3 className="text-white text-xl md:text-2xl lg:text-3xl font-bold tracking-wide mb-2">
+              {mainTitle}
+            </h3>
+
+            {/* ② 浅灰小字副标签 */}
+            <p className="text-white/40 text-xs md:text-sm font-light tracking-wider mb-3">
+              {subTitle}
+            </p>
+
+            {/* ③ 短浅蓝水平分隔线 */}
+            <div
+              className="w-12 h-[2px] bg-[#3E92CC] rounded-full mb-4"
+            />
+
+            {/* ④ 浅灰色正文 */}
+            <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-xl mb-6">
+              {desc}
+            </p>
+
+            {/* ⑤ 底部可点击交互链接 — 浅蓝色文字 + 箭头 */}
+            <Link
+              href={learnMoreHref}
+              className="inline-flex items-center gap-1.5 text-[#3E92CC] text-sm md:text-base font-medium
+                hover:text-[#5BA4D6] transition-colors duration-300
+                group/link w-fit"
+            >
+              <span>{t("property_leasing_learn_more")}</span>
+              <svg
+                className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
           </div>
         </div>
       </div>
