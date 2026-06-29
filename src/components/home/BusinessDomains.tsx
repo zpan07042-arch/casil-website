@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "@/components/data/I18nProvider";
+import type { LinkItem } from "@/lib/types";
 
 // ============================================================
 // TypeScript interface — 业务卡片完整数据类型
@@ -122,12 +123,48 @@ const BUSINESS_DOMAINS: Record<"zh" | "en", BusinessDomain[]> = {
 // 下半：航天產業服務業（横向大卡片）
 // 共用深藏蓝背景 + 点阵暗纹，视觉完全统一
 // ============================================================
+
+/**
+ * 根據業務卡片主標題匹配對應的友情鏈接 URL。
+ * 遍歷 links，若 link.name_zh 與 mainTitle 有共同的關鍵字片段則返回其 url。
+ */
+function findLinkUrlForCard(mainTitle: string, links: LinkItem[]): string | null {
+  const parts: string[] = [];
+  for (let i = 0; i < mainTitle.length - 1; i++) {
+    parts.push(mainTitle.substring(i, i + 2));
+  }
+  for (let i = 0; i < mainTitle.length - 2; i++) {
+    parts.push(mainTitle.substring(i, i + 3));
+  }
+  parts.sort((a, b) => b.length - a.length);
+  for (const part of parts) {
+    const found = links.find((l) => l.name_zh.includes(part) && l.url);
+    if (found) return found.url;
+  }
+  return null;
+}
+
 export default function BusinessDomains() {
   const { lang, t } = useI18n();
   const domains = BUSINESS_DOMAINS[lang] || BUSINESS_DOMAINS.zh;
 
   // ---- 从后端获取航天服务数据 ----
   const [aerospaceData, setAerospaceData] = useState<AerospaceData | null>(null);
+
+  // ---- 从后端获取友情链接数据 ----
+  const [links, setLinks] = useState<LinkItem[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/links")
+      .then((r) => r.json())
+      .then((data) => {
+        if (cancelled || !Array.isArray(data)) return;
+        setLinks(data);
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -155,36 +192,6 @@ export default function BusinessDomains() {
       className="relative w-full pt-16 pb-16 md:pb-20 overflow-hidden"
       style={{ background: "#001433" }}
     >
-      {/* ============================================================ */}
-      {/* 共用背景层                                                   */}
-      {/* ============================================================ */}
-
-      {/* ---- 外层大光晕 ---- */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(0,58,140,0.5) 0%, transparent 70%)",
-          width: "700px",
-          height: "700px",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      />
-
-      {/* ---- 内层小光晕 ---- */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(21,101,192,0.35) 0%, transparent 70%)",
-          width: "350px",
-          height: "350px",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      />
-
       {/* ---- 规则点阵纹理叠层 ---- */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -250,7 +257,7 @@ export default function BusinessDomains() {
 
         {/* ---- 横向业务卡片 ---- */}
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
-          <AerospaceCard lang={lang} data={aerospaceData} />
+          <AerospaceCard lang={lang} data={aerospaceData} links={links} />
         </div>
       </div>
     </section>
@@ -367,9 +374,11 @@ function BusinessCard({
 function AerospaceCard({
   lang,
   data,
+  links,
 }: {
   lang: string;
   data: AerospaceData | null;
+  links: LinkItem[];
 }) {
   const { t } = useI18n();
 
@@ -378,7 +387,10 @@ function AerospaceCard({
   const subTitle = data?.subTitle ?? t("property_leasing_subtitle");
   const desc = t("property_leasing_desc");
   const imageSrc = data?.imageSrc ?? "/images/gaoke.jpg";
-  const learnMoreHref = data?.learnMoreHref ?? `/${lang}/business`;
+
+  // 優先使用友情鏈接匹配 URL，若無匹配則使用卡片自身的 learnMoreHref
+  const matchedLinkUrl = findLinkUrlForCard(subTitle, links);
+  const learnMoreHref = matchedLinkUrl || data?.learnMoreHref || `/${lang}/business`;
 
   return (
     <div className="group/aero relative w-full">

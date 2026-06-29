@@ -205,11 +205,10 @@ INSERT INTO governance_docs (id, title_zh, title_en, pdf_url, sort_order) VALUES
 INSERT INTO governance_docs (id, title_zh, title_en, pdf_url, sort_order) VALUES (28, '組織章程細則', 'Articles of Association', 'http://www.casil-group.com/download/big5/governance/c_031M&A.pdf', 8);
 INSERT INTO governance_docs (id, title_zh, title_en, pdf_url, sort_order) VALUES (29, '反貪污政策', 'Anti-Corruption Policy', 'http://www.casil-group.com/download/big5/governance/C_anti_20220830.pdf', 9);
 INSERT INTO governance_docs (id, title_zh, title_en, pdf_url, sort_order) VALUES (30, '舉報政策', 'Whistleblowing Policy', 'http://www.casil-group.com/download/big5/governance/C_blowing_20220830.pdf', 10);
-
-INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (13, '志源實業有限公司', 'Zhiyuan Industrial Co., Ltd.', '', 1);
-INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (14, '志順電業有限公司', 'Zhishun Electrical Co., Ltd.', '', 2);
-INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (15, '航天科技半導體有限公司', 'Aerospace Technology Semiconductor Co., Ltd.', '', 3);
-INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (16, '康源電子廠有限公司', 'Kangyuan Electronics Factory Co., Ltd.', '', 4);
+INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (13, '志源實業有限公司', 'Zhiyuan Industrial Co., Ltd.', 'https://www.casil-cheeyuen.com/', 1);
+INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (14, '志順電業有限公司', 'Zhishun Electrical Co., Ltd.', 'https://www.casil-jeckson.com', 2);
+INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (15, '航天科技半導體有限公司', 'Aerospace Technology Semiconductor Co., Ltd.', 'https://www.casilsemi.com', 3);
+INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (16, '康源電子廠有限公司', 'Kangyuan Electronics Factory Co., Ltd.', 'https://www.pcb.com.cn', 4);
 INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (17, '航天控股智慧研究所', 'CASIL Smart Research Institute', 'http://www.casil-group.com/big5/egpp_1_Agency/index.html', 5);
-INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (18, '志豪微電子（惠州）有限公司', 'Zhihao Microelectronics (Huizhou) Co., Ltd.', '', 6);
+INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (18, '志豪微電子（惠州）有限公司', 'Zhihao Microelectronics (Huizhou) Co., Ltd.', 'https://www.chmicro.com', 6);
 

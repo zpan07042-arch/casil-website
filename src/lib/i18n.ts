@@ -134,7 +134,7 @@ export const ui: I18nDict = {
     aerospace_services_title: "航天產業服務業",
     property_leasing_title: "物業租賃服務",
     property_leasing_subtitle: "航天高科",
-    property_leasing_desc: "立足香港及大灣區，旗下資產涵蓋深圳航天科技廣場及廣州市5A甲級寫字樓，為企業客戶提供靈活、高品質的辦公空間解決方案。",
+    property_leasing_desc: " 立足香港及大灣區，旗下資產涵蓋深圳航天科技廣場及廣州市5A甲級寫字樓，為企業客戶提供靈活、高品質的辦公空間解決方案。",
     property_leasing_learn_more: "瞭解更多",
     // Get In Touch
     get_in_touch_label: "Get In Touch",

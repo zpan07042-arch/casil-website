@@ -239,11 +239,12 @@ export default function OverviewBusinessCard({
           <div style={{ flex: "6 1 360px", minWidth: 0 }}>
             <p
               style={{
-                fontSize: 18,
+                fontSize: 15,
                 color: BODY_COLOR,
                 lineHeight: 1.6,
                 margin: "0 0 20px",
                 textAlign: "justify",
+                textIndent: "2em",
               }}
             >
               {bodyText}

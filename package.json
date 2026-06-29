@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:bg": "nohup next dev > /tmp/casil-dev.log 2>&1 &",
     "build": "next build",
     "start": "next start"
   },
