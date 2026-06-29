@@ -1,8 +1,8 @@
 /**
- * 模塊8：底部文字卡片
+ * 模塊8：底部橫幅
  *
  * 深藍底色（#001433）+ 雙層光暈 + 網格紋理，居中白色文字 + 按鈕。
- * 無動畫，靜態渲染。
+ * 無動畫，靜態渲染。與頁腳無縫銜接。
  */
 
 const CARD_BG = "#001433";
@@ -18,65 +18,63 @@ export default function OverviewBanner({
   buttonHref: string;
 }) {
   return (
-    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px 48px" }}>
+    <div
+      style={{
+        position: "relative",
+        backgroundColor: CARD_BG,
+        padding: "48px 32px",
+        textAlign: "center",
+        overflow: "hidden",
+      }}
+    >
+      {/* 外層大光暈 */}
       <div
         style={{
-          position: "relative",
-          backgroundColor: CARD_BG,
-          borderRadius: 12,
-          padding: 48,
-          textAlign: "center",
-          overflow: "hidden",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 700,
+          height: 700,
+          background:
+            "radial-gradient(circle, rgba(0,58,140,0.5) 0%, transparent 70%)",
+          pointerEvents: "none",
         }}
-      >
-        {/* 外層大光暈 */}
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 700,
-            height: 700,
-            background:
-              "radial-gradient(circle, rgba(0,58,140,0.5) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }}
-        />
+      />
 
-        {/* 內層小光暈 */}
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 350,
-            height: 350,
-            background:
-              "radial-gradient(circle, rgba(21,101,192,0.35) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }}
-        />
+      {/* 內層小光暈 */}
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 350,
+          height: 350,
+          background:
+            "radial-gradient(circle, rgba(21,101,192,0.35) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}
+      />
 
-        {/* 網格紋理疊層 */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-            opacity: 0.04,
-            pointerEvents: "none",
-          }}
-        />
+      {/* 網格紋理疊層 */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          opacity: 0.04,
+          pointerEvents: "none",
+        }}
+      />
 
+      {/* 正文區域 — 居中最大寬度 */}
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1136, margin: "0 auto" }}>
         {/* 正文 */}
         <p
           style={{
-            position: "relative",
-            zIndex: 1,
             fontSize: 20,
             color: "rgba(255, 255, 255, 0.85)",
             lineHeight: 2.0,
@@ -92,8 +90,6 @@ export default function OverviewBanner({
         <a
           href={buttonHref}
           style={{
-            position: "relative",
-            zIndex: 1,
             display: "inline-flex",
             alignItems: "center",
             gap: 8,

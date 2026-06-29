@@ -113,6 +113,15 @@ export const ui: I18nDict = {
     news_featured_title: "集團與多家國際企業簽署戰略合作協議，深化全球航天產業佈局",
     news_featured_desc:
       "本集團於2025年6月18日在香港舉行重要戰略合作簽約儀式，與來自美、歐、日等多個國家的頂尖航天及電子製造企業達成深度合作協議，進一步鞏固本集團在全球航天產業鏈中的領導地位，為未來持續增長奠定堅實基礎。",
+    // News list items — column 1
+    news_c1_item1_date: "2025年6月25日",
+    news_c1_item1_title: "航天控股旗下康源電子獲國家級綠色工廠認證，推動智能製造升級",
+    news_c1_item2_date: "2025年6月20日",
+    news_c1_item2_title: "集團公佈2025年中期業績，營收同比增長18%，航天業務持續擴張",
+    news_c1_item3_date: "2025年6月15日",
+    news_c1_item3_title: "航天控股與歐洲知名半導體企業簽署技術合作備忘錄",
+    news_c1_item4_date: "2025年6月10日",
+    news_c1_item4_title: "集團旗下志豪微電子IPM智能功率模組產線正式投產",
     // Business domains
     business_domains_subtitle: "BUSINESS DOMAINS",
     business_domains_title: "業務領域",
@@ -240,6 +249,15 @@ export const ui: I18nDict = {
       "CASIL Signs Strategic Cooperation Agreements with Global Enterprises, Deepening Aerospace Industry Layout",
     news_featured_desc:
       "On June 18, 2025, the Group held a major strategic cooperation signing ceremony in Hong Kong, reaching in-depth cooperation agreements with top aerospace and electronics manufacturing enterprises from the United States, Europe, Japan, and other countries, further consolidating the Group's leadership position in the global aerospace industry chain and laying a solid foundation for sustained future growth.",
+    // News list items — column 1
+    news_c1_item1_date: "June 25, 2025",
+    news_c1_item1_title: "CASIL Subsidiary Kangyuan Electronics Receives National Green Factory Certification, Advancing Smart Manufacturing Upgrades",
+    news_c1_item2_date: "June 20, 2025",
+    news_c1_item2_title: "Group Announces 2025 Interim Results, Revenue Up 18% YoY with Continued Aerospace Business Expansion",
+    news_c1_item3_date: "June 15, 2025",
+    news_c1_item3_title: "CASIL Signs Technical Cooperation MOU with Leading European Semiconductor Enterprise",
+    news_c1_item4_date: "June 10, 2025",
+    news_c1_item4_title: "Group Subsidiary Zhihao Microelectronics IPM Intelligent Power Module Production Line Officially Begins Operation",
     // Business domains
     business_domains_subtitle: "BUSINESS DOMAINS",
     business_domains_title: "Business Areas",

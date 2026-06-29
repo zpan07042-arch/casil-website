@@ -2,13 +2,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 /**
- * Admin 路由攔截 Middleware
+ * Admin 路由攔截 Proxy
  *
- * 重要：Next.js middleware 運行在 Edge Runtime，無法直接訪問 sql.js（依賴 WASM + fs）。
- * 因此 middleware 只做 cookie 存在性檢查（預過濾），完整的 session 驗證在各 API route
+ * 重要：Next.js proxy 運行在 Node.js Runtime。完整的 session 驗證在各 API route
  * 和 admin layout 服務端組件中進行。
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 允許登錄頁面和登錄 API 通過

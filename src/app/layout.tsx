@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-HK" className="h-full overflow-x-hidden">
+    <html lang="zh-HK" className="h-full overflow-x-hidden" data-scroll-behavior="smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full flex flex-col overflow-x-hidden`}
       >

@@ -21,9 +21,19 @@ export default function OverviewHeader({
 }) {
   return (
     <section
-      style={{ backgroundColor: "#FFFFFF", padding: "48px 0 40px" }}
+      style={{
+        position: "relative",
+        padding: "48px 0 40px",
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)), url('/images/oback.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#FFFFFF",
+      }}
     >
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
         {/* 麵包屑 */}
         <p
           style={{

@@ -4,6 +4,8 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/data/I18nProvider";
 
+const DEBOUNCE_MS = 300;
+
 interface SearchResult {
   type: string;
   title_zh: string;
@@ -22,6 +24,16 @@ export default function SearchBar() {
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+
+  // 清理 debounce timer 和進行中的請求
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      if (abortRef.current) abortRef.current.abort();
+    };
+  }, []);
 
   useEffect(() => {
     if (open) inputRef.current?.focus();
@@ -39,18 +51,44 @@ export default function SearchBar() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  const doSearch = useCallback(async (q: string) => {
+  const doSearch = useCallback(async (q: string, signal?: AbortSignal) => {
     if (q.length < 2) { setResults([]); return; }
     setLoading(true);
     try {
-      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}&lang=${lang}`);
+      const res = await fetch(
+        `/api/search?q=${encodeURIComponent(q)}&lang=${lang}`,
+        { signal }
+      );
       const data = await res.json();
       setResults(data);
-    } catch {
+    } catch (err: unknown) {
+      if (err instanceof DOMException && err.name === "AbortError") return;
       setResults([]);
     }
     setLoading(false);
   }, [lang]);
+
+  // 帶防抖的搜尋：300ms 內有新輸入則取消前一個定時器
+  const debouncedSearch = useCallback(
+    (value: string) => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      // 取消前一個進行中的請求
+      if (abortRef.current) abortRef.current.abort();
+
+      if (value.length < 2) {
+        setResults([]);
+        setLoading(false);
+        return;
+      }
+
+      debounceRef.current = setTimeout(() => {
+        const controller = new AbortController();
+        abortRef.current = controller;
+        doSearch(value, controller.signal);
+      }, DEBOUNCE_MS);
+    },
+    [doSearch]
+  );
 
   const handleKey = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") { setOpen(false); setQuery(""); }
@@ -91,7 +129,7 @@ export default function SearchBar() {
             <input
               ref={inputRef}
               value={query}
-              onChange={(e) => { setQuery(e.target.value); doSearch(e.target.value); }}
+              onChange={(e) => { setQuery(e.target.value); debouncedSearch(e.target.value); }}
               onKeyDown={handleKey}
               placeholder={t("search_ph")}
               className="flex-1 ml-3 text-sm bg-transparent outline-none text-text-primary placeholder:text-text-secondary"
