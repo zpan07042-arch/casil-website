@@ -34,25 +34,17 @@ export default function OverviewHeader({
       }}
     >
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
-        {/* 麵包屑 */}
-        <p
-          style={{
-            fontSize: 12,
-            color: "#888E9C",
-            margin: "0 0 12px",
-            letterSpacing: "0.02em",
-          }}
-        >
+        <p>
           {breadcrumb.split(" > ").map((part, i, arr) => (
             <span key={i}>
               {i > 0 && (
-                <span style={{ margin: "0 6px", color: "#888E9C" }}>
+                <span style={{ margin: "0 6px", color: "#000000" }}>
                   &gt;
                 </span>
               )}
               <span
                 style={{
-                  color: i === arr.length - 1 ? "#0F2452" : "#888E9C",
+                  color: i === arr.length - 1 ? "#0F2452" : "#000001",
                 }}
               >
                 {part}
@@ -65,7 +57,7 @@ export default function OverviewHeader({
         <p
           style={{
             fontSize: 11,
-            color: "rgba(15, 36, 82, 0.4)",
+            color: "rgba(0, 0, 0, 0.4)",
             letterSpacing: "0.22em",
             textTransform: "uppercase",
             margin: "0 0 8px",
@@ -101,7 +93,7 @@ export default function OverviewHeader({
         <p
           style={{
             fontSize: 16,
-            color: "#444A58",
+            color: "#090a0d",
             margin: "0 0 36px",
             lineHeight: 1.6,
           }}
@@ -133,7 +125,7 @@ export default function OverviewHeader({
               <p
                 style={{
                   fontSize: 12,
-                  color: "#888E9C",
+                  color: "#191b1f",
                   margin: 0,
                 }}
               >

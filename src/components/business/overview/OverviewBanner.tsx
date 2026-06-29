@@ -75,7 +75,7 @@ export default function OverviewBanner({
         {/* 正文 */}
         <p
           style={{
-            fontSize: 20,
+            fontSize: 15,
             color: "rgba(255, 255, 255, 0.85)",
             lineHeight: 2.0,
             margin: "0 0 28px",

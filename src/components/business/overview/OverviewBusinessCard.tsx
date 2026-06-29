@@ -70,6 +70,18 @@ export default function OverviewBusinessCard({
     <>
       {/* ═══ 交互式 hover 樣式 ═══ */}
       <style>{`
+        /* ── 卡片容器 hover：輕微浮起 + 加深陰影 ── */
+        .biz-card {
+          transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .biz-card:hover {
+          transform: translateY(-2px);
+          box-shadow:
+            0 2px 6px rgba(15, 36, 82, 0.08),
+            0 8px 24px rgba(15, 36, 82, 0.10),
+            0 16px 40px rgba(15, 36, 82, 0.07) !important;
+        }
+
         /* ── 圖片單元格 hover：輕微放大 + 浮起陰影 ── */
         .biz-card-img-cell {
           transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -101,11 +113,14 @@ export default function OverviewBusinessCard({
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px 24px" }}>
       <div
+        className="biz-card"
         style={{
           backgroundColor: "#FFFFFF",
           borderRadius: 12,
           border: `1px solid ${ACCENT_BLUE}`,
           padding: 32,
+          boxShadow:
+            "0 1px 3px rgba(15, 36, 82, 0.06), 0 4px 16px rgba(15, 36, 82, 0.07), 0 8px 32px rgba(15, 36, 82, 0.05)",
         }}
       >
         {/* ═══ 標題行：左側主副標題 + 右側按鈕 ═══ */}

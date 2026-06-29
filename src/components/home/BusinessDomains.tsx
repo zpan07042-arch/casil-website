@@ -152,7 +152,7 @@ export default function BusinessDomains() {
   return (
     <section
       id="business-domains"
-      className="relative w-full pt-16 pb-24 md:pb-36 overflow-hidden"
+      className="relative w-full pt-16 pb-16 md:pb-20 overflow-hidden"
       style={{ background: "#001433" }}
     >
       {/* ============================================================ */}
@@ -198,7 +198,7 @@ export default function BusinessDomains() {
       {/* ============================================================ */}
       {/* 主标题 — 業務領域                                             */}
       {/* ============================================================ */}
-      <div className="relative z-10 mb-8 md:mb-12 text-center px-6">
+      <div className="relative z-10 mb-4 md:mb-6 text-center px-6">
         <p className="text-[#5BA4D6] text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4">
           {t("business_domains_main_subtitle")}
         </p>
@@ -212,8 +212,8 @@ export default function BusinessDomains() {
       {/* 上半部分 — 先進製造業 ADVANCED MANUFACTURING                  */}
       {/* ============================================================ */}
       <div className="relative z-10">
-        {/* ---- 标题区 ---- */}
-        <div className="mb-16 md:mb-24 text-left px-6">
+        {/* ---- 标题区 — 与卡片网格左侧对齐 ---- */}
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 mb-8 md:mb-12">
           <p className="text-[#5BA4D6] text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4">
             {t("business_domains_subtitle")}
           </p>
@@ -225,7 +225,7 @@ export default function BusinessDomains() {
 
         {/* ---- 5卡片网格 ---- */}
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 items-start">
             {domains.map((domain) => (
               <BusinessCard key={domain.title} domain={domain} lang={lang} />
             ))}
@@ -236,9 +236,9 @@ export default function BusinessDomains() {
       {/* ============================================================ */}
       {/* 下半部分 — 航天產業服務業 AEROSPACE INDUSTRY SERVICES         */}
       {/* ============================================================ */}
-      <div className="relative z-10 mt-20 md:mt-28">
-        {/* ---- 标题区 — 与上半标题规格完全一致 ---- */}
-        <div className="mb-12 md:mb-16 text-left px-6">
+      <div className="relative z-10 mt-12 md:mt-16">
+        {/* ---- 标题区 — 与卡片网格左侧对齐 ---- */}
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 mb-6 md:mb-8">
           <p className="text-[#5BA4D6] text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4">
             {t("aerospace_services_subtitle")}
           </p>
@@ -376,7 +376,7 @@ function AerospaceCard({
   // 后端数据优先，fallback 到 i18n（mainTitle 用 || 以便空字符串时回退）
   const mainTitle = data?.mainTitle || t("property_leasing_title");
   const subTitle = data?.subTitle ?? t("property_leasing_subtitle");
-  const desc = data?.desc ?? t("property_leasing_desc");
+  const desc = t("property_leasing_desc");
   const imageSrc = data?.imageSrc ?? "/images/gaoke.jpg";
   const learnMoreHref = data?.learnMoreHref ?? `/${lang}/business`;
 
@@ -422,7 +422,7 @@ function AerospaceCard({
         {/* 右侧：信息面板 — 半透明深藏蓝遮罩                          */}
         {/* ======================================================== */}
         <div
-          className="relative flex-1 flex flex-col justify-center px-6 md:px-10 lg:px-14 py-8 md:py-0 min-h-[280px]"
+          className="relative flex-1 flex flex-col justify-center px-6 md:px-10 lg:px-14 py-4 md:py-0 min-h-[220px]"
           style={{ background: "rgba(10,26,58,0.75)" }}
         >
           {/* ---- 默认状态：大字纯白标题 + 蓝色分割线 + 小字 ---- */}
