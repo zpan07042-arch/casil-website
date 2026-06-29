@@ -61,6 +61,7 @@ export default function OverviewBusinessCard({
   const bodyText = isZh ? body.zh : body.en;
   const learnMoreText = isZh ? "了解更多" : "Learn More";
   const isGrid = imageLayout === "grid";
+  const isAeroHighTech = mainTitle === "航天高科";
 
   // 優先使用友情鏈接 URL，若無匹配則使用卡片自身的 learnMoreHref
   const matchedLinkUrl = findLinkUrlForCard(mainTitle, links);
@@ -316,7 +317,7 @@ export default function OverviewBusinessCard({
                       flexDirection: "column",
                       alignItems: "center",
                       justifyContent: "center",
-                      aspectRatio: "1 / 1",
+                      aspectRatio: isAeroHighTech ? "3 / 2" : "1 / 1",
                       overflow: "hidden",
                       ...(ph.imagePath
                         ? {}
@@ -388,8 +389,9 @@ export default function OverviewBusinessCard({
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
-                  minHeight: 240,
+                  minHeight: isAeroHighTech ? 240 : 240,
                   overflow: "hidden",
+                  ...(isAeroHighTech ? { maxHeight: 400, alignSelf: "flex-start" } : {}),
                   ...(productPlaceholders[0]?.imagePath
                     ? {}
                     : {
