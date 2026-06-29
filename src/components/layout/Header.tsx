@@ -315,7 +315,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
 
                   {/* PCB */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_pcb_title")}</h4>
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8">{t("mega_pcb_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     {findLinkUrl(links, ["康源"]) ? (
                       <a
@@ -338,7 +338,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
 
                   {/* Display */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_display_title")}</h4>
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8">{t("mega_display_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     {findLinkUrl(links, ["半導體", "半导体"]) ? (
                       <a
@@ -361,7 +361,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
 
                   {/* IPM */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8 whitespace-nowrap">{t("mega_ipm_title")}</h4>
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 whitespace-nowrap">{t("mega_ipm_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     {findLinkUrl(links, ["志豪"]) ? (
                       <a
@@ -384,7 +384,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
 
                   {/* Power */}
                   <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_power_title")}</h4>
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8">{t("mega_power_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     {findLinkUrl(links, ["志順", "志顺"]) ? (
                       <a
@@ -407,7 +407,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
 
                   {/* Injection */}
                   <div className="flex flex-col gap-1.5 px-3">
-                    <h4 className="text-[1.0rem] font-bold text-gray-950 mt-8">{t("mega_injection_title")}</h4>
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8">{t("mega_injection_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     {findLinkUrl(links, ["志源"]) ? (
                       <a
