@@ -4,7 +4,7 @@ import Link from "next/link";
 const STAT_CARDS = [
   { table: "pages", label: "頁面", href: "/admin/pages" },
   { table: "announcements", label: "公告", href: "/admin/announcements" },
-  { table: "board_members", label: "董事局成員", href: "/admin/board-members" },
+  { table: "board_members", label: "董事局與管理層", href: "/admin/board-members" },
   { table: "governance_docs", label: "企業管治文件", href: "/admin/governance-docs" },
   { table: "company_news", label: "公司資訊", href: "/admin/company-news" },
   { table: "subsidiaries", label: "子公司", href: "/admin/subsidiaries" },

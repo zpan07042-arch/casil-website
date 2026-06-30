@@ -6,7 +6,7 @@ import { useState } from "react";
 const NAV_ITEMS = [
   { label: "頁面管理", href: "/admin/pages", icon: "📄" },
   { label: "公告管理", href: "/admin/announcements", icon: "📢" },
-  { label: "董事局成員", href: "/admin/board-members", icon: "👥" },
+  { label: "董事局與管理層", href: "/admin/board-members", icon: "👥" },
   { label: "企業管治文件", href: "/admin/governance-docs", icon: "📋" },
   { label: "公司資訊", href: "/admin/company-news", icon: "📰" },
   { label: "子公司", href: "/admin/subsidiaries", icon: "🏢" },

@@ -58,13 +58,13 @@ const PAGE_META: Record<
   },
   board: {
     breadcrumb: {
-      zh: "首頁 > 關於我們 > 董事會",
-      en: "Home > About Us > Board of Directors",
+      zh: "首頁 > 關於我們 > 董事局與管理層",
+      en: "Home > About Us > Board & Management",
     },
-    enLabel: "BOARD OF DIRECTORS",
+    enLabel: "BOARD & MANAGEMENT",
     desc: {
-      zh: "專業多元的董事團隊，引領企業戰略方向",
-      en: "A professional and diverse board leading the company's strategic direction",
+      zh: "專業多元的董事團隊與經驗豐富的管理層，引領企業戰略方向",
+      en: "A professional and diverse board with experienced management leading the company's strategic direction",
     },
   },
   governance: {

@@ -1,0 +1,14 @@
+-- 006: 董事局页面重命名为"董事局與管理層"，新增管理层成员
+UPDATE pages SET title_zh = '董事局與管理層', title_en = 'Board & Management', content_zh = '航天控股董事局由執行董事、非執行董事及獨立非執行董事組成，負責制定集團整體戰略方向。管理層團隊具備豐富的行業經驗與專業背景，在董事局領導下有效執行業務計劃，確保公司遵守高水平的企業管治標準。', content_en = 'The CASIL Board comprises Executive Directors, Non-Executive Directors and Independent Non-Executive Directors, responsible for setting the Group overall strategic direction. The management team brings extensive industry experience and professional expertise, effectively executing business plans under the Board leadership to ensure the Company adheres to high standards of corporate governance.' WHERE id = 'board';
+
+-- 先刪除已存在的管理層記錄，避免重複
+DELETE FROM board_members WHERE member_type = 'management';
+
+INSERT INTO board_members (name_zh, name_en, title_zh, title_en, bio_zh, bio_en, member_type, sort_order) VALUES
+('蘭桂紅女士', 'Ms. Lan Guihong', '總會計師', 'Chief Accountant', '蘭桂紅女士，高級經濟師，為本公司總會計師，蘭桂紅女士先後畢業於中南財經大學、哈爾濱工業大學，分別獲經濟學學士和管理學碩士學位。自2001年起，曆任中國航天科技集團有限公司財務部國有資產管理處處長、中國航天科技集團有限公司財務部總部財務處處長、中國航天科技集團有限公司財務部會計處處長、中國航天科技集團有限公司財務金融部資金與會計管理處處長、中國航天科技集團有限公司財務金融部副部長並兼任中國長城工業集團有限公司董事、中國航天科技集團有限公司審計與風險管理部副部長。蘭桂紅女士具有豐富的財務管理及審計與風險管理經驗，彼於2019年12月獲委任本公司總會計師。', 'Ms. Lan Guihong, Senior Economist, is the Chief Accountant of the Company. She graduated from Zhongnan University of Economics and Law and Harbin Institute of Technology with a Bachelor degree in Economics and a Master degree in Management respectively. She has extensive experience in financial management and auditing, and was appointed Chief Accountant of the Company in December 2019.', 'management', 9);
+
+INSERT INTO board_members (name_zh, name_en, title_zh, title_en, bio_zh, bio_en, member_type, sort_order) VALUES
+('林建明先生', 'Mr. Lin Jianming', '副總裁', 'Vice President', '林建明先生，為本公司副總裁。1994年獲山東科技大學工科學士學位，化工工藝專業。1994年起任志源塑膠製品（惠州）有限公司品管部經理，1999年起任志源塑膠製品（惠州）有限公司電池廠廠長，2003年起任航天科技半導體有限公司董事常務副總經理，2007年起任志源實業、志順電業有限公司董事總經理，期間，於2010年起任航天控股工業有限公司董事、總經理，2012年起任本公司總裁助理，2020年10月起任本公司副總裁。', 'Mr. Lin Jianming is a Vice President of the Company. He obtained his Bachelor degree in Chemical Engineering from Shandong University of Science and Technology in 1994. He has served as Vice President of the Company since October 2020.', 'management', 10);
+
+INSERT INTO board_members (name_zh, name_en, title_zh, title_en, bio_zh, bio_en, member_type, sort_order) VALUES
+('李剛先生', 'Mr. Li Gang', '副總裁', 'Vice President', '李剛先生，為本公司副總裁。1992年畢業於鄭州航空工業管理學院經營管理系工業企業計劃統計(含市場營銷)專業。2003年獲得國立南澳大學MBA工商管理碩士學位。1992年9月至1996年12月任航天總公司一院十三所助理工程師，1996年12月至1998年1月任航天總公司人事局主任科員，1998年1月至1998年5月任航天科技國際集團駐京辦助工，1998年5月起，歷任中國航天國際控股有限公司綜合部高級人事主任、綜合部助理總經理、綜合部副總經理、人力資源部總監、總裁助理、企業文化部總經理、人力資源部總經理，2023年1月起任本公司副總裁。', 'Mr. Li Gang is a Vice President of the Company. He graduated from Zhengzhou Institute of Aeronautical Industry Management in 1992 and obtained his MBA from the University of South Australia in 2003. He has served as Vice President of the Company since January 2023.', 'management', 11);

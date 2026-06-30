@@ -177,6 +177,7 @@ export const BOARD_MEMBERS_FIELDS: FieldConfig[] = [
       { value: "executive", label: "執行董事" },
       { value: "non-executive", label: "非執行董事" },
       { value: "independent", label: "獨立非執行董事" },
+      { value: "management", label: "管理層" },
     ],
   },
   {
@@ -484,7 +485,7 @@ export const TABLE_META: Record<
     apiPath: "announcements",
   },
   board_members: {
-    label: "董事局成員",
+    label: "董事局與管理層",
     fields: BOARD_MEMBERS_FIELDS,
     columns: BOARD_MEMBERS_COLUMNS,
     apiPath: "board_members",

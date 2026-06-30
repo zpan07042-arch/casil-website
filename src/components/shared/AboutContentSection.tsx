@@ -2,7 +2,7 @@
  * AboutContentSection — 關於我們欄目統一橫幅 + 正文內容
  *
  * 組合 AboutHeader 與正文渲染區塊，
- * 適用於需要同時展示橫幅與長文本的頁面（如關於我們首頁、董事局）。
+ * 適用於需要同時展示橫幅與長文本的頁面（如關於我們首頁、董事局與管理層）。
  */
 import AboutHeader from "@/components/shared/AboutHeader";
 

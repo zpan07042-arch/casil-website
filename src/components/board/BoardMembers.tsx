@@ -16,6 +16,7 @@ export default function BoardMembers({
     executive: lang === "zh" ? "執行董事" : "Executive Directors",
     independent: lang === "zh" ? "獨立非執行董事" : "Independent Non-executive Directors",
     "non-executive": lang === "zh" ? "非執行董事" : "Non-executive Directors",
+    management: lang === "zh" ? "管理層" : "Management",
   };
 
   const grouped = members.reduce(
@@ -42,7 +43,7 @@ export default function BoardMembers({
                 const title = lang === "zh" ? m.title_zh : (m.title_en || m.title_zh);
                 const bio = lang === "zh" ? m.bio_zh : (m.bio_en || m.bio_zh);
                 const isExpanded = expandedId === m.id;
-                const isCore = title.includes("主席") || title.includes("總裁") || title.includes("Chairman") || title.includes("CEO");
+                const isCore = title.includes("主席") || title.includes("總裁") || title.includes("總會計師") || title.includes("Chairman") || title.includes("CEO") || title.includes("Chief Accountant") || title.includes("Vice President");
 
                 return (
                   <div key={m.id} className="border-b border-divider last:border-b-0">

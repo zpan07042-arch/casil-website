@@ -65,14 +65,14 @@ export function BoardMembersManager({ initialData }: Props) {
         onEdit={(row) => { setEditingRow(row); setModalOpen(true); }}
         onDelete={handleDelete}
         onAdd={() => { setEditingRow(null); setModalOpen(true); }}
-        tableLabel="董事局成員"
+        tableLabel="董事局與管理層"
       />
       {modalOpen && (
         <AdminModal
           isOpen={modalOpen}
           onClose={() => { setModalOpen(false); setEditingRow(null); }}
           onSave={handleSave}
-          title={editingRow ? "編輯董事局成員" : "新增董事局成員"}
+          title={editingRow ? "編輯董事局與管理層成員" : "新增董事局與管理層成員"}
           fields={BOARD_MEMBERS_FIELDS}
           initialData={editingRow}
         />
