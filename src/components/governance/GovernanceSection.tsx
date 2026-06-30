@@ -21,13 +21,29 @@ function FadeSection({ children, className = "" }: { children: React.ReactNode; 
   );
 }
 
-function SectionTitle({ children }: { children: React.ReactNode }) {
+function SectionTitle({ children, enLabel }: { children: React.ReactNode; enLabel: string }) {
   return (
-    <div className="flex items-center gap-3 mb-5">
-      <div className="w-1 h-6 rounded-full bg-brand" />
-      <h2 className="text-xl md:text-2xl font-bold text-text-primary">
+    <div style={{ marginBottom: 20 }}>
+      <h2 style={{ fontSize: 30, fontWeight: 700, marginBottom: 4 }} className="text-text-primary">
         {children}
       </h2>
+      <p
+        style={{
+          fontSize: 11,
+          color: "#888E9C",
+          margin: "0 0 16px",
+          letterSpacing: "0.06em",
+        }}
+      >
+        {enLabel}
+      </p>
+      <div
+        style={{
+          width: "100%",
+          height: 1,
+          backgroundColor: "#E9EEF7",
+        }}
+      />
     </div>
   );
 }
@@ -63,90 +79,11 @@ export default function GovernanceSection({
 }) {
   const isZh = lang === "zh";
 
-  const committees = isZh
-    ? ["審覈委員會", "薪酬委員會", "提名委員會", "環境、社會及管治委員會"]
-    : ["Audit Committee", "Remuneration Committee", "Nomination Committee", "ESG Committee"];
-
   return (
     <section className="pt-12 md:pt-20 pb-20 md:pb-28">
       <div className="max-w-5xl mx-auto px-5 md:px-8">
 
-        {/* ========== MODULE 1: GOVERNANCE INTRODUCTION ========== */}
-        <FadeSection className="mb-12 md:mb-16">
-          <div
-            className="relative bg-white rounded-2xl p-8 md:p-10 border border-divider shadow-sm
-              hover:shadow-md hover:border-brand/10 transition-all duration-500"
-          >
-            {/* Subtle corner accent */}
-            <div
-              className="absolute top-0 right-0 w-36 h-36 rounded-bl-3xl opacity-[0.04] pointer-events-none"
-              style={{ background: "radial-gradient(circle at top right, #0A2463, transparent 70%)" }}
-            />
-
-            <div className="relative">
-              <SectionTitle>
-                {isZh ? "企業管治介紹" : "Corporate Governance Overview"}
-              </SectionTitle>
-
-              {/* Intro text */}
-              <p
-                className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl mb-8" style={{ textIndent: "2em" }}
-              >
-                {content}
-              </p>
-
-              {/* Committee structure cards */}
-              <h4 className="text-sm font-semibold text-text-primary mb-4">
-                {isZh ? "管治架構" : "Governance Structure"}
-              </h4>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-                {committees.map((name, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 8 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08, duration: 0.4 }}
-                    className="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-divider/60
-                      bg-[#F8F9FA] hover:bg-white hover:border-brand/25 hover:shadow-sm
-                      transition-all duration-300"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-brand-light flex-shrink-0" />
-                    <span className="text-[13px] font-medium text-text-primary leading-snug">
-                      {name}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Compliance highlight */}
-              <div
-                className="flex items-start gap-3 p-4 rounded-xl border border-brand/10"
-                style={{ background: "linear-gradient(135deg, rgba(10,36,99,0.04), rgba(62,146,204,0.04))" }}
-              >
-                <div className="w-6 h-6 rounded-full bg-brand/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1L2 3v3.5c0 2.5 1.7 4.3 4 4.7 2.3-.4 4-2.2 4-4.7V3L6 1z" stroke="#0A2463" strokeWidth="1" strokeLinejoin="round" />
-                    <path d="M4 6l1.2 1.2 2.6-2.4" stroke="#0A2463" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-[13px] font-semibold text-brand mb-0.5">
-                    {isZh ? "合規依據" : "Compliance Framework"}
-                  </p>
-                  <p className="text-[13px] text-text-secondary leading-[1.6]"
-                  >
-                    {isZh
-                      ? "本公司定期檢討企業管治守則，確保符合香港聯合交易所有限公司證券上市規則附錄C1《企業管治守則》的要求。"
-                      : "The Company regularly reviews its corporate governance practices to ensure compliance with the Corporate Governance Code set out in Appendix C1 of the Rules Governing the Listing of Securities on The Stock Exchange of Hong Kong Limited."}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </FadeSection>
-
-        {/* ========== MODULE 2: GOVERNANCE DOCUMENTS ========== */}
+        {/* ========== MODULE 1: GOVERNANCE DOCUMENTS ========== */}
         <FadeSection>
           <div
             className="relative rounded-2xl p-8 md:p-10 border border-divider/50
@@ -160,7 +97,7 @@ export default function GovernanceSection({
             />
 
             <div className="relative">
-              <SectionTitle>
+              <SectionTitle enLabel="Governance Document Downloads">
                 {isZh ? "管治文件下載" : "Governance Document Downloads"}
               </SectionTitle>
 
@@ -186,7 +123,7 @@ export default function GovernanceSection({
                         <div className="text-brand/40 group-hover:text-brand transition-colors duration-300 flex-shrink-0">
                           <FileIcon />
                         </div>
-                        <span className="text-sm text-text-primary group-hover:text-brand transition-colors duration-300 truncate leading-normal">
+                        <span style={{ fontSize: 15 }} className="text-text-primary group-hover:text-brand transition-colors duration-300 truncate leading-normal">
                           {isZh ? doc.title_zh : (doc.title_en || doc.title_zh)}
                         </span>
                       </div>

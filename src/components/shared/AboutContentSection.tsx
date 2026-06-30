@@ -9,7 +9,7 @@ import AboutHeader from "@/components/shared/AboutHeader";
 function formatContent(text: string): string {
   return text
     .split(/\n\n+/)
-    .map((p) => `<p class="mb-4">${p.trim()}</p>`)
+    .map((p) => `<p class="mb-4" style="text-indent:2em">${p.trim()}</p>`)
     .join("");
 }
 
@@ -42,7 +42,8 @@ export default function AboutContentSection({
         <section className="py-10 md:py-16">
           <div className="max-w-3xl mx-auto px-5 md:px-8">
             <div
-              className="text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl"
+              className="max-w-2xl"
+              style={{ fontSize: 15, color: "#000000", lineHeight: 1.6 }}
               dangerouslySetInnerHTML={{ __html: formatContent(content) }}
             />
           </div>

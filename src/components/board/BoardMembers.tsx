@@ -12,16 +12,25 @@ export default function BoardMembers({
 }) {
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
-  const memberTypes: Record<string, string> = {
-    executive: lang === "zh" ? "執行董事" : "Executive Directors",
-    independent: lang === "zh" ? "獨立非執行董事" : "Independent Non-executive Directors",
-    "non-executive": lang === "zh" ? "非執行董事" : "Non-executive Directors",
-    management: lang === "zh" ? "管理層" : "Management",
+  const isZh = lang === "zh";
+
+  const memberTypesZh: Record<string, string> = {
+    executive: "執行董事",
+    independent: "獨立非執行董事",
+    "non-executive": "非執行董事",
+    management: "管理層",
+  };
+
+  const memberTypesEn: Record<string, string> = {
+    executive: "Executive Directors",
+    independent: "Independent Non-executive Directors",
+    "non-executive": "Non-executive Directors",
+    management: "Management",
   };
 
   const grouped = members.reduce(
     (acc, m) => {
-      const t = memberTypes[m.member_type] || m.member_type;
+      const t = m.member_type;
       if (!acc[t]) acc[t] = [];
       acc[t].push(m);
       return acc;
@@ -30,13 +39,33 @@ export default function BoardMembers({
   );
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="pt-4 md:pt-6 pb-16 md:pb-20">
       <div className="max-w-3xl mx-auto px-5 md:px-8">
         {Object.entries(grouped).map(([type, group]) => (
           <div key={type} className="mb-16 last:mb-0">
-            <h2 className="text-xl md:text-2xl font-bold text-text-primary mb-8 pb-3 border-b-2 border-brand/20">
-              {type}
-            </h2>
+            {/* ── 副标题 + 英文小字 + 分割线 ── */}
+            <div style={{ marginBottom: 20 }}>
+              <h2 style={{ fontSize: 30, fontWeight: 700, marginBottom: 4 }} className="text-text-primary">
+                {isZh ? (memberTypesZh[type] || type) : (memberTypesEn[type] || type)}
+              </h2>
+              <p
+                style={{
+                  fontSize: 11,
+                  color: "#888E9C",
+                  margin: "0 0 16px",
+                  letterSpacing: "0.06em",
+                }}
+              >
+                {memberTypesEn[type] || type}
+              </p>
+              <div
+                style={{
+                  width: "100%",
+                  height: 1,
+                  backgroundColor: "#E9EEF7",
+                }}
+              />
+            </div>
             <div className="space-y-0">
               {group.map((m) => {
                 const name = lang === "zh" ? m.name_zh : (m.name_en || m.name_zh);
@@ -91,7 +120,7 @@ export default function BoardMembers({
                       }`}
                     >
                       {bio && (
-                        <p className="text-[13px] leading-relaxed text-text-secondary/80 pb-2">
+                        <p style={{ fontSize: 15, lineHeight: 1.6, paddingBottom: 8 }} className="text-text-secondary/80">
                           {bio}
                         </p>
                       )}

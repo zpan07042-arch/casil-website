@@ -74,9 +74,9 @@ CREATE TABLE IF NOT EXISTS links (
 
 -- ── 初始數據 ───────────────────────────────────────────
 
-INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('about', 'about', '關於我們', 'About Us', '中國航天國際控股有限公司（航天控股）是中國航天科技集團公司（中國航天）在香港的上市公司（股份代號：31）。作為中國航天的海外窗口和國際化平台，航天控股承載着連接中國航天與全球市場的橋樑使命。
+INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('about', 'about', '關於我們', 'About Us', '　　中國航天國際控股有限公司（航天控股）是中國航天科技集團公司（中國航天）在香港的上市公司（股份代號：31）。作為中國航天的海外窗口和國際化平台，航天控股承載着連接中國航天與全球市場的橋樑使命。
 
-本欄目彙集了公司背景、企業文化、發展目標、董事局成員及企業管治等核心信息，幫助您全面瞭解航天控股的發展歷程與治理架構。', 'China Aerospace International Holdings Limited (CASIL) is a Hong Kong-listed company (Stock Code: 31) of China Aerospace Science and Technology Corporation (CASC). As the overseas window and international platform of CASC, CASIL serves as a bridge connecting China''s aerospace industry with the global market.
+　　本欄目彙集了公司背景、企業文化、發展目標、董事局成員及企業管治等核心信息，幫助您全面瞭解航天控股的發展歷程與治理架構。', 'China Aerospace International Holdings Limited (CASIL) is a Hong Kong-listed company (Stock Code: 31) of China Aerospace Science and Technology Corporation (CASC). As the overseas window and international platform of CASC, CASIL serves as a bridge connecting China''s aerospace industry with the global market.
 
 This section brings together core information including Company Background, Corporate Culture, Development Goals, Board of Directors, and Corporate Governance, helping you gain a comprehensive understanding of CASIL''s development journey and governance structure.', 0);
 INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('background', 'about', '背景', 'Background', '中國航天國際控股有限公司 ( 航天控股 ) 是中國航天科技集團公司 ( 中國航天 ) 在香港的上市公司 ( 股份代號：31 )。中國航天作為航天控股的大股東，是中國進行空間技術和產品 ( 航天器、運載火箭、衞星等 ) 的開發、研究、生產和商用的企業，擁有雄厚的專業人才資源和技術力量優勢。
@@ -147,7 +147,7 @@ Corporate Culture and Development Strategy
 The Company has formulated a long-term planning outline and continuously evaluates potential opportunities and challenges. Through our core values, we continuously enhance employee ethical standards, improve corporate governance, prevent compliance risks, and establish competitive advantages for sustainable development.', 0);
 INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('goals', 'about', '目標', 'Goals', '航天控股將在大股東中國航天的鼎力支持下，充分利用香港各方面的優勢，逐步實現建設成為一個具有科學化的管理體系、強勢的整體市場競爭能力、優質的戰略合作伙伴，為股東創造良好的投資價值。
 
-本公司及各附屬公司的主要業務為科技工業及航天服務業務。', 'CASIL will, with the full support of its major shareholder CASC, fully leverage the various advantages of Hong Kong, and gradually build itself into an enterprise with a scientific management system, strong overall market competitiveness, and high-quality strategic partners, creating excellent investment value for shareholders.
+ 本公司及各附屬公司的主要業務為科技工業及航天服務業務。', 'CASIL will, with the full support of its major shareholder CASC, fully leverage the various advantages of Hong Kong, and gradually build itself into an enterprise with a scientific management system, strong overall market competitiveness, and high-quality strategic partners, creating excellent investment value for shareholders.
 
 The principal businesses of the Company and its subsidiaries are technology industry and aerospace services.', 0);
 INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('subsidiaries', 'business', '子公司關係', 'Subsidiary Relationships', '全資子公司

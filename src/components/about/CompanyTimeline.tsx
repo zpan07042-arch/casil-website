@@ -1,99 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/data/I18nProvider";
-
-/* ========== Types ========== */
-interface StageEvent {
-  date: string;
-  text: string;
-}
-
-interface Stage {
-  year: string;
-  title: string;
-  events: StageEvent[];
-}
-
-/* ========== Data ========== */
-const zhEvents1975 = [
-  { date: "1975-07-25", text: "康力投資有限公司（Conic Investment）在香港註冊成立，創始人柯俊文（Alex Au），為康力集團控股公司，旗下涵蓋康力電子、志遠實業等，主營電子製造（電視機、音響、塑料件），擁有「Contec（康藝）」品牌。" },
-  { date: "1979", text: "成立康力電影製作，涉足影視與唱片（簽約許冠文、徐小鳳等）；設康力電視工作室（後為先濤數碼前身）。" },
-  { date: "1980", text: "成為香港最大電子製造商之一，員工超萬人，產品外銷全球。" },
-  { date: "1984", text: "資金鏈危機，華潤 + 中銀集團通過新瓊公司收購 35% 股權入主；柯俊文等 6 名董事辭職，後涉財務醜聞（虛假會計、挪用資金），多名高管被捕，柯俊文離港。" },
-  { date: "1986", text: "巨額虧損，主業轉向內地市場。" },
-  { date: "1987", text: "新瓊嘗試私有化退市，未果。" },
-];
-
-const enEvents1975 = [
-  { date: "1975-07-25", text: "Conic Investment Co., Ltd. was incorporated in Hong Kong by founder Alex Au (Ko Chun-man), serving as the holding company of the Conic Group. Its subsidiaries included Conic Electronics and Zhiyuan Industries, primarily engaged in electronics manufacturing (TV sets, audio equipment, plastic components) under the 'Contec' brand." },
-  { date: "1979", text: "Established Conic Film Production, venturing into film, television and music records (signed Michael Hui, Paula Tsui and others); set up Conic Television Studio (later the predecessor of Centro Digital Pictures)." },
-  { date: "1980", text: "Became one of Hong Kong's largest electronics manufacturers, with over 10,000 employees and products exported worldwide." },
-  { date: "1984", text: "Capital chain crisis: China Resources and Bank of China Group acquired a 35% stake through Xinqiong Company; Alex Au and five other directors resigned. A financial scandal followed (false accounting, misappropriation of funds), multiple executives were arrested, and Alex Au left Hong Kong." },
-  { date: "1986", text: "Massive losses; core business pivoted to the mainland China market." },
-  { date: "1987", text: "Xinqiong attempted to privatize and delist the company, but the effort failed." },
-];
-
-const zhEvents1993 = [
-  { date: "1993", text: "中國航天工業總公司（後重組為中國航天科技集團公司 CASC）通過子公司收購康力投資控股權，實現借殼上市。" },
-  { date: "1995", text: "公司更名為「中國航天國際控股有限公司」，簡稱「航天控股」，正式納入航天系版圖。" },
-  { date: "1997", text: "剝離部分非核心電子製造業務，聚焦航天相關產業方向。" },
-  { date: "2000", text: "確立以航天服務、科技工業為核心的戰略定位。" },
-  { date: "2005", text: "開始佈局衛星應用、航天技術轉化等新興業務領域。" },
-  { date: "2008", text: "中國航天科技集團公司重組，航天控股作為集團海外資本平台地位進一步鞏固。" },
-];
-
-const enEvents1993 = [
-  { date: "1993", text: "China Aerospace Industry Corporation (later restructured into CASC) acquired control of Conic Investment through a subsidiary, achieving a backdoor listing." },
-  { date: "1995", text: "Renamed 'China Aerospace International Holdings Limited' (CASIL), officially incorporated into the aerospace group." },
-  { date: "1997", text: "Divested some non-core electronics manufacturing operations, focusing on aerospace-related business directions." },
-  { date: "2000", text: "Established strategic positioning with aerospace services and technological industries as the core." },
-  { date: "2005", text: "Began laying out emerging business areas such as satellite applications and aerospace technology transfer." },
-  { date: "2008", text: "CASC restructured; CASIL's position as the group's overseas capital platform was further consolidated." },
-];
-
-const zhEvents2010 = [
-  { date: "2010", text: "加速發展航天服務業，涵蓋航天技術應用、信息服務等領域。" },
-  { date: "2012", text: "深化高端製造佈局，切入精密零部件、新材料等細分賽道。" },
-  { date: "2015", text: "響應「中國製造2025」戰略，加大智能製造投入，推動產業升級。" },
-  { date: "2018", text: "優化業務結構，形成航天服務 + 科技工業雙輪驅動格局。" },
-];
-
-const enEvents2010 = [
-  { date: "2010", text: "Accelerated development of aerospace service businesses, covering aerospace technology applications and information services." },
-  { date: "2012", text: "Deepened high-end manufacturing layout, entering precision components and new materials sub-sectors." },
-  { date: "2015", text: "Responded to the 'Made in China 2025' strategy, increased investment in smart manufacturing to drive industrial upgrading." },
-  { date: "2018", text: "Optimized business structure, forming a dual-engine model of aerospace services + technological industries." },
-];
-
-const zhEvents2020 = [
-  { date: "2020", text: "戰略性切入半導體封裝載板領域，啟動重大產業項目投資。" },
-  { date: "2022", text: "半導體載板產線建設穩步推進，逐步形成產能規模。" },
-  { date: "2024", text: "載板業務實現關鍵技術突破，產品良率達行業領先水平，市場認可度提升。" },
-  { date: "2026", text: "持續強化半導體材料賽道佈局，推動產業價值重估，助力國家芯片產業自主可控。" },
-];
-
-const enEvents2020 = [
-  { date: "2020", text: "Strategically entered the semiconductor packaging substrate sector, initiating major industrial project investments." },
-  { date: "2022", text: "Semiconductor substrate production line construction progressed steadily, gradually building production capacity." },
-  { date: "2024", text: "Achieved key technology breakthroughs in substrate business; product yield rates reached industry-leading levels with growing market recognition." },
-  { date: "2026", text: "Continued strengthening semiconductor materials sector presence, driving industry value reassessment and supporting national chip industry self-reliance." },
-];
-
-const stagesData: Record<"zh" | "en", Stage[]> = {
-  zh: [
-    { year: "1975-1993", title: "康力時代（1975—1993）：香港電子業巨頭", events: zhEvents1975 },
-    { year: "1993-2009", title: "航天入主（1993—2009）：央企借殼，更名轉型", events: zhEvents1993 },
-    { year: "2010-2019", title: "轉型突破（2010—2019）：佈局航天服務，深耕高端製造", events: zhEvents2010 },
-    { year: "2020-2026", title: "戰略升級（2020—2026）：半導體載板發力，產業價值重估", events: zhEvents2020 },
-  ],
-  en: [
-    { year: "1975-1993", title: "Conic Era (1975–1993): Hong Kong Electronics Giant", events: enEvents1975 },
-    { year: "1993-2009", title: "Aerospace Takeover (1993–2009): Central Enterprise Backdoor Listing & Transformation", events: enEvents1993 },
-    { year: "2010-2019", title: "Transformation Breakthrough (2010–2019): Expanding Aerospace Services & Advancing High-End Manufacturing", events: enEvents2010 },
-    { year: "2020-2026", title: "Strategic Upgrade (2020–2026): Semiconductor Substrate Push & Industry Value Reassessment", events: enEvents2020 },
-  ],
-};
 
 /* ========== Scroll Fade-In Hook ========== */
 function useFadeIn() {
@@ -145,42 +53,36 @@ export default function CompanyTimeline({
   content: string;
 }) {
   const { lang } = useI18n();
-  const stages = stagesData[lang] || stagesData.zh;
   const isZh = lang === "zh";
+  const events = useMemo(() => {
+    const zh = [
+      { year: "1975.7", title: "成立", body: "航天控股前身 —— 康力投資有限公司（以下簡稱康力投資）在中國香港成立。", color: "#FF6B6B" },
+      { year: "1981.8", title: "上市", body: "康力投資在香港聯交所上市，是香港當時規模最大的電子信息產業集團，主要從事電視機生產銷售。", color: "#4ECDC4" },
+      { year: "1993.5", title: "收購", body: "航天總公司收購康力投資股權進入香港資本市場，康力投資更名為航天科技國際集團有限公司。", color: "#FFD93D" },
+      { year: "1999.7", title: "劃歸集團", body: "航天科技國際集團有限公司劃歸中國航天科技集團公司管理。", color: "#6BCB77" },
+      { year: "2008.1", title: "更名", body: "為適應集團公司第四次工作會確定的發展戰略，公司更名為中國航天國際控股有限公司。", color: "#45B7D1" },
+    ];
+    const en = [
+      { year: "1975.7", title: "Founded", body: "The predecessor of CASIL — Conic Investment Co., Ltd. was established in Hong Kong, China.", color: "#FF6B6B" },
+      { year: "1981.8", title: "Listed", body: "Conic Investment was listed on the Hong Kong Stock Exchange, becoming the largest electronics & information industry group in Hong Kong at that time, primarily engaged in TV manufacturing and sales.", color: "#4ECDC4" },
+      { year: "1993.5", title: "Acquired", body: "China Aerospace Corporation acquired Conic Investment shares to enter the Hong Kong capital market; Conic Investment was renamed Aerospace Science and Technology International Group Limited.", color: "#FFD93D" },
+      { year: "1999.7", title: "Transferred", body: "Aerospace Science and Technology International Group Limited was transferred to China Aerospace Science and Technology Corporation (CASC).", color: "#6BCB77" },
+      { year: "2008.1", title: "Renamed", body: "To align with the development strategy set at CASC's 4th Work Conference, the Company was renamed China Aerospace International Holdings Limited.", color: "#45B7D1" },
+    ];
+    return isZh ? zh : en;
+  }, [isZh]);
 
-  function renderContent(text: string) {
-    if (!isZh) return <p className="text-base leading-[1.6] text-[#333333] text-justify" style={{ textIndent: "2em" }}>{text}</p>;
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
-    const cascName = "中國航天科技集團公司";
-    const casilName = "中國航天國際控股有限公司";
-    const regex = new RegExp(`(${cascName}|${casilName})`, "g");
-    const parts = text.split(regex);
+  const toggleEvent = useCallback((i: number) => {
+    setActiveIdx(prev => prev === i ? null : i);
+  }, []);
 
-    return (
-      <p className="text-lg leading-[1.8] text-[#333333] text-justify" style={{ textIndent: "2em" }}>
-        {parts.map((part, i) => {
-          if (part === cascName) {
-            return (
-              <strong key={i} className="font-bold text-[#C8102E]">
-                {part}
-              </strong>
-            );
-          }
-          if (part === casilName) {
-            return (
-              <strong key={i} className="font-bold text-[#111111]">
-                {part}
-              </strong>
-            );
-          }
-          return part;
-        })}
-      </p>
-    );
-  }
+  const activeContent = activeIdx !== null ? events[activeIdx] : null;
+  const contentColor = activeIdx !== null ? events[activeIdx].color : "#ffffff";
 
   return (
-    <div className="w-full" style={{ background: "#F8FAFC" }}>
+    <div className="w-full" style={{ backgroundColor: "#F8FAFE" }}>
       <style>{`
         .timeline-page *::selection {
           background: rgba(15, 76, 129, 0.2);
@@ -192,12 +94,12 @@ export default function CompanyTimeline({
         }
       `}</style>
       <div className="timeline-page">
-      <div className="mx-auto px-5 md:px-0" style={{ maxWidth: "800px" }}>
+      <div className="mx-auto px-5 md:px-8" style={{ maxWidth: "1200px" }}>
 
         {/* ==================== HEADER: Company Name + Stock Code + English Name ==================== */}
         <FadeInSection className="pt-[120px] text-center">
           {/* Line 1: Company name (Chinese) */}
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#0F4C81] leading-tight">
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#000000] leading-tight">
             {isZh ? "中國航天國際控股有限公司" : "China Aerospace International Holdings Limited"}
           </h1>
           {/* Line 2: Stock code (no brackets) */}
@@ -217,34 +119,71 @@ export default function CompanyTimeline({
           <div className="h-px bg-[#0F4C81]" style={{ width: "64px" }} />
         </FadeInSection>
 
-        {/* ==================== BACKGROUND SECTION ==================== */}
+        {/* ==================== BACKGROUND SECTION HEADER ==================== */}
         <FadeInSection>
           <div className="mb-6">
-            {/* English uppercase label on top — 16px (English's original size) */}
             <p className="text-[16px] text-[#555555] leading-none">
               BACKGROUND
             </p>
-            {/* Chinese main heading below — 24px bold (Chinese's original size) */}
             <h2 className="text-[24px] font-bold text-[#555555] mt-2 leading-none">
               {isZh ? "背景" : "Background"}
             </h2>
           </div>
-          <div className="mt-6">
-            {content ? (
-              renderContent(content)
-            ) : (
-              <p className="text-lg leading-[1.8] text-[#333333] text-justify" style={{ textIndent: "2em" }}>
-                {isZh
-                  ? "中國航天國際控股有限公司 ( 航天控股 ) 是中國航天科技集團公司 ( 中國航天 ) 在香港的上市公司 ( 股份代號：31 )。中國航天作為航天控股的大股東，是中國進行空間技術和產品 ( 航天器、運載火箭、衞星等 ) 的開發、研究、生產和商用的企業，擁有雄厚的專業人才資源和技術力量優勢。 為配合集團新的發展戰略和發展方向，本公司已將其中文名稱改為「中國航天國際控股有限公司」（股份簡稱 ：「航天控股」)。新名稱亦藴涵了本公司與主要股東中國航天緊密相連的關係和未來在業務上互動發展的深層意義。"
-                  : "China Aerospace International Holdings Limited (CASIL) is a Hong Kong-listed company (Stock Code: 31) of China Aerospace Science and Technology Corporation (CASC). As the majority shareholder of CASIL, CASC is an enterprise engaged in the development, research, production and commercial application of space technology and products (spacecraft, launch vehicles, satellites, etc.), possessing strong professional talent resources and technological advantages."}
-              </p>
-            )}
-          </div>
         </FadeInSection>
 
-        {/* ==================== DIVIDER 2 ==================== */}
-        <FadeInSection className="flex justify-center py-16">
-          <div className="h-px bg-[#0F4C81]" style={{ width: "64px" }} />
+        {/* ==================== COMPANY PROFILE CARD ==================== */}
+        <FadeInSection className="mb-16 md:mb-20">
+          <div
+            style={{
+              backgroundColor: "#FFFFFF",
+              borderRadius: 12,
+              border: "1px solid #E6EEFB",
+              padding: 32,
+              boxShadow:
+                "0 1px 3px rgba(15, 36, 82, 0.06), 0 4px 16px rgba(15, 36, 82, 0.07), 0 8px 32px rgba(15, 36, 82, 0.05)",
+            }}
+          >
+            {/* ── 标题 + 英文小字 ── */}
+            <h2
+              style={{
+                fontSize: 30,
+                fontWeight: 700,
+                color: "#0A1429",
+                marginBottom: 4,
+              }}
+            >
+              {isZh ? "公司簡介" : "Company Profile"}
+            </h2>
+            <p
+              style={{
+                fontSize: 11,
+                color: "#888E9C",
+                margin: "0 0 16px",
+                letterSpacing: "0.06em",
+              }}
+            >
+              COMPANY PROFILE
+            </p>
+
+            {/* ── 分割線 ── */}
+            <div
+              style={{
+                width: "100%",
+                height: 1,
+                backgroundColor: "#E9EEF7",
+                marginBottom: 20,
+              }}
+            />
+
+            {/* ── 正文 ── */}
+            <div style={{ fontSize: 15, lineHeight: 1.6, color: "#444A58", textAlign: "justify", textIndent: "2em" }}>
+              {content || (
+                isZh
+                  ? "中國航天國際控股有限公司 ( 航天控股 ) 是中國航天科技集團公司 ( 中國航天 ) 在香港的上市公司 ( 股份代號：31 )。中國航天作為航天控股的大股東，是中國進行空間技術和產品 ( 航天器、運載火箭、衞星等 ) 的開發、研究、生產和商用的企業，擁有雄厚的專業人才資源和技術力量優勢。 為配合集團新的發展戰略和發展方向，本公司已將其中文名稱改為「中國航天國際控股有限公司」（股份簡稱 ：「航天控股」)。新名稱亦藴涵了本公司與主要股東中國航天緊密相連的關係和未來在業務上互動發展的深層意義。"
+                  : "China Aerospace International Holdings Limited (CASIL) is a Hong Kong-listed company (Stock Code: 31) of China Aerospace Science and Technology Corporation (CASC). As the majority shareholder of CASIL, CASC is an enterprise engaged in the development, research, production and commercial application of space technology and products (spacecraft, launch vehicles, satellites, etc.), possessing strong professional talent resources and technological advantages."
+              )}
+            </div>
+          </div>
         </FadeInSection>
 
         {/* ==================== DEVELOPMENT HISTORY SECTION ==================== */}
@@ -261,55 +200,101 @@ export default function CompanyTimeline({
           </div>
         </FadeInSection>
 
-        {/* ==================== CARD-STYLE TIMELINE ==================== */}
-        <div className="space-y-8">
-          {stages.map((stage, stageIdx) => (
-            <FadeInSection key={stageIdx}>
-              <div
-                className="bg-white rounded-2xl border border-[#E5E5E5] shadow-sm
-                  hover:shadow-md hover:border-[#0F4C81]/15 transition-all duration-400 overflow-hidden"
-              >
-                {/* Card header: year badge + stage title */}
-                <div
-                  className="px-6 md:px-8 py-5 border-b border-[#F0F0F0]"
-                  style={{ background: "linear-gradient(135deg, rgba(15,76,129,0.04), rgba(15,76,129,0.01))" }}
-                >
-                  <div className="flex items-baseline gap-4 flex-wrap">
-                    <span
-                      className="inline-block text-[22px] md:text-[26px] font-bold text-[#0F4C81] leading-none whitespace-nowrap"
-                    >
-                      {stage.year}
-                    </span>
-                    <span className="text-[15px] md:text-[17px] font-bold text-[#333333] leading-snug">
-                      {stage.title}
-                    </span>
-                  </div>
-                </div>
+        {/* ==================== DARK CARD TIMELINE ==================== */}
+        <FadeInSection className="max-w-6xl mx-auto">
+          <div className="relative rounded-2xl overflow-hidden" style={{ background: "#001433" }}>
+            {/* Background image — screen blend */}
+            <div
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              style={{
+                backgroundImage: "url('/images/yback.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center bottom",
+                mixBlendMode: "screen",
+                opacity: 0.55,
+              }}
+            />
+            {/* Vignette */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: "radial-gradient(ellipse at center, transparent 30%, rgba(0,20,51,0.7) 100%)" }}
+            />
 
-                {/* Card body: events list */}
-                {stage.events.length > 0 && (
-                  <div className="px-6 md:px-8 py-5 space-y-5">
-                    {stage.events.map((event, eventIdx) => (
-                      <div key={eventIdx} className="flex gap-3 md:gap-4">
-                        {/* Date badge */}
-                        <span
-                          className="text-[13px] md:text-[14px] font-semibold text-[#555555] whitespace-nowrap flex-shrink-0 leading-[1.8]"
-                          style={{ minWidth: isZh ? "90px" : "100px" }}
+            <div className="relative z-10 px-8 md:px-16 py-12 md:py-16 flex flex-col justify-center" style={{ minHeight: 480 }}>
+              {/* Main horizontal timeline */}
+              <div className="relative flex items-center">
+                <div
+                  className="absolute inset-y-1/2 left-0 right-0 -translate-y-1/2"
+                  style={{ height: 2, background: "rgba(255,255,255,0.15)" }}
+                />
+                {events.map((ev, i) => {
+                  const isActive = activeIdx === i;
+                  return (
+                    <div key={i} className="flex-1 flex flex-col items-center relative z-10 py-2">
+                      <button onClick={() => toggleEvent(i)} className="flex flex-col items-center gap-2 group cursor-pointer">
+                        <div
+                          className="rounded-full border-2 border-[#001433] transition-all duration-300 flex items-center justify-center"
+                          style={{
+                            width: isActive ? 22 : 16,
+                            height: isActive ? 22 : 16,
+                            background: ev.color,
+                            boxShadow: isActive ? `0 0 20px ${ev.color}` : `0 0 8px ${ev.color}60`,
+                          }}
                         >
-                          {event.date}
+                          {isActive && <div className="w-2 h-2 rounded-full bg-white/60" />}
+                        </div>
+                        <span
+                          className="text-sm md:text-base font-bold transition-colors duration-200 mt-1"
+                          style={{ color: "#FFFFFF" }}
+                        >
+                          {ev.title}
                         </span>
-                        {/* Event text */}
-                        <p className="text-[14px] md:text-[15px] text-[#333333] leading-[1.8]">
-                          {event.text}
-                        </p>
-                      </div>
-                    ))}
+                        <span
+                          className="text-[13px] transition-colors duration-200"
+                          style={{ color: "#FFFFFF", fontFamily: "var(--font-mono)", opacity: 0.75 }}
+                        >
+                          {ev.year}
+                        </span>
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Content panel */}
+              <div
+                className="overflow-hidden transition-all duration-400"
+                style={{ maxHeight: activeContent ? 300 : 0, opacity: activeContent ? 1 : 0 }}
+              >
+                {activeContent && (
+                  <div
+                    className="mt-8 rounded-xl px-6 py-5 relative"
+                    style={{ background: `${contentColor}12`, border: `1px solid ${contentColor}30` }}
+                  >
+                    <button
+                      className="absolute top-3 right-3 text-white/40 hover:text-white/80 transition-colors"
+                      onClick={() => setActiveIdx(null)}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    </button>
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-lg font-bold" style={{ color: "#FFFFFF", fontFamily: "var(--font-mono)" }}>{activeContent.year}</span>
+                      <span className="text-lg font-semibold" style={{ color: "#FFFFFF" }}>{activeContent.title}</span>
+                    </div>
+                    <p className="text-base leading-relaxed" style={{ color: "#FFFFFF", opacity: 0.85 }}>{activeContent.body}</p>
                   </div>
                 )}
               </div>
-            </FadeInSection>
-          ))}
-        </div>
+
+              {/* Hint */}
+              <p className="text-center text-[13px] mt-10" style={{ color: "#FFFFFF", opacity: 0.5, fontFamily: "var(--font-mono)" }}>
+                {isZh ? "點擊時間節點查看詳情 · Click a point to view details" : "Click a point to view details · 點擊時間節點查看詳情"}
+              </p>
+            </div>
+          </div>
+        </FadeInSection>
 
         {/* ==================== FOOTER ==================== */}
         <FadeInSection>

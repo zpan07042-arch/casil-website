@@ -42,7 +42,7 @@ export default function ContentSection({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-              className="text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl"
+              style={{ fontSize: 15, lineHeight: 1.6 }} className="text-text-secondary max-w-2xl"
               dangerouslySetInnerHTML={{ __html: formatContent(content) }}
             />
           </div>

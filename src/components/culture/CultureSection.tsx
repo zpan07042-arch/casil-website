@@ -5,15 +5,15 @@
  * - 大圓角矩形，淺灰底色，細邊框，柔和下沉陰影
  * - 左上角裝飾圓形漸變
  * - 卡片下半部分疊加火箭發射背景圖 qback.png
- * - 正文使用 18px，淺灰色文字，統一左對齊
- * - 板塊標題加粗突出，層級分明
+ * - 正文使用 15px，黑色文字，統一左對齊
+ * - 副标题使用 30px，加粗突出，层級分明
  * - 航天國企官網簡約商務 UI，乾淨低飽和視覺
  */
 
 const CULTURE_CONTENT_ZH = [
   {
     type: "paragraph",
-    text: "「愛國、創新、誠信、和諧、盡責」為本公司企業文化的核心，為本公司企業使命和業務發展原則，也是員工作為日常業務運作和作業方向的核心價值：",
+    text: " 「愛國、創新、誠信、和諧、盡責」為本公司企業文化的核心，為本公司企業使命和業務發展原則，也是員工作為日常業務運作和作業方向的核心價值：",
   },
   {
     type: "section",
@@ -63,6 +63,7 @@ const CULTURE_CONTENT_ZH = [
     type: "section",
     title: "企業文化與發展策略",
     text: "本公司制定了長遠的規劃願景，並持續評估本公司面對的潛在風險與挑戰。透過本公司企業文化的核心：「愛國、創新、誠信、和諧、盡責」，持續提升本公司員工的道德操守、完善公司管治制度、防範公司合規經營風險，為員工本身及公司建立競爭優勢，讓公司各項業務穩定發展。",
+    highlight: "「愛國、創新、誠信、和諧、盡責」",
   },
 ];
 
@@ -112,7 +113,7 @@ export default function CultureSection({
             <div
               style={{
                 position: "absolute",
-                top: -60,
+                top: -100,
                 left: -160,
                 width: 360,
                 height: 360,
@@ -154,6 +155,9 @@ export default function CultureSection({
             >
               {CULTURE_CONTENT_ZH.map((block, i) => {
                 if (block.type === "section") {
+                  const parts = "highlight" in block && block.highlight
+                    ? block.text.split(block.highlight)
+                    : null;
                   return (
                     <div
                       key={i}
@@ -165,9 +169,9 @@ export default function CultureSection({
                     >
                       <h3
                         style={{
-                          fontSize: 18,
+                          fontSize: 30,
                           fontWeight: 700,
-                          color: "#0A1429",
+                          color: "#000000",
                           margin: 0,
                           letterSpacing: "0.04em",
                         }}
@@ -177,14 +181,20 @@ export default function CultureSection({
                       <p
                         style={{
                           margin: 0,
-                          fontSize: 18,
-                          lineHeight: "30.6px",
-                          color: "#868690",
+                          fontSize: 15,
+                          lineHeight: 1.6,
+                          color: "#000000",
                           textAlign: "left",
                           whiteSpace: "pre-line",
                         }}
                       >
-                        {block.text}
+                        {parts && block.highlight
+                          ? <>
+                              {parts[0]}
+                              <span style={{ color: "#000000", fontWeight: 700 }}>{block.highlight}</span>
+                              {parts[1]}
+                            </>
+                          : block.text}
                       </p>
                     </div>
                   );
@@ -202,9 +212,9 @@ export default function CultureSection({
                     <p
                       style={{
                         margin: 0,
-                        fontSize: 18,
-                        lineHeight: "30.6px",
-                        color: "#868690",
+                        fontSize: 15,
+                        lineHeight: 1.6,
+                        color: "#000000",
                         textAlign: "left",
                         whiteSpace: "pre-line",
                       }}

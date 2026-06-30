@@ -21,7 +21,7 @@ export default async function BoardPage({
     <>
       <AboutContentSection
         title={title}
-        content={content || ""}
+        content=""
         breadcrumb={meta.breadcrumb}
         enLabel={meta.enLabel}
         description={meta.description}
