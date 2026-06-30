@@ -166,6 +166,20 @@ export class CompatDatabase {
     fs.writeFileSync(this.dbPath, Buffer.from(data));
   }
 
+  /**
+   * 從磁盤重新加載數據庫。
+   * 用於多 worker 場景：其他 worker 寫入數據後，本 worker 需要刷新才能讀到最新數據。
+   */
+  async reloadFromDisk(): Promise<void> {
+    const S = await getSqlJs();
+    if (fs.existsSync(this.dbPath)) {
+      const buffer = new Uint8Array(fs.readFileSync(this.dbPath));
+      this.db.close();
+      this.db = new S.Database(buffer);
+      this.db.run("PRAGMA journal_mode = WAL");
+    }
+  }
+
   close(): void {
     this.saveToDisk();
     this.db.close();
