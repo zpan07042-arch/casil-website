@@ -119,7 +119,6 @@ function useFadeIn() {
   return { ref, visible };
 }
 
-/* ========== FadeInSection Wrapper ========== */
 function FadeInSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, visible } = useFadeIn();
   return (
@@ -149,37 +148,11 @@ export default function CompanyTimeline({
   const stages = stagesData[lang] || stagesData.zh;
   const isZh = lang === "zh";
 
-  /* ---- horizontal timeline scroll detection ---- */
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
-  const checkScroll = useCallback(() => {
-    const el = scrollContainerRef.current;
-    if (!el) return;
-    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 2);
-  }, []);
-
-  useEffect(() => {
-    const el = scrollContainerRef.current;
-    if (!el) return;
-    checkScroll();
-    el.addEventListener("scroll", checkScroll, { passive: true });
-    window.addEventListener("resize", checkScroll);
-    return () => {
-      el.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
-    };
-  }, [checkScroll, stages]);
-
-  /* ---- highlight CASIL & CASC names in content ---- */
   function renderContent(text: string) {
     if (!isZh) return <p className="text-base leading-[1.6] text-[#333333] text-justify" style={{ textIndent: "2em" }}>{text}</p>;
 
-    // Split text to highlight specific terms
     const cascName = "中國航天科技集團公司";
     const casilName = "中國航天國際控股有限公司";
-
-    // Build regex that matches either term
     const regex = new RegExp(`(${cascName}|${casilName})`, "g");
     const parts = text.split(regex);
 
@@ -208,7 +181,6 @@ export default function CompanyTimeline({
 
   return (
     <div className="w-full" style={{ background: "#F8FAFC" }}>
-      {/* Text selection styling per design spec */}
       <style>{`
         .timeline-page *::selection {
           background: rgba(15, 76, 129, 0.2);
@@ -222,22 +194,22 @@ export default function CompanyTimeline({
       <div className="timeline-page">
       <div className="mx-auto px-5 md:px-0" style={{ maxWidth: "800px" }}>
 
-        {/* ==================== MAIN TITLE ==================== */}
+        {/* ==================== HEADER: Company Name + Stock Code + English Name ==================== */}
         <FadeInSection className="pt-[120px] text-center">
-          <p className="text-base md:text-lg text-[#333333]">
+          {/* Line 1: Company name (Chinese) */}
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#0F4C81] leading-tight">
+            {isZh ? "中國航天國際控股有限公司" : "China Aerospace International Holdings Limited"}
+          </h1>
+          {/* Line 2: Stock code (no brackets) */}
+          <p className="mt-3 text-sm md:text-base text-[#555555]">
+            {isZh ? "股份代號：00031" : "Stock Code: 00031"}
+          </p>
+          {/* Line 3: English / Chinese name */}
+          <p className="mt-2 text-sm md:text-base text-[#555555]">
             {isZh
               ? "China Aerospace International Holdings Limited"
-              : "中國航天國際控股有限公司 (股份代號：31)"}
+              : "中國航天國際控股有限公司"}
           </p>
-          <h1 className="mt-2 text-xl md:text-2xl lg:text-3xl font-bold text-[#0F4C81] leading-tight">
-            {isZh ? "中國航天國際控股有限公司" : "China Aerospace International Holdings Limited"}
-            {isZh && (
-              <>
-                {" "}
-                <span className="text-xs md:text-sm">(股份代號：00031)</span>
-              </>
-            )}
-          </h1>
         </FadeInSection>
 
         {/* ==================== DIVIDER 1 ==================== */}
@@ -248,12 +220,14 @@ export default function CompanyTimeline({
         {/* ==================== BACKGROUND SECTION ==================== */}
         <FadeInSection>
           <div className="mb-6">
-            <h2 className="text-[24px] font-bold text-[#555555] leading-none">
+            {/* English uppercase label on top — 16px (English's original size) */}
+            <p className="text-[16px] text-[#555555] leading-none">
+              BACKGROUND
+            </p>
+            {/* Chinese main heading below — 24px bold (Chinese's original size) */}
+            <h2 className="text-[24px] font-bold text-[#555555] mt-2 leading-none">
               {isZh ? "背景" : "Background"}
             </h2>
-            <p className="text-[16px] text-[#555555] mt-2 leading-none">
-              {isZh ? "Background" : "背景"}
-            </p>
           </div>
           <div className="mt-6">
             {content ? (
@@ -273,118 +247,59 @@ export default function CompanyTimeline({
           <div className="h-px bg-[#0F4C81]" style={{ width: "64px" }} />
         </FadeInSection>
 
-        {/* ==================== TIMELINE SECTION ==================== */}
+        {/* ==================== DEVELOPMENT HISTORY SECTION ==================== */}
         <FadeInSection>
-          <div className="mb-6">
-            <h2 className="text-[24px] font-bold text-[#555555] leading-none">
+          <div className="mb-10">
+            {/* English uppercase label on top — 16px (English's original size) */}
+            <p className="text-[16px] text-[#555555] leading-none">
+              DEVELOPMENT HISTORY
+            </p>
+            {/* Chinese main heading below — 24px bold (Chinese's original size) */}
+            <h2 className="text-[24px] font-bold text-[#555555] mt-2 leading-none">
               {isZh ? "發展歷程" : "Development History"}
             </h2>
-            <p className="text-[16px] text-[#555555] mt-2 leading-none">
-              {isZh ? "Development History" : "發展歷程"}
-            </p>
           </div>
         </FadeInSection>
 
-        {/* ========== DESKTOP/TABLET: Dropship-Style Horizontal Timeline (≥768px) ========== */}
-        <div className="hidden md:block relative">
-          <div className="overflow-x-auto scrollbar-hide" ref={scrollContainerRef}>
-            <div className="relative" style={{ minWidth: "max-content" }}>
-              {/* Horizontal connector line: positioned at year-bottom(36px) + 16px gap */}
-              <div
-                className="absolute left-8 right-8 h-px"
-                style={{ top: "52px", background: "#0F4C81", opacity: 0.5 }}
-              />
-              {/* Nodes row */}
-              <div className="flex px-8 gap-16 lg:gap-24">
-                {stages.map((stage, stageIdx) => (
-                  <FadeInSection key={stageIdx}>
-                    <div
-                      className="group flex flex-col items-center"
-                      style={{ width: stage.events.length > 0 ? "320px" : "200px" }}
-                    >
-                      {/* Year — above the line */}
-                      <span className="text-[32px] lg:text-[36px] font-bold text-[#0F4C81] text-center leading-none whitespace-nowrap">
-                        {stage.year}
-                      </span>
-                      {/* Spacer: 16px to line + 1px line + 16px from line = 33px */}
-                      <div style={{ height: "33px", flexShrink: 0 }} />
-                      {/* Stage title — below the line, centered */}
-                      <span className="text-[16px] lg:text-[18px] font-bold text-[#333333] text-center leading-snug md:group-hover:text-[#0F4C81]">
-                        {stage.title}
-                      </span>
-                      {/* Events list */}
-                      {stage.events.length > 0 && (
-                        <div className="mt-6 w-full space-y-4">
-                          {stage.events.map((event, eventIdx) => (
-                            <div key={eventIdx} className="flex gap-2">
-                              <span className="text-[14px] lg:text-[16px] font-bold text-[#555555] whitespace-nowrap flex-shrink-0 leading-[1.8]">
-                                {event.date}
-                              </span>
-                              <span className="text-[14px] lg:text-[16px] text-[#333333] leading-[1.8]">
-                                {event.text}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </FadeInSection>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right-edge scroll indicator */}
-          {canScrollRight && (
-            <div
-              className="absolute right-0 top-0 bottom-0 pointer-events-none"
-              style={{
-                width: "64px",
-                background: "linear-gradient(90deg, transparent, rgba(248, 250, 252, 0.95))",
-              }}
-            />
-          )}
-        </div>
-
-        {/* ========== MOBILE: Vertical Timeline (<768px) ========== */}
-        <div className="md:hidden relative" style={{ paddingLeft: "32px", paddingRight: "32px" }}>
-          {/* Continuous vertical line */}
-          <div
-            className="absolute top-0 bottom-0"
-            style={{ left: "32px", width: "1px", background: "#0F4C81", opacity: 0.5 }}
-          />
+        {/* ==================== CARD-STYLE TIMELINE ==================== */}
+        <div className="space-y-8">
           {stages.map((stage, stageIdx) => (
             <FadeInSection key={stageIdx}>
-              <div className="group" style={{ marginTop: stageIdx === 0 ? "0px" : "48px" }}>
-                {/* Dot + header */}
-                <div className="relative flex items-center" style={{ marginLeft: "-32px" }}>
-                  <div
-                    className="absolute rounded-full bg-[#0F4C81]"
-                    style={{ left: "32px", width: "8px", height: "8px", transform: "translateX(-3.5px)" }}
-                  />
-                  <div className="ml-4">
-                    <div className="flex items-baseline gap-2 flex-wrap">
-                      <span className="text-[20px] font-bold text-[#0F4C81] whitespace-nowrap">
-                        {stage.year}
-                      </span>
-                      <span className="text-[18px] font-bold text-[#333333]">
-                        {stage.title}
-                      </span>
-                    </div>
+              <div
+                className="bg-white rounded-2xl border border-[#E5E5E5] shadow-sm
+                  hover:shadow-md hover:border-[#0F4C81]/15 transition-all duration-400 overflow-hidden"
+              >
+                {/* Card header: year badge + stage title */}
+                <div
+                  className="px-6 md:px-8 py-5 border-b border-[#F0F0F0]"
+                  style={{ background: "linear-gradient(135deg, rgba(15,76,129,0.04), rgba(15,76,129,0.01))" }}
+                >
+                  <div className="flex items-baseline gap-4 flex-wrap">
+                    <span
+                      className="inline-block text-[22px] md:text-[26px] font-bold text-[#0F4C81] leading-none whitespace-nowrap"
+                    >
+                      {stage.year}
+                    </span>
+                    <span className="text-[15px] md:text-[17px] font-bold text-[#333333] leading-snug">
+                      {stage.title}
+                    </span>
                   </div>
                 </div>
-                {/* Events */}
+
+                {/* Card body: events list */}
                 {stage.events.length > 0 && (
-                  <div className="mt-4 space-y-6">
+                  <div className="px-6 md:px-8 py-5 space-y-5">
                     {stage.events.map((event, eventIdx) => (
-                      <div key={eventIdx} className="flex gap-4">
+                      <div key={eventIdx} className="flex gap-3 md:gap-4">
+                        {/* Date badge */}
                         <span
-                          className="text-[16px] font-bold text-[#555555] whitespace-nowrap flex-shrink-0 leading-[1.8]"
-                          style={{ width: isZh ? "100px" : "110px" }}
+                          className="text-[13px] md:text-[14px] font-semibold text-[#555555] whitespace-nowrap flex-shrink-0 leading-[1.8]"
+                          style={{ minWidth: isZh ? "90px" : "100px" }}
                         >
                           {event.date}
                         </span>
-                        <p className="text-[16px] text-[#333333] leading-[1.8] text-justify">
+                        {/* Event text */}
+                        <p className="text-[14px] md:text-[15px] text-[#333333] leading-[1.8]">
                           {event.text}
                         </p>
                       </div>

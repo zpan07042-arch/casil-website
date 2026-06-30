@@ -25,10 +25,10 @@ const PAGE_META: Record<
   },
   background: {
     breadcrumb: {
-      zh: "首頁 > 關於我們 > 發展歷程",
-      en: "Home > About Us > Development History",
+      zh: "首頁 > 關於我們 > 背景",
+      en: "Home > About Us > Background",
     },
-    enLabel: "DEVELOPMENT HISTORY",
+    enLabel: "BACKGROUND",
     desc: {
       zh: "從康力時代到航天控股，跨越半世紀的傳承與蛻變",
       en: "From Conic era to CASIL — half a century of legacy and transformation",
@@ -47,10 +47,10 @@ const PAGE_META: Record<
   },
   goals: {
     breadcrumb: {
-      zh: "首頁 > 關於我們 > 戰略目標",
-      en: "Home > About Us > Strategic Goals",
+      zh: "首頁 > 關於我們 > 目標",
+      en: "Home > About Us > Goals",
     },
-    enLabel: "STRATEGIC GOALS",
+    enLabel: "GOALS",
     desc: {
       zh: "建設科學化管理體系，爲股東創造持久價值",
       en: "Building a scientific management system to create lasting shareholder value",

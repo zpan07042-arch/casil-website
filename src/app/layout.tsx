@@ -29,6 +29,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-HK" className="h-full overflow-x-hidden" data-scroll-behavior="smooth">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full flex flex-col overflow-x-hidden`}
       >

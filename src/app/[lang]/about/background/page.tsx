@@ -13,7 +13,7 @@ export default async function BackgroundPage({
   if (!page) return <p className="p-20 text-center text-text-secondary">Content not found.</p>;
 
   const content = lang === "zh" ? page.content_zh : page.content_en;
-  const title = lang === "zh" ? page.title_zh : page.title_en;
+  const title = lang === "zh" ? "背景" : "Background";
   const meta = getPageMeta("background", lang);
 
   return (
