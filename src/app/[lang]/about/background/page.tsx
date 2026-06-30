@@ -17,7 +17,7 @@ export default async function BackgroundPage({
   const meta = getPageMeta("background", lang);
 
   return (
-    <>
+    <div style={{ backgroundColor: "#F8FAFE" }}>
       <AboutHeader
         title={title}
         breadcrumb={meta.breadcrumb}
@@ -25,6 +25,6 @@ export default async function BackgroundPage({
         description={meta.description}
       />
       <CompanyTimeline title={title} content={content || ""} />
-    </>
+    </div>
   );
 }

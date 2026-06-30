@@ -34,7 +34,7 @@ export default async function ContactPage({
   ];
 
   return (
-    <>
+    <div style={{ backgroundColor: "#F8FAFE" }}>
       <AboutContentSection
         title={title}
         content={content}
@@ -57,7 +57,12 @@ export default async function ContactPage({
               <Link
                 key={card.href}
                 href={card.href}
-                className="block bg-bg-secondary rounded-2xl p-8 hover:shadow-lg hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group"
+                className="block rounded-xl p-8 border border-[#E6EEFB] hover:-translate-y-0.5 transition-all duration-300 group"
+              style={{
+                backgroundColor: "#FFFFFF",
+                boxShadow:
+                  "0 1px 3px rgba(15, 36, 82, 0.06), 0 4px 16px rgba(15, 36, 82, 0.07), 0 8px 32px rgba(15, 36, 82, 0.05)",
+              }}
               >
                 {/* ═══ 了解更多按鈕 hover 樣式 ═══ */}
                 <style>{`
@@ -168,6 +173,6 @@ export default async function ContactPage({
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

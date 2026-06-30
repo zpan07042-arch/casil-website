@@ -18,7 +18,7 @@ export default async function BoardPage({
   const members = await getBoardMembers();
 
   return (
-    <>
+    <div style={{ backgroundColor: "#F8FAFE" }}>
       <AboutContentSection
         title={title}
         content=""
@@ -27,6 +27,6 @@ export default async function BoardPage({
         description={meta.description}
       />
       <BoardMembers members={members} lang={lang} />
-    </>
+    </div>
   );
 }

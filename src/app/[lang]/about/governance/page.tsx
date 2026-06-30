@@ -18,7 +18,7 @@ export default async function GovernancePage({
   const docs = await getGovernanceDocs();
 
   return (
-    <>
+    <div style={{ backgroundColor: "#F8FAFE" }}>
       <AboutHeader
         title={title}
         breadcrumb={meta.breadcrumb}
@@ -26,6 +26,6 @@ export default async function GovernancePage({
         description={meta.description}
       />
       <GovernanceSection title={title} content={content || ""} docs={docs} lang={lang} />
-    </>
+    </div>
   );
 }

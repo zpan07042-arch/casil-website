@@ -97,7 +97,7 @@ export default function CompanyTimeline({
       <div className="mx-auto px-5 md:px-8" style={{ maxWidth: "1200px" }}>
 
         {/* ==================== HEADER: Company Name + Stock Code + English Name ==================== */}
-        <FadeInSection className="pt-[120px] text-center">
+        <FadeInSection className="pt-8 md:pt-12 text-center">
           {/* Line 1: Company name (Chinese) */}
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#000000] leading-tight">
             {isZh ? "中國航天國際控股有限公司" : "China Aerospace International Holdings Limited"}
@@ -115,17 +115,17 @@ export default function CompanyTimeline({
         </FadeInSection>
 
         {/* ==================== DIVIDER 1 ==================== */}
-        <FadeInSection className="flex justify-center py-16">
+        <FadeInSection className="flex justify-center py-6 md:py-8">
           <div className="h-px bg-[#0F4C81]" style={{ width: "64px" }} />
         </FadeInSection>
 
         {/* ==================== BACKGROUND SECTION HEADER ==================== */}
         <FadeInSection>
           <div className="mb-6">
-            <p className="text-[16px] text-[#555555] leading-none">
+            <p style={{ fontSize: 16, color: "#000000", lineHeight: 1 }}>
               BACKGROUND
             </p>
-            <h2 className="text-[24px] font-bold text-[#555555] mt-2 leading-none">
+            <h2 style={{ fontSize: 30, fontWeight: 700, color: "#000000", marginTop: 8 }}>
               {isZh ? "背景" : "Background"}
             </h2>
           </div>
@@ -190,11 +190,10 @@ export default function CompanyTimeline({
         <FadeInSection>
           <div className="mb-10">
             {/* English uppercase label on top — 16px (English's original size) */}
-            <p className="text-[16px] text-[#555555] leading-none">
+            <p style={{ fontSize: 16, color: "#000000", lineHeight: 1 }} className="leading-none">
               DEVELOPMENT HISTORY
             </p>
-            {/* Chinese main heading below — 24px bold (Chinese's original size) */}
-            <h2 className="text-[24px] font-bold text-[#555555] mt-2 leading-none">
+            <h2 style={{ fontSize: 30, fontWeight: 700, color: "#000000", marginTop: 8 }} className="leading-none">
               {isZh ? "發展歷程" : "Development History"}
             </h2>
           </div>

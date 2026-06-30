@@ -83,15 +83,12 @@ export default function BoardMembers({
                       className="w-full text-left py-6 flex items-center justify-between gap-6 group hover:bg-black/[0.02] transition-colors duration-200"
                     >
                       <div className="flex-1 min-w-0">
-                        <div className="text-base font-medium text-text-primary">
+                        <div className="text-base font-medium" style={{ color: "#000" }}>
                           {name}
                         </div>
                         <div
-                          className={`text-[13px] mt-1.5 ${
-                            isCore
-                              ? "text-text-primary font-semibold"
-                              : "text-text-secondary"
-                          }`}
+                          className="text-[13px] mt-1.5"
+                          style={{ color: "#000", fontWeight: isCore ? 600 : 400 }}
                         >
                           {title}
                         </div>
@@ -120,7 +117,7 @@ export default function BoardMembers({
                       }`}
                     >
                       {bio && (
-                        <p style={{ fontSize: 15, lineHeight: 1.6, paddingBottom: 8 }} className="text-text-secondary/80">
+                        <p style={{ fontSize: 15, lineHeight: 1.6, paddingBottom: 8, textIndent: "2em" }} className="text-text-secondary/80">
                           {bio}
                         </p>
                       )}

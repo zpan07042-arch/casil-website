@@ -27,8 +27,11 @@ export default async function AboutPage({
     governance: `${base}/about/governance`,
   };
 
+  const filteredSubpages = subpages.filter((s) => s.id !== "about");
+  const isOddCount = filteredSubpages.length % 2 !== 0;
+
   return (
-    <>
+    <div style={{ backgroundColor: "#F8FAFE" }}>
       <AboutContentSection
         title={title}
         content={content || ""}
@@ -39,13 +42,21 @@ export default async function AboutPage({
       <section className="pb-16 md:pb-24">
         <div className="max-w-6xl mx-auto px-5 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {subpages
-              .filter((s) => s.id !== "about")
-              .map((s) => (
+            {filteredSubpages
+              .map((s, idx) => {
+                const isLast = idx === filteredSubpages.length - 1;
+                return (
                 <Link
                   key={s.id}
                   href={subRoutes[s.id] || `${base}/about/${s.id}`}
-                  className="block bg-bg-secondary rounded-2xl p-8 hover:shadow-lg hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group"
+                  className={`block rounded-xl p-8 border border-[#E6EEFB] hover:-translate-y-0.5 transition-all duration-300 group ${
+                    isLast && isOddCount ? "md:col-span-2 md:justify-self-center md:w-[calc(50%-0.75rem)]" : ""
+                  }`}
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    boxShadow:
+                      "0 1px 3px rgba(15, 36, 82, 0.06), 0 4px 16px rgba(15, 36, 82, 0.07), 0 8px 32px rgba(15, 36, 82, 0.05)",
+                  }}
                 >
                   {/* ═══ 了解更多按鈕 hover 樣式 ═══ */}
                   <style>{`
@@ -150,10 +161,11 @@ export default async function AboutPage({
                     {lang === "zh" ? s.content_zh?.substring(0, 200) : s.content_en?.substring(0, 300)}
                   </p>
                 </Link>
-              ))}
+                );
+              })}
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

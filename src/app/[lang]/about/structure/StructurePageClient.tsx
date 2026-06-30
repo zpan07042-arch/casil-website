@@ -10,14 +10,14 @@ const content = {
     enLabel:    "CORPORATE STRUCTURE",
     title:      "企業架構",
     desc:       "中國航天國際控股有限公司集團組織架構圖",
-    note:       "｜ 未標註持股比例者為全資公司",
+    note:       "",
   },
   en: {
     breadcrumb: "Home > About Us > Corporate Structure",
     enLabel:    "CORPORATE STRUCTURE",
     title:      "Corporate Structure",
     desc:       "China Aerospace International Holdings Limited — Group Organization Chart",
-    note:       " ｜ Wholly-owned unless ownership percentage indicated",
+    note:       "",
   },
 };
 
@@ -25,7 +25,7 @@ export default function StructurePageClient({ lang }: { lang: Lang }) {
   const t = content[lang];
 
   return (
-    <div style={{ backgroundColor: "#F7F7FA" }}>
+    <div style={{ backgroundColor: "#F8FAFE" }}>
       <AboutHeader
         title={t.title}
         breadcrumb={t.breadcrumb}

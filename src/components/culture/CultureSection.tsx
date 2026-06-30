@@ -5,7 +5,7 @@
  * - 大圓角矩形，淺灰底色，細邊框，柔和下沉陰影
  * - 左上角裝飾圓形漸變
  * - 卡片下半部分疊加火箭發射背景圖 qback.png
- * - 正文使用 15px，黑色文字，統一左對齊
+ * - 正文使用 18px，黑色文字，統一左對齊
  * - 副标题使用 30px，加粗突出，层級分明
  * - 航天國企官網簡約商務 UI，乾淨低飽和視覺
  */
@@ -14,6 +14,7 @@ const CULTURE_CONTENT_ZH = [
   {
     type: "paragraph",
     text: " 「愛國、創新、誠信、和諧、盡責」為本公司企業文化的核心，為本公司企業使命和業務發展原則，也是員工作為日常業務運作和作業方向的核心價值：",
+    highlight: "「愛國、創新、誠信、和諧、盡責」",
   },
   {
     type: "section",
@@ -82,7 +83,7 @@ export default function CultureSection({
       <section
         style={{
           padding: "48px 0 80px",
-          backgroundColor: "#F8F9FA",
+          backgroundColor: "#F8FAFE",
         }}
       >
         <div
@@ -169,7 +170,7 @@ export default function CultureSection({
                     >
                       <h3
                         style={{
-                          fontSize: 30,
+                          fontSize: 15,
                           fontWeight: 700,
                           color: "#000000",
                           margin: 0,
@@ -182,7 +183,7 @@ export default function CultureSection({
                         style={{
                           margin: 0,
                           fontSize: 15,
-                          lineHeight: 1.6,
+                          lineHeight: 1.7,
                           color: "#000000",
                           textAlign: "left",
                           whiteSpace: "pre-line",
@@ -200,6 +201,9 @@ export default function CultureSection({
                   );
                 }
                 // type === "paragraph"
+                const pParts = "highlight" in block && block.highlight
+                  ? block.text.split(block.highlight)
+                  : null;
                 return (
                   <div
                     key={i}
@@ -213,13 +217,19 @@ export default function CultureSection({
                       style={{
                         margin: 0,
                         fontSize: 15,
-                        lineHeight: 1.6,
+                        lineHeight: 1.7,
                         color: "#000000",
                         textAlign: "left",
                         whiteSpace: "pre-line",
                       }}
                     >
-                      {block.text}
+                      {pParts && block.highlight
+                        ? <>
+                            {pParts[0]}
+                            <span style={{ fontWeight: 700 }}>{block.highlight}</span>
+                            {pParts[1]}
+                          </>
+                        : block.text}
                     </p>
                   </div>
                 );

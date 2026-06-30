@@ -17,7 +17,7 @@ export default async function GoalsPage({
   const meta = getPageMeta("goals", lang);
 
   return (
-    <>
+    <div style={{ backgroundColor: "#F8FAFE" }}>
       <AboutHeader
         title={title}
         breadcrumb={meta.breadcrumb}
@@ -25,6 +25,6 @@ export default async function GoalsPage({
         description={meta.description}
       />
       <GoalsSection title={title} content={content || ""} lang={lang} />
-    </>
+    </div>
   );
 }

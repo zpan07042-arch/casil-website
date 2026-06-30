@@ -17,7 +17,7 @@ export default async function CulturePage({
   const meta = getPageMeta("culture", lang);
 
   return (
-    <>
+    <div style={{ backgroundColor: "#F8FAFE" }}>
       <AboutHeader
         title={title}
         breadcrumb={meta.breadcrumb}
@@ -25,6 +25,6 @@ export default async function CulturePage({
         description={meta.description}
       />
       <CultureSection title={title} content={content || ""} lang={lang} />
-    </>
+    </div>
   );
 }

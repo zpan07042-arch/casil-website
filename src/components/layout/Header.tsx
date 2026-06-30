@@ -337,9 +337,6 @@ export default function Header({ links }: { links: LinkItem[] }) {
                         {t("mega_pcb_subsidiary")}
                       </span>
                     )}
-                    <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
-                      {t("mega_pcb_desc")}
-                    </p>
                   </div>
                   </Link>
 
@@ -367,9 +364,6 @@ export default function Header({ links }: { links: LinkItem[] }) {
                         {t("mega_display_subsidiary")}
                       </span>
                     )}
-                    <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
-                      {t("mega_display_desc")}
-                    </p>
                   </div>
                   </Link>
 
@@ -397,9 +391,6 @@ export default function Header({ links }: { links: LinkItem[] }) {
                         {t("mega_ipm_subsidiary")}
                       </span>
                     )}
-                    <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
-                      {t("mega_ipm_desc")}
-                    </p>
                   </div>
                   </Link>
 
@@ -427,9 +418,6 @@ export default function Header({ links }: { links: LinkItem[] }) {
                         {t("mega_power_subsidiary")}
                       </span>
                     )}
-                    <p className="text-[0.8rem] text-gray-400 leading-snug mt-1">
-                      {t("mega_power_desc")}
-                    </p>
                   </div>
                   </Link>
 
@@ -457,9 +445,6 @@ export default function Header({ links }: { links: LinkItem[] }) {
                         {t("mega_injection_subsidiary")}
                       </span>
                     )}
-                    <p className="text-[0.7rem] text-gray-400 leading-snug mt-1">
-                      {t("mega_injection_desc")}
-                    </p>
                   </div>
                   </Link>
                 </div>
