@@ -99,7 +99,7 @@ export default async function ContactPage({
                       style={{
                         fontSize: 30,
                         fontWeight: 700,
-                        color: "#000000",
+                        color: "#0A1429",
                         marginBottom: 4,
                       }}
                     >
@@ -109,7 +109,7 @@ export default async function ContactPage({
                       <p
                         style={{
                           fontSize: 11,
-                          color: "#000000",
+                          color: "#888E9C",
                           letterSpacing: "0.06em",
                         }}
                       >

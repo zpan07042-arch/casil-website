@@ -122,10 +122,10 @@ export default function CompanyTimeline({
         {/* ==================== BACKGROUND SECTION HEADER ==================== */}
         <FadeInSection>
           <div className="mb-6">
-            <p style={{ fontSize: 16, color: "#000000", lineHeight: 1 }}>
+            <p style={{ fontSize: 11, color: "#888E9C", letterSpacing: "0.06em", lineHeight: 1 }}>
               BACKGROUND
             </p>
-            <h2 style={{ fontSize: 30, fontWeight: 700, color: "#000000", marginTop: 8 }}>
+            <h2 style={{ fontSize: 30, fontWeight: 700, color: "#0A1429", marginTop: 8 }}>
               {isZh ? "背景" : "Background"}
             </h2>
           </div>
@@ -143,38 +143,6 @@ export default function CompanyTimeline({
                 "0 1px 3px rgba(15, 36, 82, 0.06), 0 4px 16px rgba(15, 36, 82, 0.07), 0 8px 32px rgba(15, 36, 82, 0.05)",
             }}
           >
-            {/* ── 标题 + 英文小字 ── */}
-            <h2
-              style={{
-                fontSize: 30,
-                fontWeight: 700,
-                color: "#0A1429",
-                marginBottom: 4,
-              }}
-            >
-              {isZh ? "公司簡介" : "Company Profile"}
-            </h2>
-            <p
-              style={{
-                fontSize: 11,
-                color: "#888E9C",
-                margin: "0 0 16px",
-                letterSpacing: "0.06em",
-              }}
-            >
-              COMPANY PROFILE
-            </p>
-
-            {/* ── 分割線 ── */}
-            <div
-              style={{
-                width: "100%",
-                height: 1,
-                backgroundColor: "#E9EEF7",
-                marginBottom: 20,
-              }}
-            />
-
             {/* ── 正文 ── */}
             <div style={{ fontSize: 15, lineHeight: 1.6, color: "#444A58", textAlign: "justify", textIndent: "2em" }}>
               {content || (
@@ -189,11 +157,11 @@ export default function CompanyTimeline({
         {/* ==================== DEVELOPMENT HISTORY SECTION ==================== */}
         <FadeInSection>
           <div className="mb-10">
-            {/* English uppercase label on top — 16px (English's original size) */}
-            <p style={{ fontSize: 16, color: "#000000", lineHeight: 1 }} className="leading-none">
+            {/* English uppercase label on top — matches standard helper color */}
+            <p style={{ fontSize: 11, color: "#888E9C", letterSpacing: "0.06em", lineHeight: 1 }} className="leading-none">
               DEVELOPMENT HISTORY
             </p>
-            <h2 style={{ fontSize: 30, fontWeight: 700, color: "#000000", marginTop: 8 }} className="leading-none">
+            <h2 style={{ fontSize: 30, fontWeight: 700, color: "#0A1429", marginTop: 8 }} className="leading-none">
               {isZh ? "發展歷程" : "Development History"}
             </h2>
           </div>
