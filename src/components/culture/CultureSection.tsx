@@ -2,11 +2,12 @@
  * CultureSection — 企業文化正文區塊
  *
  * 設計：居中豎向長文本卡片
- * - 大圓角矩形，純白底色，1px 淺灰細邊框，輕微柔和下沉陰影
- * - 底層疊加火箭發射背景圖 qback.png，10%-20% 透明度，虛化襯底
- * - 繁體中文正文，思源宋體，黑色文字，統壹左對齊
+ * - 大圓角矩形，淺灰底色，細邊框，柔和下沉陰影
+ * - 左上角裝飾圓形漸變
+ * - 卡片下半部分疊加火箭發射背景圖 qback.png
+ * - 正文使用 18px，淺灰色文字，統一左對齊
  * - 板塊標題加粗突出，層級分明
- * - 航天國企官網簡約商務 UI，幹凈低飽和視覺
+ * - 航天國企官網簡約商務 UI，乾淨低飽和視覺
  */
 
 const CULTURE_CONTENT_ZH = [
@@ -85,7 +86,7 @@ export default function CultureSection({
       >
         <div
           style={{
-            maxWidth: 900,
+            maxWidth: 1130,
             margin: "0 auto",
             padding: "0 24px",
           }}
@@ -94,26 +95,49 @@ export default function CultureSection({
           <div
             style={{
               position: "relative",
+              width: "100%",
+              background: "#F9FAFB",
+              border: "1px solid rgba(46, 56, 97, 0.20)",
+              borderRadius: 16,
+              padding: "96px 120px 120px 120px",
+              display: "flex",
+              flexDirection: "column",
+              gap: 56,
               overflow: "hidden",
-              backgroundColor: "#FFFFFF",
-              borderRadius: 24,
-              border: "1px solid #E5E5E5",
-              boxShadow: "0 4px 28px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03)",
-              padding: "48px 52px",
+              boxShadow:
+                "0px 4px 24px rgba(26, 38, 77, 0.12), 0px 1px 6px rgba(26, 38, 77, 0.06)",
             }}
           >
-            {/* ====== 底層火箭發射背景圖（10-20% 透明度，虛化） ====== */}
+            {/* ====== 左上角裝飾方形（旋轉 + 下移） ====== */}
             <div
               style={{
                 position: "absolute",
-                inset: 0,
+                top: -60,
+                left: -160,
+                width: 360,
+                height: 360,
+                background:
+                  "linear-gradient(to top right, rgba(10, 36, 99, 0.08), rgba(62, 146, 204, 0.08))",
+                borderRadius: 0,
+                transform: "rotate(25deg)",
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* ====== 底部背景圖片（佔 70%） ====== */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: "70%",
                 zIndex: 0,
                 backgroundImage: "url('/images/qback.png')",
                 backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundPosition: "bottom",
                 backgroundRepeat: "no-repeat",
-                opacity: 0.13,
-                filter: "blur(6px)",
+                opacity: 0.12,
               }}
             />
 
@@ -122,12 +146,10 @@ export default function CultureSection({
               style={{
                 position: "relative",
                 zIndex: 1,
-                fontFamily: "'Noto Serif TC', 'Source Han Serif TC', 'Songti TC', '宋体', serif",
-                color: "#1A1A1A",
-                fontSize: 16,
-                lineHeight: 2,
-                letterSpacing: "0.02em",
-                textAlign: "left",
+                display: "flex",
+                flexDirection: "column",
+                gap: 56,
+                width: "100%",
               }}
             >
               {CULTURE_CONTENT_ZH.map((block, i) => {
@@ -136,7 +158,9 @@ export default function CultureSection({
                     <div
                       key={i}
                       style={{
-                        marginBottom: 32,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 24,
                       }}
                     >
                       <h3
@@ -144,43 +168,50 @@ export default function CultureSection({
                           fontSize: 18,
                           fontWeight: 700,
                           color: "#0A1429",
-                          marginBottom: 10,
+                          margin: 0,
                           letterSpacing: "0.04em",
                         }}
                       >
                         {block.title}
                       </h3>
-                      {block.text!.split("\n").map((line, j) => (
-                        <p
-                          key={j}
-                          style={{
-                            margin: 0,
-                            marginBottom: line ? 6 : 0,
-                            fontSize: 16,
-                            lineHeight: 2,
-                            color: "#1A1A1A",
-                          }}
-                        >
-                          {line}
-                        </p>
-                      ))}
+                      <p
+                        style={{
+                          margin: 0,
+                          fontSize: 18,
+                          lineHeight: "30.6px",
+                          color: "#868690",
+                          textAlign: "left",
+                          whiteSpace: "pre-line",
+                        }}
+                      >
+                        {block.text}
+                      </p>
                     </div>
                   );
                 }
                 // type === "paragraph"
                 return (
-                  <p
+                  <div
                     key={i}
                     style={{
-                      margin: 0,
-                      marginBottom: 32,
-                      fontSize: 16,
-                      lineHeight: 2,
-                      color: "#1A1A1A",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 24,
                     }}
                   >
-                    {block.text}
-                  </p>
+                    <p
+                      style={{
+                        margin: 0,
+                        fontSize: 18,
+                        lineHeight: "30.6px",
+                        color: "#868690",
+                        textAlign: "left",
+                        whiteSpace: "pre-line",
+                      }}
+                    >
+                      {block.text}
+                    </p>
+                  </div>
                 );
               })}
             </div>
