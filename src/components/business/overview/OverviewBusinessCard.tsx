@@ -69,7 +69,6 @@ export default function OverviewBusinessCard({
     subTitle,
     enName,
     body,
-    clients,
     productPlaceholders,
     imageLayout,
   } = cardData;
@@ -269,46 +268,6 @@ export default function OverviewBusinessCard({
               {bodyText}
             </p>
 
-            {/* 客戶標籤 */}
-            {clients.length > 0 && (
-              <>
-                <p
-                  style={{
-                    fontSize: 12,
-                    color: HELPER_COLOR,
-                    margin: "0 0 10px",
-                  }}
-                >
-                  {isZh ? "代表客戶" : "Representative Clients"}
-                </p>
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: 8,
-                    marginTop: 0,
-                  }}
-                >
-                {clients.map((client) => (
-                  <span
-                    key={client}
-                    style={{
-                      display: "inline-block",
-                      padding: "4px 14px",
-                      fontSize: 12,
-                      color: BODY_COLOR,
-                      backgroundColor: "#FFFFFF",
-                      border: `1px solid ${ACCENT_BLUE}`,
-                      borderRadius: 20,
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {client}
-                  </span>
-                ))}
-              </div>
-              </>
-            )}
           </div>
 
           {/* ── 右側：產品圖占位框（40%）── */}
