@@ -233,9 +233,14 @@ export default function BusinessDomains() {
         {/* ---- 5卡片网格 ---- */}
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 items-start">
-            {domains.map((domain) => (
-              <BusinessCard key={domain.title} domain={domain} lang={lang} />
-            ))}
+            {domains.map((domain, i) => {
+              const CARD_IDS = ["card-pcb", "card-display", "card-ipm", "card-power", "card-injection"];
+              return (
+                <div key={domain.title} id={CARD_IDS[i]} style={{ scrollMarginTop: "80px" }}>
+                  <BusinessCard domain={domain} lang={lang} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -317,7 +322,7 @@ function BusinessCard({
 
         {/* 静态文字区域 */}
         <div className="px-5 pt-4 pb-3">
-          <h3 className="text-white text-sm md:text-base font-bold leading-snug mb-1.5 tracking-wide">
+          <h3 className="text-white text-lg md:text-xl font-bold leading-snug mb-1.5 tracking-wide">
             {domain.title}
           </h3>
           <p className="text-white/45 text-xs md:text-[13px] font-light leading-relaxed">
@@ -409,7 +414,7 @@ function AerospaceCard({
         <div className="relative w-full md:w-[45%] lg:w-[42%] shrink-0 overflow-hidden">
           <div
             className="relative w-full"
-            style={{ aspectRatio: "16 / 9", minHeight: "280px" }}
+            style={{ aspectRatio: "21 / 9", minHeight: "210px" }}
           >
             <Image
               src={imageSrc}
@@ -434,7 +439,7 @@ function AerospaceCard({
         {/* 右侧：信息面板 — 半透明深藏蓝遮罩                          */}
         {/* ======================================================== */}
         <div
-          className="relative flex-1 flex flex-col justify-center px-6 md:px-10 lg:px-14 py-4 md:py-0 min-h-[220px]"
+          className="relative flex-1 flex flex-col justify-center px-6 md:px-10 lg:px-14 py-4 md:py-0 min-h-[165px]"
           style={{ background: "rgba(10,26,58,0.75)" }}
         >
           {/* ---- 默认状态：大字纯白标题 + 蓝色分割线 + 小字 ---- */}
@@ -442,7 +447,7 @@ function AerospaceCard({
             className="group-hover/aero:opacity-0 group-hover/aero:translate-y-[-8px]
               transition-all duration-500 ease-out"
           >
-            <h3 className="text-white text-2xl md:text-3xl font-bold tracking-wide mb-3">
+            <h3 className="text-white text-xl md:text-2xl font-bold leading-snug tracking-wide mb-3">
               {mainTitle}
             </h3>
             {/* 蓝色分割线 */}
@@ -450,7 +455,7 @@ function AerospaceCard({
               className="w-10 h-[2px] bg-[#3E92CC] rounded-full mb-3"
             />
             {/* 小字副标题 */}
-            <p className="text-white/50 text-sm md:text-base font-light tracking-wide">
+            <p className="text-white/50 text-xs md:text-[13px] font-light tracking-wide">
               {subTitle}
             </p>
           </div>
@@ -463,12 +468,12 @@ function AerospaceCard({
               transition-all duration-500 ease-out"
           >
             {/* ① 白色粗体大标题 */}
-            <h3 className="text-white text-xl md:text-2xl lg:text-3xl font-bold tracking-wide mb-2">
+            <h3 className="text-white text-xl md:text-2xl font-bold leading-snug tracking-wide mb-2">
               {mainTitle}
             </h3>
 
             {/* ② 浅灰小字副标签 */}
-            <p className="text-white/40 text-xs md:text-sm font-light tracking-wider mb-3">
+            <p className="text-white/40 text-xs md:text-[13px] font-light tracking-wider mb-3">
               {subTitle}
             </p>
 
@@ -478,14 +483,14 @@ function AerospaceCard({
             />
 
             {/* ④ 浅灰色正文 */}
-            <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-xl mb-6">
+            <p className="text-white/70 text-xs md:text-[13px] leading-relaxed max-w-xl mb-6">
               {desc}
             </p>
 
             {/* ⑤ 底部可点击交互链接 — 浅蓝色文字 + 箭头 */}
             <Link
               href={learnMoreHref}
-              className="inline-flex items-center gap-1.5 text-[#3E92CC] text-sm md:text-base font-medium
+              className="inline-flex items-center gap-1.5 text-[#3E92CC] text-xs md:text-sm font-medium
                 hover:text-[#5BA4D6] transition-colors duration-300
                 group/link w-fit"
             >

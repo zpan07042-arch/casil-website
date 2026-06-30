@@ -28,7 +28,7 @@ export default function OverviewHeader({
           "linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)), url('/images/oback.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "fixed",
+        backgroundAttachment: "scroll",
         backgroundRepeat: "no-repeat",
         backgroundColor: "#FFFFFF",
       }}
@@ -92,7 +92,7 @@ export default function OverviewHeader({
         {/* 說明文字 */}
         <p
           style={{
-            fontSize: 16,
+            fontSize: 15,
             color: "#090a0d",
             margin: "0 0 36px",
             lineHeight: 1.6,

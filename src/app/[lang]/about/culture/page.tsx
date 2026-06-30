@@ -1,6 +1,6 @@
 import { getPage } from "@/lib/db";
 import { getPageMeta } from "@/lib/pageMeta";
-import PageBanner from "@/components/shared/PageBanner";
+import AboutHeader from "@/components/shared/AboutHeader";
 import CultureSection from "@/components/culture/CultureSection";
 
 export default async function CulturePage({
@@ -18,7 +18,7 @@ export default async function CulturePage({
 
   return (
     <>
-      <PageBanner
+      <AboutHeader
         title={title}
         breadcrumb={meta.breadcrumb}
         enLabel={meta.enLabel}

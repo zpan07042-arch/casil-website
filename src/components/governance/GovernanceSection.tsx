@@ -68,30 +68,8 @@ export default function GovernanceSection({
     : ["Audit Committee", "Remuneration Committee", "Nomination Committee", "ESG Committee"];
 
   return (
-    <section className="pb-20 md:pb-28">
+    <section className="pt-12 md:pt-20 pb-20 md:pb-28">
       <div className="max-w-5xl mx-auto px-5 md:px-8">
-
-        {/* ========== HEADER ========== */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-14 md:mb-20"
-        >
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-text-primary mb-4">
-            {title}
-          </h1>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-            className="w-16 h-[3px] mb-6 rounded-full"
-            style={{
-              background: "linear-gradient(90deg, #0A2463, #3E92CC)",
-              transformOrigin: "left",
-            }}
-          />
-        </motion.div>
 
         {/* ========== MODULE 1: GOVERNANCE INTRODUCTION ========== */}
         <FadeSection className="mb-12 md:mb-16">
@@ -112,7 +90,7 @@ export default function GovernanceSection({
 
               {/* Intro text */}
               <p
-                className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl mb-8"
+                className="text-base md:text-lg text-text-secondary leading-[1.7] max-w-3xl mb-8" style={{ textIndent: "2em" }}
               >
                 {content}
               </p>

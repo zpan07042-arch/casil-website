@@ -38,6 +38,23 @@ function findLinkUrlForCard(mainTitle: string, links: LinkItem[]): string | null
   return null;
 }
 
+/** 根據 subTitle 關鍵字匹配對應的錨點 ID，用於 Header 下拉框跳轉 */
+function getCardAnchorId(subTitle: string): string | undefined {
+  const map: [string, string][] = [
+    ["康源", "card-pcb"],
+    ["半導體", "card-display"],
+    ["半导体", "card-display"],
+    ["志豪", "card-ipm"],
+    ["志順", "card-power"],
+    ["志顺", "card-power"],
+    ["志源", "card-injection"],
+  ];
+  for (const [kw, id] of map) {
+    if (subTitle.includes(kw)) return id;
+  }
+  return undefined;
+}
+
 export default function OverviewBusinessCard({
   lang,
   cardData,
@@ -114,10 +131,12 @@ export default function OverviewBusinessCard({
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px 24px" }}>
       <div
+        id={getCardAnchorId(subTitle)}
         className="biz-card"
         style={{
           backgroundColor: "#FFFFFF",
           borderRadius: 12,
+          scrollMarginTop: 60,
           border: `1px solid ${ACCENT_BLUE}`,
           padding: 32,
           boxShadow:

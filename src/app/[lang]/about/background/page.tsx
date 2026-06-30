@@ -1,6 +1,6 @@
 import { getPage } from "@/lib/db";
 import { getPageMeta } from "@/lib/pageMeta";
-import PageBanner from "@/components/shared/PageBanner";
+import AboutHeader from "@/components/shared/AboutHeader";
 import CompanyTimeline from "@/components/about/CompanyTimeline";
 
 export default async function BackgroundPage({
@@ -18,7 +18,7 @@ export default async function BackgroundPage({
 
   return (
     <>
-      <PageBanner
+      <AboutHeader
         title={title}
         breadcrumb={meta.breadcrumb}
         enLabel={meta.enLabel}

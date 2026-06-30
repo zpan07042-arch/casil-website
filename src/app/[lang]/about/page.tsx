@@ -1,6 +1,6 @@
 import { getPage, getPagesBySection } from "@/lib/db";
 import { getPageMeta } from "@/lib/pageMeta";
-import ContentSection from "@/components/shared/ContentSection";
+import AboutContentSection from "@/components/shared/AboutContentSection";
 import Link from "next/link";
 
 export default async function AboutPage({
@@ -29,7 +29,7 @@ export default async function AboutPage({
 
   return (
     <>
-      <ContentSection
+      <AboutContentSection
         title={title}
         content={content || ""}
         breadcrumb={meta.breadcrumb}

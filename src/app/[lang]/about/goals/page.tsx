@@ -1,6 +1,6 @@
 import { getPage } from "@/lib/db";
 import { getPageMeta } from "@/lib/pageMeta";
-import PageBanner from "@/components/shared/PageBanner";
+import AboutHeader from "@/components/shared/AboutHeader";
 import GoalsSection from "@/components/goals/GoalsSection";
 
 export default async function GoalsPage({
@@ -18,7 +18,7 @@ export default async function GoalsPage({
 
   return (
     <>
-      <PageBanner
+      <AboutHeader
         title={title}
         breadcrumb={meta.breadcrumb}
         enLabel={meta.enLabel}

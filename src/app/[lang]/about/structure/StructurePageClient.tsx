@@ -1,6 +1,6 @@
 "use client";
 
-import PageBanner from "@/components/shared/PageBanner";
+import AboutHeader from "@/components/shared/AboutHeader";
 import CorporateDiagram from "@/components/about/CorporateDiagram";
 import type { Lang } from "@/lib/types";
 
@@ -26,7 +26,7 @@ export default function StructurePageClient({ lang }: { lang: Lang }) {
 
   return (
     <div style={{ backgroundColor: "#F7F7FA" }}>
-      <PageBanner
+      <AboutHeader
         title={t.title}
         breadcrumb={t.breadcrumb}
         enLabel={t.enLabel}

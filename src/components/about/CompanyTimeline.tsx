@@ -119,33 +119,6 @@ function useFadeIn() {
   return { ref, visible };
 }
 
-/* ========== Inline SVG Icons ========== */
-function IconEnterprise() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path
-        d="M2 14V6l3-3 3 3 3-3 3 3v8H2z"
-        stroke="#0F4C81"
-        strokeWidth="1"
-        strokeLinejoin="round"
-        opacity="0.3"
-      />
-      <path d="M5 14V9h3v5" stroke="#0F4C81" strokeWidth="1" opacity="0.3" />
-      <rect x="10" y="10" width="3" height="4" stroke="#0F4C81" strokeWidth="1" opacity="0.3" />
-    </svg>
-  );
-}
-
-function IconTimeline() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <circle cx="8" cy="8" r="6" stroke="#0F4C81" strokeWidth="1" opacity="0.3" />
-      <path d="M8 4v4l3 2" stroke="#0F4C81" strokeWidth="1" strokeLinecap="round" opacity="0.3" />
-      <path d="M5 2h1.5M9.5 2H11" stroke="#0F4C81" strokeWidth="0.6" opacity="0.2" />
-    </svg>
-  );
-}
-
 /* ========== FadeInSection Wrapper ========== */
 function FadeInSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, visible } = useFadeIn();
@@ -200,7 +173,7 @@ export default function CompanyTimeline({
 
   /* ---- highlight CASIL & CASC names in content ---- */
   function renderContent(text: string) {
-    if (!isZh) return <p className="text-base leading-[1.6] text-[#333333] text-justify">{text}</p>;
+    if (!isZh) return <p className="text-base leading-[1.6] text-[#333333] text-justify" style={{ textIndent: "2em" }}>{text}</p>;
 
     // Split text to highlight specific terms
     const cascName = "中國航天科技集團公司";
@@ -211,7 +184,7 @@ export default function CompanyTimeline({
     const parts = text.split(regex);
 
     return (
-      <p className="text-lg leading-[1.8] text-[#333333] text-justify">
+      <p className="text-lg leading-[1.8] text-[#333333] text-justify" style={{ textIndent: "2em" }}>
         {parts.map((part, i) => {
           if (part === cascName) {
             return (
@@ -251,20 +224,20 @@ export default function CompanyTimeline({
 
         {/* ==================== MAIN TITLE ==================== */}
         <FadeInSection className="pt-[120px] text-center">
-          <h1 className="text-[32px] md:text-[48px] font-bold text-[#0F4C81] leading-tight">
-            {isZh ? "中國航天國際控股有限公司" : "China Aerospace International Holdings Limited"}
-            {isZh && (
-              <>
-                {" "}
-                <span className="text-[24px] md:text-[32px]">(股份代號：00031)</span>
-              </>
-            )}
-          </h1>
-          <p className="mt-6 text-[16px] md:text-[24px] text-[#333333]">
+          <p className="text-base md:text-lg text-[#333333]">
             {isZh
               ? "China Aerospace International Holdings Limited"
               : "中國航天國際控股有限公司 (股份代號：31)"}
           </p>
+          <h1 className="mt-2 text-xl md:text-2xl lg:text-3xl font-bold text-[#0F4C81] leading-tight">
+            {isZh ? "中國航天國際控股有限公司" : "China Aerospace International Holdings Limited"}
+            {isZh && (
+              <>
+                {" "}
+                <span className="text-xs md:text-sm">(股份代號：00031)</span>
+              </>
+            )}
+          </h1>
         </FadeInSection>
 
         {/* ==================== DIVIDER 1 ==================== */}
@@ -274,22 +247,19 @@ export default function CompanyTimeline({
 
         {/* ==================== BACKGROUND SECTION ==================== */}
         <FadeInSection>
-          <div className="flex items-center gap-4 mb-6">
-            <IconEnterprise />
-            <div>
-              <h2 className="text-[24px] font-bold text-[#555555] leading-none">
-                {isZh ? "背景" : "Background"}
-              </h2>
-              <p className="text-[16px] text-[#555555] mt-2 leading-none">
-                {isZh ? "Background" : "背景"}
-              </p>
-            </div>
+          <div className="mb-6">
+            <h2 className="text-[24px] font-bold text-[#555555] leading-none">
+              {isZh ? "背景" : "Background"}
+            </h2>
+            <p className="text-[16px] text-[#555555] mt-2 leading-none">
+              {isZh ? "Background" : "背景"}
+            </p>
           </div>
           <div className="mt-6">
             {content ? (
               renderContent(content)
             ) : (
-              <p className="text-lg leading-[1.8] text-[#333333] text-justify">
+              <p className="text-lg leading-[1.8] text-[#333333] text-justify" style={{ textIndent: "2em" }}>
                 {isZh
                   ? "中國航天國際控股有限公司 ( 航天控股 ) 是中國航天科技集團公司 ( 中國航天 ) 在香港的上市公司 ( 股份代號：31 )。中國航天作為航天控股的大股東，是中國進行空間技術和產品 ( 航天器、運載火箭、衞星等 ) 的開發、研究、生產和商用的企業，擁有雄厚的專業人才資源和技術力量優勢。 為配合集團新的發展戰略和發展方向，本公司已將其中文名稱改為「中國航天國際控股有限公司」（股份簡稱 ：「航天控股」)。新名稱亦藴涵了本公司與主要股東中國航天緊密相連的關係和未來在業務上互動發展的深層意義。"
                   : "China Aerospace International Holdings Limited (CASIL) is a Hong Kong-listed company (Stock Code: 31) of China Aerospace Science and Technology Corporation (CASC). As the majority shareholder of CASIL, CASC is an enterprise engaged in the development, research, production and commercial application of space technology and products (spacecraft, launch vehicles, satellites, etc.), possessing strong professional talent resources and technological advantages."}
@@ -305,16 +275,13 @@ export default function CompanyTimeline({
 
         {/* ==================== TIMELINE SECTION ==================== */}
         <FadeInSection>
-          <div className="flex items-center gap-4 mb-6">
-            <IconTimeline />
-            <div>
-              <h2 className="text-[24px] font-bold text-[#555555] leading-none">
-                {isZh ? "發展歷程" : "Development History"}
-              </h2>
-              <p className="text-[16px] text-[#555555] mt-2 leading-none">
-                {isZh ? "Development History" : "發展歷程"}
-              </p>
-            </div>
+          <div className="mb-6">
+            <h2 className="text-[24px] font-bold text-[#555555] leading-none">
+              {isZh ? "發展歷程" : "Development History"}
+            </h2>
+            <p className="text-[16px] text-[#555555] mt-2 leading-none">
+              {isZh ? "Development History" : "發展歷程"}
+            </p>
           </div>
         </FadeInSection>
 
@@ -370,29 +337,12 @@ export default function CompanyTimeline({
           {/* Right-edge scroll indicator */}
           {canScrollRight && (
             <div
-              className="absolute right-0 top-0 bottom-0 pointer-events-none flex items-center"
+              className="absolute right-0 top-0 bottom-0 pointer-events-none"
               style={{
                 width: "64px",
                 background: "linear-gradient(90deg, transparent, rgba(248, 250, 252, 0.95))",
               }}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                className="ml-auto mr-2"
-                style={{ opacity: 0.3 }}
-              >
-                <path
-                  d="M6 3l5 5-5 5"
-                  stroke="#0F4C81"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
+            />
           )}
         </div>
 

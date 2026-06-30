@@ -1,6 +1,6 @@
 import { getPage, getBoardMembers } from "@/lib/db";
 import { getPageMeta } from "@/lib/pageMeta";
-import ContentSection from "@/components/shared/ContentSection";
+import AboutContentSection from "@/components/shared/AboutContentSection";
 import BoardMembers from "@/components/board/BoardMembers";
 
 export default async function BoardPage({
@@ -19,7 +19,7 @@ export default async function BoardPage({
 
   return (
     <>
-      <ContentSection
+      <AboutContentSection
         title={title}
         content={content || ""}
         breadcrumb={meta.breadcrumb}
