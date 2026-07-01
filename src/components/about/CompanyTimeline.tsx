@@ -106,12 +106,12 @@ export default function CompanyTimeline({
           <p className="mt-3 text-sm md:text-base text-[#555555]">
             {isZh ? "股份代號：00031" : "Stock Code: 00031"}
           </p>
-          {/* Line 3: English / Chinese name */}
-          <p className="mt-2 text-sm md:text-base text-[#555555]">
-            {isZh
-              ? "China Aerospace International Holdings Limited"
-              : "中國航天國際控股有限公司"}
-          </p>
+          {/* Line 3: English name (Chinese page only) */}
+          {isZh && (
+            <p className="mt-2 text-sm md:text-base text-[#555555]">
+              China Aerospace International Holdings Limited
+            </p>
+          )}
         </FadeInSection>
 
         {/* ==================== DIVIDER 1 ==================== */}
@@ -257,7 +257,7 @@ export default function CompanyTimeline({
 
               {/* Hint */}
               <p className="text-center text-[13px] mt-10" style={{ color: "#FFFFFF", opacity: 0.5, fontFamily: "var(--font-mono)" }}>
-                {isZh ? "點擊時間節點查看詳情 · Click a point to view details" : "Click a point to view details · 點擊時間節點查看詳情"}
+                {isZh ? "點擊時間節點查看詳情" : "Click a point to view details"}
               </p>
             </div>
           </div>

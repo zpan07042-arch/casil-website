@@ -164,7 +164,7 @@ export default function OverviewBusinessCard({
                 display: "inline",
               }}
             >
-              {mainTitle}
+              {isZh ? mainTitle : enName}
             </h2>
             <span
               style={{
@@ -177,7 +177,7 @@ export default function OverviewBusinessCard({
                 whiteSpace: "nowrap",
               }}
             >
-              {subTitle}
+              {isZh ? subTitle : mainTitle}
             </span>
           </div>
 
@@ -223,7 +223,7 @@ export default function OverviewBusinessCard({
           </a>
         </div>
 
-        {/* 英文名稱 */}
+        {/* 英文名稱 / 中文名稱（互為參考） */}
         <p
           style={{
             fontSize: 11,
@@ -232,7 +232,7 @@ export default function OverviewBusinessCard({
             letterSpacing: "0.06em",
           }}
         >
-          {enName}
+          {isZh ? enName : mainTitle}
         </p>
 
         {/* 長分割線 */}
