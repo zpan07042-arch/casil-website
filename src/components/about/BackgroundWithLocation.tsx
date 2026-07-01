@@ -41,7 +41,6 @@ export default function BackgroundWithLocation({
       items: [
         { label: t("nav_subsidiary"), href: `${base}/business/subsidiaries` },
         { label: t("nav_products"), href: `${base}/business/products` },
-        { label: t("nav_electronics"), href: `${base}/business/electronics` },
         { label: t("nav_lab"), href: `${base}/business/lab` },
         { label: t("nav_global"), href: `${base}/business/global` },
       ],

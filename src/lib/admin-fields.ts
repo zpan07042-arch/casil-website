@@ -21,7 +21,6 @@ export const PAGES_FIELDS: FieldConfig[] = [
     options: [
       { value: "about", label: "關於我們" },
       { value: "business", label: "產業與業務" },
-      { value: "party", label: "黨建" },
       { value: "other", label: "其他" },
     ],
   },

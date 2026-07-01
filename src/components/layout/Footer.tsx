@@ -21,8 +21,6 @@ export default function Footer() {
     {
       title: lang === "zh" ? "業務領域" : "Business",
       links: [
-        { label: lang === "zh" ? "印製電路板" : "PCB", href: `${base}/business/electronics` },
-        { label: lang === "zh" ? "顯示器件" : "Displays", href: `${base}/business/electronics` },
         { label: lang === "zh" ? "IPM模組" : "IPM Modules", href: `${base}/business/products` },
         { label: lang === "zh" ? "電源產品" : "Power Supply", href: `${base}/business/products` },
         { label: lang === "zh" ? "注塑成型" : "Injection Molding", href: `${base}/business/global` },

@@ -150,39 +150,9 @@ INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort
  本公司及各附屬公司的主要業務為科技工業及航天服務業務。', 'CASIL will, with the full support of its major shareholder CASC, fully leverage the various advantages of Hong Kong, and gradually build itself into an enterprise with a scientific management system, strong overall market competitiveness, and high-quality strategic partners, creating excellent investment value for shareholders.
 
 The principal businesses of the Company and its subsidiaries are technology industry and aerospace services.', 0);
-INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('subsidiaries', 'business', '子公司關係', 'Subsidiary Relationships', '全資子公司
-康源電子廠：PCB、IC封裝載板業務
-康惠惠州半導體：顯示模組、傳感器封裝
-志源實業：儲能電池相關業務
-志源塑膠製品：精密結構件製造
-航天科技半導體(香港)：功率半導體研發銷售
-航科新世紀科技：物業運營、產業投資
-
-控股子公司
-航天數聯信息技術：工業互聯網、智能製造
-
-參股企業
-瑞華泰薄膜：新材料領域佈局', 'Wholly-owned Subsidiaries
-Kangyuan Electronics Factory: PCB, IC packaging substrate business
-Kanghui Huizhou Semiconductor: Display modules, sensor packaging
-Zhiyuan Industrial: Energy storage battery related business
-Zhiyuan Plastic Products: Precision structural components manufacturing
-Aerospace Technology Semiconductor (HK): Power semiconductor R&D and sales
-Hangke New Century Technology: Property operations, industrial investment
-
-Controlled Subsidiaries
-Aerospace Digital Information Technology: Industrial internet, smart manufacturing
-
-Invested Enterprises
-Rayitek Film: New materials field layout', 0);
-INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('products', 'business', '核心產品體系', 'Core Product System', '中國航天國際控股背靠航天科技集團，擁有紮實的核心科技競爭實力。公司掌握高端 IC 封裝載板、車規級功率模塊、精密 PCB 電路板等關鍵製造技術，工藝水準躋身國內前列，有效填補本土產業缺口。依託成熟精密加工體系，產品廣泛適配 AI 算力設備、新能源汽車、低空無人機及智能機器人等高景氣領域。同時企業具備完善研發創新能力，手握多項技術專利，積澱深厚技術壁壘，疊加優質頭部客户資源加持，形成技術研發、生產製造、市場供貨一體化優勢，在國產替代進程中持續強化自身行業競爭力。', 'CASIL, backed by CASC, possesses solid core technological competitiveness. The company masters key manufacturing technologies including high-end IC packaging substrates, automotive-grade power modules, and precision PCB circuit boards, with process standards ranking among the top in China. Leveraging a mature precision manufacturing system, products are widely applied in AI computing equipment, new energy vehicles, low-altitude drones, and intelligent robots. The company has comprehensive R&D innovation capabilities, holding multiple technology patents with deep technical barriers, forming an integrated advantage of technology R&D, manufacturing, and market supply.', 0);
-INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('electronics', 'business', '高精密電子組件業務', 'Precision Electronic Components', '高精密電子組件業務內容涵蓋IC封裝載板、高密度互連板(HDI)、柔性電路板(FPC)及剛撓結合板等高端PCB產品的研發、製造與銷售。產品廣泛應用於5G通信設備、AI服務器、自動駕駛系統、醫療電子設備及航空航天等領域。', 'The precision electronic components business covers the R&D, manufacturing and sales of high-end PCB products including IC packaging substrates, high-density interconnect (HDI) boards, flexible printed circuits (FPC) and rigid-flex boards. Products are widely used in 5G communication equipment, AI servers, autonomous driving systems, medical electronic equipment and aerospace fields.', 0);
-INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('lab', 'business', '重點實驗室科研成果', 'Key Lab Research Achievements', '重點實驗室科研成果涵蓋先進封裝基板材料、高頻高速PCB工藝、功率半導體封裝及系統集成等方向，多項成果已完成產業化轉化並應用於客户產品中。', 'Key lab research achievements cover advanced packaging substrate materials, high-frequency high-speed PCB processes, power semiconductor packaging and system integration. Multiple achievements have been industrialized and applied in customer products.', 0);
-INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('global', 'business', '全球產業佈局', 'Global Industry Layout', '全球產業佈局覆蓋中國內地（深圳、東莞、惠州、南通、杭州）、香港及海外市場，形成以華南為核心、輻射華東、佈局全球的產業網絡。', 'The global industry layout covers mainland China (Shenzhen, Dongguan, Huizhou, Nantong, Hangzhou), Hong Kong and overseas markets, forming an industrial network centered in South China, radiating to East China and globally.', 0);
 INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('board', 'about', '董事局', 'Board of Directors', '航天控股董事局由執行董事、非執行董事及獨立非執行董事組成，負責制定集團整體戰略方向，監督管理層執行業務計劃，確保公司遵守高水平的企業管治標準。', 'The CASIL Board of Directors comprises Executive Directors, Non-Executive Directors and Independent Non-Executive Directors. It is responsible for setting the Group''s overall strategic direction, overseeing management in executing business plans, and ensuring the Company adheres to high standards of corporate governance.', 0);
 INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('governance', 'about', '企業管治', 'Corporate Governance', '本公司深信良好的企業管治是保障股東權益及提升企業價值的基礎。公司已建立完善的企業管治架構，包括審核委員會、薪酬委員會、提名委員會及環境、社會及管治委員會，各委員會均訂明職權範圍。本公司定期檢討企業管治守則，確保符合香港聯合交易所有限公司證券上市規則附錄C1《企業管治守則》的要求。', 'The Company firmly believes that good corporate governance is the foundation for protecting shareholders'' rights and enhancing corporate value. The Company has established a comprehensive corporate governance structure, including the Audit Committee, Remuneration Committee, Nomination Committee and ESG Committee, each with clearly defined terms of reference. The Company regularly reviews its corporate governance practices to ensure compliance with the Corporate Governance Code set out in Appendix C1 of the Rules Governing the Listing of Securities on The Stock Exchange of Hong Kong Limited.', 0);
-INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('business', 'business', '產業與業務', 'Business', '本公司及各附屬公司的主要業務涵蓋科技工業及航天服務業務，包括高精密電子組件、核心產品體系、重點實驗室科研成果及全球產業佈局。', 'The principal businesses of the Company and its subsidiaries cover technology industry and aerospace services, including precision electronic components, core product systems, key laboratory research achievements, and global industrial layout.', 0);
-INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('links', 'other', '航天聯結', 'Aerospace Links', '航天聯結欄目彙集中國航天科技集團及相關企業的鏈接資源，包括子公司、合作單位及研究機構等。', 'The Aerospace Links section brings together links to CASC and related enterprises, including subsidiaries, partner organizations and research institutions.', 0);
+INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('business', 'business', '產業與業務', 'Business', '本公司及各附屬公司的主要業務涵蓋科技工業及航天服務業務，聚焦先進製造業與航天產業服務業兩大核心板塊。', 'The principal businesses of the Company and its subsidiaries cover technology industry and aerospace services, focusing on two core segments: advanced manufacturing and aerospace industry services.', 0);
 INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('location', 'other', '地理位置', 'Location', '中國航天國際控股有限公司總部設於香港，在中國內地多個城市（深圳、東莞、惠州、南通、杭州等）設有生產基地及辦事處。', 'China Aerospace International Holdings Limited is headquartered in Hong Kong, with production bases and offices in multiple cities across mainland China (Shenzhen, Dongguan, Huizhou, Nantong, Hangzhou, etc.).', 0);
 INSERT INTO pages (id, section, title_zh, title_en, content_zh, content_en, sort_order) VALUES ('contact', 'other', '聯繫我們', 'Contact Us', '如有任何查詢，歡迎通過以下渠道與我們聯繫。航天控股致力於為全球客户、合作伙伴及投資者提供高效、專業的服務。', 'For any inquiries, please contact us through the following channels. CASIL is committed to providing efficient and professional services to global customers, partners and investors.', 0);
 
