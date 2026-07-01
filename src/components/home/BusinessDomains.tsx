@@ -280,7 +280,7 @@ function BusinessCard({
   lang: string;
 }) {
   const { t } = useI18n();
-  const imgPath = `/images/business/${domain.imgSrc}`;
+  const imgPath = `/images/${domain.imgSrc}`;
 
   return (
     <div className="group/card relative z-10 hover:z-30">
