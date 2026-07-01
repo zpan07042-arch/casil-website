@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/data/I18nProvider";
 
 /* ========== Scroll Fade-In Hook ========== */
@@ -56,30 +56,30 @@ export default function CompanyTimeline({
   const isZh = lang === "zh";
   const events = useMemo(() => {
     const zh = [
-      { year: "1975.7", title: "成立", body: "航天控股前身 —— 康力投資有限公司（以下簡稱康力投資）在中國香港成立。", color: "#FF6B6B" },
-      { year: "1981.8", title: "上市", body: "康力投資在香港聯交所上市，是香港當時規模最大的電子信息產業集團，主要從事電視機生產銷售。", color: "#4ECDC4" },
-      { year: "1993.5", title: "收購", body: "航天總公司收購康力投資股權進入香港資本市場，康力投資更名為航天科技國際集團有限公司。", color: "#FFD93D" },
-      { year: "1999.7", title: "劃歸集團", body: "航天科技國際集團有限公司劃歸中國航天科技集團公司管理。", color: "#6BCB77" },
-      { year: "2008.1", title: "更名", body: "為適應集團公司第四次工作會確定的發展戰略，公司更名為中國航天國際控股有限公司。", color: "#45B7D1" },
+      { year: "1975.7", title: "成立", body: "航天控股前身 —— 康力投資有限公司（以下簡稱康力投資）在中國香港成立。", color: "#C8A0A0" },
+      { year: "1981.8", title: "上市", body: "康力投資在香港聯交所上市，是香港當時規模最大的電子信息產業集團，主要從事電視機生產銷售。", color: "#C8B898" },
+      { year: "1993.5", title: "收購", body: "航天總公司收購康力投資股權進入香港資本市場，康力投資更名為航天科技國際集團有限公司。", color: "#C4B09A" },
+      { year: "1999.7", title: "劃歸集團", body: "航天科技國際集團有限公司劃歸中國航天科技集團公司管理。", color: "#B0A0B8" },
+      { year: "2008.1", title: "更名", body: "為適應集團公司第四次工作會確定的發展戰略，公司更名為中國航天國際控股有限公司。", color: "#98A8B4" },
     ];
     const en = [
-      { year: "1975.7", title: "Founded", body: "The predecessor of CASIL — Conic Investment Co., Ltd. was established in Hong Kong, China.", color: "#FF6B6B" },
-      { year: "1981.8", title: "Listed", body: "Conic Investment was listed on the Hong Kong Stock Exchange, becoming the largest electronics & information industry group in Hong Kong at that time, primarily engaged in TV manufacturing and sales.", color: "#4ECDC4" },
-      { year: "1993.5", title: "Acquired", body: "China Aerospace Corporation acquired Conic Investment shares to enter the Hong Kong capital market; Conic Investment was renamed Aerospace Science and Technology International Group Limited.", color: "#FFD93D" },
-      { year: "1999.7", title: "Transferred", body: "Aerospace Science and Technology International Group Limited was transferred to China Aerospace Science and Technology Corporation (CASC).", color: "#6BCB77" },
-      { year: "2008.1", title: "Renamed", body: "To align with the development strategy set at CASC's 4th Work Conference, the Company was renamed China Aerospace International Holdings Limited.", color: "#45B7D1" },
+      { year: "1975.7", title: "Founded", body: "The predecessor of CASIL — Conic Investment Co., Ltd. was established in Hong Kong, China.", color: "#C8A0A0" },
+      { year: "1981.8", title: "Listed", body: "Conic Investment was listed on the Hong Kong Stock Exchange, becoming the largest electronics & information industry group in Hong Kong at that time, primarily engaged in TV manufacturing and sales.", color: "#C8B898" },
+      { year: "1993.5", title: "Acquired", body: "China Aerospace Corporation acquired Conic Investment shares to enter the Hong Kong capital market; Conic Investment was renamed Aerospace Science and Technology International Group Limited.", color: "#C4B09A" },
+      { year: "1999.7", title: "Transferred", body: "Aerospace Science and Technology International Group Limited was transferred to China Aerospace Science and Technology Corporation (CASC).", color: "#B0A0B8" },
+      { year: "2008.1", title: "Renamed", body: "To align with the development strategy set at CASC's 4th Work Conference, the Company was renamed China Aerospace International Holdings Limited.", color: "#98A8B4" },
     ];
     return isZh ? zh : en;
   }, [isZh]);
 
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   const toggleEvent = useCallback((i: number) => {
     setActiveIdx(prev => prev === i ? null : i);
   }, []);
 
   const activeContent = activeIdx !== null ? events[activeIdx] : null;
-  const contentColor = activeIdx !== null ? events[activeIdx].color : "#ffffff";
 
   return (
     <div className="w-full" style={{ backgroundColor: "#F8FAFE" }}>
@@ -187,78 +187,206 @@ export default function CompanyTimeline({
               style={{ background: "radial-gradient(ellipse at center, transparent 30%, rgba(0,20,51,0.7) 100%)" }}
             />
 
-            <div className="relative z-10 px-8 md:px-16 py-12 md:py-16 flex flex-col justify-center" style={{ minHeight: 480 }}>
-              {/* Main horizontal timeline */}
-              <div className="relative flex items-center">
-                <div
-                  className="absolute inset-y-1/2 left-0 right-0 -translate-y-1/2"
-                  style={{ height: 2, background: "rgba(255,255,255,0.15)" }}
-                />
-                {events.map((ev, i) => {
-                  const isActive = activeIdx === i;
-                  return (
-                    <div key={i} className="flex-1 flex flex-col items-center relative z-10 py-2">
-                      <button onClick={() => toggleEvent(i)} className="flex flex-col items-center gap-2 group cursor-pointer">
+            {/* Keyframe animations */}
+            <style>{`
+              @keyframes pulse-breath {
+                0%, 100% { opacity: 0.5; transform: scale(1); }
+                50% { opacity: 0.85; transform: scale(1.3); }
+              }
+              @keyframes popup-enter {
+                from { opacity: 0; transform: translateY(8px); }
+                to { opacity: 1; transform: translateY(0); }
+              }
+            `}</style>
+
+            <div className="relative z-10 px-4 md:px-16 py-10 md:py-16">
+              <div className="relative w-full max-w-4xl mx-auto">
+
+                {/* ---- Row 1: Dots + Line Segments ---- */}
+                <div className="flex items-center justify-between w-full">
+                  {events.map((ev, i) => {
+                    const isHovered = hoveredIdx === i;
+                    const isActive = activeIdx === i;
+                    const isEnlarged = isHovered || isActive;
+                    const dotSize = "clamp(12px, 1.8vw, 18px)";
+
+                    return (
+                      <Fragment key={i}>
+                        {/* Node wrapper */}
                         <div
-                          className="rounded-full border-2 border-[#001433] transition-all duration-300 flex items-center justify-center"
+                          className="relative flex-shrink-0 flex items-center justify-center"
+                          style={{ width: "clamp(38px, 5vw, 52px)", height: "clamp(38px, 5vw, 52px)" }}
+                          onMouseEnter={() => setHoveredIdx(i)}
+                          onMouseLeave={() => setHoveredIdx(null)}
+                        >
+                          {/* Glow ring behind dot — pulses on hover */}
+                          <div
+                            className="absolute rounded-full pointer-events-none"
+                            style={{
+                              width: `calc(${dotSize} * 2.4)`,
+                              height: `calc(${dotSize} * 2.4)`,
+                              background: `radial-gradient(circle, ${ev.color}50 0%, ${ev.color}20 35%, transparent 70%)`,
+                              opacity: isActive ? 0.9 : isHovered ? 1 : 0,
+                              animation: isHovered && !isActive ? "pulse-breath 1.8s ease-in-out infinite" : "none",
+                              transition: "opacity 300ms ease-out",
+                            }}
+                          />
+
+                          {/* Dot button */}
+                          <button
+                            onClick={() => toggleEvent(i)}
+                            className="rounded-full block relative transition-all duration-300 ease-out"
+                            style={{
+                              width: dotSize,
+                              height: dotSize,
+                              background: ev.color,
+                              boxShadow: isActive
+                                ? `inset 0 0 0 1px rgba(255,255,255,0.3), 0 0 14px ${ev.color}70, 0 0 30px ${ev.color}40, 0 0 22px ${ev.color}90`
+                                : isHovered
+                                  ? `inset 0 0 0 1px rgba(255,255,255,0.3), 0 0 12px ${ev.color}60, 0 0 28px ${ev.color}30`
+                                  : "inset 0 0 0 1px rgba(255,255,255,0.25)",
+                              filter: isHovered && !isActive ? "saturate(1.4)" : "none",
+                              transform: isEnlarged ? "scale(1.2)" : "scale(1)",
+                              opacity: activeIdx !== null && !isActive ? 0.35 : 1,
+                            }}
+                            aria-label={ev.title}
+                          >
+                            {/* White center dot — active indicator */}
+                            {isActive && (
+                              <div
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
+                                style={{ width: "clamp(3px, 0.35vw, 4px)", height: "clamp(3px, 0.35vw, 4px)" }}
+                              />
+                            )}
+                          </button>
+                        </div>
+
+                        {/* Line segment between nodes */}
+                        {i < events.length - 1 && (
+                          <div
+                            className="flex-1 h-px mx-1 transition-opacity duration-300 ease-out"
+                            style={{
+                              background: "rgba(255,255,255,0.3)",
+                              opacity:
+                                hoveredIdx === i || hoveredIdx === i + 1 || activeIdx === i || activeIdx === i + 1
+                                  ? 0.6
+                                  : 0.3,
+                            }}
+                          />
+                        )}
+                      </Fragment>
+                    );
+                  })}
+                </div>
+
+                {/* ---- Row 2: Text Labels ---- */}
+                <div className="flex items-center justify-between w-full" style={{ marginTop: 12 }}>
+                  {events.map((ev, i) => {
+                    const isHovered = hoveredIdx === i;
+                    const isActive = activeIdx === i;
+
+                    return (
+                      <Fragment key={i}>
+                        <div
+                          className="flex flex-col items-center flex-shrink-0 gap-1 transition-all duration-300 ease-out"
                           style={{
-                            width: isActive ? 22 : 16,
-                            height: isActive ? 22 : 16,
-                            background: ev.color,
-                            boxShadow: isActive ? `0 0 20px ${ev.color}` : `0 0 8px ${ev.color}60`,
+                            width: "clamp(38px, 5vw, 52px)",
+                            opacity: activeIdx !== null && !isActive ? 0.35 : 1,
+                            transform: isHovered ? "translateY(-4px)" : "translateY(0)",
                           }}
                         >
-                          {isActive && <div className="w-2 h-2 rounded-full bg-white/60" />}
+                          <span
+                            className="text-[11px] md:text-sm font-bold transition-all duration-300 text-center leading-tight"
+                            style={{
+                              color: isHovered || isActive ? "#FFFFFF" : "rgba(255,255,255,0.75)",
+                              fontFamily: "var(--font-sans)",
+                            }}
+                          >
+                            {ev.title}
+                          </span>
+                          <span
+                            className="text-[10px] md:text-[13px] transition-all duration-300"
+                            style={{
+                              color: isHovered || isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.5)",
+                              fontFamily: "var(--font-mono)",
+                            }}
+                          >
+                            {ev.year}
+                          </span>
                         </div>
-                        <span
-                          className="text-sm md:text-base font-bold transition-colors duration-200 mt-1"
-                          style={{ color: "#FFFFFF" }}
-                        >
-                          {ev.title}
-                        </span>
-                        <span
-                          className="text-[13px] transition-colors duration-200"
-                          style={{ color: "#FFFFFF", fontFamily: "var(--font-mono)", opacity: 0.75 }}
-                        >
-                          {ev.year}
-                        </span>
-                      </button>
-                    </div>
-                  );
-                })}
-              </div>
+                        {i < events.length - 1 && <div className="flex-1 mx-1" />}
+                      </Fragment>
+                    );
+                  })}
+                </div>
 
-              {/* Content panel */}
-              <div
-                className="overflow-hidden transition-all duration-400"
-                style={{ maxHeight: activeContent ? 300 : 0, opacity: activeContent ? 1 : 0 }}
-              >
-                {activeContent && (
-                  <div
-                    className="mt-8 rounded-xl px-6 py-5 relative"
-                    style={{ background: `${contentColor}12`, border: `1px solid ${contentColor}30` }}
-                  >
-                    <button
-                      className="absolute top-3 right-3 text-white/40 hover:text-white/80 transition-colors"
-                      onClick={() => setActiveIdx(null)}
+                {/* ---- Popup Panel ---- */}
+                <div
+                  className="overflow-hidden transition-all duration-300 ease-out"
+                  style={{
+                    maxHeight: activeContent ? "320px" : "0px",
+                    opacity: activeContent ? 1 : 0,
+                    marginTop: activeContent ? 28 : 0,
+                  }}
+                >
+                  {activeContent && (
+                    <div
+                      className="rounded-xl px-6 py-5 relative mx-auto"
+                      style={{
+                        maxWidth: 520,
+                        background: "rgba(10, 20, 41, 0.78)",
+                        backdropFilter: "blur(20px)",
+                        WebkitBackdropFilter: "blur(20px)",
+                        border: "1px solid rgba(255,255,255,0.1)",
+                        animation: "popup-enter 0.3s ease-out",
+                      }}
                     >
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                      </svg>
-                    </button>
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-lg font-bold" style={{ color: "#FFFFFF", fontFamily: "var(--font-mono)" }}>{activeContent.year}</span>
-                      <span className="text-lg font-semibold" style={{ color: "#FFFFFF" }}>{activeContent.title}</span>
-                    </div>
-                    <p className="text-base leading-relaxed" style={{ color: "#FFFFFF", opacity: 0.85 }}>{activeContent.body}</p>
-                  </div>
-                )}
-              </div>
+                      {/* Close button */}
+                      <button
+                        className="absolute top-3 right-3 text-white/40 hover:text-white/80 transition-colors"
+                        onClick={() => setActiveIdx(null)}
+                        aria-label="Close"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
+                      </button>
 
-              {/* Hint */}
-              <p className="text-center text-[13px] mt-10" style={{ color: "#FFFFFF", opacity: 0.5, fontFamily: "var(--font-mono)" }}>
-                {isZh ? "點擊時間節點查看詳情" : "Click a point to view details"}
-              </p>
+                      {/* Popup header */}
+                      <p className="text-sm font-semibold mb-3" style={{ color: "rgba(255,255,255,0.85)" }}>
+                        {isZh ? "點擊時間節點查看詳情" : "Click a timeline node to view details"}
+                      </p>
+
+                      {/* Event details */}
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-lg font-bold" style={{ color: "#FFFFFF", fontFamily: "var(--font-mono)" }}>
+                          {activeContent.year}
+                        </span>
+                        <span className="text-lg font-semibold" style={{ color: "#FFFFFF" }}>
+                          {activeContent.title}
+                        </span>
+                      </div>
+                      <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
+                        {activeContent.body}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* ---- Hint ---- */}
+                <p
+                  className="text-center text-[13px] transition-opacity duration-300"
+                  style={{
+                    color: "rgba(255,255,255,0.45)",
+                    fontFamily: "var(--font-mono)",
+                    marginTop: 28,
+                    opacity: activeContent ? 0 : 1,
+                  }}
+                >
+                  {isZh ? "點擊時間節點查看詳情" : "Click a point to view details"}
+                </p>
+
+              </div>
             </div>
           </div>
         </FadeInSection>
