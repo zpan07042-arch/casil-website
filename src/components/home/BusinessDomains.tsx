@@ -450,14 +450,6 @@ function AerospaceCard({
             <h3 className="text-white text-xl md:text-2xl font-bold leading-snug tracking-wide mb-3">
               {mainTitle}
             </h3>
-            {/* 蓝色分割线 */}
-            <div
-              className="w-10 h-[2px] bg-[#3E92CC] rounded-full mb-3"
-            />
-            {/* 小字副标题 */}
-            <p className="text-white/50 text-xs md:text-[13px] font-light tracking-wide">
-              {subTitle}
-            </p>
           </div>
 
           {/* ---- Hover 展开：多层级文字 ---- */}
@@ -472,15 +464,7 @@ function AerospaceCard({
               {mainTitle}
             </h3>
 
-            {/* ② 浅灰小字副标签 */}
-            <p className="text-white/40 text-xs md:text-[13px] font-light tracking-wider mb-3">
-              {subTitle}
-            </p>
 
-            {/* ③ 短浅蓝水平分隔线 */}
-            <div
-              className="w-12 h-[2px] bg-[#3E92CC] rounded-full mb-4"
-            />
 
             {/* ④ 浅灰色正文 */}
             <p className="text-white/70 text-xs md:text-[13px] leading-relaxed max-w-xl mb-6">
