@@ -248,6 +248,26 @@ const boardMembers: [string, string, string, string, string, string, string, num
     8,
   ],
   [
+    "王暉先生",
+    "Mr. Wang Hui",
+    "董事局主席 / 執行董事",
+    "Chairman / Executive Director",
+    "王暉先生，研究員，為本公司主席兼執行董事，1995年畢業於中國科學技術大學，專修工程熱物理並獲取工學學士，並於2008年至2009年期間在職研究生學習，修畢國際空間大學空間管理專業，獲取理學碩士。王暉先生自1995年8月起至2022年6月期間，歷任中國運載火箭技術研究院綜合經營部計劃處處長助理、院辦公室祕書處副處長、科研計劃部科研計劃處處長、科研計劃部副部長、綜合計劃部部長，以及研究院副院長；2022年6月至2024年7月擔任中國航天科技集團有限公司戰略管理部部長。王暉先生具有豐富的企業策略管理經驗，彼於2024年7月起出任本公司執行董事及獲委任為主席。",
+    "Mr. Wang Hui, Researcher, is the Chairman and Executive Director of the Company. He graduated from the University of Science and Technology of China in 1995 with a Bachelor's degree in Engineering Thermophysics. From August 1995 to June 2022, Mr. Wang held various positions at the China Academy of Launch Vehicle Technology. From June 2022 to July 2024, he served as Director of the Strategic Management Department of CASC. He was appointed as Executive Director and Chairman of the Company in July 2024.",
+    "management",
+    9,
+  ],
+  [
+    "宋樹清先生",
+    "Mr. Song Shuqing",
+    "執行董事 / 總裁",
+    "Executive Director / CEO",
+    "宋樹清先生, 碩士，研究員，為本公司執行董事兼總裁。於國防科技大學畢業並獲取碩士學位。於1994年至2011年先後任中國空間技術研究院三產總公司總工程師、總經理、基建部副部長、部長等職位；神舟天辰科技實業有限公司總經理助理、副總經理、保障服務總公司副總經理兼基建部部長；中關村航天科技創新園有限公司籌備組負責人；2011年至2019年先後任航天時代置業發展有限公司總經理、董事兼總經理，其間兼任西安國家民用航天產業基地開發有限公司董事、航天時代置業發展（武漢）有限公司執行董事，以及北京航天恆潤置業有限公司副董事長；2019年6月至2023年1月任中國航天電子技術研究院副院長；2019年11月至2023年3月任於上海證券交易所上市（股份編號：600879）的航天時代電子技術股份有限公司董事；2020 年8月至2023年2月任於重慶航天火箭電子技術有限公司董事長。宋樹清先生在企業管理方面擁有豐富經驗，彼於2023年2月起出任本公司執行董事兼總裁。",
+    "Mr. Song Shuqing, Master's degree, Researcher, is an Executive Director and CEO of the Company. He graduated from the National University of Defense Technology. He held various positions including Vice President of the China Academy of Aerospace Electronics Technology. Mr. Song has extensive experience in corporate management and was appointed as Executive Director and CEO of the Company in February 2023.",
+    "management",
+    10,
+  ],
+  [
     "蘭桂紅女士",
     "Ms. Lan Guihong",
     "總會計師",
@@ -255,7 +275,7 @@ const boardMembers: [string, string, string, string, string, string, string, num
     "蘭桂紅女士，高級經濟師，為本公司總會計師，蘭桂紅女士先後畢業於中南財經大學、哈爾濱工業大學，分別獲經濟學學士和管理學碩士學位。自2001年起，曆任中國航天科技集團有限公司財務部國有資產管理處處長、中國航天科技集團有限公司財務部總部財務處處長、中國航天科技集團有限公司財務部會計處處長、中國航天科技集團有限公司財務金融部資金與會計管理處處長、中國航天科技集團有限公司財務金融部副部長並兼任中國長城工業集團有限公司董事、中國航天科技集團有限公司審計與風險管理部副部長。蘭桂紅女士具有豐富的財務管理及審計與風險管理經驗，彼於2019年12月獲委任本公司總會計師。",
     "Ms. Lan Guihong, Senior Economist, is the Chief Accountant of the Company. She graduated from Zhongnan University of Economics and Law and Harbin Institute of Technology with a Bachelor's degree in Economics and a Master's degree in Management respectively. Since 2001, she has held various positions at CASC including Director of State-owned Assets Management Division of the Finance Department and Deputy Director of the Audit and Risk Management Department. She has extensive experience in financial management and auditing, and was appointed Chief Accountant of the Company in December 2019.",
     "management",
-    9,
+    11,
   ],
   [
     "林建明先生",
@@ -265,7 +285,7 @@ const boardMembers: [string, string, string, string, string, string, string, num
     "林建明先生，為本公司副總裁。1994年獲山東科技大學工科學士學位，化工工藝專業。1994年起任志源塑膠製品（惠州）有限公司品管部經理，1999年起任志源塑膠製品（惠州）有限公司電池廠廠長，2003年起任航天科技半導體有限公司董事常務副總經理，2007年起任志源實業、志順電業有限公司董事總經理，期間，於2010年起任航天控股工業有限公司董事、總經理，2012年起任本公司總裁助理，2020年10月起任本公司副總裁。",
     "Mr. Lin Jianming is a Vice President of the Company. He obtained his Bachelor's degree in Chemical Engineering from Shandong University of Science and Technology in 1994. From 1994, he held various management positions including QC Manager at Zhiyuan Plastic Products (Huizhou) Co., Ltd. and Managing Director at Zhiyuan Industrial and Zhishun Electrical Co., Ltd. He has served as Vice President of the Company since October 2020.",
     "management",
-    10,
+    12,
   ],
   [
     "李剛先生",
@@ -275,7 +295,7 @@ const boardMembers: [string, string, string, string, string, string, string, num
     "李剛先生，為本公司副總裁。1992年畢業於鄭州航空工業管理學院經營管理系工業企業計劃統計(含市場營銷)專業。2003年獲得國立南澳大學MBA工商管理碩士學位。1992年9月至1996年12月任航天總公司一院十三所助理工程師，1996年12月至1998年1月任航天總公司人事局主任科員，1998年1月至1998年5月任航天科技國際集團駐京辦助工，1998年5月起，歷任中國航天國際控股有限公司綜合部高級人事主任、綜合部助理總經理、綜合部副總經理、人力資源部總監、總裁助理、企業文化部總經理、人力資源部總經理，2023年1月起任本公司副總裁。",
     "Mr. Li Gang is a Vice President of the Company. He graduated from Zhengzhou Institute of Aeronautical Industry Management in 1992 and obtained his MBA from the University of South Australia in 2003. He has held various positions within CASIL since 1998, including Director of Human Resources and Assistant President. He has served as Vice President of the Company since January 2023.",
     "management",
-    11,
+    13,
   ],
 ];
 
