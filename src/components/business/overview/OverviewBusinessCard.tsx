@@ -79,6 +79,17 @@ export default function OverviewBusinessCard({
   const isGrid = imageLayout === "grid";
   const isAeroHighTech = mainTitle === "航天高科";
 
+  // subTitle 英文翻译映射（数据库 sub_title 为中文，英文版需要翻译）
+  const subTitleEnMap: Record<string, string> = {
+    "印製電路板 (PCB)": "Printed Circuit Boards (PCB)",
+    "顯示器件研發與生產": "Display Device R&D",
+    "IPM 智能功率模組封裝": "IPM Intelligent Power Module",
+    "電源領域": "Power Supply",
+    "注塑及表面處理業務": "Injection Molding & Surface Treatment",
+    "物業租賃服務": "Property Leasing Services",
+  };
+  const subTitleEn = subTitleEnMap[subTitle] || enName;
+
   // 優先使用友情鏈接 URL，若無匹配則使用卡片自身的 learnMoreHref
   const matchedLinkUrl = findLinkUrlForCard(mainTitle, links);
   const learnMoreHref = matchedLinkUrl || cardData.learnMoreHref;
@@ -177,7 +188,7 @@ export default function OverviewBusinessCard({
                 whiteSpace: "nowrap",
               }}
             >
-              {isZh ? subTitle : mainTitle}
+              {isZh ? subTitle : subTitleEn}
             </span>
           </div>
 
@@ -223,17 +234,19 @@ export default function OverviewBusinessCard({
           </a>
         </div>
 
-        {/* 英文名稱 / 中文名稱（互為參考） */}
-        <p
-          style={{
-            fontSize: 11,
-            color: HELPER_COLOR,
-            margin: "0 0 16px",
-            letterSpacing: "0.06em",
-          }}
-        >
-          {isZh ? enName : mainTitle}
-        </p>
+        {/* 英文名稱（僅中文版顯示） */}
+        {isZh && (
+          <p
+            style={{
+              fontSize: 11,
+              color: HELPER_COLOR,
+              margin: "0 0 16px",
+              letterSpacing: "0.06em",
+            }}
+          >
+            {enName}
+          </p>
+        )}
 
         {/* 長分割線 */}
         <div
