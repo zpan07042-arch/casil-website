@@ -228,7 +228,7 @@ export default function AboutSection({
                     </p>
 
                     {/* Description */}
-                    <p className="text-[13px] text-text-secondary/70 leading-[1.6] flex-1"
+                    <p className="text-[13px] text-[#0A1429] leading-[1.6] flex-1 indent-8"
                     >
                       {card.desc}
                     </p>

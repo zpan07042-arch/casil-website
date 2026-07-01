@@ -157,7 +157,14 @@ export default async function AboutPage({
                       marginBottom: 12,
                     }}
                   />
-                  <p className="text-sm text-text-secondary leading-relaxed">
+                  <p
+                    style={{
+                      fontSize: 14,
+                      color: "#444A58",
+                      lineHeight: 1.6,
+                      textIndent: "2em",
+                    }}
+                  >
                     {lang === "zh" ? s.content_zh?.substring(0, 200) : s.content_en?.substring(0, 300)}
                   </p>
                 </Link>

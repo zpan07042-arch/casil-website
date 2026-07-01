@@ -164,7 +164,14 @@ export default async function ContactPage({
                     marginBottom: 12,
                   }}
                 />
-                <p className="text-sm text-text-secondary leading-relaxed">
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: "#444A58",
+                    lineHeight: 1.6,
+                    textIndent: "2em",
+                  }}
+                >
                   {card.desc}
                 </p>
               </Link>
