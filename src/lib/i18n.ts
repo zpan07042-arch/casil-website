@@ -9,7 +9,7 @@ export const ui: I18nDict = {
     nav_about: "關於我們",
     nav_industry: "產品與業務",
     nav_home: "首頁",
-    nav_consult: "新聞中心",
+    nav_consult: "新聞資訊",
     nav_contact: "聯繫我們",
     nav_branches: "全球分支機構",
     nav_government: "政企合作入口",
@@ -108,7 +108,7 @@ export const ui: I18nDict = {
     home_explore_business: "探索業務領域",
     home_investor_relations: "投資者關係",
     news_center_title: "新聞資訊",
-    news_center_subtitle: "News Center",
+    news_center_subtitle: "News & Information",
     news_featured_date: "2025年6月18日",
     news_featured_title: "集團與多家國際企業簽署戰略合作協議，深化全球航天產業佈局",
     news_featured_desc:

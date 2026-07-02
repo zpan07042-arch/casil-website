@@ -318,7 +318,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
                     className="block group/mega transition-colors duration-200 hover:bg-blue-50/40"
                   >
                     <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_pcb_title")}</h4>
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_pcb_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     {findLinkUrl(links, ["康源"]) ? (
                       <span
@@ -345,7 +345,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
                     className="block group/mega transition-colors duration-200 hover:bg-blue-50/40"
                   >
                     <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_display_title")}</h4>
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_display_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     {findLinkUrl(links, ["半導體", "半导体"]) ? (
                       <span
@@ -372,7 +372,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
                     className="block group/mega transition-colors duration-200 hover:bg-blue-50/40"
                   >
                     <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 whitespace-nowrap group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_ipm_title")}</h4>
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_ipm_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     {findLinkUrl(links, ["志豪"]) ? (
                       <span
@@ -399,7 +399,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
                     className="block group/mega transition-colors duration-200 hover:bg-blue-50/40"
                   >
                     <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_power_title")}</h4>
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_power_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     {findLinkUrl(links, ["志順", "志顺"]) ? (
                       <span
@@ -426,7 +426,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
                     className="block group/mega transition-colors duration-200 hover:bg-blue-50/40"
                   >
                     <div className="flex flex-col gap-1.5 px-3">
-                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_injection_title")}</h4>
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_injection_title")}</h4>
                     <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
                     {findLinkUrl(links, ["志源"]) ? (
                       <span

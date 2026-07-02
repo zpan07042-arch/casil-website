@@ -322,10 +322,10 @@ function BusinessCard({
 
         {/* 静态文字区域 */}
         <div className="px-5 pt-4 pb-3">
-          <h3 className="text-white text-lg md:text-xl font-bold leading-snug mb-1.5 tracking-wide">
+          <h3 className="text-white text-lg md:text-xl font-bold leading-snug mb-1.5 tracking-wide min-h-[3.5rem]">
             {domain.title}
           </h3>
-          <p className="text-white/45 text-xs md:text-[13px] font-light leading-relaxed">
+          <p className="text-white/45 text-xs md:text-[13px] font-light leading-relaxed min-h-[1.4rem]">
             {domain.desc}
           </p>
         </div>
