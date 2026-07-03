@@ -102,7 +102,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
     { type: "dropdown", key: "about", data: dropdowns.about },
     { type: "dropdown", key: "industry", data: dropdowns.industry },
     { type: "link", key: "investor", label: t("nav_investor"), href: "http://www.casil-group.com:8080/investor/", external: true },
-    { type: "link", key: "news", label: t("nav_consult"), href: "", showArrow: true },
+    { type: "link", key: "news", label: t("nav_consult"), href: `${base}/news` },
     { type: "link", key: "contact", label: t("nav_contact"), href: `${base}/contact` },
   ];
 

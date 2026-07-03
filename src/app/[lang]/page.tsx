@@ -42,10 +42,10 @@ export default function HomePage() {
     {
       href: `${base}/news`,
       items: [
-        { dateKey: "news_c1_item1_date", titleKey: "news_c1_item1_title" },
-        { dateKey: "news_c1_item2_date", titleKey: "news_c1_item2_title" },
-        { dateKey: "news_c1_item3_date", titleKey: "news_c1_item3_title" },
-        { dateKey: "news_c1_item4_date", titleKey: "news_c1_item4_title" },
+        { dateKey: "news_item0_date", titleKey: "news_item0_title" },
+        { dateKey: "news_item1_date", titleKey: "news_item1_title" },
+        { dateKey: "news_item2_date", titleKey: "news_item2_title" },
+        { dateKey: "news_item3_date", titleKey: "news_item3_title" },
       ],
     },
   ];

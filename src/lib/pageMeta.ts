@@ -99,6 +99,16 @@ const PAGE_META: Record<
     },
   },
 
+  /* ======================== 新聞資訊 ======================== */
+  news: {
+    breadcrumb: { zh: "首頁 > 新聞資訊", en: "Home > News Center" },
+    enLabel: "NEWS CENTER",
+    desc: {
+      zh: "掌握航天控股最新動態與行業資訊",
+      en: "Stay updated with the latest news and industry insights from CASIL",
+    },
+  },
+
   /* ======================== 其他 ======================== */
   location: {
     breadcrumb: { zh: "首頁 > 地理位置", en: "Home > Location" },
