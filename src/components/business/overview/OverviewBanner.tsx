@@ -71,7 +71,7 @@ export default function OverviewBanner({
       />
 
       {/* 正文區域 — 居中最大寬度 */}
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 1136, margin: "0 auto" }}>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto" }}>
         {/* 正文 */}
         <p
           style={{

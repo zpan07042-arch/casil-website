@@ -159,7 +159,7 @@ export default function OverviewBusinessCard({
             display: "flex",
             justifyContent: "space-between",
             alignItems: "flex-start",
-            marginBottom: 8,
+            marginBottom: 2,
             flexWrap: "wrap",
             gap: 12,
           }}
@@ -240,7 +240,7 @@ export default function OverviewBusinessCard({
             style={{
               fontSize: 11,
               color: HELPER_COLOR,
-              margin: "0 0 16px",
+              margin: "0 0 12px",
               letterSpacing: "0.06em",
             }}
           >

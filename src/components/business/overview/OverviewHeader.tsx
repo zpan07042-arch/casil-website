@@ -25,7 +25,7 @@ export default function OverviewHeader({
         position: "relative",
         padding: "48px 0 40px",
         backgroundImage:
-          "linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)), url('/images/oback.jpeg')",
+          "linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)), url('/images/oback.jpeg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "scroll",
@@ -38,13 +38,13 @@ export default function OverviewHeader({
           {breadcrumb.split(" > ").map((part, i, arr) => (
             <span key={i}>
               {i > 0 && (
-                <span style={{ margin: "0 6px", color: "#000000" }}>
+                <span style={{ margin: "0 6px", color: "#ffffff" }}>
                   &gt;
                 </span>
               )}
               <span
                 style={{
-                  color: i === arr.length - 1 ? "#0F2452" : "#000001",
+                  color: i === arr.length - 1 ? "#aeb9d0" : "#ffffff",
                 }}
               >
                 {part}
@@ -57,7 +57,7 @@ export default function OverviewHeader({
         <p
           style={{
             fontSize: 11,
-            color: "rgba(0, 0, 0, 0.4)",
+            color: "rgba(255, 255, 255, 0.4)",
             letterSpacing: "0.22em",
             textTransform: "uppercase",
             margin: "0 0 8px",
@@ -71,7 +71,7 @@ export default function OverviewHeader({
           style={{
             fontSize: 50,
             fontWeight: 700,
-            color: "#0A1429",
+            color: "#f7f7f7",
             margin: "0 0 16px",
             letterSpacing: "0.04em",
           }}
@@ -84,7 +84,7 @@ export default function OverviewHeader({
           style={{
             width: 60,
             height: 3,
-            backgroundColor: "#0F2452",
+            backgroundColor: "#e2e9f4",
             marginBottom: 16,
           }}
         />
@@ -92,8 +92,8 @@ export default function OverviewHeader({
         {/* 說明文字 */}
         <p
           style={{
-            fontSize: 15,
-            color: "#090a0d",
+            fontSize: 18,
+            color: "#f9f9f9",
             margin: "0 0 36px",
             lineHeight: 1.6,
           }}
@@ -115,7 +115,7 @@ export default function OverviewHeader({
                 style={{
                   fontSize: 32,
                   fontWeight: 700,
-                  color: "#0A1429",
+                  color: "#f7f7f7",
                   margin: "0 0 4px",
                   lineHeight: 1.2,
                 }}
@@ -125,7 +125,7 @@ export default function OverviewHeader({
               <p
                 style={{
                   fontSize: 12,
-                  color: "#191b1f",
+                  color: "rgba(255,255,255,0.7)",
                   margin: 0,
                 }}
               >

@@ -159,13 +159,13 @@ export default async function AboutPage({
                   />
                   <p
                     style={{
-                      fontSize: 14,
+                      fontSize: 18,
                       color: "#444A58",
                       lineHeight: 1.6,
                       textIndent: "2em",
                     }}
                   >
-                    {lang === "zh" ? s.content_zh?.substring(0, 200) : s.content_en?.substring(0, 300)}
+                    {lang === "zh" ? s.content_zh?.substring(0, 40) : s.content_en?.substring(0, 60)}
                   </p>
                 </Link>
                 );

@@ -104,7 +104,7 @@ export default function CultureSection({
               padding: "96px 120px 120px 120px",
               display: "flex",
               flexDirection: "column",
-              gap: 32,
+              gap: 20,
               overflow: "hidden",
               boxShadow:
                 "0px 4px 24px rgba(26, 38, 77, 0.12), 0px 1px 6px rgba(26, 38, 77, 0.06)",
@@ -150,7 +150,7 @@ export default function CultureSection({
                 zIndex: 1,
                 display: "flex",
                 flexDirection: "column",
-                gap: 32,
+                gap: 20,
                 width: "100%",
               }}
             >
@@ -210,7 +210,7 @@ export default function CultureSection({
                     style={{
                       display: "flex",
                       flexDirection: "column",
-                      gap: 24,
+                      gap: 16,
                     }}
                   >
                     <p

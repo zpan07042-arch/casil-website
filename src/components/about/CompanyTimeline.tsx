@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/data/I18nProvider";
 
 /* ========== Scroll Fade-In Hook ========== */
@@ -56,30 +56,25 @@ export default function CompanyTimeline({
   const isZh = lang === "zh";
   const events = useMemo(() => {
     const zh = [
-      { year: "1975.7", title: "成立", body: "航天控股前身 —— 康力投資有限公司（以下簡稱康力投資）在中國香港成立。", color: "#C8A0A0" },
-      { year: "1981.8", title: "上市", body: "康力投資在香港聯交所上市，是香港當時規模最大的電子信息產業集團，主要從事電視機生產銷售。", color: "#C8B898" },
-      { year: "1993.5", title: "收購", body: "航天總公司收購康力投資股權進入香港資本市場，康力投資更名為航天科技國際集團有限公司。", color: "#C4B09A" },
-      { year: "1999.7", title: "劃歸集團", body: "航天科技國際集團有限公司劃歸中國航天科技集團公司管理。", color: "#B0A0B8" },
-      { year: "2008.1", title: "更名", body: "為適應集團公司第四次工作會確定的發展戰略，公司更名為中國航天國際控股有限公司。", color: "#98A8B4" },
+      { year: "1975.7", title: "成立", body: "航天控股前身 —— 康力投資有限公司（以下簡稱康力投資）在中國香港成立。", color: "#E09090" },
+      { year: "1981.8", title: "上市", body: "康力投資在香港聯交所上市，是香港當時規模最大的電子信息產業集團，主要從事電視機生產銷售。", color: "#E0C06A" },
+      { year: "1993.5", title: "收購", body: "航天總公司收購康力投資股權進入香港資本市場，康力投資更名為航天科技國際集團有限公司。", color: "#D4A870" },
+      { year: "1999.7", title: "劃歸集團", body: "航天科技國際集團有限公司劃歸中國航天科技集團公司管理。", color: "#C0A0D0" },
+      { year: "2008.1", title: "更名", body: "為適應集團公司第四次工作會確定的發展戰略，公司更名為中國航天國際控股有限公司。", color: "#70B0D8" },
     ];
     const en = [
-      { year: "1975.7", title: "Founded", body: "The predecessor of CASIL — Conic Investment Co., Ltd. was established in Hong Kong, China.", color: "#C8A0A0" },
-      { year: "1981.8", title: "Listed", body: "Conic Investment was listed on the Hong Kong Stock Exchange, becoming the largest electronics & information industry group in Hong Kong at that time, primarily engaged in TV manufacturing and sales.", color: "#C8B898" },
-      { year: "1993.5", title: "Acquired", body: "China Aerospace Corporation acquired Conic Investment shares to enter the Hong Kong capital market; Conic Investment was renamed Aerospace Science and Technology International Group Limited.", color: "#C4B09A" },
-      { year: "1999.7", title: "Transferred", body: "Aerospace Science and Technology International Group Limited was transferred to China Aerospace Science and Technology Corporation (CASC).", color: "#B0A0B8" },
-      { year: "2008.1", title: "Renamed", body: "To align with the development strategy set at CASC's 4th Work Conference, the Company was renamed China Aerospace International Holdings Limited.", color: "#98A8B4" },
+      { year: "1975.7", title: "Founded", body: "The predecessor of CASIL — Conic Investment Co., Ltd. was established in Hong Kong, China.", color: "#E09090" },
+      { year: "1981.8", title: "Listed", body: "Conic Investment was listed on the Hong Kong Stock Exchange, becoming the largest electronics & information industry group in Hong Kong at that time, primarily engaged in TV manufacturing and sales.", color: "#E0C06A" },
+      { year: "1993.5", title: "Acquired", body: "China Aerospace Corporation acquired Conic Investment shares to enter the Hong Kong capital market; Conic Investment was renamed Aerospace Science and Technology International Group Limited.", color: "#D4A870" },
+      { year: "1999.7", title: "Transferred", body: "Aerospace Science and Technology International Group Limited was transferred to China Aerospace Science and Technology Corporation (CASC).", color: "#C0A0D0" },
+      { year: "2008.1", title: "Renamed", body: "To align with the development strategy set at CASC's 4th Work Conference, the Company was renamed China Aerospace International Holdings Limited.", color: "#70B0D8" },
     ];
     return isZh ? zh : en;
   }, [isZh]);
 
-  const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
-  const toggleEvent = useCallback((i: number) => {
-    setActiveIdx(prev => prev === i ? null : i);
-  }, []);
-
-  const activeContent = activeIdx !== null ? events[activeIdx] : null;
+  const activeContent = hoveredIdx !== null ? events[hoveredIdx] : null;
 
   return (
     <div className="w-full" style={{ backgroundColor: "#F8FAFE" }}>
@@ -199,15 +194,16 @@ export default function CompanyTimeline({
               }
             `}</style>
 
-            <div className="relative z-10 px-4 md:px-16 py-10 md:py-16">
+            <div
+              className="relative z-10 px-4 md:px-16 py-10 md:py-16"
+              onMouseLeave={() => setHoveredIdx(null)}
+            >
               <div className="relative w-full max-w-4xl mx-auto">
 
                 {/* ---- Row 1: Dots + Line Segments ---- */}
                 <div className="flex items-center justify-between w-full">
                   {events.map((ev, i) => {
                     const isHovered = hoveredIdx === i;
-                    const isActive = activeIdx === i;
-                    const isEnlarged = isHovered || isActive;
                     const dotSize = "clamp(12px, 1.8vw, 18px)";
 
                     return (
@@ -217,7 +213,6 @@ export default function CompanyTimeline({
                           className="relative flex-shrink-0 flex items-center justify-center"
                           style={{ width: "clamp(38px, 5vw, 52px)", height: "clamp(38px, 5vw, 52px)" }}
                           onMouseEnter={() => setHoveredIdx(i)}
-                          onMouseLeave={() => setHoveredIdx(null)}
                         >
                           {/* Glow ring behind dot — pulses on hover */}
                           <div
@@ -226,51 +221,40 @@ export default function CompanyTimeline({
                               width: `calc(${dotSize} * 2.4)`,
                               height: `calc(${dotSize} * 2.4)`,
                               background: `radial-gradient(circle, ${ev.color}50 0%, ${ev.color}20 35%, transparent 70%)`,
-                              opacity: isActive ? 0.9 : isHovered ? 1 : 0,
-                              animation: isHovered && !isActive ? "pulse-breath 1.8s ease-in-out infinite" : "none",
+                              opacity: isHovered ? 1 : 0,
+                              animation: isHovered ? "pulse-breath 1.8s ease-in-out infinite" : "none",
                               transition: "opacity 300ms ease-out",
                             }}
                           />
 
-                          {/* Dot button */}
-                          <button
-                            onClick={() => toggleEvent(i)}
+                          {/* Dot */}
+                          <div
                             className="rounded-full block relative transition-all duration-300 ease-out"
                             style={{
                               width: dotSize,
                               height: dotSize,
                               background: ev.color,
-                              boxShadow: isActive
-                                ? `inset 0 0 0 1px rgba(255,255,255,0.3), 0 0 14px ${ev.color}70, 0 0 30px ${ev.color}40, 0 0 22px ${ev.color}90`
-                                : isHovered
-                                  ? `inset 0 0 0 1px rgba(255,255,255,0.3), 0 0 12px ${ev.color}60, 0 0 28px ${ev.color}30`
-                                  : "inset 0 0 0 1px rgba(255,255,255,0.25)",
-                              filter: isHovered && !isActive ? "saturate(1.4)" : "none",
-                              transform: isEnlarged ? "scale(1.2)" : "scale(1)",
-                              opacity: activeIdx !== null && !isActive ? 0.35 : 1,
+                              boxShadow: isHovered
+                                ? `inset 0 0 0 1px rgba(255,255,255,0.3), 0 0 12px ${ev.color}60, 0 0 28px ${ev.color}30`
+                                : "inset 0 0 0 1px rgba(255,255,255,0.25)",
+                              filter: isHovered ? "saturate(1.4)" : "none",
+                              transform: isHovered ? "scale(1.2)" : "scale(1)",
+                              opacity: hoveredIdx !== null && !isHovered ? 0.35 : 1,
                             }}
-                            aria-label={ev.title}
-                          >
-                            {/* White center dot — active indicator */}
-                            {isActive && (
-                              <div
-                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
-                                style={{ width: "clamp(3px, 0.35vw, 4px)", height: "clamp(3px, 0.35vw, 4px)" }}
-                              />
-                            )}
-                          </button>
+                          />
                         </div>
 
                         {/* Line segment between nodes */}
                         {i < events.length - 1 && (
                           <div
-                            className="flex-1 h-px mx-1 transition-opacity duration-300 ease-out"
+                            className="flex-1 mx-1 transition-opacity duration-300 ease-out"
                             style={{
-                              background: "rgba(255,255,255,0.3)",
+                              height: "2px",
+                              background: "rgba(255,255,255,0.5)",
                               opacity:
-                                hoveredIdx === i || hoveredIdx === i + 1 || activeIdx === i || activeIdx === i + 1
-                                  ? 0.6
-                                  : 0.3,
+                                hoveredIdx === i || hoveredIdx === i + 1
+                                  ? 0.85
+                                  : 0.5,
                             }}
                           />
                         )}
@@ -283,7 +267,6 @@ export default function CompanyTimeline({
                 <div className="flex items-center justify-between w-full" style={{ marginTop: 12 }}>
                   {events.map((ev, i) => {
                     const isHovered = hoveredIdx === i;
-                    const isActive = activeIdx === i;
 
                     return (
                       <Fragment key={i}>
@@ -291,14 +274,14 @@ export default function CompanyTimeline({
                           className="flex flex-col items-center flex-shrink-0 gap-1 transition-all duration-300 ease-out"
                           style={{
                             width: "clamp(38px, 5vw, 52px)",
-                            opacity: activeIdx !== null && !isActive ? 0.35 : 1,
+                            opacity: hoveredIdx !== null && !isHovered ? 0.35 : 1,
                             transform: isHovered ? "translateY(-4px)" : "translateY(0)",
                           }}
                         >
                           <span
                             className="text-[11px] md:text-sm font-bold transition-all duration-300 text-center leading-tight"
                             style={{
-                              color: isHovered || isActive ? "#FFFFFF" : "rgba(255,255,255,0.75)",
+                              color: isHovered ? "#FFFFFF" : "rgba(255,255,255,0.75)",
                               fontFamily: "var(--font-sans)",
                             }}
                           >
@@ -307,7 +290,7 @@ export default function CompanyTimeline({
                           <span
                             className="text-[10px] md:text-[13px] transition-all duration-300"
                             style={{
-                              color: isHovered || isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.5)",
+                              color: isHovered ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.5)",
                               fontFamily: "var(--font-mono)",
                             }}
                           >
@@ -331,7 +314,7 @@ export default function CompanyTimeline({
                 >
                   {activeContent && (
                     <div
-                      className="rounded-xl px-6 py-5 relative mx-auto"
+                      className="rounded-xl px-6 py-5 mx-auto"
                       style={{
                         maxWidth: 520,
                         background: "rgba(10, 20, 41, 0.78)",
@@ -341,22 +324,6 @@ export default function CompanyTimeline({
                         animation: "popup-enter 0.3s ease-out",
                       }}
                     >
-                      {/* Close button */}
-                      <button
-                        className="absolute top-3 right-3 text-white/40 hover:text-white/80 transition-colors"
-                        onClick={() => setActiveIdx(null)}
-                        aria-label="Close"
-                      >
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                          <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                        </svg>
-                      </button>
-
-                      {/* Popup header */}
-                      <p className="text-sm font-semibold mb-3" style={{ color: "rgba(255,255,255,0.85)" }}>
-                        {isZh ? "點擊時間節點查看詳情" : "Click a timeline node to view details"}
-                      </p>
-
                       {/* Event details */}
                       <div className="flex items-center gap-3 mb-2">
                         <span className="text-lg font-bold" style={{ color: "#FFFFFF", fontFamily: "var(--font-mono)" }}>
@@ -383,7 +350,7 @@ export default function CompanyTimeline({
                     opacity: activeContent ? 0 : 1,
                   }}
                 >
-                  {isZh ? "點擊時間節點查看詳情" : "Click a point to view details"}
+                  {isZh ? "懸停時間節點查看詳情" : "Hover over a point to view details"}
                 </p>
 
               </div>

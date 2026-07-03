@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import type { BoardMember } from "@/lib/types";
 
 export default function BoardMembers({
@@ -10,8 +7,6 @@ export default function BoardMembers({
   members: BoardMember[];
   lang: string;
 }) {
-  const [expandedId, setExpandedId] = useState<number | null>(null);
-
   const isZh = lang === "zh";
 
   const memberTypesZh: Record<string, string> = {
@@ -71,52 +66,22 @@ export default function BoardMembers({
                 const name = lang === "zh" ? m.name_zh : (m.name_en || m.name_zh);
                 const title = lang === "zh" ? m.title_zh : (m.title_en || m.title_zh);
                 const bio = lang === "zh" ? m.bio_zh : (m.bio_en || m.bio_zh);
-                const isExpanded = expandedId === m.id;
 
                 return (
                   <div key={m.id} className="border-b border-divider last:border-b-0">
-                    <button
-                      onClick={() =>
-                        setExpandedId(isExpanded ? null : m.id)
-                      }
-                      className="w-full text-left py-6 flex items-center justify-between gap-6 group hover:bg-black/[0.02] transition-colors duration-200"
-                    >
+                    <div className="w-full text-left py-6">
                       <div className="flex-1 min-w-0">
-                        <div className="text-base font-medium" style={{ color: "#000" }}>
+                        <div style={{ fontSize: 18, fontWeight: 500, color: "#000" }}>
                           {name}
                         </div>
                         <div
-                          className="text-[13px] mt-1.5"
-                          style={{ color: "#888E9C", fontWeight: 400 }}
+                          style={{ fontSize: 18, color: "#888E9C", fontWeight: 400, marginTop: 6 }}
                         >
                           {title}
                         </div>
                       </div>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        className={`shrink-0 text-text-secondary/40 group-hover:text-text-secondary/70 transition-all duration-300 ${
-                          isExpanded ? "rotate-180" : ""
-                        }`}
-                      >
-                        <path
-                          d="M4 6l4 4 4-4"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        isExpanded ? "max-h-[1000px] pb-6" : "max-h-0"
-                      }`}
-                    >
                       {bio && (
-                        <p style={{ fontSize: 18, lineHeight: 1.6, paddingBottom: 8, textIndent: "2em" }} className="text-text-secondary/80">
+                        <p style={{ fontSize: 18, lineHeight: 1.6, paddingTop: 12, textIndent: "2em" }} className="text-text-secondary/80">
                           {bio}
                         </p>
                       )}

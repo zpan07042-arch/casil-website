@@ -166,7 +166,7 @@ export default async function ContactPage({
                 />
                 <p
                   style={{
-                    fontSize: 14,
+                    fontSize: 18,
                     color: "#444A58",
                     lineHeight: 1.6,
                     textIndent: "2em",

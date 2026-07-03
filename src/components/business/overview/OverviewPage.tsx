@@ -1,6 +1,7 @@
 "use client";
 
 import OverviewHeader from "./OverviewHeader";
+import OverviewCategoryLabel from "./OverviewCategoryLabel";
 import OverviewBusinessCard from "./OverviewBusinessCard";
 import OverviewBanner from "./OverviewBanner";
 import { OVERVIEW_CONFIG, type OverviewCardData } from "./overviewData";
@@ -40,6 +41,16 @@ export default function OverviewPage({
     : config.banner.buttonText.en;
   const bannerHref = `/${lang}`;
 
+  // 解析分類標籤
+  const catA = {
+    title: isZh ? config.categoryA.title.zh : config.categoryA.title.en,
+    subtitle: config.categoryA.subtitle,
+  };
+  const catB = {
+    title: isZh ? config.categoryB.title.zh : config.categoryB.title.en,
+    subtitle: config.categoryB.subtitle,
+  };
+
   // 按 category 分組卡片
   const advancedCards = cards.filter((c) => c.category === "advanced_manufacturing");
   const aeroCards = cards.filter((c) => c.category === "aerospace_services");
@@ -55,12 +66,24 @@ export default function OverviewPage({
         stats={stats}
       />
 
-      {/* ═══════ 模塊2：先進製造業卡片 ═══════ */}
+      {/* ═══════ 模塊2：A 先進製造業 分類條 ═══════ */}
+      <OverviewCategoryLabel
+        title={catA.title}
+        subtitle={catA.subtitle}
+      />
+
+      {/* ═══════ 模塊3：先進製造業卡片 ═══════ */}
       {advancedCards.map((card) => (
         <OverviewBusinessCard key={card.id} lang={lang} cardData={card} links={links} />
       ))}
 
-      {/* ═══════ 模塊3：航天產業服務業卡片 ═══════ */}
+      {/* ═══════ 模塊4：B 航天產業服務業 分類條 ═══════ */}
+      <OverviewCategoryLabel
+        title={catB.title}
+        subtitle={catB.subtitle}
+      />
+
+      {/* ═══════ 模塊5：航天產業服務業卡片 ═══════ */}
       {aeroCards.map((card) => (
         <OverviewBusinessCard key={card.id} lang={lang} cardData={card} links={links} />
       ))}
