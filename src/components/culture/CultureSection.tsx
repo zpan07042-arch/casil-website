@@ -104,7 +104,7 @@ export default function CultureSection({
               padding: "96px 120px 120px 120px",
               display: "flex",
               flexDirection: "column",
-              gap: 56,
+              gap: 32,
               overflow: "hidden",
               boxShadow:
                 "0px 4px 24px rgba(26, 38, 77, 0.12), 0px 1px 6px rgba(26, 38, 77, 0.06)",
@@ -133,7 +133,7 @@ export default function CultureSection({
                 bottom: 0,
                 left: 0,
                 right: 0,
-                height: "70%",
+                height: "80%",
                 zIndex: 0,
                 backgroundImage: "url('/images/qback.png')",
                 backgroundSize: "cover",
@@ -150,7 +150,7 @@ export default function CultureSection({
                 zIndex: 1,
                 display: "flex",
                 flexDirection: "column",
-                gap: 56,
+                gap: 32,
                 width: "100%",
               }}
             >
@@ -165,12 +165,12 @@ export default function CultureSection({
                       style={{
                         display: "flex",
                         flexDirection: "column",
-                        gap: 24,
+                        gap: 16,
                       }}
                     >
                       <h3
                         style={{
-                          fontSize: 15,
+                          fontSize: 18,
                           fontWeight: 700,
                           color: "#000000",
                           margin: 0,
@@ -182,7 +182,7 @@ export default function CultureSection({
                       <p
                         style={{
                           margin: 0,
-                          fontSize: 15,
+                          fontSize: 18,
                           lineHeight: 1.7,
                           color: "#000000",
                           textAlign: "left",
@@ -216,7 +216,7 @@ export default function CultureSection({
                     <p
                       style={{
                         margin: 0,
-                        fontSize: 15,
+                        fontSize: 18,
                         lineHeight: 1.7,
                         color: "#000000",
                         textAlign: "left",

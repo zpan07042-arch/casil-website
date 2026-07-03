@@ -25,6 +25,7 @@ export default async function LinksPage({
         breadcrumb={meta.breadcrumb}
         enLabel={meta.enLabel}
         description={meta.description}
+        bodyFontSize={18}
       />
       {links.length > 0 && (
         <section className="py-16 bg-bg-secondary">

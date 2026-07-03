@@ -13,12 +13,12 @@ export default function GoalsSection({
     <section className="pt-12 md:pt-20 pb-20 md:pb-28">
       <div className="max-w-3xl mx-auto px-5 md:px-8">
         <p
-          style={{ fontSize: 15, lineHeight: 1.6, textIndent: "2em", marginBottom: 16 }} className="text-text-secondary"
+          style={{ fontSize: 18, lineHeight: 1.6, textIndent: "2em", marginBottom: 16 }} className="text-text-secondary"
         >
           {content?.split("\n\n")[0] || ""}
         </p>
         <p
-          style={{ fontSize: 15, lineHeight: 1.6, textIndent: "2em" }} className="text-text-secondary"
+          style={{ fontSize: 18, lineHeight: 1.6, textIndent: "2em" }} className="text-text-secondary"
         >
           {content?.split("\n\n")[1] || ""}
         </p>

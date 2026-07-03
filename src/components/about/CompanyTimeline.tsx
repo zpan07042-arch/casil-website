@@ -144,7 +144,7 @@ export default function CompanyTimeline({
             }}
           >
             {/* ── 正文 ── */}
-            <div style={{ fontSize: 15, lineHeight: 1.6, color: "#444A58", textAlign: "justify", textIndent: "2em" }}>
+            <div style={{ fontSize: 18, lineHeight: 1.6, color: "#444A58", textAlign: "justify", textIndent: "2em" }}>
               {content || (
                 isZh
                   ? "中國航天國際控股有限公司 ( 航天控股 ) 是中國航天科技集團公司 ( 中國航天 ) 在香港的上市公司 ( 股份代號：31 )。中國航天作為航天控股的大股東，是中國進行空間技術和產品 ( 航天器、運載火箭、衞星等 ) 的開發、研究、生產和商用的企業，擁有雄厚的專業人才資源和技術力量優勢。 為配合集團新的發展戰略和發展方向，本公司已將其中文名稱改為「中國航天國際控股有限公司」（股份簡稱 ：「航天控股」)。新名稱亦藴涵了本公司與主要股東中國航天緊密相連的關係和未來在業務上互動發展的深層意義。"

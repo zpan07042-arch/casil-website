@@ -2,7 +2,7 @@
  * AboutHeader — 關於我們欄目統一橫幅
  *
  * 沿用產業與業務 OverviewHeader 的視覺風格：
- * - 淺色背景 + 半透明圖片疊層 (oback.png)
+ * - 淺色背景 + 半透明圖片疊層 (oback.jpeg)
  * - 深色文字 (麵包屑 / 英文標籤 / 大標題 / 說明)
  * - 藍色短分割線 + 底部分割線
  * - 無動畫，靜態渲染
@@ -28,7 +28,7 @@ export default function AboutHeader({
         position: "relative",
         padding: "48px 0 40px",
         backgroundImage:
-          "linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)), url('/images/oback.png')",
+          "linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)), url('/images/oback.jpeg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "scroll",
@@ -44,13 +44,13 @@ export default function AboutHeader({
             {breadcrumb.split(" > ").map((part, i, arr) => (
               <span key={i}>
                 {i > 0 && (
-                  <span style={{ margin: "0 6px", color: "#000000" }}>
+                  <span style={{ margin: "0 6px", color: "#ffffff" }}>
                     &gt;
                   </span>
                 )}
                 <span
                   style={{
-                    color: i === arr.length - 1 ? "#0F2452" : "#000001",
+                    color: i === arr.length - 1 ? "#aeb9d0" : "#ffffff",
                   }}
                 >
                   {part}
@@ -65,7 +65,7 @@ export default function AboutHeader({
           <p
             style={{
               fontSize: 11,
-              color: "rgba(0, 0, 0, 0.4)",
+              color: "rgba(255, 255, 255, 0.4)",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
               margin: "0 0 8px",
@@ -80,7 +80,7 @@ export default function AboutHeader({
           style={{
             fontSize: 50,
             fontWeight: 700,
-            color: "#0A1429",
+            color: "#f7f7f7",
             margin: "0 0 16px",
             letterSpacing: "0.04em",
           }}
@@ -93,7 +93,7 @@ export default function AboutHeader({
           style={{
             width: 60,
             height: 3,
-            backgroundColor: "#0F2452",
+            backgroundColor: "#e2e9f4",
             marginBottom: 16,
           }}
         />
@@ -102,15 +102,15 @@ export default function AboutHeader({
         {(description || note) && (
           <p
             style={{
-              fontSize: 15,
-              color: "#090a0d",
+              fontSize: 18,
+              color: "#f9f9f9",
               margin: "0 0 36px",
               lineHeight: 1.6,
             }}
           >
             {description}
             {note && (
-              <span style={{ color: "#0F2452", fontWeight: 500 }}>{note}</span>
+              <span style={{ color: "#b6b9be", fontWeight: 500 }}>{note}</span>
             )}
           </p>
         )}

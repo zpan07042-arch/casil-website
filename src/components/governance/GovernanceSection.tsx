@@ -123,7 +123,7 @@ export default function GovernanceSection({
                         <div className="text-brand/40 group-hover:text-brand transition-colors duration-300 flex-shrink-0">
                           <FileIcon />
                         </div>
-                        <span style={{ fontSize: 15 }} className="text-text-primary group-hover:text-brand transition-colors duration-300 truncate leading-normal">
+                        <span style={{ fontSize: 18 }} className="text-text-primary group-hover:text-brand transition-colors duration-300 truncate leading-normal">
                           {isZh ? doc.title_zh : (doc.title_en || doc.title_zh)}
                         </span>
                       </div>

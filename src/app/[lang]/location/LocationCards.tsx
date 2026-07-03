@@ -422,7 +422,7 @@ function InfoRow({
         </span>
         <span
           style={{
-            fontSize: 15,
+            fontSize: 18,
             color: BODY_COLOR,
             lineHeight: 1.6,
             wordBreak: "break-word",

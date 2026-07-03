@@ -165,7 +165,7 @@ export default function OverviewBusinessCard({
           }}
         >
           {/* 左：標題區 */}
-          <div>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <h2
               style={{
                 fontSize: 30,

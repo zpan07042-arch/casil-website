@@ -116,7 +116,7 @@ export default function BoardMembers({
                       }`}
                     >
                       {bio && (
-                        <p style={{ fontSize: 15, lineHeight: 1.6, paddingBottom: 8, textIndent: "2em" }} className="text-text-secondary/80">
+                        <p style={{ fontSize: 18, lineHeight: 1.6, paddingBottom: 8, textIndent: "2em" }} className="text-text-secondary/80">
                           {bio}
                         </p>
                       )}

@@ -85,7 +85,7 @@ export default function BackgroundWithLocation({
         className="transition-transform duration-[0.8s] ease-in-out"
         style={{ transform: showLocation ? "translateY(-100vh)" : "translateY(0)" }}
       >
-        <ContentSection title={title} content={content} />
+        <ContentSection title={title} content={content} bodyFontSize={18} />
       </div>
 
       {/* Location / Map Section */}

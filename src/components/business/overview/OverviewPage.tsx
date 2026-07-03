@@ -1,7 +1,6 @@
 "use client";
 
 import OverviewHeader from "./OverviewHeader";
-import OverviewCategoryLabel from "./OverviewCategoryLabel";
 import OverviewBusinessCard from "./OverviewBusinessCard";
 import OverviewBanner from "./OverviewBanner";
 import { OVERVIEW_CONFIG, type OverviewCardData } from "./overviewData";
@@ -34,18 +33,6 @@ export default function OverviewPage({
     label: isZh ? s.label.zh : s.label.en,
   }));
 
-  // 解析分類標籤
-  const catA = {
-    letter: config.categoryA.letter,
-    title: isZh ? config.categoryA.title.zh : config.categoryA.title.en,
-    subtitle: config.categoryA.subtitle,
-  };
-  const catB = {
-    letter: config.categoryB.letter,
-    title: isZh ? config.categoryB.title.zh : config.categoryB.title.en,
-    subtitle: config.categoryB.subtitle,
-  };
-
   // 解析 banner
   const bannerText = isZh ? config.banner.text.zh : config.banner.text.en;
   const bannerButton = isZh
@@ -68,26 +55,12 @@ export default function OverviewPage({
         stats={stats}
       />
 
-      {/* ═══════ 模塊2：A 先進製造業 分類條 ═══════ */}
-      <OverviewCategoryLabel
-        letter={catA.letter}
-        title={catA.title}
-        subtitle={catA.subtitle}
-      />
-
-      {/* ═══════ 模塊3-5：先進製造業卡片 ═══════ */}
+      {/* ═══════ 模塊2：先進製造業卡片 ═══════ */}
       {advancedCards.map((card) => (
         <OverviewBusinessCard key={card.id} lang={lang} cardData={card} links={links} />
       ))}
 
-      {/* ═══════ 模塊6：B 航天產業服務業 分類條 ═══════ */}
-      <OverviewCategoryLabel
-        letter={catB.letter}
-        title={catB.title}
-        subtitle={catB.subtitle}
-      />
-
-      {/* ═══════ 模塊7：航天產業服務業卡片 ═══════ */}
+      {/* ═══════ 模塊3：航天產業服務業卡片 ═══════ */}
       {aeroCards.map((card) => (
         <OverviewBusinessCard key={card.id} lang={lang} cardData={card} links={links} />
       ))}
