@@ -264,7 +264,7 @@ export default function CompanyTimeline({
                 </div>
 
                 {/* ---- Row 2: Text Labels ---- */}
-                <div className="flex items-center justify-between w-full" style={{ marginTop: 12 }}>
+                <div className="flex items-center justify-between w-full" style={{ marginTop: 4 }}>
                   {events.map((ev, i) => {
                     const isHovered = hoveredIdx === i;
 
@@ -277,12 +277,14 @@ export default function CompanyTimeline({
                             opacity: hoveredIdx !== null && !isHovered ? 0.35 : 1,
                             transform: isHovered ? "translateY(-4px)" : "translateY(0)",
                           }}
+                          onMouseEnter={() => setHoveredIdx(i)}
                         >
                           <span
                             className="text-[11px] md:text-sm font-bold transition-all duration-300 text-center leading-tight"
                             style={{
                               color: isHovered ? "#FFFFFF" : "rgba(255,255,255,0.75)",
                               fontFamily: "var(--font-sans)",
+                              whiteSpace: "nowrap",
                             }}
                           >
                             {ev.title}

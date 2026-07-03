@@ -41,13 +41,11 @@ function findLinkUrlForCard(mainTitle: string, links: LinkItem[]): string | null
 /** 根據 subTitle 關鍵字匹配對應的錨點 ID，用於 Header 下拉框跳轉 */
 function getCardAnchorId(subTitle: string): string | undefined {
   const map: [string, string][] = [
-    ["康源", "card-pcb"],
-    ["半導體", "card-display"],
-    ["半导体", "card-display"],
-    ["志豪", "card-ipm"],
-    ["志順", "card-power"],
-    ["志顺", "card-power"],
-    ["志源", "card-injection"],
+    ["印製板", "card-pcb"],
+    ["顯示器件", "card-display"],
+    ["功率模組", "card-ipm"],
+    ["電源產品", "card-power"],
+    ["注塑", "card-injection"],
   ];
   for (const [kw, id] of map) {
     if (subTitle.includes(kw)) return id;
@@ -81,10 +79,10 @@ export default function OverviewBusinessCard({
 
   // subTitle 英文翻译映射（数据库 sub_title 为中文，英文版需要翻译）
   const subTitleEnMap: Record<string, string> = {
-    "印製電路板 (PCB)": "Printed Circuit Boards (PCB)",
-    "顯示器件研發與生產": "Display Device R&D",
-    "IPM 智能功率模組封裝": "IPM Intelligent Power Module",
-    "電源領域": "Power Supply",
+    "電路印製板業務": "Printed Circuit Boards (PCB)",
+    "液晶顯示器件業務": "Display Device R&D",
+    "智能功率模組業務": "IPM Intelligent Power Module",
+    "電源產品業務": "Power Supply",
     "注塑及表面處理業務": "Injection Molding & Surface Treatment",
     "物業租賃服務": "Property Leasing Services",
   };

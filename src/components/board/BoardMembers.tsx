@@ -71,7 +71,7 @@ export default function BoardMembers({
                   <div key={m.id} className="border-b border-divider last:border-b-0">
                     <div className="w-full text-left py-6">
                       <div className="flex-1 min-w-0">
-                        <div style={{ fontSize: 18, fontWeight: 500, color: "#000" }}>
+                        <div style={{ fontSize: 25, fontWeight: 500, color: "#000" }}>
                           {name}
                         </div>
                         <div

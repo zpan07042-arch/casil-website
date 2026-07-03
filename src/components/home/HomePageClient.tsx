@@ -32,7 +32,6 @@ const FALLBACK_NEWS_KEYS = [
   { dateKey: "news_item1_date", titleKey: "news_item1_title" },
   { dateKey: "news_item2_date", titleKey: "news_item2_title" },
   { dateKey: "news_item3_date", titleKey: "news_item3_title" },
-  { dateKey: "news_item4_date", titleKey: "news_item4_title" },
 ];
 
 // ============================================================
@@ -78,12 +77,12 @@ export default function HomePageClient({
   const parallaxY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   // ============================================================
-  // Build news list: prefer DB data (first 5), fallback to i18n keys
+  // Build news list: prefer DB data (first 4), fallback to i18n keys
   // ============================================================
   const hasDbData = latestNews && latestNews.length > 0;
 
   const newsItems = hasDbData
-    ? latestNews.slice(0, 5).map((item) => ({
+    ? latestNews.slice(0, 4).map((item) => ({
         id: String(item.id),
         date: formatNewsDate(item.date || "", lang),
         title: lang === "zh" ? item.title_zh : (item.title_en || item.title_zh),
@@ -250,7 +249,7 @@ export default function HomePageClient({
             viewport={{ once: true, margin: "-80px" }}
             variants={fadeIn}
             className="relative w-full overflow-hidden rounded-3xl"
-            style={{ height: "calc(100vh * 4 / 9)" }}
+            style={{ height: "calc(100vh * 5 / 7)" }}
           >
             {/* Parallax image */}
             <motion.div
@@ -292,10 +291,10 @@ export default function HomePageClient({
           </motion.div>
 
           {/* ============================================================ */}
-          {/* 集團要文 — horizontal list layout                           */}
+          {/* 集團要文 — 2×2 grid layout                                  */}
           {/* ============================================================ */}
           <div style={{ marginTop: "64px" }}>
-            <div className="flex flex-col">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {newsItems.map((item, itemIdx) => (
                 <motion.div
                   key={item.id}
@@ -307,21 +306,21 @@ export default function HomePageClient({
                 >
                   <Link
                     href={hasDbData ? `${base}/news/${item.id}` : `${base}/news`}
-                    className="news-row group flex items-center gap-4 md:gap-6 py-5 md:py-6 border-b border-gray-100
-                      hover:bg-gray-50/50 transition-colors duration-400 -mx-2 px-2 rounded"
+                    className="group flex items-center gap-3 md:gap-4 py-4 md:py-5 border-b border-gray-100
+                      hover:bg-gray-50/50 transition-colors duration-400 -mx-2 px-2 rounded-sm"
                   >
-                    {/* 左侧：日期标签 */}
+                    {/* 日期标签 */}
                     <span className="text-xs md:text-sm text-[#86868B] font-medium tracking-wide whitespace-nowrap w-20 md:w-24 shrink-0">
                       {item.date}
                     </span>
 
-                    {/* 中间：新闻标题 */}
+                    {/* 新闻标题 */}
                     <span className="flex-1 text-sm md:text-base text-[#2D3142] font-medium leading-snug
-                      group-hover:text-[#0A2463] transition-colors duration-400">
+                      group-hover:text-[#0A2463] transition-colors duration-400 truncate">
                       {item.title}
                     </span>
 
-                    {/* 右侧：箭头 — hover 向右滑出消失 */}
+                    {/* 箭头 — hover 向右滑出消失 */}
                     <span className="shrink-0 text-[#2D3142] text-lg font-light
                       transform translate-x-0 opacity-100
                       group-hover:translate-x-6 group-hover:opacity-0
@@ -403,7 +402,7 @@ export default function HomePageClient({
           >
             <iframe
               title="公司位置"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.4768248333967!2d114.189094!3d22.302271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404011e29a1b33d%3A0xcb9a3120a373ba70!2z5Lit5ZyL6Iiq5aSp5ZyL6Zqb5o6n6IKh5pyJ6ZmQ5YWs5Y-4!5e0!3m2!1szh-CN!2shk!4v1718000000000"
+              src="https://api.map.baidu.com/marker?location=22.302271,114.191669&title=中國航天國際控股有限公司&content=香港九龍紅磡德豐街十八號海濱廣場&output=html&coord_type=wgs84"
               className="w-full h-full rounded-2xl border border-gray-200"
               style={{ minHeight: "400px" }}
               allowFullScreen

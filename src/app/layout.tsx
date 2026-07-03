@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-HK" className="h-full overflow-x-hidden" data-scroll-behavior="smooth">
+    <html lang="zh-CN" className="h-full overflow-x-hidden" data-scroll-behavior="smooth">
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap"

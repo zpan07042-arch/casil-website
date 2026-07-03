@@ -44,35 +44,35 @@ const BUSINESS_DOMAINS: Record<"zh" | "en", BusinessDomain[]> = {
   zh: [
     {
       imgSrc: "PCBback.png",
-      title: "印製電路板（PCB）製造",
+      title: "電路印製板業務",
       desc: "電子製造核心基礎",
       detail:
         "本集團PCB業務涵蓋單層至多層高密度板、HDI板及軟硬結合板，廣泛應用於航天、通訊、汽車電子及消費電子領域，年產能逾500萬平方米，位居行業領先地位。",
     },
     {
       imgSrc: "SHOWback.png",
-      title: "顯示器件製造",
+      title: "液晶顯示器件業務",
       desc: "前沿顯示技術",
       detail:
         "專注於TFT-LCD、OLED及Micro-LED顯示模組的研發與量產，產品覆蓋工業儀器、航空航天儀表、車載顯示及特種顯示等高端應用場景。",
     },
     {
       imgSrc: "IPMback.png",
-      title: "IPM 智能功率模組製造與封装",
+      title: "智能功率模組業務",
       desc: "功率電子前沿技術",
       detail:
         "自主研發IPM智能功率模組封裝技術，廣泛應用於工業變頻器、新能源汽車驅動、太陽能逆變器及智能家電，實現高效節能，服務全球客戶。",
     },
     {
       imgSrc: "BATTERY.png",
-      title: "電源产品製造",
+      title: "電源產品業務",
       desc: "穩定可靠的能源方案",
       detail:
         "提供覆蓋AC-DC、DC-DC轉換器及UPS不間斷電源系統的完整電源解決方案，服務數據中心、醫療設備、工業自動化及航天地面設備等關鍵行業。",
     },
     {
       imgSrc: "PLASTICback.png",
-      title: "注塑产品製造",
+      title: "注塑及表面處理業務",
       desc: "精密製造與材料科學",
       detail:
         "專業從事高精密工程塑料注塑成型，涵蓋結構件、功能件及光學元件，廣泛配套PCB、顯示模組及電子整機外殼，實現一站式製造服務。",
@@ -322,10 +322,10 @@ function BusinessCard({
 
         {/* 静态文字区域 */}
         <div className="px-5 pt-4 pb-3">
-          <h3 className="text-white text-lg md:text-xl font-bold leading-snug mb-1.5 tracking-wide min-h-[3.5rem]">
+          <h3 className="text-white text-lg md:text-xl font-bold leading-snug mb-1.5 tracking-wide h-[3.5rem]">
             {domain.title}
           </h3>
-          <p className="text-white/45 text-xs md:text-[13px] font-light leading-relaxed min-h-[1.4rem]">
+          <p className="text-white/45 text-xs md:text-[13px] font-light leading-relaxed h-[1.4rem]">
             {domain.desc}
           </p>
         </div>
@@ -442,14 +442,17 @@ function AerospaceCard({
           className="relative flex-1 flex flex-col justify-center items-center px-6 md:px-10 lg:px-14 py-4 md:py-0 min-h-[165px]"
           style={{ background: "rgba(10,26,58,0.75)" }}
         >
-          {/* ---- 默认状态：大字纯白标题 + 蓝色分割线 + 小字 ---- */}
+          {/* ---- 默认状态：大字纯白标题 + 小字副标题 ---- */}
           <div
             className="group-hover/aero:opacity-0 group-hover/aero:translate-y-[-8px]
               transition-all duration-500 ease-out"
           >
-            <h3 className="text-white text-xl md:text-2xl font-bold leading-snug tracking-wide mb-3 text-center">
+            <h3 className="text-white text-xl md:text-2xl font-bold leading-snug tracking-wide mb-2 text-center">
               {mainTitle}
             </h3>
+            <p className="text-white/45 text-xs md:text-[13px] font-light tracking-wide text-center">
+              {t("property_leasing_location")}
+            </p>
           </div>
 
           {/* ---- Hover 展开：多层级文字 ---- */}

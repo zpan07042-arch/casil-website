@@ -93,7 +93,16 @@ export default function CultureSection({
             padding: "0 24px",
           }}
         >
-          {/* ====== 正文內容 ====== */}
+          {/* ====== 正文卡片 ====== */}
+          <div
+            style={{
+              backgroundColor: "#FFFFFF",
+              borderRadius: 20,
+              padding: "48px 56px",
+              border: "1px solid rgba(0,0,0,0.06)",
+              boxShadow: "0 2px 16px rgba(0,0,0,0.05)",
+            }}
+          >
           <div
             style={{
               display: "flex",
@@ -182,6 +191,7 @@ export default function CultureSection({
                 </div>
               );
             })}
+          </div>
           </div>
         </div>
       </section>

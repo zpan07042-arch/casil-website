@@ -166,7 +166,15 @@ export default async function AboutPage({
                       textIndent: "2em",
                     }}
                   >
-                    {lang === "zh" ? s.content_zh?.substring(0, 40) : s.content_en?.substring(0, 60)}
+                    {(() => {
+                      const text = lang === "zh" ? s.content_zh : s.content_en;
+                      if (!text) return "";
+                      const delimiter = lang === "zh" ? "。" : ".";
+                      const idx = text.indexOf(delimiter);
+                      if (idx > 0) return text.substring(0, idx + 1);
+                      // 如果没有找到句号，回退到按字符数截取
+                      return lang === "zh" ? text.substring(0, 40) : text.substring(0, 60);
+                    })()}
                   </p>
                 </Link>
                 );

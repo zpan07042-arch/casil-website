@@ -285,7 +285,7 @@ export default function Header({ links }: { links: LinkItem[] }) {
             >
               <div className="bg-white shadow-xl border-t border-gray-100 overflow-hidden">
                 <div className="grid grid-cols-7 gap-0 p-3">
-                  <div className="col-span-2 relative bg-cover bg-center -m-3 mr-0" style={{ backgroundImage: "url('/images/baback.jpg')" }}>
+                  <div className="col-span-2 relative bg-cover bg-center -m-3 mr-0" style={{ backgroundImage: "url('/images/baback.png')" }}>
                     <div className="absolute inset-0 bg-black/55" />
                     <div className="relative z-10 p-5">
                       <p className="text-[0.95rem] text-white leading-relaxed mb-3 mt-5">

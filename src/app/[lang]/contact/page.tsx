@@ -27,7 +27,7 @@ export default async function ContactPage({
       href: `${base}/contact/investor`,
     },
     {
-      title: lang === "zh" ? "人才招聘模塊" : "Careers",
+      title: lang === "zh" ? "人才招聘" : "Careers",
       desc: lang === "zh" ? "加入航天控股，查看最新招聘信息與職位機會" : "Join CASIL and explore career opportunities",
       href: `${base}/contact/careers`,
     },
@@ -49,7 +49,7 @@ export default async function ContactPage({
               const enLabels: Record<string, string> = {
                 "投資者諮詢通道": "Investor Inquiries",
                 "Investor Inquiries": "Investor Inquiries",
-                "人才招聘模塊": "Careers",
+                "人才招聘": "Careers",
                 "Careers": "Careers",
               };
               const enLabel = enLabels[card.title] || "";

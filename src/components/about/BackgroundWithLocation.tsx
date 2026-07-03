@@ -225,7 +225,7 @@ export default function BackgroundWithLocation({
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://www.google.com/maps/place/中國航天國際控股有限公司/@22.302271,114.191669,16z/data=!4m6!3m5!1s0x3404011e29a1b33d:0xcb9a3120a373ba70!8m2!3d22.302271!4d114.191669!16s%2Fg%2F12hv22z0m?hl=zh-CN&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
+                  href="https://api.map.baidu.com/marker?location=22.302271,114.191669&title=中國航天國際控股有限公司&content=香港九龍紅磡德豐街十八號海濱廣場&output=html&coord_type=wgs84"
                 >
                   <img
                     src="/images/location.png"

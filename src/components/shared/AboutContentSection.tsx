@@ -45,7 +45,7 @@ export default function AboutContentSection({
           <div className="max-w-3xl mx-auto px-5 md:px-8">
             <div
               className="max-w-2xl"
-              style={{ fontSize: bodyFontSize, color: "#86868B", lineHeight: 1.6 }}
+              style={{ fontSize:18, color: "#86868B", lineHeight: 1.6 }}
               dangerouslySetInnerHTML={{ __html: formatContent(content) }}
             />
           </div>
