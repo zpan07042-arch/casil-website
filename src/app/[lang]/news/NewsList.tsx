@@ -1,95 +1,108 @@
-"use client";
+'use client';
 
-import { useI18n } from "@/components/data/I18nProvider";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useMemo } from "react";
-import type { CompanyNews, Lang } from "@/lib/types";
+import Link from 'next/link';
+import Image from 'next/image';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { useMemo, useCallback } from 'react';
+import { useI18n } from '@/components/data/I18nProvider';
+import { getImageSrc } from '@/lib/image';
+import type { CompanyNews, Lang } from '@/lib/types';
 
 // ============================================================
-// Fallback data — from investor website
+// Fallback data — static content
 // ============================================================
 const FALLBACK_ITEMS = [
-  { date: "2026-05-29", dateKey: "news_item0_date", titleKey: "news_item0_title" },
-  { date: "2026-05-13", dateKey: "news_item1_date", titleKey: "news_item1_title" },
-  { date: "2026-04-15", dateKey: "news_item2_date", titleKey: "news_item2_title" },
-  { date: "2026-04-01", dateKey: "news_item3_date", titleKey: "news_item3_title" },
-  { date: "2026-01-19", dateKey: "news_item4_date", titleKey: "news_item4_title" },
-  { date: "2026-01-19", dateKey: "news_item5_date", titleKey: "news_item5_title" },
-  { date: "2025-11-17", dateKey: "news_item6_date", titleKey: "news_item6_title" },
-  { date: "2025-09-29", dateKey: "news_item7_date", titleKey: "news_item7_title" },
-  { date: "2025-02-02", dateKey: "news_item8_date", titleKey: "news_item8_title" },
-  { date: "2024-01-17", dateKey: "news_item9_date", titleKey: "news_item9_title" },
+  { date: '2026-05-29', dateKey: 'news_item0_date', titleKey: 'news_item0_title' },
+  { date: '2026-05-13', dateKey: 'news_item1_date', titleKey: 'news_item1_title' },
+  { date: '2026-04-15', dateKey: 'news_item2_date', titleKey: 'news_item2_title' },
+  { date: '2026-04-01', dateKey: 'news_item3_date', titleKey: 'news_item3_title' },
+  { date: '2026-01-19', dateKey: 'news_item4_date', titleKey: 'news_item4_title' },
+  { date: '2026-01-19', dateKey: 'news_item5_date', titleKey: 'news_item5_title' },
+  { date: '2025-11-17', dateKey: 'news_item6_date', titleKey: 'news_item6_title' },
+  { date: '2025-09-29', dateKey: 'news_item7_date', titleKey: 'news_item7_title' },
+  { date: '2025-02-02', dateKey: 'news_item8_date', titleKey: 'news_item8_title' },
+  { date: '2024-01-17', dateKey: 'news_item9_date', titleKey: 'news_item9_title' },
 ];
 
 // ============================================================
-// Available years for filter
+// Available years for filter (fallback)
 // ============================================================
-const YEARS = ["2026", "2025", "2024"];
+const FALLBACK_YEARS = ['2026', '2025', '2024'];
 
 // ============================================================
-// Placeholder image colors
+// Page size for client-side pagination
+// ============================================================
+const PAGE_SIZE = 5;
+
+// ============================================================
+// Placeholder gradient colors for cards without cover image
 // ============================================================
 const CARD_COLORS = [
-  "from-[#0A2463] to-[#1A4098]",
-  "from-[#0D3B7A] to-[#1565C0]",
-  "from-[#0F2D5E] to-[#1E88E5]",
-  "from-[#0A2463] to-[#1976D2]",
-  "from-[#1A3A6B] to-[#2980B9]",
-  "from-[#0B2D5B] to-[#1B5FA0]",
-  "from-[#123A6A] to-[#2471C5]",
-  "from-[#0A3058] to-[#1D6EB8]",
-  "from-[#0F2A50] to-[#1A5090]",
-  "from-[#0C3360] to-[#2070B0]",
+  'from-[#0A2463] to-[#1A4098]',
+  'from-[#0D3B7A] to-[#1565C0]',
+  'from-[#0F2D5E] to-[#1E88E5]',
+  'from-[#0A2463] to-[#1976D2]',
+  'from-[#1A3A6B] to-[#2980B9]',
+  'from-[#0B2D5B] to-[#1B5FA0]',
+  'from-[#123A6A] to-[#2471C5]',
+  'from-[#0A3058] to-[#1D6EB8]',
+  'from-[#0F2A50] to-[#1A5090]',
+  'from-[#0C3360] to-[#2070B0]',
 ];
 
 // ============================================================
-// Animation variants
+// Types
 // ============================================================
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.08,
-      duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
-    },
-  }),
-};
+interface DisplayItem {
+  id: string;
+  date: string;
+  title: string;
+  year: string;
+  coverImage?: string;
+  pdfUrl?: string;
+}
 
-// ============================================================
-// Helpers
-// ============================================================
+function extractYear(dateStr: string): string {
+  const m = dateStr.match(/^(\d{4})/);
+  return m ? m[1] : '';
+}
+
 function getCardColor(idx: number): string {
   return CARD_COLORS[idx % CARD_COLORS.length];
 }
 
-/** Extract the year from a date string like "2026-05-29" or "2026年5月29日" */
-function extractYear(dateStr: string): string {
-  const m = dateStr.match(/^(\d{4})/);
-  return m ? m[1] : "";
-}
-
-interface Props {
-  news: CompanyNews[];
+export default function NewsList({
+  posts,
+  detailUrlPrefix,
+  lang,
+  showCategory = false,
+  availableYears = [],
+}: {
+  posts: CompanyNews[];
+  detailUrlPrefix: string;
   lang: Lang;
-}
-
-export default function NewsList({ news, lang }: Props) {
+  showCategory?: boolean;
+  availableYears?: string[];
+}) {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
   const { t } = useI18n();
-  const [yearFilter, setYearFilter] = useState("");
 
-  const hasData = news && news.length > 0;
+  const selectedYear = searchParams.get('year');
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
-  // Build display list: prefer DB data, fallback to i18n
-  const allItems = useMemo(() => {
+  const hasData = posts && posts.length > 0;
+
+  // Build display list: prefer DB data, fallback to static i18n content
+  const allItems = useMemo<DisplayItem[]>(() => {
     if (hasData) {
-      return news.map((item) => ({
+      return posts.map((item) => ({
         id: String(item.id),
-        date: item.date || "",
-        title: lang === "zh" ? item.title_zh : (item.title_en || item.title_zh),
-        year: item.date ? extractYear(item.date) : "",
+        date: item.date || '',
+        title: lang === 'zh' ? item.title_zh : item.title_en || item.title_zh,
+        year: item.date ? extractYear(item.date) : '',
+        pdfUrl: item.pdf_url || undefined,
       }));
     }
     return FALLBACK_ITEMS.map((item) => ({
@@ -98,116 +111,267 @@ export default function NewsList({ news, lang }: Props) {
       title: t(item.titleKey),
       year: extractYear(item.date),
     }));
-  }, [hasData, news, lang, t]);
+  }, [hasData, posts, lang, t]);
+
+  // Years: prefer DB-derived years, fallback to static years
+  const years = availableYears.length > 0 ? availableYears : FALLBACK_YEARS;
 
   // Filter by selected year
-  const filteredItems = useMemo(() => {
-    if (!yearFilter) return allItems;
-    return allItems.filter((item) => item.year === yearFilter);
-  }, [allItems, yearFilter]);
+  const yearFilteredItems = useMemo(() => {
+    if (!selectedYear) return allItems;
+    return allItems.filter((item) => item.year === selectedYear);
+  }, [allItems, selectedYear]);
+
+  // Client-side pagination
+  const totalItems = yearFilteredItems.length;
+  const totalPages = Math.max(1, Math.ceil(totalItems / PAGE_SIZE));
+  const safePage = Math.min(currentPage, totalPages);
+  const paginatedItems = useMemo(() => {
+    const start = (safePage - 1) * PAGE_SIZE;
+    return yearFilteredItems.slice(start, start + PAGE_SIZE);
+  }, [yearFilteredItems, safePage]);
+
+  // When year filter changes, reset to page 1 (handled by not carrying page param)
+  const handleYearChange = useCallback(
+    (year: string) => {
+      const params = new URLSearchParams();
+      if (year) {
+        params.set('year', year);
+      }
+      // Don't carry page — resets to page 1
+      router.push(`${pathname}?${params.toString()}`);
+    },
+    [pathname, router]
+  );
+
+  // 处理页码变化
+  const handlePageChange = useCallback(
+    (newPage: number) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (newPage <= 1) {
+        params.delete('page');
+      } else {
+        params.set('page', newPage.toString());
+      }
+      router.push(`${pathname}?${params.toString()}`);
+    },
+    [pathname, router, searchParams]
+  );
+
+  // 分页组件
+  const renderPagination = () => {
+    if (totalItems === 0) return null;
+
+    return (
+      <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="text-sm text-gray-500">
+          共 <span className="font-medium text-gray-700">{totalItems}</span> 条结果，
+          第 <span className="font-medium text-gray-700">{safePage}</span> /{' '}
+          <span className="font-medium text-gray-700">{totalPages}</span> 页
+        </div>
+        {totalPages > 1 && (
+          <div className="flex items-center gap-2">
+            {/* 上一页 */}
+            <button
+              onClick={() => handlePageChange(safePage - 1)}
+              disabled={safePage <= 1}
+              className="px-3 py-2 text-sm border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              上一页
+            </button>
+
+            {/* 页码 */}
+            <div className="flex items-center gap-1">
+              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                let pageNum;
+                if (totalPages <= 5) {
+                  pageNum = i + 1;
+                } else if (safePage <= 3) {
+                  pageNum = i + 1;
+                } else if (safePage >= totalPages - 2) {
+                  pageNum = totalPages - 4 + i;
+                } else {
+                  pageNum = safePage - 2 + i;
+                }
+
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => handlePageChange(pageNum)}
+                    className={`w-10 h-10 text-sm rounded-md transition-colors ${
+                      pageNum === safePage
+                        ? 'bg-blue-600 text-white font-medium'
+                        : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 下一页 */}
+            <button
+              onClick={() => handlePageChange(safePage + 1)}
+              disabled={safePage >= totalPages}
+              className="px-3 py-2 text-sm border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              下一页
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  if (allItems.length === 0) {
+    return (
+      <div className="bg-white shadow overflow-hidden sm:rounded-md">
+        <div className="text-center py-12">
+          <p className="text-gray-500">暫無內容</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <section className="flex justify-center px-6 md:px-8 py-12 md:py-16">
-      <div className="w-full max-w-[1100px]">
-        {/* ── 年份筛选 ── */}
-        <div className="flex items-center justify-start mb-6">
-          <label className="text-sm text-[#86868B] mr-2 font-medium">
-            {lang === "zh" ? "年份篩選" : "Filter by Year"}
-          </label>
+    <>
+      {/* 年份筛选器 */}
+      {years.length > 1 && (
+        <div className="mb-4 flex items-center space-x-2">
+          <label className="text-sm font-medium text-gray-700">年份篩選:</label>
           <select
-            value={yearFilter}
-            onChange={(e) => setYearFilter(e.target.value)}
-            className="block w-32 pl-3 pr-8 py-2 text-sm border border-gray-200 rounded-md
-              bg-white text-[#2D3142] focus:outline-none focus:ring-2 focus:ring-[#0A2463]/20
-              focus:border-[#0A2463]/40 appearance-none cursor-pointer
-              bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2386868B%22%20stroke-width%3D%222%22%3E%3Cpath%20d%3D%22M19%209l-7%207-7-7%22%2F%3E%3C%2Fsvg%3E')]
-              bg-[length:12px] bg-[right_10px_center] bg-no-repeat"
+            value={selectedYear || ''}
+            onChange={(e) => handleYearChange(e.target.value)}
+            className="block w-32 pl-3 pr-10 py-2 text-sm border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md border"
           >
-            <option value="">{lang === "zh" ? "全部" : "All"}</option>
-            {YEARS.map((y) => (
-              <option key={y} value={y}>
-                {lang === "zh" ? `${y}年` : y}
+            <option value="">全部</option>
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}年
               </option>
             ))}
           </select>
-        </div>
-
-        {/* ── 卡片列表 ── */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-          {filteredItems.length === 0 && (
-            <p className="text-center text-[#86868B] py-16 text-sm">
-              {lang === "zh" ? "暫無相關新聞" : "No news found"}
-            </p>
+          {selectedYear && (
+            <span className="text-sm text-gray-500">
+              (已選擇: {selectedYear}年, 共 {totalItems} 條)
+            </span>
           )}
-
-          <AnimatePresence mode="wait">
-            {filteredItems.map((item, idx) => (
-              <motion.div
-                key={item.id}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-40px" }}
-                variants={fadeUp}
-                custom={idx}
-              >
-                <div
-                  className={`
-                    group flex items-center gap-6 md:gap-10 px-8 md:px-14 py-9 md:py-12
-                    hover:bg-gray-50/60 transition-colors duration-300
-                    ${idx < filteredItems.length - 1 ? "border-b border-gray-100" : ""}
-                  `}
-                >
-                  {/* 左侧：图片占位 */}
-                  <div
-                    className={`
-                      shrink-0 w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-lg bg-gradient-to-br
-                      flex items-center justify-center overflow-hidden
-                      ${getCardColor(idx)}
-                    `}
-                  >
-                    <svg
-                      className="w-10 h-10 md:w-14 md:h-14 text-white/70"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
-                      />
-                    </svg>
-                  </div>
-
-                  {/* 中间：标题 + 日期（日期在下方） */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base md:text-lg text-[#2D3142] font-medium leading-relaxed line-clamp-2 mb-2">
-                      {item.title}
-                    </h3>
-                    <span className="inline-block text-sm text-[#86868B] font-medium tracking-wide">
-                      {item.date}
-                    </span>
-                  </div>
-
-                  {/* 右侧：箭头 */}
-                  <div className="shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-100 group-hover:bg-[#0A2463] transition-colors duration-300">
-                    <svg
-                      className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-white transition-colors duration-300"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
         </div>
+      )}
+
+      <div className="bg-white shadow overflow-hidden sm:rounded-md">
+        {paginatedItems.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-gray-500">該年份暫無內容</p>
+          </div>
+        ) : (
+          <ul className="divide-y divide-gray-200">
+            {paginatedItems.map((item) => {
+              // Calculate the original index in the full filtered list for color assignment
+              const originalIdx = yearFilteredItems.indexOf(item);
+              return (
+                <li key={item.id}>
+                  <Link
+                    href={`${detailUrlPrefix}/${item.id}`}
+                    className="block hover:bg-gray-50 transition-colors"
+                  >
+                    <div className="px-4 py-4 sm:px-6 sm:py-6">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:gap-6">
+                        {/* 封面图 — 始终预留，无图片时显示渐变占位 */}
+                        <div className="w-full sm:w-48 sm:h-32 h-48 flex-shrink-0 overflow-hidden rounded-lg mb-4 sm:mb-0">
+                          {item.coverImage ? (
+                            <Image
+                              unoptimized
+                              src={getImageSrc(item.coverImage)}
+                              alt={item.title}
+                              width={192}
+                              height={128}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div
+                              className={`w-full h-full bg-gradient-to-br ${getCardColor(originalIdx)} flex items-center justify-center`}
+                            >
+                              <svg
+                                className="w-10 h-10 md:w-12 md:h-12 text-white/70"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                                />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* 文字区域和箭头 */}
+                        <div className="flex items-start justify-between gap-4 flex-1">
+                          <div className="flex-1 flex flex-col">
+                            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 line-clamp-2 leading-tight">
+                              {item.title}
+                            </h3>
+                            <div className="text-xs sm:text-sm text-gray-500 flex flex-wrap items-center gap-2 sm:gap-4">
+                              {item.date && <span>{item.date}</span>}
+                              <span className="w-px h-3 bg-gray-300 hidden sm:block"></span>
+                              {showCategory && (
+                                <span className="sm:inline">
+                                  {(item as any).category?.name || '內容'}
+                                </span>
+                              )}
+                              {item.pdfUrl && (
+                                <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-red-100 text-red-800">
+                                  <svg
+                                    className="h-4 w-4 mr-1"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                  PDF
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* 箭头图标 - 移动端隐藏 */}
+                          <div className="text-gray-400 hidden sm:block flex-shrink-0">
+                            <svg
+                              className="h-5 w-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
-    </section>
+
+      {/* 分页控件 */}
+      {renderPagination()}
+    </>
   );
 }

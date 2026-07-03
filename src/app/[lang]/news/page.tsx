@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { getCompanyNews } from "@/lib/db";
 import { getPageMeta } from "@/lib/pageMeta";
 import { t } from "@/lib/i18n";
@@ -16,6 +17,16 @@ export default async function NewsPage({
   const news = await getCompanyNews();
   const meta = getPageMeta("news", validLang);
 
+  // 从数据中提取所有可用年份
+  const yearsSet = new Set<string>();
+  news.forEach((item) => {
+    if (item.date) {
+      const year = item.date.substring(0, 4);
+      if (year) yearsSet.add(year);
+    }
+  });
+  const availableYears = Array.from(yearsSet).sort((a, b) => b.localeCompare(a));
+
   return (
     <div style={{ backgroundColor: "#F8FAFE" }}>
       <AboutHeader
@@ -25,7 +36,18 @@ export default async function NewsPage({
         description={meta.description}
       />
 
-      <NewsList news={news} lang={validLang} />
+      <section className="flex justify-center px-6 md:px-8 py-12 md:py-16">
+        <div className="w-full max-w-[1100px]">
+          <Suspense fallback={<div className="text-center py-12 text-gray-500">載入中...</div>}>
+            <NewsList
+              posts={news}
+              detailUrlPrefix={`/${validLang}/news`}
+              lang={validLang}
+              availableYears={availableYears}
+            />
+          </Suspense>
+        </div>
+      </section>
     </div>
   );
 }
