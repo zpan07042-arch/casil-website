@@ -6,49 +6,49 @@ import type { Lang } from "@/lib/types";
 const zh = {
   root: "航天控股",
   depts: [
-    { line1: "董事局", line2: "办公室" },
-    { line1: "综合管理部", line2: "" },
-    { line1: "财务部", line2: "" },
-    { line1: "经营发展部", line2: "" },
-    { line1: "人力资源部", line2: "" },
-    { line1: "企业文化部", line2: "" },
-    { line1: "监督与审计", line2: "法务部", small: true },
-    { line1: "数智化", line2: "办公室" },
+    { line1: "董事局", line2: "辦公室" },
+    { line1: "綜合管理部", line2: "" },
+    { line1: "財務部", line2: "" },
+    { line1: "經營發展部", line2: "" },
+    { line1: "人力資源部", line2: "" },
+    { line1: "企業文化部", line2: "" },
+    { line1: "監督與審計", line2: "法務部", small: true },
+    { line1: "數智化", line2: "辦公室" },
   ],
   deptNotes: [
-    { text: "（证券事务部）", x: 195 },
-    { text: "（安全生产办公室）", x: 335 },
-    { text: "（挂靠智慧研究所）", x: 1185 },
+    { text: "（證券事務部）", x: 195 },
+    { text: "（安全生產辦公室）", x: 335 },
+    { text: "（掛靠智慧研究所）", x: 1185 },
   ],
-  sectors: ["先进制造业", "现代服务业", "参股公司", "投资平台", "技术研发中心"],
-  tagIntegrated: "三、四级一体管理",
-  // 先进制造业
+  sectors: ["先進製造業", "現代服務業", "參股公司", "投資平台", "技術研發中心"],
+  tagIntegrated: "三、四級一體管理",
+  // 先進製造業
   mfg: [
-    { title: "东莞康源", sub: "（电路印制板业务）" },
-    { title: "航科半导体", sub: "（液晶显示器件业务）" },
-    { title: "香港志源", sub: "（注塑及表面处理业务）" },
-    { title: "香港志顺", sub: "（电源产品业务）" },
-    { title: "志豪微电子", sub: "（智能功率模组业务）" },
+    { title: "東莞康源", sub: "（電路印製板業務）" },
+    { title: "航科半導體", sub: "（液晶顯示器件業務）" },
+    { title: "香港志源", sub: "（注塑及表面處理業務）" },
+    { title: "香港志順", sub: "（電源產品業務）" },
+    { title: "志豪微電子", sub: "（智能功率模組業務）" },
   ],
   mfgSubs: [
-    "香港康源电路", "南通康源",
-    "康惠半导体",
-    "深圳志源", "惠州志源", "志源表面", "志源电科", "越南志源",
-    "惠州志顺",
+    "香港康源電路", "南通康源",
+    "康惠半導體",
+    "深圳志源", "惠州志源", "志源表面", "志源電科", "越南志源",
+    "惠州志順",
   ],
-  // 现代服务业
+  // 現代服務業
   svc: [
     { title: "航天高科", sub: "" },
-    { title: "工业园公司", sub: "" },
-    { title: "航科进出口", sub: "（集团公司委托管理）", smallSub: true },
-    { title: "航天结算", sub: "" },
+    { title: "工業園公司", sub: "" },
+    { title: "航科進出口", sub: "（集團公司委託管理）", smallSub: true },
+    { title: "航天結算", sub: "" },
   ],
-  svcSub: "高科物业",
-  // 参股公司
+  svcSub: "高科物業",
+  // 參股公司
   equity: [
-    { title: "深圳瑞华泰", sub: "(688323.SH)", blueSub: true },
-    { title: "航天新商务", sub: "" },
-    { title: "航天数联", sub: "" },
+    { title: "深圳瑞華泰", sub: "(688323.SH)", blueSub: true },
+    { title: "航天新商務", sub: "" },
+    { title: "航天數聯", sub: "" },
   ],
   equityCleanLabel1: "正在清理退出",
   equityCleaned: [
@@ -56,13 +56,13 @@ const zh = {
     { title: "海南航天", sub: "" },
   ],
   equityCleanLabel2: "已完成清理",
-  // 投资平台
+  // 投資平台
   invest: [
-    { title: "康源投资", sub: "（境外—香港）" },
-    { title: "航科新世纪", sub: "（境内—深圳）" },
+    { title: "康源投資", sub: "（境外—香港）" },
+    { title: "航科新世紀", sub: "（境內—深圳）" },
   ],
-  // 技术研发中心
-  rnd: { title: "智慧研究所", sub: "（非法人实体）" },
+  // 技術研發中心
+  rnd: { title: "智慧研究所", sub: "（非法人實體）" },
 };
 
 const en = {
@@ -133,8 +133,8 @@ export default function StructureSvg({ lang }: { lang: Lang }) {
   return (
     <div style={{ backgroundColor: "#ffffff", padding: "40px", display: "flex", justifyContent: "center", overflowX: "auto" }}>
       <svg
-        width="1380"
-        height="850"
+        width="1518"
+        height="935"
         viewBox="0 0 1380 850"
         xmlns="http://www.w3.org/2000/svg"
         style={{ backgroundColor: "#ffffff", userSelect: "none", flexShrink: 0 }}
@@ -258,7 +258,7 @@ export default function StructureSvg({ lang }: { lang: Lang }) {
           {t.sectors.map((sector, i) => {
             const positions = [80, 350, 625, 900, 1170];
             const cx = positions[i] + 65;
-            const shortLabels = ["先进制造业", "Advanced Manufacturing"];
+            const shortLabels = ["先進製造業", "Advanced Manufacturing"];
             const isShort = shortLabels.includes(sector);
             return (
               <g key={i}>
