@@ -93,115 +93,18 @@ export default function CultureSection({
             padding: "0 24px",
           }}
         >
-          {/* ====== 卡片容器 ====== */}
+          {/* ====== 正文內容 ====== */}
           <div
             style={{
-              position: "relative",
-              width: "100%",
-              background: "#F9FAFB",
-              border: "1px solid rgba(46, 56, 97, 0.20)",
-              borderRadius: 16,
-              padding: "96px 120px 120px 120px",
               display: "flex",
               flexDirection: "column",
-              gap: 20,
-              overflow: "hidden",
-              boxShadow:
-                "0px 4px 24px rgba(26, 38, 77, 0.12), 0px 1px 6px rgba(26, 38, 77, 0.06)",
+              gap: 8,
+              width: "100%",
             }}
           >
-            {/* ====== 左上角裝飾方形（旋轉 + 下移） ====== */}
-            <div
-              style={{
-                position: "absolute",
-                top: -100,
-                left: -160,
-                width: 360,
-                height: 360,
-                background:
-                  "linear-gradient(to top right, rgba(10, 36, 99, 0.08), rgba(62, 146, 204, 0.08))",
-                borderRadius: 0,
-                transform: "rotate(25deg)",
-                pointerEvents: "none",
-              }}
-            />
-
-            {/* ====== 底部背景圖片（佔 70%） ====== */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: "80%",
-                zIndex: 0,
-                backgroundImage: "url('/images/qback.png')",
-                backgroundSize: "cover",
-                backgroundPosition: "bottom",
-                backgroundRepeat: "no-repeat",
-                opacity: 0.12,
-              }}
-            />
-
-            {/* ====== 正文內容 ====== */}
-            <div
-              style={{
-                position: "relative",
-                zIndex: 1,
-                display: "flex",
-                flexDirection: "column",
-                gap: 20,
-                width: "100%",
-              }}
-            >
-              {CULTURE_CONTENT_ZH.map((block, i) => {
-                if (block.type === "section") {
-                  const parts = "highlight" in block && block.highlight
-                    ? block.text.split(block.highlight)
-                    : null;
-                  return (
-                    <div
-                      key={i}
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 16,
-                      }}
-                    >
-                      <h3
-                        style={{
-                          fontSize: 18,
-                          fontWeight: 700,
-                          color: "#000000",
-                          margin: 0,
-                          letterSpacing: "0.04em",
-                        }}
-                      >
-                        {block.title}
-                      </h3>
-                      <p
-                        style={{
-                          margin: 0,
-                          fontSize: 18,
-                          lineHeight: 1.7,
-                          color: "#000000",
-                          textAlign: "left",
-                          whiteSpace: "pre-line",
-                        }}
-                      >
-                        {parts && block.highlight
-                          ? <>
-                              {parts[0]}
-                              <span style={{ color: "#000000", fontWeight: 700 }}>{block.highlight}</span>
-                              {parts[1]}
-                            </>
-                          : block.text}
-                      </p>
-                    </div>
-                  );
-                }
-                // type === "paragraph"
-                const pParts = "highlight" in block && block.highlight
+            {CULTURE_CONTENT_ZH.map((block, i) => {
+              if (block.type === "section") {
+                const parts = "highlight" in block && block.highlight
                   ? block.text.split(block.highlight)
                   : null;
                 return (
@@ -210,9 +113,20 @@ export default function CultureSection({
                     style={{
                       display: "flex",
                       flexDirection: "column",
-                      gap: 16,
+                      gap: 8,
                     }}
                   >
+                    <h3
+                      style={{
+                        fontSize: 18,
+                        fontWeight: 700,
+                        color: "#000000",
+                        margin: 0,
+                        letterSpacing: "0.04em",
+                      }}
+                    >
+                      {block.title}
+                    </h3>
                     <p
                       style={{
                         margin: 0,
@@ -223,18 +137,51 @@ export default function CultureSection({
                         whiteSpace: "pre-line",
                       }}
                     >
-                      {pParts && block.highlight
+                      {parts && block.highlight
                         ? <>
-                            {pParts[0]}
-                            <span style={{ fontWeight: 700 }}>{block.highlight}</span>
-                            {pParts[1]}
+                            {parts[0]}
+                            <span style={{ color: "#000000", fontWeight: 700 }}>{block.highlight}</span>
+                            {parts[1]}
                           </>
                         : block.text}
                     </p>
                   </div>
                 );
-              })}
-            </div>
+              }
+              // type === "paragraph"
+              const pParts = "highlight" in block && block.highlight
+                ? block.text.split(block.highlight)
+                : null;
+              return (
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 8,
+                  }}
+                >
+                  <p
+                    style={{
+                      margin: 0,
+                      fontSize: 18,
+                      lineHeight: 1.7,
+                      color: "#000000",
+                      textAlign: "left",
+                      whiteSpace: "pre-line",
+                    }}
+                  >
+                    {pParts && block.highlight
+                      ? <>
+                          {pParts[0]}
+                          <span style={{ fontWeight: 700 }}>{block.highlight}</span>
+                          {pParts[1]}
+                        </>
+                      : block.text}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

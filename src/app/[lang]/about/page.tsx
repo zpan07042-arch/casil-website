@@ -38,6 +38,7 @@ export default async function AboutPage({
         breadcrumb={meta.breadcrumb}
         enLabel={meta.enLabel}
         description={meta.description}
+        bodyFontSize={15}
       />
       <section className="pb-16 md:pb-24">
         <div className="max-w-6xl mx-auto px-5 md:px-8">
@@ -159,7 +160,7 @@ export default async function AboutPage({
                   />
                   <p
                     style={{
-                      fontSize: 18,
+                      fontSize: 15,
                       color: "#444A58",
                       lineHeight: 1.6,
                       textIndent: "2em",

@@ -75,13 +75,13 @@ export default function BoardMembers({
                           {name}
                         </div>
                         <div
-                          style={{ fontSize: 18, color: "#888E9C", fontWeight: 400, marginTop: 6 }}
+                          style={{ fontSize: 18, color: "#000", fontWeight: 400, marginTop: 6 }}
                         >
                           {title}
                         </div>
                       </div>
                       {bio && (
-                        <p style={{ fontSize: 18, lineHeight: 1.6, paddingTop: 12, textIndent: "2em" }} className="text-text-secondary/80">
+                        <p style={{ fontSize: 18, lineHeight: 1.6, paddingTop: 12, textIndent: "2em", color: "#000" }}>
                           {bio}
                         </p>
                       )}

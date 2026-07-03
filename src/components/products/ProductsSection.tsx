@@ -248,7 +248,7 @@ export default function ProductsSection({
                     {/* Card body */}
                     <div className="p-6 md:p-7">
                       {/* Icon + name */}
-                      <div className="flex items-center gap-3 mb-3">
+                      <div className="flex items-center gap-3 mb-1">
                         <div className={`transition-colors duration-300 ${isOpen ? "text-brand" : "text-brand/60"}`}>
                           {p.icon}
                         </div>

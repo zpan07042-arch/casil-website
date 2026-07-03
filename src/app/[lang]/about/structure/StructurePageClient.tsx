@@ -1,7 +1,7 @@
 "use client";
 
 import AboutHeader from "@/components/shared/AboutHeader";
-import CorporateDiagram from "@/components/about/CorporateDiagram";
+import StructureSvg from "@/components/about/StructureSvg";
 import type { Lang } from "@/lib/types";
 
 const content = {
@@ -33,7 +33,7 @@ export default function StructurePageClient({ lang }: { lang: Lang }) {
         description={t.desc}
         note={t.note}
       />
-      <CorporateDiagram lang={lang} />
+      <StructureSvg lang={lang} />
     </div>
   );
 }

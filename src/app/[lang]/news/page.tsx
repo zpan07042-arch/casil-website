@@ -36,7 +36,7 @@ export default async function NewsPage({
         description={meta.description}
       />
 
-      <section className="flex justify-center px-6 md:px-8 py-12 md:py-16">
+      <section className="flex justify-center px-6 md:px-8 pt-2 md:pt-4 pb-12 md:pb-16">
         <div className="w-full max-w-[1100px]">
           <Suspense fallback={<div className="text-center py-12 text-gray-500">載入中...</div>}>
             <NewsList

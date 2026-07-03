@@ -20,6 +20,7 @@ export default function AboutContentSection({
   enLabel,
   description,
   note,
+  bodyFontSize = 18,
 }: {
   title: string;
   content: string;
@@ -27,6 +28,7 @@ export default function AboutContentSection({
   enLabel?: string;
   description?: string;
   note?: string;
+  bodyFontSize?: number;
 }) {
   return (
     <>
@@ -43,7 +45,7 @@ export default function AboutContentSection({
           <div className="max-w-3xl mx-auto px-5 md:px-8">
             <div
               className="max-w-2xl"
-              style={{ fontSize: 18, color: "#86868B", lineHeight: 1.6 }}
+              style={{ fontSize: bodyFontSize, color: "#86868B", lineHeight: 1.6 }}
               dangerouslySetInnerHTML={{ __html: formatContent(content) }}
             />
           </div>
