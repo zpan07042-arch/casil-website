@@ -23,6 +23,30 @@ function FadeSection({ children, className = "" }: { children: React.ReactNode; 
 }
 
 /* ========== Card icons ========== */
+/** 为卡片预览截取合适长度的文本摘要 */
+function getExcerpt(text: string, maxLen = 150): string {
+  if (!text || text.length <= maxLen) return text || "";
+
+  // 先找第一个句号（自然断句）
+  const periodIdx = text.indexOf("。");
+  if (periodIdx > 0 && periodIdx <= maxLen) return text.substring(0, periodIdx + 1);
+
+  // 再尝试冒号（标题性断点）
+  const colonIdx = text.indexOf("：");
+  if (colonIdx > 0 && colonIdx <= maxLen) return text.substring(0, colonIdx + 1);
+
+  // 尝试分号
+  const semiIdx = text.indexOf("；");
+  if (semiIdx > 0 && semiIdx <= maxLen) return text.substring(0, semiIdx + 1);
+
+  // 尝试换行
+  const nlIdx = text.indexOf("\n");
+  if (nlIdx > 0 && nlIdx <= maxLen) return text.substring(0, nlIdx);
+
+  // 兜底：按字符数截取
+  return text.substring(0, maxLen) + "...";
+}
+
 function IconBackground() {
   return (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -151,7 +175,7 @@ export default function AboutSection({
         id: s.id,
         title: isZh ? s.title_zh : s.title_en,
         tagline: isZh ? cfg.tagline.zh : cfg.tagline.en,
-        desc: (isZh ? s.content_zh ?? "" : s.content_en ?? s.content_zh ?? "").substring(0, 80) + "…",
+        desc: getExcerpt(isZh ? (s.content_zh ?? "") : (s.content_en ?? s.content_zh ?? "")),
         href: subRoutes[s.id] || `${base}/about/${s.id}`,
         icon: cfg.icon,
       };
