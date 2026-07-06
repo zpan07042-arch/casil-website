@@ -226,7 +226,23 @@ INSERT INTO governance_docs (id, title_zh, title_en, pdf_url, sort_order) VALUES
 INSERT INTO governance_docs (id, title_zh, title_en, pdf_url, sort_order) VALUES (30, '舉報政策', 'Whistleblowing Policy', 'http://www.casil-group.com/download/big5/governance/C_blowing_20220830.pdf', 10);
 
 -- ════════════════════════════════════════════════════════════
--- 第五部分：友情鏈接
+-- 第五部分：公司資訊
+-- ════════════════════════════════════════════════════════════
+
+INSERT INTO company_news (date, title_zh, title_en) VALUES
+('2026-05-29', '航天控股應約參加智信財經路演活動', 'CASIL Invited to Participate in Zhixin Financial Roadshow'),
+('2026-05-13', '航天控股與澳門大學進行合作交流', 'CASIL Conducts Cooperation Exchange with University of Macau'),
+('2026-04-15', '航天控股舉行2025年度業績說明會', 'CASIL Holds 2025 Annual Results Presentation'),
+('2026-04-01', '航天控股赴香港城市大學交流訪問', 'CASIL Visits City University of Hong Kong for Exchange'),
+('2026-01-19', '航天控股參加北京銀行第四屆生態夥伴大會暨行業分論壇路演活動', 'CASIL Attends Bank of Beijing 4th Ecological Partner Conference & Industry Sub-Forum Roadshow'),
+('2026-01-19', '航天控股參加資本市場高質量創新發展交流會暨2025年度上市公司評選頒獎典禮', 'CASIL Participates in Capital Market High-Quality Innovation Development Conference & 2025 Listed Company Awards'),
+('2025-11-17', '航天控股顯示模組產品亮相日本FINETECH 2025展會', 'CASIL Display Module Products Debut at FINETECH Japan 2025'),
+('2025-09-29', '航天控股功率半導體封測產品亮相PCIM Asia 2025', 'CASIL Power Semiconductor Packaging & Testing Products Debut at PCIM Asia 2025'),
+('2025-02-02', '南通康源集成電路封裝載板能力建設項目已開始小批次試生產', 'Nantong Kangyuan IC Packaging Substrate Capability Project Begins Small-Batch Trial Production'),
+('2024-01-17', '航天控股所屬子公司獲評「國家級綠色工廠」', 'CASIL Subsidiary Recognized as National Green Factory');
+
+-- ════════════════════════════════════════════════════════════
+-- 第六部分：友情鏈接
 -- ════════════════════════════════════════════════════════════
 
 INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (13, '志源實業有限公司', 'Zhiyuan Industrial Co., Ltd.', 'https://www.casil-cheeyuen.com/', 1);
@@ -237,7 +253,7 @@ INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (17, '航天控
 INSERT INTO links (id, name_zh, name_en, url, sort_order) VALUES (18, '志豪微電子（惠州）有限公司', 'Zhihao Microelectronics (Huizhou) Co., Ltd.', 'https://www.chmicro.com', 6);
 
 -- ════════════════════════════════════════════════════════════
--- 第六部分：子公司數據
+-- 第七部分：子公司數據
 -- ════════════════════════════════════════════════════════════
 
 INSERT INTO subsidiaries (name_zh, name_en, description_zh, description_en, sub_type, sort_order) VALUES
@@ -253,7 +269,7 @@ INSERT INTO subsidiaries (name_zh, name_en, description_zh, description_en, sub_
 ('志豪微電子(惠州)有限公司', 'Zhihao Microelectronics (Huizhou) Co., Ltd.', '微電子器件製造，專注半導體封裝與微電子組裝。', 'Microelectronic device manufacturing, focusing on semiconductor packaging and microelectronic assembly.', 'wholly_owned', 8);
 
 -- ════════════════════════════════════════════════════════════
--- 第七部分：業務總覽卡片
+-- 第八部分：業務總覽卡片
 -- ════════════════════════════════════════════════════════════
 
 INSERT INTO business_cards (id, category, main_title, sub_title, en_name, body_zh, body_en, clients, learn_more_href, image_layout, product_images, sort_order) VALUES ('dongguan-kangyuan', 'advanced_manufacturing', '東莞康源', '電路印製板業務', 'Dongguan Kangyuan', '始建於 1977 年，1993 年在虎門塘廈投產，2008 年轉型為外商獨資，現已成為一家擁有 10 萬平方廠房、1800 名智慧員工的專業印刷電路板製造商，並於 2010 年榮獲「國家高新技術企業」認證。2017 年被確定為廣東省首批「倍增計劃」企業之一。公司專注於高階對裝板、HDI、多層刚性 / 撓性 / 剛撓性結合板製造，廣泛應用於通信包裝 IC 封裝板、MEMS 醫療等領域，客戶遍布北美、歐洲、中國及太平洋地區。研發（工程）中心於 2018 年獲授「廣東省省級技術研發中心」，年研發經費投入 6% 以上，先後通過 ISO9001、ISO14001、IATF16949、ISO50001 等體系認證，並榮獲「國家級綠色工廠」、「中國電子電路行業百強企業」等獎項。', 'Founded in 1977, commenced production in Humen Tangxia in 1993, and transformed into a wholly foreign-owned enterprise in 2008, the company has grown into a professional PCB manufacturer with 100,000 sqm of factory space and 1,800 skilled employees, earning the ''National High-Tech Enterprise'' certification in 2010. In 2017, it was designated as one of Guangdong Province''s first ''Doubling Plan'' enterprises. The company specializes in high-end packaging substrates, HDI, multi-layer rigid/flexible/rigid-flex boards, widely applied in communication packaging, IC substrates, MEMS, and medical fields, with customers across North America, Europe, China, and the Pacific region. Its R&D (Engineering) Center was recognized as a ''Guangdong Provincial Technology R&D Center'' in 2018, with annual R&D investment exceeding 6%, and has successively obtained ISO9001, ISO14001, IATF16949, and ISO50001 certifications, along with honors including ''National Green Factory'' and ''China Electronics Circuit Industry Top 100 Enterprise''.', '["Sensata","Accelink","OFILM","Hisense"]', '/zh/business/subsidiaries', 'grid', '[{"lblZh":"產品圖 1","lblEn":"Product Image 1","img":"/images/kangyuan1.png"},{"lblZh":"產品圖 2","lblEn":"Product Image 2","img":"/images/kangyuan2.png"},{"lblZh":"產品圖 3","lblEn":"Product Image 3","img":"/images/kangyuan3.png"},{"lblZh":"產品圖 4","lblEn":"Product Image 4","img":"/images/kangyuan4.png"}]', 1);

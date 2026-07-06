@@ -43,11 +43,18 @@ EXPOSE 3000
 # 第3步: 验证数据完整性，确认 pages 表有数据
 # 第4步: 启动 Next.js
 CMD sh -c "\
-    echo '[step 1/4] Cleaning stale build-time database...' \
-    && rm -f data/db/casil.db data/db/casil.db-shm data/db/casil.db-wal \
-    && echo '[step 2/4] Running database migrations...' \
-    && node data/migrate.js \
-    && echo '[step 3/4] Verifying database integrity...' \
-    && node data/verify.js \
-    && echo '[step 4/4] Starting Next.js...' \
+    if [ ! -f data/db/.initialized ]; then \
+      echo '[first run] Cleaning stale build-time database...' \
+      && rm -f data/db/casil.db data/db/casil.db-shm data/db/casil.db-wal \
+      && echo '[1/3] Running database migrations...' \
+      && node data/migrate.js \
+      && echo '[2/3] Verifying database integrity...' \
+      && node data/verify.js \
+      && touch data/db/.initialized \
+      && echo '[3/3] First-time initialization complete.' ; \
+    else \
+      echo '[subsequent run] Running database migrations (only new ones)...' \
+      && node data/migrate.js ; \
+    fi \
+    && echo '[start] Starting Next.js...' \
     && exec npm start"
