@@ -254,6 +254,34 @@ export const COMPANY_NEWS_FIELDS: FieldConfig[] = [
     lang: "en",
   },
   {
+    name: "category",
+    label: "分類",
+    type: "select",
+    options: [
+      { value: "financial", label: "業績公告" },
+      { value: "cooperation", label: "合作動態" },
+      { value: "research", label: "科研資訊" },
+      { value: "major", label: "公司重大事項" },
+    ],
+  },
+  {
+    name: "cover_image",
+    label: "封面圖片",
+    type: "image",
+  },
+  {
+    name: "content_zh",
+    label: "中文內容",
+    type: "textarea",
+    lang: "zh",
+  },
+  {
+    name: "content_en",
+    label: "English Content",
+    type: "textarea",
+    lang: "en",
+  },
+  {
     name: "pdf_url",
     label: "PDF 鏈接",
     type: "url",
@@ -265,7 +293,36 @@ export const COMPANY_NEWS_COLUMNS: Column<Record<string, unknown>>[] = [
   { key: "id", label: "ID" },
   { key: "date", label: "日期" },
   { key: "title_zh", label: "中文標題" },
-  { key: "title_en", label: "英文標題" },
+  {
+    key: "category",
+    label: "分類",
+    render: (row) => {
+      const cat = row.category as string;
+      const map: Record<string, string> = {
+        financial: "業績公告",
+        cooperation: "合作動態",
+        research: "科研資訊",
+        major: "公司重大事項",
+      };
+      return map[cat] || cat || "-";
+    },
+  },
+  {
+    key: "cover_image",
+    label: "封面圖",
+    render: (row) => {
+      const url = row.cover_image as string;
+      if (!url) return <span className="text-gray-400">-</span>;
+      return (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={url}
+          alt=""
+          className="h-10 w-16 object-cover rounded border border-gray-200"
+        />
+      );
+    },
+  },
 ];
 
 // ────────────────────────────────────────────────────────────

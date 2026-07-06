@@ -45,6 +45,10 @@ export interface CompanyNews {
   title_zh: string;
   title_en: string | null;
   pdf_url: string | null;
+  cover_image: string | null;
+  content_zh: string | null;
+  content_en: string | null;
+  category: string | null;
 }
 
 export interface Subsidiary {

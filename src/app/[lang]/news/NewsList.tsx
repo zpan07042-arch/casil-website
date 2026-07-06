@@ -102,6 +102,7 @@ export default function NewsList({
         date: item.date || '',
         title: lang === 'zh' ? item.title_zh : item.title_en || item.title_zh,
         year: item.date ? extractYear(item.date) : '',
+        coverImage: item.cover_image || undefined,
         pdfUrl: item.pdf_url || undefined,
       }));
     }

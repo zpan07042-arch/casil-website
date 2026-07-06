@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback } from "react";
 export interface FieldConfig {
   name: string;
   label: string;
-  type: "text" | "textarea" | "number" | "select" | "url";
+  type: "text" | "textarea" | "number" | "select" | "url" | "image";
   required?: boolean;
   options?: { value: string; label: string }[];
   placeholder?: string;
@@ -63,7 +63,7 @@ export default function AdminModal({
   }, [isOpen, onClose]);
 
   const handleChange = useCallback(
-    (name: string, value: string | number) => {
+    (name: string, value: string | number | File) => {
       setFormData((prev) => ({ ...prev, [name]: value }));
       // 清除該字段的校驗錯誤
       if (errors[name]) {
@@ -98,9 +98,27 @@ export default function AdminModal({
 
     setSaving(true);
     try {
+      // 先處理圖片上傳：如果 image 字段的值是 File，先上傳再替換為 URL
+      const processedData = { ...formData };
+      const imageFields = fields.filter((f) => f.type === "image");
+      for (const field of imageFields) {
+        const val = processedData[field.name];
+        if (val instanceof File) {
+          const uploadForm = new FormData();
+          uploadForm.append("file", val);
+          const uploadRes = await fetch("/api/admin/upload", { method: "POST", body: uploadForm });
+          if (!uploadRes.ok) {
+            const err = await uploadRes.json();
+            throw new Error(err.error || "圖片上傳失敗");
+          }
+          const uploadJson = await uploadRes.json();
+          processedData[field.name] = uploadJson.url;
+        }
+      }
+
       // 清理數據：空的可選字段直接省略，讓 DB 使用 DEFAULT 值
       const cleanData: Record<string, unknown> = {};
-      for (const [key, val] of Object.entries(formData)) {
+      for (const [key, val] of Object.entries(processedData)) {
         const field = fields.find((f) => f.name === key);
         if (val === "" && !field?.required) {
           // 不傳該字段，避免 NULL 違反 DB 的 NOT NULL 約束
@@ -240,6 +258,79 @@ export default function AdminModal({
   );
 }
 
+/** 圖片上傳字段 */
+function ImageField({
+  id,
+  value,
+  onChange,
+  error,
+}: {
+  id: string;
+  value: unknown;
+  onChange: (value: string | File) => void;
+  error?: string;
+}) {
+  const [preview, setPreview] = useState<string>("");
+
+  // 初始化預覽：如果是 URL 字符串，直接顯示
+  useEffect(() => {
+    if (typeof value === "string" && value) {
+      setPreview(value);
+    } else if (value instanceof File) {
+      const url = URL.createObjectURL(value);
+      setPreview(url);
+      return () => URL.revokeObjectURL(url);
+    } else {
+      setPreview("");
+    }
+  }, [value]);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      onChange(file);
+    }
+  };
+
+  const handleClear = () => {
+    onChange("");
+    setPreview("");
+    // 重置 file input
+    const input = document.getElementById(id) as HTMLInputElement;
+    if (input) input.value = "";
+  };
+
+  return (
+    <div>
+      <input
+        id={id}
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-[#0A2463] file:text-white hover:file:bg-[#0D3078] file:transition-colors"
+      />
+      {preview && (
+        <div className="mt-2 relative inline-block">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={preview}
+            alt="預覽"
+            className="h-24 w-auto rounded-lg border border-gray-200 object-cover"
+          />
+          <button
+            type="button"
+            onClick={handleClear}
+            className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full text-xs flex items-center justify-center hover:bg-red-600 transition-colors"
+          >
+            ×
+          </button>
+        </div>
+      )}
+      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
+    </div>
+  );
+}
+
 /** 單個表單字段 */
 function FieldRow({
   field,
@@ -251,7 +342,7 @@ function FieldRow({
   field: FieldConfig;
   value: unknown;
   error?: string;
-  onChange: (name: string, value: string | number) => void;
+  onChange: (name: string, value: string | number | File) => void;
   isEditing: boolean;
 }) {
   const inputId = `field-${field.name}`;
@@ -297,6 +388,13 @@ function FieldRow({
             </option>
           ))}
         </select>
+      ) : field.type === "image" ? (
+        <ImageField
+          id={inputId}
+          value={value}
+          onChange={(v) => onChange(field.name, v)}
+          error={error}
+        />
       ) : (
         <input
           id={inputId}

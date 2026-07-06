@@ -80,6 +80,10 @@ export async function getCompanyNews(): Promise<CompanyNews[]> {
     .all() as CompanyNews[];
 }
 
+export async function getCompanyNewsById(id: number): Promise<CompanyNews | undefined> {
+  return (await getDb()).getById("company_news", id) as CompanyNews | undefined;
+}
+
 // Subsidiaries
 export async function getSubsidiaries(): Promise<Subsidiary[]> {
   return (await getDb())
