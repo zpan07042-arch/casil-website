@@ -12,16 +12,16 @@ import type { CompanyNews, Lang } from '@/lib/types';
 // Fallback data — static content
 // ============================================================
 const FALLBACK_ITEMS = [
-  { date: '2026-05-29', dateKey: 'news_item0_date', titleKey: 'news_item0_title' },
-  { date: '2026-05-13', dateKey: 'news_item1_date', titleKey: 'news_item1_title' },
-  { date: '2026-04-15', dateKey: 'news_item2_date', titleKey: 'news_item2_title' },
-  { date: '2026-04-01', dateKey: 'news_item3_date', titleKey: 'news_item3_title' },
-  { date: '2026-01-19', dateKey: 'news_item4_date', titleKey: 'news_item4_title' },
-  { date: '2026-01-19', dateKey: 'news_item5_date', titleKey: 'news_item5_title' },
-  { date: '2025-11-17', dateKey: 'news_item6_date', titleKey: 'news_item6_title' },
-  { date: '2025-09-29', dateKey: 'news_item7_date', titleKey: 'news_item7_title' },
-  { date: '2025-02-02', dateKey: 'news_item8_date', titleKey: 'news_item8_title' },
-  { date: '2024-01-17', dateKey: 'news_item9_date', titleKey: 'news_item9_title' },
+  { date: '2026-05-29', dateKey: 'news_item0_date', titleKey: 'news_item0_title', coverImage: 'https://picsum.photos/seed/news0/600/400' },
+  { date: '2026-05-13', dateKey: 'news_item1_date', titleKey: 'news_item1_title', coverImage: 'https://picsum.photos/seed/news1/600/400' },
+  { date: '2026-04-15', dateKey: 'news_item2_date', titleKey: 'news_item2_title', coverImage: 'https://picsum.photos/seed/news2/600/400' },
+  { date: '2026-04-01', dateKey: 'news_item3_date', titleKey: 'news_item3_title', coverImage: 'https://picsum.photos/seed/news3/600/400' },
+  { date: '2026-01-19', dateKey: 'news_item4_date', titleKey: 'news_item4_title', coverImage: 'https://picsum.photos/seed/news4/600/400' },
+  { date: '2026-01-19', dateKey: 'news_item5_date', titleKey: 'news_item5_title', coverImage: 'https://picsum.photos/seed/news5/600/400' },
+  { date: '2025-11-17', dateKey: 'news_item6_date', titleKey: 'news_item6_title', coverImage: 'https://picsum.photos/seed/news6/600/400' },
+  { date: '2025-09-29', dateKey: 'news_item7_date', titleKey: 'news_item7_title', coverImage: 'https://picsum.photos/seed/news7/600/400' },
+  { date: '2025-02-02', dateKey: 'news_item8_date', titleKey: 'news_item8_title', coverImage: 'https://picsum.photos/seed/news8/600/400' },
+  { date: '2024-01-17', dateKey: 'news_item9_date', titleKey: 'news_item9_title', coverImage: 'https://picsum.photos/seed/news9/600/400' },
 ];
 
 // ============================================================
@@ -111,6 +111,7 @@ export default function NewsList({
       date: t(item.dateKey),
       title: t(item.titleKey),
       year: extractYear(item.date),
+      coverImage: item.coverImage,
     }));
   }, [hasData, posts, lang, t]);
 
@@ -279,7 +280,7 @@ export default function NewsList({
                   >
                     <div className="px-4 py-4 sm:px-6 sm:py-6">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:gap-6">
-                        {/* 封面图 — 始终预留，无图片时显示渐变占位 */}
+                        {/* 封面图 — 无图片时使用占位图 */}
                         <div className="w-full sm:w-48 sm:h-32 h-48 flex-shrink-0 overflow-hidden rounded-lg mb-4 sm:mb-0">
                           {item.coverImage ? (
                             <Image
@@ -291,23 +292,14 @@ export default function NewsList({
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <div
-                              className={`w-full h-full bg-gradient-to-br ${getCardColor(originalIdx)} flex items-center justify-center`}
-                            >
-                              <svg
-                                className="w-10 h-10 md:w-12 md:h-12 text-white/70"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
-                                />
-                              </svg>
-                            </div>
+                            <Image
+                              unoptimized
+                              src={`https://picsum.photos/seed/news${originalIdx}/600/400`}
+                              alt={item.title}
+                              width={192}
+                              height={128}
+                              className="w-full h-full object-cover"
+                            />
                           )}
                         </div>
 

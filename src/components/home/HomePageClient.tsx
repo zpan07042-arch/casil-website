@@ -249,44 +249,53 @@ export default function HomePageClient({
             <div className="mx-auto mt-8 w-20 h-[2px] bg-[#3E92CC] rounded-xl" />
           </motion.div>
 
-          {/* Featured image area */}
-          <motion.div
-            ref={newsRef}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeIn}
-            className="relative w-full overflow-hidden rounded-3xl"
+          {/* Featured image area — clickable link to news detail */}
+          <div
+            className="relative w-full overflow-hidden rounded-3xl group cursor-pointer"
             style={{ height: "calc(100vh * 5 / 7)" }}
           >
-            {/* Parallax image */}
-            <motion.div
-              style={{
-                y: parallaxY,
-                backgroundImage: "url('/images/bback.jpg')",
-              }}
-              className="absolute inset-0 scale-110 bg-cover bg-center bg-no-repeat"
+            <Link
+              href={hasDbData ? `${base}/news/${latestNews[0].id}` : `${base}/news`}
+              className="absolute inset-0 z-20"
+              aria-label={featuredNewsText}
             />
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10 z-[1]" />
-
-            {/* Featured news overlay — 黑色通栏底边字幕栏 */}
             <motion.div
+              ref={newsRef}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={0.3}
-              className="absolute bottom-0 inset-x-0 z-10 bg-black/60 backdrop-blur-sm px-4 py-3 md:px-6 md:py-4"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={fadeIn}
+              className="relative w-full h-full"
             >
-              <p className="text-xs md:text-sm text-white/80 leading-relaxed line-clamp-2 max-w-[1400px] mx-auto text-center">
-                {featuredNewsText}
-              </p>
-              <p className="text-xs text-white/50 mt-1 text-center">
-                {featuredNewsDate}
-              </p>
+              {/* Parallax image */}
+              <motion.div
+                style={{
+                  y: parallaxY,
+                  backgroundImage: "url('/images/bback.jpg')",
+                }}
+                className="absolute inset-0 scale-110 bg-cover bg-center bg-no-repeat"
+              />
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10 z-[1]" />
+
+              {/* Featured news overlay — 黑色通栏底边字幕栏 */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={0.3}
+                className="absolute bottom-0 inset-x-0 z-10 bg-black/60 backdrop-blur-sm px-4 py-3 md:px-6 md:py-4 group-hover:bg-black/70 transition-colors"
+              >
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed line-clamp-2 max-w-[1400px] mx-auto text-center">
+                  {featuredNewsText}
+                </p>
+                <p className="text-xs text-white/50 mt-1 text-center">
+                  {featuredNewsDate}
+                </p>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* ============================================================ */}
           {/* 集團要文 — 2×2 grid layout                                  */}
