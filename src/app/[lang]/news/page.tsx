@@ -6,6 +6,9 @@ import type { Lang } from "@/lib/types";
 import AboutHeader from "@/components/shared/AboutHeader";
 import NewsList from "./NewsList";
 
+// 強制動態渲染，後台修改數據後刷新頁面即可看到最新內容
+export const dynamic = "force-dynamic";
+
 export default async function NewsPage({
   params,
 }: {

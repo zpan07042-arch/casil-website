@@ -235,6 +235,12 @@ export const GOVERNANCE_DOCS_COLUMNS: Column<Record<string, unknown>>[] = [
 
 export const COMPANY_NEWS_FIELDS: FieldConfig[] = [
   {
+    name: "id",
+    label: "ID",
+    type: "number",
+    disabled: true,
+  },
+  {
     name: "date",
     label: "日期",
     type: "text",

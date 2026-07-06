@@ -8,6 +8,9 @@ import type { Metadata } from "next";
 import SharePoster from "@/components/SharePoster";
 import PostViewTracker from "@/components/PostViewTracker";
 
+// 強制動態渲染，後台修改後可即時反映
+export const dynamic = "force-dynamic";
+
 // 分類顯示名稱映射
 const CATEGORY_LABELS: Record<string, { zh: string; en: string }> = {
   financial: { zh: "業績公告", en: "Financial Results" },
