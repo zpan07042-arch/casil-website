@@ -25,7 +25,7 @@ export default function OverviewHeader({
         position: "relative",
         padding: "48px 0 40px",
         backgroundImage:
-          "linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)), url('/images/oback.jpeg')",
+          "linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)), url('/images/oback.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "scroll",
