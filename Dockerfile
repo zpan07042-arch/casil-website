@@ -56,6 +56,6 @@ CMD sh -c "\
       echo '[subsequent run] Running database migrations (only new ones)...' \
       && node data/migrate.js ; \
     fi \
-    && mkdir -p public/uploads \
+    && mkdir -p data/uploads \
     && echo '[start] Starting Next.js...' \
     && exec npm start"
