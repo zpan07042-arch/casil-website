@@ -49,3 +49,7 @@ yarn-error.log
 *.db
 *.db-shm
 *.db-wal
+
+# uploaded images (runtime data)
+/data/uploads/
+/public/uploads/

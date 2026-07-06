@@ -27,8 +27,8 @@ export async function POST(request: Request) {
     const ext = file.name.split(".").pop() || "png";
     const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
-    // 確保上傳目錄存在
-    const uploadsDir = path.join(process.cwd(), "public", "uploads");
+    // 確保上傳目錄存在（存到 data/uploads，避免 public/ 在生產環境的靜態化問題）
+    const uploadsDir = path.join(process.cwd(), "data", "uploads");
     await mkdir(uploadsDir, { recursive: true });
 
     // 寫入文件
