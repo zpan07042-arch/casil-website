@@ -133,8 +133,8 @@ export default function StructureSvg({ lang }: { lang: Lang }) {
   return (
     <div style={{ backgroundColor: "#ffffff", padding: "40px", display: "flex", justifyContent: "center", overflowX: "auto" }}>
       <svg
-        width="1518"
-        height="935"
+        width="1656"
+        height="1020"
         viewBox="0 0 1380 850"
         xmlns="http://www.w3.org/2000/svg"
         style={{ backgroundColor: "#ffffff", userSelect: "none", flexShrink: 0 }}

@@ -81,6 +81,17 @@ export default function HomePageClient({
   // ============================================================
   const hasDbData = latestNews && latestNews.length > 0;
 
+  // Featured news text for the image overlay — uses latest news title, falls back to i18n
+  const featuredNewsText = hasDbData
+    ? (lang === "zh"
+        ? latestNews[0].title_zh
+        : (latestNews[0].title_en || latestNews[0].title_zh))
+    : t("news_featured_desc");
+
+  const featuredNewsDate = hasDbData
+    ? formatNewsDate(latestNews[0].date || "", lang)
+    : t("news_featured_date");
+
   const newsItems = hasDbData
     ? latestNews.slice(0, 4).map((item) => ({
         id: String(item.id),
@@ -269,7 +280,10 @@ export default function HomePageClient({
               className="absolute bottom-0 inset-x-0 z-10 bg-black/60 backdrop-blur-sm px-4 py-3 md:px-6 md:py-4"
             >
               <p className="text-xs md:text-sm text-white/80 leading-relaxed line-clamp-2 max-w-[1400px] mx-auto text-center">
-                {t("news_featured_desc")}
+                {featuredNewsText}
+              </p>
+              <p className="text-xs text-white/50 mt-1 text-center">
+                {featuredNewsDate}
               </p>
             </motion.div>
           </motion.div>
