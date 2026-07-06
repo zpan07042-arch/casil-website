@@ -12,16 +12,16 @@ import type { CompanyNews, Lang } from '@/lib/types';
 // Fallback data — static content
 // ============================================================
 const FALLBACK_ITEMS = [
-  { date: '2026-05-29', dateKey: 'news_item0_date', titleKey: 'news_item0_title', coverImage: 'https://picsum.photos/seed/news0/600/400' },
-  { date: '2026-05-13', dateKey: 'news_item1_date', titleKey: 'news_item1_title', coverImage: 'https://picsum.photos/seed/news1/600/400' },
-  { date: '2026-04-15', dateKey: 'news_item2_date', titleKey: 'news_item2_title', coverImage: 'https://picsum.photos/seed/news2/600/400' },
-  { date: '2026-04-01', dateKey: 'news_item3_date', titleKey: 'news_item3_title', coverImage: 'https://picsum.photos/seed/news3/600/400' },
-  { date: '2026-01-19', dateKey: 'news_item4_date', titleKey: 'news_item4_title', coverImage: 'https://picsum.photos/seed/news4/600/400' },
-  { date: '2026-01-19', dateKey: 'news_item5_date', titleKey: 'news_item5_title', coverImage: 'https://picsum.photos/seed/news5/600/400' },
-  { date: '2025-11-17', dateKey: 'news_item6_date', titleKey: 'news_item6_title', coverImage: 'https://picsum.photos/seed/news6/600/400' },
-  { date: '2025-09-29', dateKey: 'news_item7_date', titleKey: 'news_item7_title', coverImage: 'https://picsum.photos/seed/news7/600/400' },
-  { date: '2025-02-02', dateKey: 'news_item8_date', titleKey: 'news_item8_title', coverImage: 'https://picsum.photos/seed/news8/600/400' },
-  { date: '2024-01-17', dateKey: 'news_item9_date', titleKey: 'news_item9_title', coverImage: 'https://picsum.photos/seed/news9/600/400' },
+  { date: '2026-05-29', dateKey: 'news_item0_date', titleKey: 'news_item0_title', coverImage: '/images/1.png' },
+  { date: '2026-05-13', dateKey: 'news_item1_date', titleKey: 'news_item1_title', coverImage: '/images/2.png' },
+  { date: '2026-04-15', dateKey: 'news_item2_date', titleKey: 'news_item2_title', coverImage: '/images/3.png' },
+  { date: '2026-04-01', dateKey: 'news_item3_date', titleKey: 'news_item3_title', coverImage: '/images/4.png' },
+  { date: '2026-01-19', dateKey: 'news_item4_date', titleKey: 'news_item4_title', coverImage: '/images/5.png' },
+  { date: '2026-01-19', dateKey: 'news_item5_date', titleKey: 'news_item5_title', coverImage: '/images/6.png' },
+  { date: '2025-11-17', dateKey: 'news_item6_date', titleKey: 'news_item6_title', coverImage: '/images/7.png' },
+  { date: '2025-09-29', dateKey: 'news_item7_date', titleKey: 'news_item7_title', coverImage: '/images/8.png' },
+  { date: '2025-02-02', dateKey: 'news_item8_date', titleKey: 'news_item8_title', coverImage: '/images/9.png' },
+  { date: '2024-01-17', dateKey: 'news_item9_date', titleKey: 'news_item9_title', coverImage: '/images/10.png' },
 ];
 
 // ============================================================
@@ -294,7 +294,7 @@ export default function NewsList({
                           ) : (
                             <Image
                               unoptimized
-                              src={`https://picsum.photos/seed/news${originalIdx}/600/400`}
+                              src={`/images/${(originalIdx % 10) + 1}.png`}
                               alt={item.title}
                               width={192}
                               height={128}
