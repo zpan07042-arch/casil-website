@@ -155,19 +155,17 @@ export default async function NewsDetailPage({
                 )}
               </div>
 
-              {/* 封面圖 */}
-              {post.cover_image && (
-                <div className="mt-4 mb-6">
-                  <Image
-                    unoptimized
-                    src={getImageSrc(post.cover_image)}
-                    alt={title}
-                    width={1200}
-                    height={600}
-                    className="w-full max-h-96 object-cover rounded-lg border border-gray-200"
-                  />
-                </div>
-              )}
+              {/* 封面圖 — 数据库无图片时使用本地占位图 */}
+              <div className="mt-4 mb-6">
+                <Image
+                  unoptimized
+                  src={post.cover_image ? getImageSrc(post.cover_image) : `/images/${((post.id - 1) % 10) + 1}.png`}
+                  alt={title}
+                  width={1200}
+                  height={600}
+                  className="w-full max-h-96 object-cover rounded-lg border border-gray-200"
+                />
+              </div>
             </div>
 
             {/* 正文內容 */}
@@ -213,7 +211,9 @@ export default async function NewsDetailPage({
                     : undefined
                 }
                 coverImage={
-                  post.cover_image ? getImageSrc(post.cover_image) : null
+                  post.cover_image
+                    ? getImageSrc(post.cover_image)
+                    : `/images/${((post.id - 1) % 10) + 1}.png`
                 }
                 currentUrl={`${siteUrl}/${validLang}/news/${id}`}
                 buttonText={validLang === "zh" ? "分享文章" : "Share"}
