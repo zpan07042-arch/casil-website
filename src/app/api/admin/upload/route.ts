@@ -33,7 +33,9 @@ export async function POST(request: Request) {
 
     // 寫入文件
     const buffer = Buffer.from(await file.arrayBuffer());
-    await writeFile(path.join(uploadsDir, filename), buffer);
+    const filePath = path.join(uploadsDir, filename);
+    console.log("[upload] cwd:", process.cwd(), "saving to:", filePath);
+    await writeFile(filePath, buffer);
 
     return Response.json({ url: `/uploads/${filename}` });
   } catch (err) {
