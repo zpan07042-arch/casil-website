@@ -173,6 +173,11 @@ export const ui: I18nDict = {
     mega_injection_title: "注塑及表面處理業務",
     mega_injection_subsidiary: "香港志源",
     mega_injection_desc: "高精密工程塑料注塑成型，配套 PCB 及顯示模組整機製造。",
+    // Footer
+    footer_desc: "香港聯合交易所上市企業，專注航天電子產業，引領高科技製造業高質量發展。",
+    footer_privacy: "隱私政策",
+    footer_terms: "使用條款",
+    footer_disclaimer: "免責聲明",
   },
   en: {
     nav_about: "About Us",
@@ -332,6 +337,11 @@ export const ui: I18nDict = {
     mega_injection_title: "Injection Molding Products",
     mega_injection_subsidiary: "Hong Kong Zhiyuan",
     mega_injection_desc: "High-precision engineering plastics injection molding, complementing PCB and display module manufacturing.",
+    // Footer
+    footer_desc: "Listed on HKEX. Focused on aerospace electronics, leading high-tech manufacturing excellence.",
+    footer_privacy: "Privacy Policy",
+    footer_terms: "Terms of Use",
+    footer_disclaimer: "Disclaimer",
   },
 };
 

@@ -9,38 +9,34 @@ export default function Footer() {
 
   const navColumns = [
     {
-      title: lang === "zh" ? "關於集團" : "About Group",
+      title: t("nav_about"),
       links: [
-        { label: lang === "zh" ? "集團簡介" : "Group Overview", href: `${base}/about/background` },
-        { label: lang === "zh" ? "發展歷程" : "History", href: `${base}/about/background` },
-        { label: lang === "zh" ? "企業文化" : "Culture", href: `${base}/about/culture` },
-        { label: lang === "zh" ? "管理層介紹" : "Management", href: `${base}/about/board` },
-        { label: lang === "zh" ? "企業架構" : "Structure", href: `${base}/about/structure` },
+        { label: t("nav_bg"), href: `${base}/about/background` },
+        { label: t("nav_culture"), href: `${base}/about/culture` },
+        { label: t("nav_goal"), href: `${base}/about/goals` },
+        { label: t("nav_board"), href: `${base}/about/board` },
+        { label: t("nav_gov"), href: `${base}/about/governance` },
+        { label: t("nav_arc"), href: `${base}/about/structure` },
       ],
     },
     {
-      title: lang === "zh" ? "業務領域" : "Business",
+      title: t("nav_industry"),
       links: [
-        { label: lang === "zh" ? "IPM模組" : "IPM Modules", href: `${base}/business/products` },
-        { label: lang === "zh" ? "電源產品" : "Power Supply", href: `${base}/business/products` },
-        { label: lang === "zh" ? "注塑成型" : "Injection Molding", href: `${base}/business/global` },
+        { label: t("nav_industry"), href: `${base}/business` },
       ],
     },
     {
-      title: lang === "zh" ? "新聞中心" : "News",
+      title: t("nav_investor"),
       links: [
-        { label: lang === "zh" ? "公告通函" : "Announcements", href: `${base}/links` },
-        { label: lang === "zh" ? "年度報告" : "Annual Reports", href: `${base}/links` },
+        { label: t("nav_investor"), href: "http://www.casil-group.com:8080/investor/" },
+        { label: t("nav_gov"), href: `${base}/about/governance` },
       ],
     },
     {
-      title: lang === "zh" ? "投資者關係" : "Investors",
+      title: t("nav_consult"),
       links: [
-        { label: lang === "zh" ? "股票資訊" : "Stock Info", href: "http://www.casil-group.com:8080/investor/" },
-        { label: lang === "zh" ? "財務報告" : "Financials", href: "http://www.casil-group.com:8080/investor/" },
-        { label: lang === "zh" ? "公司治理" : "Governance", href: `${base}/about/governance` },
-        { label: lang === "zh" ? "股東資訊" : "Shareholders", href: "http://www.casil-group.com:8080/investor/" },
-        { label: lang === "zh" ? "聯絡我們" : "Contact", href: `${base}/contact` },
+        { label: t("nav_consult"), href: `${base}/news` },
+        { label: t("nav_contact"), href: `${base}/contact` },
       ],
     },
   ];
@@ -62,7 +58,7 @@ export default function Footer() {
               />
               <div>
                 <p className="text-white font-semibold text-sm leading-tight whitespace-nowrap">
-                  {lang === "zh" ? "中國航天國際控股有限公司" : "China Aerospace International Holdings Ltd."}
+                  {t("home_name")}
                 </p>
                 <p className="text-white/40 text-xs mt-0.5 font-mono tracking-wide">
                   00031.HK
@@ -71,9 +67,7 @@ export default function Footer() {
             </div>
 
             <p className="text-white/55 text-xs leading-relaxed mb-5">
-              {lang === "zh"
-                ? "香港聯合交易所上市企業，專注航天電子產業，引領高科技製造業高質量發展。"
-                : "Listed on HKEX. Focused on aerospace electronics, leading high-tech manufacturing excellence."}
+              {t("footer_desc")}
             </p>
 
             {/* 联系方式 */}
@@ -90,7 +84,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 中间4栏导航 */}
+          {/* 中间4栏导航 — 与 Header 导航结构对齐 */}
           {navColumns.map((col) => (
             <div key={col.title}>
               <h3 className="text-sm font-semibold text-white mb-4 tracking-wide">
@@ -119,17 +113,17 @@ export default function Footer() {
         {/* ── 底部：版权 + 法律链接 ── */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/35 text-center md:text-left">
-            © 2025 {lang === "zh" ? "中國航天國際控股有限公司" : "China Aerospace International Holdings Ltd."} {lang === "zh" ? "版權所有" : "All rights reserved."}
+            © 2025 {t("home_name")} {lang === "zh" ? "版權所有" : "All rights reserved."}
           </p>
           <div className="flex items-center gap-5">
             <span className="text-xs text-white/35 hover:text-white/60 cursor-pointer transition-colors">
-              {lang === "zh" ? "隱私政策" : "Privacy Policy"}
+              {t("footer_privacy")}
             </span>
             <span className="text-xs text-white/35 hover:text-white/60 cursor-pointer transition-colors">
-              {lang === "zh" ? "使用條款" : "Terms of Use"}
+              {t("footer_terms")}
             </span>
             <span className="text-xs text-white/35 hover:text-white/60 cursor-pointer transition-colors">
-              {lang === "zh" ? "免責聲明" : "Disclaimer"}
+              {t("footer_disclaimer")}
             </span>
           </div>
         </div>

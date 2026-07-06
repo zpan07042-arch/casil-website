@@ -84,17 +84,9 @@ export default function Header({ links }: { links: LinkItem[] }) {
     { label: t("nav_arc"), href: `${base}/about/structure` },
   ];
 
-  const businessItems = [
-    { label: t("nav_subsidiary"), href: `${base}/business/subsidiaries` },
-    { label: t("nav_products"), href: `${base}/business/products` },
-    { label: t("nav_lab"), href: `${base}/business/lab` },
-    { label: t("nav_global"), href: `${base}/business/global` },
-  ];
-
-
   const dropdowns: Record<string, NavDropdown> = {
     about: { label: t("nav_about"), items: aboutItems, href: `${base}/about` },
-    industry: { label: t("nav_industry"), items: businessItems, href: `${base}/business` },
+    industry: { label: t("nav_industry"), items: [], href: `${base}/business` },
   };
 
   const navItems: NavItem[] = [
@@ -317,9 +309,9 @@ export default function Header({ links }: { links: LinkItem[] }) {
                     href={`${base}/business#card-pcb`}
                     className="block group/mega transition-colors duration-200 hover:bg-blue-50/40"
                   >
-                    <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_pcb_title")}</h4>
-                    <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
+                    <div className="flex flex-col items-center text-center px-3 border-r border-gray-200">
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] flex items-end leading-none pb-0.5 group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_pcb_title")}</h4>
+                    <div className="w-1/2 h-px bg-[#3E92CC]" />
                     {findLinkUrl(links, ["康源"]) ? (
                       <span
                         onClick={(e) => {
@@ -327,12 +319,12 @@ export default function Header({ links }: { links: LinkItem[] }) {
                           e.stopPropagation();
                           window.open(findLinkUrl(links, ["康源"])!, "_blank", "noopener,noreferrer");
                         }}
-                        className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white"
+                        className="inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white mt-2"
                       >
                         {t("mega_pcb_subsidiary")}
                       </span>
                     ) : (
-                      <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                      <span className="inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white mt-2">
                         {t("mega_pcb_subsidiary")}
                       </span>
                     )}
@@ -344,9 +336,9 @@ export default function Header({ links }: { links: LinkItem[] }) {
                     href={`${base}/business#card-display`}
                     className="block group/mega transition-colors duration-200 hover:bg-blue-50/40"
                   >
-                    <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_display_title")}</h4>
-                    <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
+                    <div className="flex flex-col items-center text-center px-3 border-r border-gray-200">
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] flex items-end leading-none pb-0.5 group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_display_title")}</h4>
+                    <div className="w-1/2 h-px bg-[#3E92CC]" />
                     {findLinkUrl(links, ["半導體", "半导体"]) ? (
                       <span
                         onClick={(e) => {
@@ -354,12 +346,12 @@ export default function Header({ links }: { links: LinkItem[] }) {
                           e.stopPropagation();
                           window.open(findLinkUrl(links, ["半導體", "半导体"])!, "_blank", "noopener,noreferrer");
                         }}
-                        className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white"
+                        className="inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white mt-2"
                       >
                         {t("mega_display_subsidiary")}
                       </span>
                     ) : (
-                      <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                      <span className="inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white mt-2">
                         {t("mega_display_subsidiary")}
                       </span>
                     )}
@@ -371,9 +363,9 @@ export default function Header({ links }: { links: LinkItem[] }) {
                     href={`${base}/business#card-ipm`}
                     className="block group/mega transition-colors duration-200 hover:bg-blue-50/40"
                   >
-                    <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_ipm_title")}</h4>
-                    <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
+                    <div className="flex flex-col items-center text-center px-3 border-r border-gray-200">
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] flex items-end leading-none pb-0.5 group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_ipm_title")}</h4>
+                    <div className="w-1/2 h-px bg-[#3E92CC]" />
                     {findLinkUrl(links, ["志豪"]) ? (
                       <span
                         onClick={(e) => {
@@ -381,12 +373,12 @@ export default function Header({ links }: { links: LinkItem[] }) {
                           e.stopPropagation();
                           window.open(findLinkUrl(links, ["志豪"])!, "_blank", "noopener,noreferrer");
                         }}
-                        className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white"
+                        className="inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white mt-2"
                       >
                         {t("mega_ipm_subsidiary")}
                       </span>
                     ) : (
-                      <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                      <span className="inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white mt-2">
                         {t("mega_ipm_subsidiary")}
                       </span>
                     )}
@@ -398,9 +390,9 @@ export default function Header({ links }: { links: LinkItem[] }) {
                     href={`${base}/business#card-power`}
                     className="block group/mega transition-colors duration-200 hover:bg-blue-50/40"
                   >
-                    <div className="flex flex-col gap-1.5 px-3 border-r border-gray-200">
-                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_power_title")}</h4>
-                    <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
+                    <div className="flex flex-col items-center text-center px-3 border-r border-gray-200">
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] flex items-end leading-none pb-0.5 group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_power_title")}</h4>
+                    <div className="w-1/2 h-px bg-[#3E92CC]" />
                     {findLinkUrl(links, ["志順", "志顺"]) ? (
                       <span
                         onClick={(e) => {
@@ -408,12 +400,12 @@ export default function Header({ links }: { links: LinkItem[] }) {
                           e.stopPropagation();
                           window.open(findLinkUrl(links, ["志順", "志顺"])!, "_blank", "noopener,noreferrer");
                         }}
-                        className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white"
+                        className="inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white mt-2"
                       >
                         {t("mega_power_subsidiary")}
                       </span>
                     ) : (
-                      <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                      <span className="inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white mt-2">
                         {t("mega_power_subsidiary")}
                       </span>
                     )}
@@ -425,9 +417,9 @@ export default function Header({ links }: { links: LinkItem[] }) {
                     href={`${base}/business#card-injection`}
                     className="block group/mega transition-colors duration-200 hover:bg-blue-50/40"
                   >
-                    <div className="flex flex-col gap-1.5 px-3">
-                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_injection_title")}</h4>
-                    <div className="w-1/2 h-px bg-[#3E92CC] -mt-3 mb-0.5" />
+                    <div className="flex flex-col items-center text-center px-3 border-r border-gray-200">
+                    <h4 className="text-[1.2rem] font-bold text-gray-950 mt-8 h-[3.6rem] flex items-end leading-none pb-0.5 group-hover/mega:text-[#0F2452] transition-colors duration-200">{t("mega_injection_title")}</h4>
+                    <div className="w-1/2 h-px bg-[#3E92CC]" />
                     {findLinkUrl(links, ["志源"]) ? (
                       <span
                         onClick={(e) => {
@@ -435,12 +427,12 @@ export default function Header({ links }: { links: LinkItem[] }) {
                           e.stopPropagation();
                           window.open(findLinkUrl(links, ["志源"])!, "_blank", "noopener,noreferrer");
                         }}
-                        className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white"
+                        className="inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white mt-2"
                       >
                         {t("mega_injection_subsidiary")}
                       </span>
                     ) : (
-                      <span className="self-start inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white">
+                      <span className="inline-block bg-[#EEF2F8] text-[#6E86A5] text-[0.75rem] px-2.5 py-0.5 rounded-md font-medium cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md hover:bg-[#3E92CC] hover:text-white mt-2">
                         {t("mega_injection_subsidiary")}
                       </span>
                     )}

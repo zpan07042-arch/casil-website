@@ -284,7 +284,7 @@ function BusinessCard({
 
   return (
     <div className="group/card relative z-10 hover:z-30">
-      <div className="rounded-3xl overflow-hidden bg-white/[0.1] backdrop-blur-sm ring-1 ring-white/10 group-hover/card:bg-[#5BA4D6]/[0.22] group-hover/card:ring-[#5BA4D6]/80 transition-all duration-500">
+      <div className="rounded-3xl overflow-hidden bg-[#0A1A3A]/60 backdrop-blur-sm ring-1 ring-[#3E92CC]/30 group-hover/card:ring-[#3E92CC]/60 transition-all duration-500">
         {/* 图片区域 */}
         <div
           className="relative w-full overflow-hidden"
@@ -322,10 +322,10 @@ function BusinessCard({
 
         {/* 静态文字区域 */}
         <div className="px-5 pt-4 pb-3">
-          <h3 className="text-white text-lg md:text-xl font-bold leading-snug mb-1.5 tracking-wide h-[3.5rem]">
+          <h3 className="text-white text-lg md:text-xl font-bold leading-snug mb-2 tracking-wide">
             {domain.title}
           </h3>
-          <p className="text-white/45 text-xs md:text-[13px] font-light leading-relaxed h-[1.4rem]">
+          <p className="text-white/45 text-xs md:text-[13px] font-light leading-relaxed">
             {domain.desc}
           </p>
         </div>

@@ -100,7 +100,7 @@ export default async function ContactPage({
                         fontSize: 30,
                         fontWeight: 700,
                         color: "#0A1429",
-                        marginBottom: 4,
+                        marginBottom: 2,
                       }}
                     >
                       {card.title}

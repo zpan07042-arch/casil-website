@@ -93,9 +93,6 @@ export default function HomePageClient({
         title: t(item.titleKey),
       }));
 
-  // Featured news — use first item for the hero overlay
-  const featuredItem = newsItems[0];
-
   return (
     <div className="w-full flex flex-col [&>:not(:first-child)]:mt-8">
       {/* ============================================================ */}
@@ -262,32 +259,19 @@ export default function HomePageClient({
             {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10 z-[1]" />
 
-            {/* Featured news overlay — bottom-left, interactive */}
-            {featuredItem && (
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                custom={0.3}
-                className="absolute bottom-4 left-4 md:bottom-6 md:left-6 z-10 max-w-sm md:max-w-md lg:max-w-lg"
-              >
-                <Link
-                  href={hasDbData ? `${base}/news/${featuredItem.id}` : `${base}/news`}
-                  className="group block"
-                >
-                  <span className="inline-block text-[10px] md:text-[11px] font-medium text-white/80 tracking-widest uppercase mb-2 transition-colors duration-300 group-hover:text-white">
-                    {featuredItem.date}
-                  </span>
-                  <h3 className="text-xs md:text-sm lg:text-base font-bold text-white leading-tight mb-2 transition-colors duration-300 group-hover:text-white/90">
-                    {featuredItem.title}
-                  </h3>
-                  <p className="text-[10px] md:text-[11px] text-white/70 leading-relaxed line-clamp-3 transition-colors duration-300 group-hover:text-white/85">
-                    {t("news_featured_desc")}
-                  </p>
-                </Link>
-              </motion.div>
-            )}
+            {/* Featured news overlay — 黑色通栏底边字幕栏 */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={0.3}
+              className="absolute bottom-0 inset-x-0 z-10 bg-black/60 backdrop-blur-sm px-4 py-3 md:px-6 md:py-4"
+            >
+              <p className="text-xs md:text-sm text-white/80 leading-relaxed line-clamp-2 max-w-[1400px] mx-auto text-center">
+                {t("news_featured_desc")}
+              </p>
+            </motion.div>
           </motion.div>
 
           {/* ============================================================ */}
@@ -402,7 +386,7 @@ export default function HomePageClient({
           >
             <iframe
               title="公司位置"
-              src="https://api.map.baidu.com/marker?location=22.302271,114.191669&title=中國航天國際控股有限公司&content=香港九龍紅磡德豐街十八號海濱廣場&output=html&coord_type=wgs84"
+              src="https://map.baidu.com/poi/中国航天国际控股有限公司/@12713179.251287216,2533430.9058669005,13.29z?uid=c7168b4709219f8eaf04570e&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&en_uid=c7168b4709219f8eaf04570e&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl"
               className="w-full h-full rounded-2xl border border-gray-200"
               style={{ minHeight: "400px" }}
               allowFullScreen

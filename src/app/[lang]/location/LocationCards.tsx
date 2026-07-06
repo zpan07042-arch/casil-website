@@ -43,7 +43,7 @@ const LOCATIONS: LocationData[] = [
     faxEn: "(852) 2193 8899",
     email: "public@casil-group.com",
     mapUrl:
-      "https://api.map.baidu.com/marker?location=22.302271,114.191669&title=中國航天國際控股有限公司&content=香港九龍紅磡德豐街十八號海濱廣場&output=html&coord_type=wgs84",
+      "https://map.baidu.com/poi/中国航天国际控股有限公司/@12713179.251287216,2533430.9058669005,13.29z?uid=c7168b4709219f8eaf04570e&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&en_uid=c7168b4709219f8eaf04570e&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl",
   },
   {
     id: "shenzhen",

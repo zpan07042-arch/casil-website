@@ -50,7 +50,7 @@ export default async function AboutPage({
                 <Link
                   key={s.id}
                   href={subRoutes[s.id] || `${base}/about/${s.id}`}
-                  className={`block rounded-xl p-8 border border-[#E6EEFB] hover:-translate-y-0.5 transition-all duration-300 group ${
+                  className={`flex flex-col rounded-xl p-8 border border-[#E6EEFB] hover:-translate-y-0.5 transition-all duration-300 group ${
                     isLast && isOddCount ? "md:col-span-2 md:justify-self-center md:w-[calc(50%-0.75rem)]" : ""
                   }`}
                   style={{
@@ -77,6 +77,12 @@ export default async function AboutPage({
                     .about-card-arrow {
                       transition: stroke 0.25s ease, transform 0.25s ease;
                     }
+                    .about-card-text {
+                      display: -webkit-box;
+                      -webkit-line-clamp: 4;
+                      -webkit-box-orient: vertical;
+                      overflow: hidden;
+                    }
                   `}</style>
 
                   {/* 標題行：左側主副標題 + 右側了解更多按鈕 */}
@@ -96,7 +102,7 @@ export default async function AboutPage({
                           fontSize: 30,
                           fontWeight: 700,
                           color: "#0A1429",
-                          marginBottom: 4,
+                          marginBottom: 2,
                         }}
                       >
                         {lang === "zh" ? s.title_zh : s.title_en}
@@ -159,21 +165,41 @@ export default async function AboutPage({
                     }}
                   />
                   <p
+                    className="about-card-text"
                     style={{
                       fontSize: 15,
                       color: "#444A58",
                       lineHeight: 1.6,
                       textIndent: "2em",
+                      flex: 1,
                     }}
                   >
                     {(() => {
                       const text = lang === "zh" ? s.content_zh : s.content_en;
                       if (!text) return "";
                       const delimiter = lang === "zh" ? "。" : ".";
-                      const idx = text.indexOf(delimiter);
-                      if (idx > 0) return text.substring(0, idx + 1);
+                      const ellipsis = lang === "zh" ? "……" : "...";
+                      const targetLen = lang === "zh" ? 200 : 450;
+
+                      // 找到目标长度前最后一个句号
+                      let bestIdx = -1;
+                      let searchFrom = 0;
+                      while (searchFrom < text.length) {
+                        const idx = text.indexOf(delimiter, searchFrom);
+                        if (idx === -1) break;
+                        if (idx > targetLen) {
+                          if (bestIdx === -1) bestIdx = idx;
+                          break;
+                        }
+                        bestIdx = idx;
+                        searchFrom = idx + 1;
+                      }
+
+                      if (bestIdx >= 0) {
+                        return text.substring(0, bestIdx) + ellipsis;
+                      }
                       // 如果没有找到句号，回退到按字符数截取
-                      return lang === "zh" ? text.substring(0, 40) : text.substring(0, 60);
+                      return text.substring(0, targetLen) + ellipsis;
                     })()}
                   </p>
                 </Link>
