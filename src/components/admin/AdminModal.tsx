@@ -117,10 +117,15 @@ export default function AdminModal({
       }
 
       // 清理數據：空的可選字段直接省略，讓 DB 使用 DEFAULT 值
+      // 但 image 字段例外 — 空值表示用戶要清除圖片，需要顯式傳送
       const cleanData: Record<string, unknown> = {};
       for (const [key, val] of Object.entries(processedData)) {
         const field = fields.find((f) => f.name === key);
         if (val === "" && !field?.required) {
+          if (field?.type === "image") {
+            // 圖片字段：用戶清除了圖片，設為空字符串以清除 DB 中的舊值
+            cleanData[key] = "";
+          }
           // 不傳該字段，避免 NULL 違反 DB 的 NOT NULL 約束
           continue;
         } else if (field?.type === "number" && typeof val === "string") {

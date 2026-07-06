@@ -238,7 +238,6 @@ export const COMPANY_NEWS_FIELDS: FieldConfig[] = [
     name: "id",
     label: "ID",
     type: "number",
-    disabled: true,
   },
   {
     name: "date",

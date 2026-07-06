@@ -86,7 +86,18 @@ export default function Header({ links }: { links: LinkItem[] }) {
 
   const dropdowns: Record<string, NavDropdown> = {
     about: { label: t("nav_about"), items: aboutItems, href: `${base}/about` },
-    industry: { label: t("nav_industry"), items: [], href: `${base}/business` },
+    industry: {
+      label: t("nav_industry"),
+      href: `${base}/business`,
+      items: [
+        { label: t("mega_view_all"), href: `${base}/business` },
+        { label: t("mega_pcb_title"), href: `${base}/business#card-pcb` },
+        { label: t("mega_display_title"), href: `${base}/business#card-display` },
+        { label: t("mega_ipm_title"), href: `${base}/business#card-ipm` },
+        { label: t("mega_power_title"), href: `${base}/business#card-power` },
+        { label: t("mega_injection_title"), href: `${base}/business#card-injection` },
+      ],
+    },
   };
 
   const navItems: NavItem[] = [

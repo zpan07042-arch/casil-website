@@ -12,6 +12,9 @@ services:
       # 只挂载 db 子目录，持久化 casil.db
       # migrations 目录来自镜像，不会被 volume 覆盖
       - db_data:/app/data/db
+      # 持久化上传的图片，防止重新部署时丢失
+      - uploads_data:/app/public/uploads
 
 volumes:
   db_data:
+  uploads_data:
