@@ -42,8 +42,8 @@ export default function MobileMenu({ navItems }: { navItems: NavItem[] }) {
       </button>
 
       {open && (
-        <div className="fixed inset-0 top-12 z-40 bg-white">
-          <div className="p-5 space-y-2 overflow-y-auto max-h-[calc(100vh-3rem)]">
+        <div className="fixed inset-0 top-12 z-[9999]" style={{ backgroundColor: "#ffffff" }}>
+          <div className="p-5 space-y-2 overflow-y-auto max-h-[calc(100vh-3rem)]" style={{ backgroundColor: "#ffffff" }}>
             {/* ============================================================ */}
             {/* 遍历 navItems 按类型渲染：dropdown 可展开收起 / link 直接跳转 */}
             {/* [新增] party dropdown 在移动端自动展示展开箭头 + 4个子项 */}

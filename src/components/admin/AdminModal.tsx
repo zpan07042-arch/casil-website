@@ -106,7 +106,7 @@ export default function AdminModal({
         if (val instanceof File) {
           const uploadForm = new FormData();
           uploadForm.append("file", val);
-          const uploadRes = await fetch("/api/admin/upload", { method: "POST", body: uploadForm });
+          const uploadRes = await fetch("/api/admin/upload", { method: "POST", body: uploadForm, credentials: "include" });
           if (!uploadRes.ok) {
             const err = await uploadRes.json();
             throw new Error(err.error || "圖片上傳失敗");
@@ -122,7 +122,7 @@ export default function AdminModal({
       for (const [key, val] of Object.entries(processedData)) {
         const field = fields.find((f) => f.name === key);
         if (val === "" && !field?.required) {
-          if (field?.type === "image") {
+          if (field?.type === "image" || field?.type === "url") {
             // 圖片字段：用戶清除了圖片，設為空字符串以清除 DB 中的舊值
             cleanData[key] = "";
           }

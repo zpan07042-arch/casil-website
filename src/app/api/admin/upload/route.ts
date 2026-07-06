@@ -18,9 +18,9 @@ export async function POST(request: Request) {
     }
 
     // 驗證文件類型
-    const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp", "image/svg+xml"];
+    const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp", "image/svg+xml", "image/heic", "image/heif"];
     if (!validTypes.includes(file.type)) {
-      return Response.json({ error: "不支持的文件類型，僅允許 JPG/PNG/GIF/WebP/SVG" }, { status: 400 });
+      return Response.json({ error: "不支持的文件類型，僅允許 JPG/PNG/GIF/WebP/SVG/HEIC" }, { status: 400 });
     }
 
     // 生成唯一文件名
