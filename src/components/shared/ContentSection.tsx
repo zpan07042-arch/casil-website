@@ -4,6 +4,11 @@ import { motion } from "framer-motion";
 import PageBanner from "@/components/shared/PageBanner";
 
 function formatContent(text: string): string {
+  // 如果內容已包含 HTML 標籤（來自富文本編輯器），直接返回
+  if (/<[^>]+>/.test(text)) {
+    return text;
+  }
+  // 純文本：按段落分割
   return text
     .split(/\n\n+/)
     .map((p) => `<p class="mb-4">${p.trim()}</p>`)

@@ -266,18 +266,16 @@ export default function OverviewBusinessCard({
         >
           {/* ── 左側：正文 + 客戶標籤（60%）── */}
           <div style={{ flex: "6 1 360px", minWidth: 0 }}>
-            <p
+            <div
               style={{
                 fontSize: 15,
                 color: BODY_COLOR,
                 lineHeight: 1.6,
                 margin: "0 0 20px",
                 textAlign: "justify",
-                textIndent: "2em",
               }}
-            >
-              {bodyText}
-            </p>
+              dangerouslySetInnerHTML={{ __html: bodyText }}
+            />
 
           </div>
 

@@ -41,13 +41,13 @@ export const PAGES_FIELDS: FieldConfig[] = [
   {
     name: "content_zh",
     label: "中文內容",
-    type: "textarea",
+    type: "richtext",
     lang: "zh",
   },
   {
     name: "content_en",
     label: "English Content",
-    type: "textarea",
+    type: "richtext",
     lang: "en",
   },
   {
@@ -158,13 +158,13 @@ export const BOARD_MEMBERS_FIELDS: FieldConfig[] = [
   {
     name: "bio_zh",
     label: "中文簡歷",
-    type: "textarea",
+    type: "richtext",
     lang: "zh",
   },
   {
     name: "bio_en",
     label: "English Bio",
-    type: "textarea",
+    type: "richtext",
     lang: "en",
   },
   {
@@ -277,13 +277,13 @@ export const COMPANY_NEWS_FIELDS: FieldConfig[] = [
   {
     name: "content_zh",
     label: "中文內容",
-    type: "textarea",
+    type: "richtext",
     lang: "zh",
   },
   {
     name: "content_en",
     label: "English Content",
-    type: "textarea",
+    type: "richtext",
     lang: "en",
   },
   {
@@ -349,13 +349,13 @@ export const SUBSIDIARIES_FIELDS: FieldConfig[] = [
   {
     name: "description_zh",
     label: "中文描述",
-    type: "textarea",
+    type: "richtext",
     lang: "zh",
   },
   {
     name: "description_en",
     label: "English Description",
-    type: "textarea",
+    type: "richtext",
     lang: "en",
   },
   {
@@ -463,14 +463,14 @@ export const BUSINESS_CARDS_FIELDS: FieldConfig[] = [
   {
     name: "body_zh",
     label: "中文正文",
-    type: "textarea",
+    type: "richtext",
     required: true,
     lang: "zh",
   },
   {
     name: "body_en",
     label: "英文正文",
-    type: "textarea",
+    type: "richtext",
     required: true,
     lang: "en",
   },

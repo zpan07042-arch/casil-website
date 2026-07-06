@@ -7,6 +7,11 @@
 import AboutHeader from "@/components/shared/AboutHeader";
 
 function formatContent(text: string): string {
+  // 如果內容已包含 HTML 標籤（來自富文本編輯器），直接返回
+  if (/<[^>]+>/.test(text)) {
+    return text;
+  }
+  // 純文本：按段落分割並添加縮進
   return text
     .split(/\n\n+/)
     .map((p) => `<p class="mb-4" style="text-indent:2em">${p.trim()}</p>`)

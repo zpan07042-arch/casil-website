@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import RichTextField from "./RichTextField";
 
 export interface FieldConfig {
   name: string;
   label: string;
-  type: "text" | "textarea" | "number" | "select" | "url" | "image";
+  type: "text" | "textarea" | "richtext" | "number" | "select" | "url" | "image";
   required?: boolean;
   options?: { value: string; label: string }[];
   placeholder?: string;
@@ -377,6 +378,15 @@ function FieldRow({
           placeholder={field.placeholder}
           rows={5}
           className={`${commonClass} ${errorClass} min-h-[120px] resize-y`}
+        />
+      ) : field.type === "richtext" ? (
+        <RichTextField
+          id={inputId}
+          value={String(value ?? "")}
+          onChange={(v) => onChange(field.name, v)}
+          placeholder={field.placeholder}
+          disabled={field.disabled}
+          error={error}
         />
       ) : field.type === "select" ? (
         <select

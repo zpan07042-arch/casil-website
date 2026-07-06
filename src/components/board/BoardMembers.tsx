@@ -81,9 +81,10 @@ export default function BoardMembers({
                         </div>
                       </div>
                       {bio && (
-                        <p style={{ fontSize: 18, lineHeight: 1.6, paddingTop: 12, textIndent: "2em", color: "#000" }}>
-                          {bio}
-                        </p>
+                        <div
+                          style={{ fontSize: 18, lineHeight: 1.6, paddingTop: 12, color: "#000" }}
+                          dangerouslySetInnerHTML={{ __html: bio }}
+                        />
                       )}
                     </div>
                   </div>

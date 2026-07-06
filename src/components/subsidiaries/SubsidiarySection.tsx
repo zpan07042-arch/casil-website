@@ -275,12 +275,11 @@ export default function SubsidiarySection({
                                 {/* Description */}
                                 <AnimatePresence>
                                   {desc && (
-                                    <motion.p
+                                    <motion.div
                                       initial={{ height: "auto", opacity: 1 }}
                                       className="text-[12px] text-text-secondary leading-[1.6]"
-                                    >
-                                      {desc}
-                                    </motion.p>
+                                      dangerouslySetInnerHTML={{ __html: desc }}
+                                    />
                                   )}
                                 </AnimatePresence>
                               </div>
@@ -342,10 +341,10 @@ export default function SubsidiarySection({
                           </h3>
                         </div>
                         {desc && (
-                          <p className="text-[13px] text-text-secondary leading-[1.6] pl-7"
-                          >
-                            {desc}
-                          </p>
+                          <div
+                            className="text-[13px] text-text-secondary leading-[1.6] pl-7"
+                            dangerouslySetInnerHTML={{ __html: desc }}
+                          />
                         )}
                       </motion.div>
                     );
