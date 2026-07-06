@@ -164,6 +164,8 @@ export class CompatDatabase {
     }
     const data = this.db.export();
     fs.writeFileSync(this.dbPath, Buffer.from(data));
+    // 更新全局時間戳，避免當前進程自己觸發不必要的 reload
+    updateDbMtime();
   }
 
   /**
@@ -266,8 +268,31 @@ export interface AdminSession {
 
 // ── Singleton ────────────────────────────────────────────────────
 
+let _lastMtime = 0;
+
+/** 更新全局時間戳（寫入後調用，避免自己觸發不必要的 reload） */
+function updateDbMtime() {
+  try {
+    _lastMtime = fs.statSync(DB_PATH).mtimeMs;
+  } catch {
+    _lastMtime = Date.now();
+  }
+}
+
 export async function getDb(): Promise<CompatDatabase> {
-  if (db) return db;
+  if (db) {
+    // 多 worker 場景：檢查磁盤文件是否被其他 worker 修改過
+    try {
+      const stat = fs.statSync(DB_PATH);
+      if (stat.mtimeMs > _lastMtime) {
+        _lastMtime = stat.mtimeMs;
+        await db.reloadFromDisk();
+      }
+    } catch {
+      // 文件不存在，跳過
+    }
+    return db;
+  }
   if (!dbInitPromise) {
     dbInitPromise = (async () => {
       const SQL = await getSqlJs();
@@ -286,6 +311,13 @@ export async function getDb(): Promise<CompatDatabase> {
       const sqlJsDb = new SQL.Database(buffer);
       db = new CompatDatabase(sqlJsDb, DB_PATH);
       db.pragma("journal_mode = WAL");
+
+      // 記錄初始文件時間
+      try {
+        _lastMtime = fs.statSync(DB_PATH).mtimeMs;
+      } catch {
+        _lastMtime = Date.now();
+      }
 
       // 啓動時自動運行遷移
       runMigrations(db);
