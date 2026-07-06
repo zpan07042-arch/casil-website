@@ -74,10 +74,13 @@ export async function getGovernanceDocs(): Promise<GovernanceDoc[]> {
 }
 
 // Company News
-export async function getCompanyNews(): Promise<CompanyNews[]> {
-  return (await getDb())
-    .prepare("SELECT * FROM company_news ORDER BY date DESC")
-    .all() as CompanyNews[];
+export async function getCompanyNews(limit?: number): Promise<CompanyNews[]> {
+  const sql = limit
+    ? "SELECT * FROM company_news ORDER BY date DESC LIMIT ?"
+    : "SELECT * FROM company_news ORDER BY date DESC";
+  return limit
+    ? (await getDb()).prepare(sql).all(limit) as CompanyNews[]
+    : (await getDb()).prepare(sql).all() as CompanyNews[];
 }
 
 export async function getCompanyNewsById(id: number): Promise<CompanyNews | undefined> {

@@ -4,7 +4,7 @@ import HomePageClient from "@/components/home/HomePageClient";
 export default async function HomePage() {
   let latestNews: Awaited<ReturnType<typeof getCompanyNews>> = [];
   try {
-    latestNews = await getCompanyNews();
+    latestNews = await getCompanyNews(5);
   } catch {
     // DB unavailable — HomePageClient will fall back to i18n keys
   }

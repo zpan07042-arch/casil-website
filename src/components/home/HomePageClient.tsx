@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import BusinessDomains from "@/components/home/BusinessDomains";
+import { getImageSrc } from "@/lib/image";
 import type { CompanyNews, Lang } from "@/lib/types";
 
 // ============================================================
@@ -77,7 +78,9 @@ export default function HomePageClient({
   const parallaxY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   // ============================================================
-  // Build news list: prefer DB data (first 4), fallback to i18n keys
+  // Build news list: prefer DB data (first 5), fallback to i18n keys
+  //   - featured: latestNews[0] (最新一條，用於大圖展示)
+  //   - grid: latestNews[1..4] (第二～第五條，用於 2×2 網格)
   // ============================================================
   const hasDbData = latestNews && latestNews.length > 0;
 
@@ -92,8 +95,13 @@ export default function HomePageClient({
     ? formatNewsDate(latestNews[0].date || "", lang)
     : t("news_featured_date");
 
+  // Featured news cover image — use latest news cover, fallback to static image
+  const featuredImage = hasDbData && latestNews[0].cover_image
+    ? getImageSrc(latestNews[0].cover_image)
+    : "/images/bback.jpg";
+
   const newsItems = hasDbData
-    ? latestNews.slice(0, 4).map((item) => ({
+    ? latestNews.slice(1, 5).map((item) => ({
         id: String(item.id),
         date: formatNewsDate(item.date || "", lang),
         title: lang === "zh" ? item.title_zh : (item.title_en || item.title_zh),
@@ -271,7 +279,7 @@ export default function HomePageClient({
               <motion.div
                 style={{
                   y: parallaxY,
-                  backgroundImage: "url('/images/bback.jpg')",
+                  backgroundImage: `url('${featuredImage}')`,
                 }}
                 className="absolute inset-0 scale-110 bg-cover bg-center bg-no-repeat"
               />
