@@ -281,7 +281,7 @@ export default function HomePageClient({
                   y: parallaxY,
                   backgroundImage: `url('${featuredImage}')`,
                 }}
-                className="absolute inset-0 scale-110 bg-cover bg-center bg-no-repeat"
+                className="absolute inset-0 scale-110 bg-contain bg-center bg-no-repeat"
               />
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10 z-[1]" />
