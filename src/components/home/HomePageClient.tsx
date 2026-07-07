@@ -3,7 +3,7 @@
 import { useI18n } from "@/components/data/I18nProvider";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import BusinessDomains from "@/components/home/BusinessDomains";
 import { getImageSrc } from "@/lib/image";
 import type { CompanyNews, Lang } from "@/lib/types";
@@ -76,6 +76,48 @@ export default function HomePageClient({
     offset: ["start end", "end start"],
   });
   const parallaxY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+
+  // ============================================================
+  // Controlled map iframe loading — prevents focus-triggered scroll
+  // jumps when the browser tab becomes visible again
+  // ============================================================
+  const locationSectionRef = useRef<HTMLElement>(null);
+  const [mapShouldLoad, setMapShouldLoad] = useState(false);
+  const lastVisibleTimeRef = useRef(Date.now());
+
+  // Record timestamp when page becomes visible — guards against
+  // tab-switch-triggered iframe loading that steals focus
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        lastVisibleTimeRef.current = Date.now();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
+
+  // IntersectionObserver defers Baidu Maps iframe loading until:
+  // (a) user scrolls near the location section AND
+  // (b) page has been visible for at least 600ms (not a tab-switch restore)
+  useEffect(() => {
+    const el = locationSectionRef.current;
+    if (!el || mapShouldLoad) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (Date.now() - lastVisibleTimeRef.current < 600) return;
+          setMapShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [mapShouldLoad]);
 
   // ============================================================
   // Build news list: prefer DB data (first 5), fallback to i18n keys
@@ -358,7 +400,7 @@ export default function HomePageClient({
       {/* ============================================================ */}
       {/* Section 4 — Geographic Presence (地理位置)                    */}
       {/* ============================================================ */}
-      <section id="location" className="bg-white pt-12 pb-16">
+      <section id="location" ref={locationSectionRef} className="bg-white pt-12 pb-16">
         {/* Section header — subtitle + title + divider */}
         <div className="mb-16 md:mb-24 text-center px-6">
           <p className="text-[#5BA4D6] text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4">
@@ -415,15 +457,30 @@ export default function HomePageClient({
             transition={{ delay: 0.15 }}
             className="flex-1 min-h-[400px] lg:min-h-0"
           >
-            <iframe
-              title="公司位置"
-              src="https://map.baidu.com/poi/中国航天国际控股有限公司/@12713179.251287216,2533430.9058669005,13.29z?uid=c7168b4709219f8eaf04570e&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&en_uid=c7168b4709219f8eaf04570e&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl"
-              className="w-full h-full rounded-2xl border border-gray-200"
-              style={{ minHeight: "400px" }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            {mapShouldLoad ? (
+              <iframe
+                title="公司位置"
+                src="https://map.baidu.com/poi/中国航天国际控股有限公司/@12713179.251287216,2533430.9058669005,13.29z?uid=c7168b4709219f8eaf04570e&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&en_uid=c7168b4709219f8eaf04570e&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl"
+                className="w-full h-full rounded-2xl border border-gray-200"
+                style={{ minHeight: "400px" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : (
+              <div
+                className="w-full h-full rounded-2xl border border-gray-200 bg-gray-50 flex items-center justify-center"
+                style={{ minHeight: "400px" }}
+              >
+                <div className="text-center text-gray-400">
+                  <svg className="w-10 h-10 mx-auto mb-3 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                  </svg>
+                  <p className="text-sm">{lang === "zh" ? "地图加载中..." : "Loading map..."}</p>
+                </div>
+              </div>
+            )}
           </motion.div>
         </div>
       </section>
