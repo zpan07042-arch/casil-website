@@ -117,10 +117,10 @@ export default function CompanyTimeline({
         {/* ==================== BACKGROUND SECTION HEADER ==================== */}
         <FadeInSection>
           <div className="mb-6">
-            <p style={{ fontSize: 11, color: "#888E9C", letterSpacing: "0.06em", lineHeight: 1 }}>
+            <p style={{ fontSize: 11, color: "#888E9C", letterSpacing: "0.06em", lineHeight: 1 }} className="leading-none">
               BACKGROUND
             </p>
-            <h2 style={{ fontSize: 30, fontWeight: 700, color: "#0A1429", marginTop: 8 }}>
+            <h2 style={{ fontSize: 30, fontWeight: 700, color: "#0A1429", marginTop: 8 }} className="leading-none">
               {isZh ? "背景" : "Background"}
             </h2>
           </div>

@@ -175,7 +175,7 @@ export default function BusinessDomains() {
         setAerospaceData({
           // 中文: sub_title="物業租賃服務"; 英文: 无对应英文字段，留空让组件走 i18n fallback
           mainTitle: lang === "zh" ? row.sub_title : "",
-          // 中文: main_title="航天高科"; 英文: en_name="Aerospace Hightech"
+          // 中文: main_title="航天高科"; 英文: en_name="Shenzhen Aerospace Technology Investment Co., Ltd."
           subTitle: lang === "zh" ? row.main_title : row.en_name,
           desc: lang === "zh" ? row.body_zh : row.body_en,
           imageSrc: parseFirstImage(row.product_images),
