@@ -232,11 +232,11 @@ export default function BusinessDomains() {
 
         {/* ---- 5卡片网格 ---- */}
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 items-stretch">
             {domains.map((domain, i) => {
               const CARD_IDS = ["card-pcb", "card-display", "card-ipm", "card-power", "card-injection"];
               return (
-                <div key={domain.title} id={CARD_IDS[i]} style={{ scrollMarginTop: "80px" }}>
+                <div key={domain.title} id={CARD_IDS[i]} style={{ scrollMarginTop: "80px" }} className="h-full">
                   <BusinessCard domain={domain} lang={lang} />
                 </div>
               );
@@ -283,8 +283,8 @@ function BusinessCard({
   const imgPath = `/images/${domain.imgSrc}`;
 
   return (
-    <div className="group/card relative z-10 hover:z-30">
-      <div className="rounded-3xl overflow-hidden bg-[#0A1A3A]/60 backdrop-blur-sm ring-1 ring-[#3E92CC]/30 group-hover/card:ring-[#3E92CC]/60 transition-all duration-500">
+    <div className="group/card relative z-10 hover:z-30 h-full">
+      <div className="rounded-3xl overflow-hidden bg-[#0A1A3A]/60 backdrop-blur-sm ring-1 ring-[#3E92CC]/30 group-hover/card:ring-[#3E92CC]/60 transition-all duration-500 h-full flex flex-col">
         {/* 图片区域 */}
         <div
           className="relative w-full overflow-hidden"
@@ -321,7 +321,7 @@ function BusinessCard({
         />
 
         {/* 静态文字区域 */}
-        <div className="px-5 pt-4 pb-3">
+        <div className="px-5 pt-4 pb-3 flex-1">
           <h3 className="text-white text-lg md:text-xl font-bold leading-snug mb-2 tracking-wide">
             {domain.title}
           </h3>
