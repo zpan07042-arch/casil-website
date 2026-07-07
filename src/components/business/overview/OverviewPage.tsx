@@ -44,11 +44,11 @@ export default function OverviewPage({
   // 解析分類標籤
   const catA = {
     title: isZh ? config.categoryA.title.zh : config.categoryA.title.en,
-    subtitle: config.categoryA.subtitle,
+    subtitle: "",
   };
   const catB = {
     title: isZh ? config.categoryB.title.zh : config.categoryB.title.en,
-    subtitle: config.categoryB.subtitle,
+    subtitle: "",
   };
 
   // 按 category 分組卡片

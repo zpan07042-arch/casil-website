@@ -46,13 +46,6 @@ export default async function ContactPage({
         <div className="max-w-6xl mx-auto px-5 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {cards.map((card) => {
-              const enLabels: Record<string, string> = {
-                "投資者諮詢通道": "Investor Inquiries",
-                "Investor Inquiries": "Investor Inquiries",
-                "人才招聘": "Careers",
-                "Careers": "Careers",
-              };
-              const enLabel = enLabels[card.title] || "";
               return (
               <Link
                 key={card.href}
@@ -105,17 +98,6 @@ export default async function ContactPage({
                     >
                       {card.title}
                     </h3>
-                    {enLabel && (
-                      <p
-                        style={{
-                          fontSize: 11,
-                          color: "#888E9C",
-                          letterSpacing: "0.06em",
-                        }}
-                      >
-                        {enLabel}
-                      </p>
-                    )}
                   </div>
 
                   {/* 了解更多按鈕 */}

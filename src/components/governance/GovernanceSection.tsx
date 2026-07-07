@@ -21,22 +21,12 @@ function FadeSection({ children, className = "" }: { children: React.ReactNode; 
   );
 }
 
-function SectionTitle({ children, enLabel }: { children: React.ReactNode; enLabel: string }) {
+function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ marginBottom: 20 }}>
       <h2 style={{ fontSize: 30, fontWeight: 700, marginBottom: 4 }} className="text-text-primary">
         {children}
       </h2>
-      <p
-        style={{
-          fontSize: 11,
-          color: "#888E9C",
-          margin: "0 0 16px",
-          letterSpacing: "0.06em",
-        }}
-      >
-        {enLabel}
-      </p>
       <div
         style={{
           width: "100%",
@@ -97,7 +87,7 @@ export default function GovernanceSection({
             />
 
             <div className="relative">
-              <SectionTitle enLabel="Governance Document Downloads">
+              <SectionTitle>
                 {isZh ? "管治文件下載" : "Governance Document Downloads"}
               </SectionTitle>
 

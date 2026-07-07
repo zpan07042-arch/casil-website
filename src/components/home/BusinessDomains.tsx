@@ -239,7 +239,7 @@ export default function BusinessDomains() {
             {domains.map((domain, i) => {
               const CARD_IDS = ["card-pcb", "card-display", "card-ipm", "card-power", "card-injection"];
               return (
-                <div key={i} id={CARD_IDS[i]} style={{ scrollMarginTop: "80px" }} className="h-full">
+                <div key={i} id={CARD_IDS[i]} style={{ scrollMarginTop: "80px" }}>
                   <BusinessCard
                     domain={domain}
                     lang={lang}
@@ -299,7 +299,7 @@ function BusinessCard({
 
   return (
     <div
-      className="relative z-10 hover:z-30 h-full"
+      className="relative z-10 hover:z-30"
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >
@@ -355,12 +355,13 @@ function BusinessCard({
           </p>
         </div>
 
-        {/* 下拉详情面板 */}
+        {/* 下拉详情面板 — 仅激活卡片展开，带过渡动画 */}
         <div
-          className={`overflow-hidden transition-[max-height] duration-500 ease-out ${
+          className={`overflow-hidden transition-[max-height] duration-700 ease-out ${
             isActive ? "max-h-[500px]" : "max-h-0"
           }`}
         >
+          {isActive && (
           <div className="px-5 pt-2 pb-5">
             <p className="text-white/80 text-xs md:text-sm leading-relaxed md:leading-loose mb-5">
               {domain.detail}
@@ -371,24 +372,25 @@ function BusinessCard({
                 className="inline-flex items-center gap-1.5 text-[#3E92CC] text-xs md:text-sm font-medium
                   hover:text-[#5BA4D6] transition-colors duration-300
                   group/link"
+            >
+              <span>{t("business_learn_more")}</span>
+              <svg
+                className="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-0.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
               >
-                <span>{t("business_learn_more")}</span>
-                <svg
-                  className="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-0.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Link>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
           </div>
+        </div>
+          )}
         </div>
       </div>
     </div>

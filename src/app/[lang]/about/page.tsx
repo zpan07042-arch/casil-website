@@ -107,15 +107,6 @@ export default async function AboutPage({
                       >
                         {lang === "zh" ? s.title_zh : s.title_en}
                       </h3>
-                      <p
-                        style={{
-                          fontSize: 11,
-                          color: "#888E9C",
-                          letterSpacing: "0.06em",
-                        }}
-                      >
-                        {lang === "zh" ? s.title_en : s.title_zh}
-                      </p>
                     </div>
 
                     {/* 右：了解更多按鈕 */}

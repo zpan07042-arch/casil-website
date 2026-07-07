@@ -38,21 +38,11 @@ export default function BoardMembers({
       <div className="max-w-3xl mx-auto px-5 md:px-8">
         {Object.entries(grouped).map(([type, group]) => (
           <div key={type} className="mb-16 last:mb-0">
-            {/* ── 副标题 + 英文小字 + 分割线 ── */}
+            {/* ── 副标题 + 分割线 ── */}
             <div style={{ marginBottom: 20 }}>
               <h2 style={{ fontSize: 30, fontWeight: 700, marginBottom: 4 }} className="text-text-primary">
                 {isZh ? (memberTypesZh[type] || type) : (memberTypesEn[type] || type)}
               </h2>
-              <p
-                style={{
-                  fontSize: 11,
-                  color: "#888E9C",
-                  margin: "0 0 16px",
-                  letterSpacing: "0.06em",
-                }}
-              >
-                {memberTypesEn[type] || type}
-              </p>
               <div
                 style={{
                   width: "100%",

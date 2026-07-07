@@ -7,14 +7,14 @@ import type { Lang } from "@/lib/types";
 const content = {
   zh: {
     breadcrumb: "首頁 > 關於我們 > 企業架構",
-    enLabel:    "CORPORATE STRUCTURE",
+    enLabel:    "",
     title:      "企業架構",
     desc:       "中國航天國際控股有限公司集團組織架構圖",
     note:       "",
   },
   en: {
     breadcrumb: "Home > About Us > Corporate Structure",
-    enLabel:    "CORPORATE STRUCTURE",
+    enLabel:    "",
     title:      "Corporate Structure",
     desc:       "China Aerospace International Holdings Limited — Group Organization Chart",
     note:       "",

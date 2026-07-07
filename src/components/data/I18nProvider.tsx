@@ -16,7 +16,7 @@ export function I18nProvider({
   lang: Lang;
   children: React.ReactNode;
 }) {
-  const t = (key: string) => ui[lang]?.[key] || key;
+  const t = (key: string) => ui[lang]?.[key] ?? key;
   return (
     <I18nContext.Provider value={{ lang, t }}>{children}</I18nContext.Provider>
   );

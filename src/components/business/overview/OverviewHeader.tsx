@@ -54,17 +54,19 @@ export default function OverviewHeader({
         </p>
 
         {/* 英文大寫標籤 */}
-        <p
-          style={{
-            fontSize: 11,
-            color: "rgba(255, 255, 255, 0.4)",
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            margin: "0 0 8px",
-          }}
-        >
-          {enLabel}
-        </p>
+        {enLabel && (
+          <p
+            style={{
+              fontSize: 11,
+              color: "rgba(255, 255, 255, 0.4)",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              margin: "0 0 8px",
+            }}
+          >
+            {enLabel}
+          </p>
+        )}
 
         {/* 大標題 */}
         <h1

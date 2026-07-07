@@ -133,7 +133,7 @@ export function getPageMeta(section: string, lang: string): PageMeta {
   }
   return {
     breadcrumb: lang === "zh" ? meta.breadcrumb.zh : meta.breadcrumb.en,
-    enLabel: meta.enLabel,
+    enLabel: "",
     description: meta.desc
       ? lang === "zh"
         ? meta.desc.zh

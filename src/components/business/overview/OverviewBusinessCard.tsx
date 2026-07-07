@@ -232,20 +232,6 @@ export default function OverviewBusinessCard({
           </a>
         </div>
 
-        {/* 英文名稱（僅中文版顯示） */}
-        {isZh && (
-          <p
-            style={{
-              fontSize: 11,
-              color: HELPER_COLOR,
-              margin: 0,
-              letterSpacing: "0.06em",
-            }}
-          >
-            {enName}
-          </p>
-        )}
-
         {/* 長分割線 */}
         <div
           style={{

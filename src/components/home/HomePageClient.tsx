@@ -268,7 +268,7 @@ export default function HomePageClient({
           transition={{ delay: 1.2, duration: 0.8 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
         >
-          <span className="text-white/40 text-xs tracking-widest uppercase">Scroll</span>
+          <span className="text-white/40 text-xs tracking-widest uppercase" />
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
