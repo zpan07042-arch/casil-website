@@ -151,6 +151,9 @@ export default function BusinessDomains() {
   // ---- 从后端获取航天服务数据 ----
   const [aerospaceData, setAerospaceData] = useState<AerospaceData | null>(null);
 
+  // ---- 当前 hover 的卡片索引（父组件统一管理，同一时间最多一张展开） ----
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   // ---- 从后端获取友情链接数据 ----
   const [links, setLinks] = useState<LinkItem[]>([]);
 
@@ -232,12 +235,18 @@ export default function BusinessDomains() {
 
         {/* ---- 5卡片网格 ---- */}
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 items-start">
             {domains.map((domain, i) => {
               const CARD_IDS = ["card-pcb", "card-display", "card-ipm", "card-power", "card-injection"];
               return (
-                <div key={domain.title} id={CARD_IDS[i]} style={{ scrollMarginTop: "80px" }} className="h-full">
-                  <BusinessCard domain={domain} lang={lang} />
+                <div key={i} id={CARD_IDS[i]} style={{ scrollMarginTop: "80px" }} className="h-full">
+                  <BusinessCard
+                    domain={domain}
+                    lang={lang}
+                    isActive={hoveredIndex === i}
+                    onHover={() => setHoveredIndex(i)}
+                    onLeave={() => setHoveredIndex(null)}
+                  />
                 </div>
               );
             })}
@@ -275,16 +284,30 @@ export default function BusinessDomains() {
 function BusinessCard({
   domain,
   lang,
+  isActive,
+  onHover,
+  onLeave,
 }: {
   domain: BusinessDomain;
   lang: string;
+  isActive: boolean;
+  onHover: () => void;
+  onLeave: () => void;
 }) {
   const { t } = useI18n();
   const imgPath = `/images/${domain.imgSrc}`;
 
   return (
-    <div className="group/card relative z-10 hover:z-30 h-full">
-      <div className="rounded-3xl overflow-hidden bg-[#0A1A3A]/60 backdrop-blur-sm ring-1 ring-[#3E92CC]/30 group-hover/card:ring-[#3E92CC]/60 transition-all duration-500 h-full flex flex-col">
+    <div
+      className="relative z-10 hover:z-30 h-full"
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+    >
+      <div
+        className={`rounded-3xl overflow-hidden bg-[#0A1A3A]/60 backdrop-blur-sm ring-1 transition-all duration-500 h-full flex flex-col ${
+          isActive ? "ring-[#3E92CC]/60" : "ring-[#3E92CC]/30"
+        }`}
+      >
         {/* 图片区域 */}
         <div
           className="relative w-full overflow-hidden"
@@ -295,7 +318,9 @@ function BusinessCard({
             alt={domain.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 20vw"
-            className="object-cover transition-transform duration-500 ease-out group-hover/card:scale-105"
+            className={`object-cover transition-transform duration-500 ease-out ${
+              isActive ? "scale-105" : "scale-100"
+            }`}
             loading="lazy"
             quality={90}
           />
@@ -332,10 +357,9 @@ function BusinessCard({
 
         {/* 下拉详情面板 */}
         <div
-          className="overflow-hidden
-            max-h-0
-            group-hover/card:max-h-[500px]
-            transition-[max-height] duration-500 ease-out"
+          className={`overflow-hidden transition-[max-height] duration-500 ease-out ${
+            isActive ? "max-h-[500px]" : "max-h-0"
+          }`}
         >
           <div className="px-5 pt-2 pb-5">
             <p className="text-white/80 text-xs md:text-sm leading-relaxed md:leading-loose mb-5">
