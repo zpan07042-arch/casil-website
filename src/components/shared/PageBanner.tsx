@@ -24,9 +24,11 @@ export default function PageBanner({
 }) {
   return (
     <section
-      className="pt-20 pb-10 md:pt-24 md:pb-12 px-5"
+      className="px-5"
       style={{
         background: `linear-gradient(135deg, ${Navy} 0%, #0F2D6E 100%)`,
+        paddingTop: "100px",
+        paddingBottom: "52px",
       }}
     >
       <div className="max-w-[1200px] mx-auto text-center">

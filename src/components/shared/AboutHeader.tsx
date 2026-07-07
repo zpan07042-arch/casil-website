@@ -26,7 +26,7 @@ export default function AboutHeader({
     <section
       style={{
         position: "relative",
-        padding: "48px 0 40px",
+        padding: "96px 0 52px",
         backgroundImage:
           "url('/images/oback.png')",
         backgroundSize: "cover",
