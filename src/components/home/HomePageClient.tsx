@@ -460,7 +460,7 @@ export default function HomePageClient({
             {mapShouldLoad ? (
               <iframe
                 title="公司位置"
-                src="https://map.baidu.com/poi/中国航天国际控股有限公司/@12713179.251287216,2533430.9058669005,13.29z?uid=c7168b4709219f8eaf04570e&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&en_uid=c7168b4709219f8eaf04570e&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl"
+                src="https://map.baidu.com/poi/中国航天国际控股有限公司/@12713170.105,2531882.12,19z?uid=c7168b4709219f8eaf04570e&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&routetype=drive&en_uid=c7168b4709219f8eaf04570e&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl"
                 className="w-full h-full rounded-2xl border border-gray-200"
                 style={{ minHeight: "400px" }}
                 allowFullScreen
