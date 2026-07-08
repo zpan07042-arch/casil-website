@@ -259,6 +259,7 @@ export default function OverviewBusinessCard({
                 lineHeight: 1.6,
                 margin: "0 0 20px",
                 textAlign: "justify",
+                textIndent: "1.2em",
               }}
               dangerouslySetInnerHTML={{ __html: bodyText }}
             />

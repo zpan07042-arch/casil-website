@@ -24,7 +24,8 @@ export default async function ContactPage({
     {
       title: lang === "zh" ? "投資者諮詢通道" : "Investor Inquiries",
       desc: lang === "zh" ? "投資者關係諮詢與信息查詢服務" : "Investor relations inquiries and information services",
-      href: `${base}/contact/investor`,
+      href: "http://www.casil-group.com:8080/investor/inquiry/",
+      external: true,
     },
     {
       title: lang === "zh" ? "人才招聘" : "Careers",
@@ -50,6 +51,8 @@ export default async function ContactPage({
               <Link
                 key={card.href}
                 href={card.href}
+                target={card.external ? "_blank" : undefined}
+                rel={card.external ? "noopener noreferrer" : undefined}
                 className="block rounded-xl p-8 border border-[#E6EEFB] hover:-translate-y-0.5 transition-all duration-300 group"
               style={{
                 backgroundColor: "#FFFFFF",
