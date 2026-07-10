@@ -99,7 +99,7 @@ export default function HomePageClient({
 
   // IntersectionObserver defers Baidu Maps iframe loading until:
   // (a) user scrolls near the location section AND
-  // (b) page has been visible for at least 600ms (not a tab-switch restore)
+  // (b) page has been visible for at least 1000ms (not a tab-switch restore)
   useEffect(() => {
     const el = locationSectionRef.current;
     if (!el || mapShouldLoad) return;
@@ -107,7 +107,7 @@ export default function HomePageClient({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          if (Date.now() - lastVisibleTimeRef.current < 600) return;
+          if (Date.now() - lastVisibleTimeRef.current < 1000) return;
           setMapShouldLoad(true);
           observer.disconnect();
         }
