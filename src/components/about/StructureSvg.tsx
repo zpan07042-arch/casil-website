@@ -258,12 +258,10 @@ export default function StructureSvg({ lang }: { lang: Lang }) {
           {t.sectors.map((sector, i) => {
             const positions = [80, 350, 625, 900, 1170];
             const cx = positions[i] + 65;
-            const shortLabels = ["先進製造業", "Advanced Manufacturing"];
-            const isShort = shortLabels.includes(sector);
             return (
               <g key={i}>
-                <rect x={positions[i]} y="245" width={isShort ? 130 : 130} height="40" rx="4" />
-                <text x={cx} y="270" className="text-sector" style={!isShort ? { fontSize: 11.5 } : undefined}>{sector}</text>
+                <rect x={positions[i]} y="245" width="130" height="40" rx="4" />
+                <text x={cx} y="270" className="text-sector" style={{ fontSize: 11.5 }}>{sector}</text>
               </g>
             );
           })}
